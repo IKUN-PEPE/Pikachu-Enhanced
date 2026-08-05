@@ -1,72 +1,45 @@
 <?php
 /**
- * Created by runner.han
- * There is nothing new under the sun
+ * Pikachu-Enhanced DOM XSS Lab
  */
+include_once '../../inc/config.inc.php';
 
+$ACTIVE = array_fill(0, 250, '');
+$ACTIVE[7] = 'active open';
+$ACTIVE[12] = 'active';
 
-$SELF_PAGE = substr($_SERVER['PHP_SELF'],strrpos($_SERVER['PHP_SELF'],'/')+1);
-
-if ($SELF_PAGE = "xss_dom.php"){
-    $ACTIVE = array('','','','','','','','active open','','','','','active','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');
-}
-
-$PIKA_ROOT_DIR =  "../../";
-include_once $PIKA_ROOT_DIR.'header.php';
-
-include_once $PIKA_ROOT_DIR."inc/config.inc.php";
-include_once $PIKA_ROOT_DIR."inc/mysql.inc.php";
-
-
-if(isset($_GET['text'])){
-    $haha = "这里是后台的处理逻辑";
-}
-
+$PIKA_ROOT_DIR = "../../";
+include_once $PIKA_ROOT_DIR . 'header.php';
+include_once $PIKA_ROOT_DIR . "inc/mysql.inc.php";
 ?>
 
 <div class="main-content">
     <div class="main-content-inner">
-        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
-            <ul class="breadcrumb">
-                <li>
-                    <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="xss.php">xss</a>
-                </li>
-                <li class="active">DOM型xss</li>
-            </ul><!-- /.breadcrumb -->
-
-            <a href="#" style="float:right" data-container="body" data-toggle="popover" data-placement="bottom" title="tips(再点一下关闭)"
-               data-content="先到这里把什么是dom搞明白了在说http://www.w3school.com.cn/htmldom/">
-                点一下提示~
-            </a>
-
-        </div>
         <div class="page-content">
-
-            <div id="xssd_main">
-                <script>
-                    function domxss(){
-                        var str = document.getElementById("text").value;
-                        document.getElementById("dom").innerHTML = "<a href='"+str+"'>what do you see?</a>";
-                    }
-                    //试试：'><img src="#" onmouseover="alert('xss')">
-                    //试试：' onclick="alert('xss')">,闭合掉就行
-                </script>
-                <!--<a href="" onclick=('xss')>-->
-                <input id="text" name="text" type="text"  value="" />
-                <input id="button" type="button" value="click me!" onclick="domxss()" />
-                <div id="dom"></div>
+            <div class="vul">
+                <h2>DOM型 XSS 漏洞演练</h2>
+                <p>DOM (Document Object Model) 型 XSS 是一种通过客户端前端 JavaScript 脚本直接修改 DOM 树结构而触发的跨站脚本漏洞。</p>
+                
+                <div id="xssd_main" style="margin-top: 20px;">
+                    <script>
+                        function domxss(){
+                            var str = document.getElementById("text").value;
+                            document.getElementById("dom").innerHTML = "<a href='"+str+"' target='_blank' style='font-weight:bold; font-size:16px; color:#2563eb;'>what do you see? (点击测试 payload)</a>";
+                        }
+                    </script>
+                    
+                    <div style="display: flex; gap: 10px; max-width: 600px; margin-bottom: 20px;">
+                        <input id="text" name="text" type="text" class="form-control" placeholder="输入 payload，如: ' onclick='alert(1)'" style="flex: 1;" />
+                        <input id="button" type="button" class="btn btn-primary" value="生成 DOM 链接" onclick="domxss()" />
+                    </div>
+                    
+                    <div id="dom" style="padding: 15px; background: var(--bg-secondary); border-radius: 8px; border: 1px dashed var(--border-color); min-height: 50px;"></div>
+                </div>
             </div>
-
-
-        </div><!-- /.page-content -->
+        </div>
     </div>
-</div><!-- /.main-content -->
-
-
-
-
+</div>
 
 <?php
-include_once $PIKA_ROOT_DIR.'footer.php';
+include_once $PIKA_ROOT_DIR . 'footer.php';
 ?>

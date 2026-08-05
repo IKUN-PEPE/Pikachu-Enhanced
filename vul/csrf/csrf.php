@@ -1,90 +1,241 @@
 <?php
 /**
- * Created by runner.han
- * There is nothing new under the sun
+ * Pikachu-Enhanced Modern Overview Page
  */
+include_once '../../inc/config.inc.php';
 
+$ACTIVE = array_fill(0, 250, '');
+$ACTIVE[25] = 'active open';
+$ACTIVE[26] = 'active';
 
-$SELF_PAGE = substr($_SERVER['PHP_SELF'],strrpos($_SERVER['PHP_SELF'],'/')+1);
+$PIKA_ROOT_DIR = "../../";
+include_once $PIKA_ROOT_DIR . 'header.php';
+?>
 
-if ($SELF_PAGE = "csrf.php"){
-    $ACTIVE = array('','','','','','','','','','','','','','','','','','','','','','','','','','active open','active','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');
-
+<style>
+.overview-hero-card {
+    background: linear-gradient(135deg, #881337, #4c0519);
+    border-radius: 16px;
+    padding: 35px;
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    margin-bottom: 30px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.overview-hero-card h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-top: 0;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.overview-badge {
+    background: rgba(239, 68, 68, 0.2);
+    color: #f87171;
+    border: 1px solid #f87171;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+.overview-hero-card p {
+    font-size: 15px;
+    color: #e2e8f0;
+    line-height: 1.7;
+    max-width: 950px;
+    margin-bottom: 0;
 }
 
-$PIKA_ROOT_DIR =  "../../";
-include_once $PIKA_ROOT_DIR.'header.php';
+.workflow-section {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+.workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+.workflow-step {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.2s ease;
+}
+.workflow-step:hover {
+    transform: translateY(-3px);
+}
+.step-icon-badge {
+    width: 36px;
+    height: 36px;
+    background: #2563eb;
+    color: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
 
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+.detail-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    border-top: 4px solid #2563eb;
+}
 
-?>
+.lab-shortcuts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+.shortcut-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 16px 20px;
+    text-decoration: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+}
+.shortcut-card:hover {
+    border-color: #2563eb;
+    transform: translateX(4px);
+}
+.shortcut-title {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 15px;
+}
+.shortcut-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+</style>
 
 <div class="main-content">
     <div class="main-content-inner">
-        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
-            <ul class="breadcrumb">
-                <li>
-                    <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#">CSRF</a>
-                </li>
-                <li class="active">CSRF概述</li>
-            </ul><!-- /.breadcrumb -->
-
-        </div>
         <div class="page-content">
-
-            <div id="vul_info">
-                <dl>
-                    <dt class="vul_title">CSRF(跨站请求伪造)概述</dt>
-                    <dd class="vul_detail">
-                        Cross-site request forgery 简称为“CSRF”，在CSRF的攻击场景中攻击者会伪造一个请求（这个请求一般是一个链接），然后欺骗目标用户进行点击，用户一旦点击了这个请求，整个攻击就完成了。所以CSRF攻击也成为"one click"攻击。
-                        很多人搞不清楚CSRF的概念，甚至有时候会将其和XSS混淆,更有甚者会将其和越权问题混为一谈,这都是对原理没搞清楚导致的。<br/>
-                        这里列举一个场景解释一下，希望能够帮助你理解。<br />
-                        <b>场景需求：</b><br />小黑想要修改大白在购物网站tianxiewww.xx.com上填写的会员地址。<br />
-                        <b>先看下大白是如何修改自己的密码的：</b><br />登录---修改会员信息，提交请求---修改成功。<br />
-                        所以小黑想要修改大白的信息，他需要拥有：1，登录权限 2，修改个人信息的请求。<br />
-                    <dd class="vul_detail">
-                        但是大白又不会把自己xxx网站的账号密码告诉小黑，那小黑怎么办？<br />
-                        于是他自己跑到www.xx.com上注册了一个自己的账号，然后修改了一下自己的个人信息（比如：E-mail地址），他发现修改的请求是：<br />
-                        【http://www.xxx.com/edit.php?email=xiaohei@88.com&Change=Change】<br />
-                        于是，他实施了这样一个操作：把这个链接伪装一下，在小白登录xxx网站后，欺骗他进行点击，小白点击这个链接后，个人信息就被修改了,小黑就完成了攻击目的。<br />
-                    </dd>
-                    <dd class="vul_detail">
-                        <b>为啥小黑的操作能够实现呢。有如下几个关键点：</b><br />
-                        1.www.xxx.com这个网站在用户修改个人的信息时没有过多的校验，导致这个请求容易被伪造;<br />
-                        ---因此，我们判断一个网站是否存在CSRF漏洞，其实就是判断其对关键信息（比如密码等敏感信息）的操作(增删改)是否容易被伪造。<br />
-                        2.小白点击了小黑发给的链接，并且这个时候小白刚好登录在购物网上;<br />
-                        ---如果小白安全意识高，不点击不明链接，则攻击不会成功，又或者即使小白点击了链接，但小白此时并没有登录购物网站，也不会成功。<br />
-                        ---因此，要成功实施一次CSRF攻击，需要“天时，地利，人和”的条件。<br />
-                        当然，如果小黑事先在xxx网的首页如果发现了一个XSS漏洞，则小黑可能会这样做：
-                        欺骗小白访问埋伏了XSS脚本（盗取cookie的脚本）的页面，小白中招，小黑拿到小白的cookie，然后小黑顺利登录到小白的后台，小黑自己修改小白的相关信息。<br />
-                        ---所以跟上面比一下，就可以看出CSRF与XSS的区别：CSRF是借用户的权限完成攻击，攻击者并没有拿到用户的权限，而XSS是直接盗取到了用户的权限，然后实施破坏。
-                    </dd>
-
-                    <dd class="vul_detail">
-                        因此，网站如果要防止CSRF攻击，则需要对敏感信息的操作实施对应的安全措施，防止这些操作出现被伪造的情况，从而导致CSRF。比如：<br />
-                        --对敏感信息的操作增加安全的token；<br />
-                        --对敏感信息的操作增加安全的验证码；<br />
-                        --对敏感信息的操作实施安全的逻辑流程，比如修改密码时，需要先校验旧密码等。<br />
-
-                        <br />
-                        <p>如果你没有读太明白,不要犹豫,请再读一遍啦</p>
-
-                    </dd>
-                    <dd class="vul_detail">
-                        你可以通过“Cross-site request forgery”对应的测试栏目，来进一步的了解该漏洞。
-                    </dd>
-                </dl>
+            
+            <!-- Hero Header -->
+            <div class="overview-hero-card">
+                <h1>
+                    CSRF 跨站请求伪造 (Cross-Site Request Forgery)
+                    <span class="overview-badge">身份凭据冒用威胁</span>
+                </h1>
+                <p>CSRF (跨站请求伪造) 被称为'借刀杀人'式攻击。攻击者诱导受害者点击恶意链接，在受害者已登录目标网站且 Cookie 未过期的情况下，利用浏览器自动携带 Cookie 的特性，以受害者的身份隐蔽发起修改密码、转账或修改邮箱等敏感操作。</p>
             </div>
 
-        </div><!-- /.page-content -->
+            <!-- Workflow Visual Section -->
+            <div class="workflow-section">
+                <h3 style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin-top: 0; margin-bottom: 25px;">
+                    <i class="fa fa-sitemap" style="color: #2563eb;"></i> 漏洞原理与攻击演进流程链
+                </h3>
+                
+                <div class="workflow-grid">
+                    
+        <div class="workflow-step">
+            <div class="step-icon-badge" style="background: #3b82f6;">1</div>
+            <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">1. 受害者登录目标站</div>
+            <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">受害者成功登录合法网站 A，并在浏览器本地生成有效的 Session Cookie 凭据。</div>
+        </div>
+        
+        <div class="workflow-step">
+            <div class="step-icon-badge" style="background: #f59e0b;">2</div>
+            <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">2. 访问攻击者钓鱼页面</div>
+            <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">攻击者诱导受害者访问恶意页面 B（如带有自动提交 `<form>` 的网页）。</div>
+        </div>
+        
+        <div class="workflow-step">
+            <div class="step-icon-badge" style="background: #ef4444;">3</div>
+            <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">3. 隐蔽跨站请求</div>
+            <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">页面 B 自动向网站 A 发起 POST/GET 请求，浏览器自动附带网站 A 的 Session Cookie。</div>
+        </div>
+        
+        <div class="workflow-step">
+            <div class="step-icon-badge" style="background: #10b981;">4</div>
+            <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">4. 目标站误判执行</div>
+            <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">网站 A 验证 Cookie 合法，误以为是受害者本人操作，成功修改敏感数据或密码。</div>
+        </div>
+        
+                </div>
+            </div>
+
+            <!-- Detail Cards -->
+            <div class="detail-grid">
+                
+        <div class="detail-card" style="border-top-color: #2563eb;">
+            <h3 style="margin-top:0; font-size:18px; color:var(--text-primary);">📩 1. CSRF (GET 型)</h3>
+            <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:0;">目标敏感操作参数直接露在 GET 请求中。攻击者只需构造 `<img src='http://target/edit?email=hacker@com'>` 即可。</p>
+        </div>
+        
+        <div class="detail-card" style="border-top-color: #ef4444;">
+            <h3 style="margin-top:0; font-size:18px; color:var(--text-primary);">📝 2. CSRF (POST 型)</h3>
+            <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:0;">敏感操作使用 POST 提交。攻击者在恶意页面构建隐藏表单，页面加载完成后使用 JS `form.submit()` 自动提交。</p>
+        </div>
+        
+        <div class="detail-card" style="border-top-color: #10b981;">
+            <h3 style="margin-top:0; font-size:18px; color:var(--text-primary);">🛡️ 3. 核心防御：SameSite & Anti-CSRF Token</h3>
+            <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:0;">设置 Cookie `SameSite=Lax/Strict`；在表单中增加随机且不可预测的 Anti-CSRF Token；开启重要操作二次重辨（输入旧密码）。</p>
+        </div>
+        
+            </div>
+
+            <!-- Interactive Lab Shortcuts -->
+            <div class="vul">
+                <h3 style="margin: 0 0 15px 0; font-size: 18px; font-weight: 700;">🎯 快速进入实战关卡演练</h3>
+                <div class="lab-shortcuts">
+                    
+        <a href="csrfget/csrf_get.php" class="shortcut-card">
+            <div>
+                <div class="shortcut-title">1. CSRF (GET 型) 演练</div>
+                <div class="shortcut-desc">测试通过 GET 链接修改个人信息</div>
+            </div>
+            <i class="fa fa-arrow-right" style="color: #2563eb;"></i>
+        </a>
+        
+        <a href="csrfpost/csrf_post.php" class="shortcut-card">
+            <div>
+                <div class="shortcut-title">2. CSRF (POST 型) 演练</div>
+                <div class="shortcut-desc">测试隐藏表单自动提交修改信息</div>
+            </div>
+            <i class="fa fa-arrow-right" style="color: #2563eb;"></i>
+        </a>
+        
+        <a href="csrftoken/token_get.php" class="shortcut-card">
+            <div>
+                <div class="shortcut-title">3. CSRF (Token 防御) 演练</div>
+                <div class="shortcut-desc">测试 Token 校验与绕过</div>
+            </div>
+            <i class="fa fa-arrow-right" style="color: #2563eb;"></i>
+        </a>
+        
+                </div>
+            </div>
+
+        </div>
     </div>
-</div><!-- /.main-content -->
-
-
-
-
+</div>
 
 <?php
-include_once $PIKA_ROOT_DIR.'footer.php';
-
+include_once $PIKA_ROOT_DIR . 'footer.php';
 ?>

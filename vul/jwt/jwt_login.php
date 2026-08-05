@@ -12,6 +12,7 @@ include_once $PIKA_ROOT_DIR . 'inc/function.php';
 
 $ACTIVE = array_fill(0, 150, '');
 $ACTIVE[122] = 'active open';
+$ACTIVE[157] = 'active open';
 $ACTIVE[124] = 'active';
 
 $link = connect();
@@ -105,3 +106,4 @@ include_once $PIKA_ROOT_DIR . 'header.php';
 <?php
 include_once $PIKA_ROOT_DIR . 'footer.php';
 ?>
+
