@@ -4,9 +4,13 @@ services:
     container_name: pikachu-enhanced-web
     ports:
       - "127.0.0.1:8765:80"
+    volumes:
+      - ./:/var/www/html
     depends_on:
       db:
         condition: service_healthy
+      java:
+        condition: service_started
     environment:
       PIKACHU_DB_HOST: db
       PIKACHU_DB_PORT: 3306
@@ -32,6 +36,16 @@ services:
       interval: 10s
       timeout: 5s
       retries: 10
+    networks:
+      - pikachu-net
+
+  java:
+    build:
+      context: .
+      dockerfile: docker/java/Dockerfile
+    container_name: pikachu-enhanced-java
+    ports:
+      - "127.0.0.1:8088:8088"
     networks:
       - pikachu-net
 

@@ -1,101 +1,168 @@
 <?php
 /**
- * Created by runner.han
- * There is nothing new under the sun
+ * Pikachu-Enhanced v2.0 Modern Overview Page (Auto-Generated)
  */
+include_once '../../inc/config.inc.php';
 
+$ACTIVE = array_fill(0, 250, '');
+// Auto-matched generic active indexes if missing
+$ACTIVE[1] = 'active open'; 
 
-$SELF_PAGE = substr($_SERVER['PHP_SELF'],strrpos($_SERVER['PHP_SELF'],'/')+1);
-
-if ($SELF_PAGE = "unserilization.php"){
-    $ACTIVE = array('','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','active open','active','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');
-}
-
-$PIKA_ROOT_DIR =  "../../";
-include_once $PIKA_ROOT_DIR.'header.php';
-
-
+$PIKA_ROOT_DIR = "../../";
+include_once $PIKA_ROOT_DIR . 'header.php';
 ?>
 
+<style>
+.overview-hero-card {
+    background: linear-gradient(135deg, #1e3a8a, #172554);
+    border-radius: 16px;
+    padding: 35px;
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    margin-bottom: 30px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.overview-hero-card h1 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-top: 0;
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.overview-badge {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    border: 1px solid #60a5fa;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+.overview-hero-card p {
+    font-size: 15px;
+    color: #e2e8f0;
+    line-height: 1.7;
+    max-width: 950px;
+    margin-bottom: 0;
+}
 
+.workflow-section {
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+.workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+.workflow-step {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.2s ease;
+}
+.workflow-step:hover {
+    transform: translateY(-3px);
+}
+.step-icon-badge {
+    width: 36px;
+    height: 36px;
+    background: #2563eb;
+    color: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+.detail-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    border-top: 4px solid #2563eb;
+}
+</style>
 
 <div class="main-content">
     <div class="main-content-inner">
-        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
-            <ul class="breadcrumb">
-                <li>
-                    <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="unserilization.php">PHP反序列化</a>
-                </li>
-                <li class="active">概述</li>
-            </ul>
-        </div>
         <div class="page-content">
+            
+            <!-- Hero Header -->
+            <div class="overview-hero-card">
+                <h1>
+                    Unserilization Overview
+                    <span class="overview-badge">专项演练</span>
+                </h1>
+                <p>在理解这个漏洞前,你需要先搞清楚php中serialize()，unserialize()这两个函数。</p>
+            </div>
 
+            <!-- Workflow Visual Section -->
+            <div class="workflow-section">
+                <h3 style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin-top: 0; margin-bottom: 25px;">
+                    <i class="fa fa-sitemap" style="color: #2563eb;"></i> 攻击与防御流程
+                </h3>
+                
+                <div class="workflow-grid">
+                    <div class="workflow-step">
+                        <div class="step-icon-badge" style="background: #3b82f6;">1</div>
+                        <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">搜集信息</div>
+                        <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">分析目标架构，确定请求输入点与可控参数。</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-icon-badge" style="background: #f59e0b;">2</div>
+                        <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">构造载荷</div>
+                        <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">根据漏洞特性生成对应的攻击 Payload 或欺骗配置。</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-icon-badge" style="background: #ef4444;">3</div>
+                        <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">触发执行</div>
+                        <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">发送特制请求绕过后端校验或执行代码。</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-icon-badge" style="background: #10b981;">4</div>
+                        <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">实施防御</div>
+                        <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">通过白名单过滤、最新补丁以及权限隔离从根本上修复。</div>
+                    </div>
+                </div>
+            </div>
 
-            <p>在理解这个漏洞前,你需要先搞清楚php中serialize()，unserialize()这两个函数。</p>
-            <b>序列化serialize()</b><br />
-            序列化说通俗点就是把一个对象变成可以传输的字符串,比如下面是一个对象:
-            <pre>
-    class S{
-        public $test="pikachu";
-    }
-    $s=new S(); //创建一个对象
-    serialize($s); //把这个对象进行序列化
-    序列化后得到的结果是这个样子的:O:1:"S":1:{s:4:"test";s:7:"pikachu";}
-        O:代表object
-        1:代表对象名字长度为一个字符
-        S:对象的名称
-        1:代表对象里面有一个变量
-        s:数据类型
-        4:变量名称的长度
-        test:变量名称
-        s:数据类型
-        7:变量值的长度
-        pikachu:变量值
-    </pre>
+            <!-- Detail Cards -->
+            <div class="detail-grid">
+                <div class="detail-card" style="border-top-color: #2563eb;">
+                    <h3 style="margin-top:0; font-size:18px; color:var(--text-primary);">核心攻击原理</h3>
+                    <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:0;">针对特定业务或底层组件的协议与逻辑缺陷，突破数据边界控制。</p>
+                </div>
+                <div class="detail-card" style="border-top-color: #10b981;">
+                    <h3 style="margin-top:0; font-size:18px; color:var(--text-primary);">修复与加固建议</h3>
+                    <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:0;">始终校验输入并使用零信任架构设计网络交互层。</p>
+                </div>
+            </div>
 
-            <b>反序列化unserialize()</b><br />
-            <p>就是把被序列化的字符串还原为对象,然后在接下来的代码中继续使用。</p>
-            <pre>
-    $u=unserialize("O:1:"S":1:{s:4:"test";s:7:"pikachu";}");
-    echo $u->test; //得到的结果为pikachu
-    </pre>
-
-            <p>序列化和反序列化本身没有问题,但是如果反序列化的内容是用户可以控制的,且后台不正当的使用了PHP中的魔法函数,就会导致安全问题</p>
-            <pre>
-        常见的几个魔法函数:
-        __construct()当一个对象创建时被调用
-
-        __destruct()当一个对象销毁时被调用
-
-        __toString()当一个对象被当作一个字符串使用
-
-        __sleep() 在对象在被序列化之前运行
-
-        __wakeup将在序列化之后立即被调用
-
-        漏洞举例:
-
-        class S{
-            var $test = "pikachu";
-            function __destruct(){
-                echo $this->test;
-            }
-        }
-        $s = $_GET['test'];
-        @$unser = unserialize($a);
-
-        payload:O:1:"S":1:{s:4:"test";s:29:"<?php echo htmlspecialchars("<script>alert('xss')</script>");?>";}
-
-    </pre>
-        </div><!-- /.page-content -->
+            <div class="vul">
+                <p style="color: var(--text-secondary); font-size: 14px;">请使用左侧菜单栏选择具体关卡进行演练。</p>
+            </div>
+            
+        </div>
     </div>
-</div><!-- /.main-content -->
-
-
+</div>
 
 <?php
 include_once $PIKA_ROOT_DIR . 'footer.php';
-
 ?>

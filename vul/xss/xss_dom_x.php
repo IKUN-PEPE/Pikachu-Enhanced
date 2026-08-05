@@ -1,80 +1,53 @@
 <?php
 /**
- * Created by runner.han
- * There is nothing new under the sun
+ * Pikachu-Enhanced DOM XSS (x) Lab
  */
+include_once '../../inc/config.inc.php';
 
+$ACTIVE = array_fill(0, 250, '');
+$ACTIVE[7] = 'active open';
+$ACTIVE[21] = 'active';
 
-$SELF_PAGE = substr($_SERVER['PHP_SELF'],strrpos($_SERVER['PHP_SELF'],'/')+1);
+$PIKA_ROOT_DIR = "../../";
+include_once $PIKA_ROOT_DIR . 'header.php';
+include_once $PIKA_ROOT_DIR . "inc/mysql.inc.php";
 
-if ($SELF_PAGE = "xss_dom.php"){
-    $ACTIVE = array('','','','','','','','active open','','','','','active','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');
-}
-
-$PIKA_ROOT_DIR =  "../../";
-include_once $PIKA_ROOT_DIR.'header.php';
-
-include_once $PIKA_ROOT_DIR."inc/config.inc.php";
-include_once $PIKA_ROOT_DIR."inc/mysql.inc.php";
-
-$html='';
+$html = '';
 if(isset($_GET['text'])){
-    $html.= "<a href='#' onclick='domxss()'>有些费尽心机想要忘记的事情,后来真的就忘掉了</a>";
+    $html = "<div style='margin-top: 15px; padding: 15px; background: var(--bg-secondary); border-radius: 8px; border: 1px dashed var(--border-color);'><a href='#' onclick='domxss()' style='font-weight:bold; color:#10b981;'>有些话有些事要记在心里,按我</a></div>";
 }
-
 ?>
 
 <div class="main-content">
     <div class="main-content-inner">
-        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
-            <ul class="breadcrumb">
-                <li>
-                    <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="xss.php">xss</a>
-                </li>
-                <li class="active">DOM型xss</li>
-            </ul><!-- /.breadcrumb -->
-
-            <a href="#" style="float:right" data-container="body" data-toggle="popover" data-placement="bottom" title="tips(再点一下关闭)"
-               data-content="dom型XSS是鸡肋吗?">
-                点一下提示~
-            </a>
-
-        </div>
         <div class="page-content">
-
-            <div id="xssd_main">
-                <script>
-                    function domxss(){
-                        var str = window.location.search;
-                        var txss = decodeURIComponent(str.split("text=")[1]);
-                        var xss = txss.replace(/\+/g,' ');
-//                        alert(xss);
-
-                        document.getElementById("dom").innerHTML = "<a href='"+xss+"'>就让往事都随风,都随风吧</a>";
-                    }
-                    //试试：'><img src="#" onmouseover="alert('xss')">
-                    //试试：' onclick="alert('xss')">,闭合掉就行
-                </script>
-                <!--<a href="" onclick=('xss')>-->
-                <form method="get">
-                <input id="text" name="text" type="text"  value="" />
-                <input id="submit" type="submit" value="请说出你的伤心往事"/>
-                </form>
-                <div id="dom"></div>
+            <div class="vul">
+                <h2>DOM型 XSS (x) 演练</h2>
+                <p>本关卡演示了前端从 URL 查询参数中提取数据，并将其动态写入 DOM 属性引发的 XSS 攻击场景。</p>
+                
+                <div id="xssd_main" style="margin-top: 20px;">
+                    <script>
+                        function domxss(){
+                            var str = window.location.search;
+                            var txss = decodeURIComponent(str.split("text=")[1] || '');
+                            var xss = txss.replace(/\+/g,' ');
+                            document.getElementById("dom").innerHTML = "<a href='"+xss+"' style='font-weight:bold; color:#ef4444;'>就让往事随风,都随风</a>";
+                        }
+                    </script>
+                    
+                    <form method="get" style="display: flex; gap: 10px; max-width: 600px;">
+                        <input id="text" name="text" type="text" class="form-control" placeholder="输入 text 参数..." style="flex: 1;" />
+                        <input id="submit" type="submit" class="btn btn-primary" value="提交 URL 参数"/>
+                    </form>
+                    
+                    <?php echo $html; ?>
+                    <div id="dom" style="margin-top: 15px;"></div>
+                </div>
             </div>
-
-            <?php echo $html;?>
-
-
-        </div><!-- /.page-content -->
+        </div>
     </div>
-</div><!-- /.main-content -->
-
-
-
-
+</div>
 
 <?php
-include_once $PIKA_ROOT_DIR.'footer.php';
+include_once $PIKA_ROOT_DIR . 'footer.php';
 ?>

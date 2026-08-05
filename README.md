@@ -111,6 +111,19 @@
 - 🌍 CORS Misconfiguration
 - 🖱️ Clickjacking
 
+### Phase 4: 前沿攻防体验 (Advanced Tactics)
+- 🤖 **AI Security (大模型安全)**: 体验 AI 提示词注入攻击 (Prompt Injection)。
+- 🔗 **OAuth 2.0 State 绕过**: 体验第三方登录绑定时的强制账号劫持攻击。
+- 🏎️ **业务并发竞争 (Race Condition)**: 体验在无锁/弱锁下的订单并发兑换漏洞。
+- 🎭 **Web Cache Deception**: 体验静态资源解析差异导致的 CDN 缓存投毒。
+- 📡 **Cross-Site WebSocket Hijacking**: 体验新型跨站 WebSocket 劫持攻击。
+- 📦 **Phar 反序列化**: 体验仅靠 `file_exists` 就能触发 RCE 的 Phar 伪协议魔法。
+
+### Phase 5: 越权与 API 现代化 (Modern Authorization)
+- 🌐 **BOLA (API 水平越权)**: (Broken Object Level Authorization) 越权获取 REST API 后端敏感 JSON 数据。
+- 📝 **Mass Assignment (批量赋值)**: (Broken Object Property Level Authorization) 利用 ORM 绑定特性在 JSON 中私带 `{"role": "admin"}`。
+- 🔑 **JWT Security (身份伪造)**: 抓包提取 JWT，利用 `alg: none` 签名绕过与弱密钥爆破，手工签发管理员令牌。
+
 ### 新增平台能力
 
 - 🐳 Docker Lab / 靶场编排中心 Phase 1

@@ -12,6 +12,7 @@ include_once $PIKA_ROOT_DIR . 'inc/function.php';
 
 $ACTIVE = array_fill(0, 150, '');
 $ACTIVE[122] = 'active open';
+$ACTIVE[157] = 'active open';
 $ACTIVE[124] = 'active';
 
 if (isset($_GET['logout']) && $_GET['logout'] == '1') {
@@ -112,3 +113,4 @@ A;
 <?php
 include_once $PIKA_ROOT_DIR . 'footer.php';
 ?>
+
