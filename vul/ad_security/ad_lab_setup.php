@@ -75,7 +75,47 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                 </h1>
             </div>
 
-            <!-- 阶段一 -->
+            
+            <!-- 3 种主流搭建方案对比 -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+                <h3 style="margin-top: 0; font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 15px;">
+                    📊 AD 域靶场搭建 3 种主流方案对比选型
+                </h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" style="margin-bottom: 0;">
+                        <thead>
+                            <tr style="background: var(--bg-secondary);">
+                                <th style="width: 20%;">搭建方案</th>
+                                <th style="width: 15%;">资源消耗</th>
+                                <th style="width: 15%;">搭建难度</th>
+                                <th style="width: 50%;">特性与适用场景</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong style="color: #6366f1;">1. GOAD 自动化框架</strong></td>
+                                <td><span class="label label-danger">较重 (16G+ 内存)</span></td>
+                                <td>★☆☆☆☆ (脚本一键)</td>
+                               > <strong>首选推荐！</strong> 基于 Ansible + Vagrant 自动化拉起 5 台虚拟机与多域环境，预置 Kerberoasting、AS-REP、AD CS 证书等全套经典漏洞。</td>
+                            </tr>
+                            <tr>
+                                <td><strong style="color: #3b82f6;">2. 手动 Server 虚拟机</strong></td>
+                                <td><span class="label label-warning">适中 (8G~16G 内存)</span></td>
+                                <td>★★★☆☆ (手动配置)</td>
+                                <td>基于 VMware / Hyper-V 手动安装 Windows Server 2019/2022 并提升为 DC。<strong>适合学习 Windows 原生 AD 域服务配置与防御加固。</strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong style="color: #10b981;">3. Samba4 Docker 容器</strong></td>
+                                <td><span class="label label-success">极轻 (1G 内存)</span></td>
+                                <td>★★☆☆☆ (Docker 一键)</td>
+                                <td>基于 Linux Docker 快速部署 Samba4 域控制器。<strong>适合内存受限设备，快速验证 Kerberos 协议工具链 (Impacket/GetNPUsers)。</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+<!-- 阶段一 -->
             <div class="setup-step-card" style="border-left-color: #3b82f6;">
                 <div class="setup-header">
                     <h3 class="setup-title">阶段一：环境规划与拓扑设计</h3>
