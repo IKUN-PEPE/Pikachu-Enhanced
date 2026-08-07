@@ -97,6 +97,8 @@ if (!$wsl_installed) {
 $vagrant_installed = false;
 $vagrant_path = "";
 $possible_vagrant_files = [
+    "C:\\Program Files\\Vagrant\\bin\\vagrant.exe",
+    "C:\\Program Files (x86)\\Vagrant\\bin\\vagrant.exe",
     "C:\\Program Files\\HashiCorp\\Vagrant\\bin\\vagrant.exe",
     "C:\\HashiCorp\\Vagrant\\bin\\vagrant.exe",
     "C:\\Program Files (x86)\\HashiCorp\\Vagrant\\bin\\vagrant.exe"
