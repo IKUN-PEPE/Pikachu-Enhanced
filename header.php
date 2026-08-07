@@ -1801,6 +1801,12 @@ if (!isset($ACTIVE)){
                         </a>
                         <b class="arrow"></b>
                     </li>
+                    <li class="<?php echo isset($ACTIVE[237]) ? $ACTIVE[237] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_env_check.php">
+                            🔍 GOAD 依赖智能识别中心
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
                     <li class="<?php echo isset($ACTIVE[235]) ? $ACTIVE[235] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_knowledge.php">
                             一、内网 6 大知识体系全景
