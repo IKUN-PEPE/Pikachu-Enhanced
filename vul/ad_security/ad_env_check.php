@@ -324,7 +324,7 @@ $k_ready = is_dir("K:\\");
                         <div style="font-size: 13px; color: var(--text-secondary); font-family: monospace;">
                             K:\GOAD_Virtual_Machines & K:\Vagrant_Cache
                         </div>
-                        <div style="font-size: 12px; color: #6366f1; margin-top: 6px;">VAGRANT_HOME 已重定向至 K 盘</div>
+                        <div style="font-size: 12px; color: #6366f1; margin-top: 6px;">已重定向至 C: 盘 (剩余可用空间 230G+)</div>
                     </div>
                 </div>
             </div>
