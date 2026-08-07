@@ -604,6 +604,20 @@ try {
                     </div>
 
                     <div class="vuln-grid">
+                        <div class="vuln-card" data-cat="auth" data-title="goad 依赖 智能识别 自动检测 vmware wsl2 vagrant 环境" data-desc="goad 依赖 自动识别 vmware wsl2 vagrant 环境变量 重定向">
+                            <div>
+                                <div class="card-top">
+                                    <h3 class="card-title">🔍 GOAD 依赖智能识别中心</h3>
+                                    <div class="card-stars">★★★★★</div>
+                                </div>
+                                <p class="card-desc">自动扫描检测物理机中的 VMware Workstation、WSL2 以及 Vagrant 自动化编排依赖状态。</p>
+                            </div>
+                            <div class="card-bottom">
+                                <span class="card-tag tag-auth">依赖识别中心</span>
+                                <a href="vul/ad_security/ad_env_check.php" class="launch-btn">⚡ 打开面板 <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
                         <div class="vuln-card" data-cat="auth" data-title="内网安全 6 大知识体系 全景图 侦察 认证 攻击 横向 维持 防御" data-desc="内网 知识体系 6 大模块 侦察 认证 攻击 横向 维持 防御">
                             <div>
                                 <div class="card-top">
