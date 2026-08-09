@@ -17,7 +17,7 @@ if (!isset($ACTIVE)){
     $SELF_PAGE = substr($_SERVER['PHP_SELF'],strrpos($_SERVER['PHP_SELF'],'/')+1);
     if ($SELF_PAGE = "index.php"){
         //22 title
-        $ACTIVE = array_fill(0, 250, '');
+        $ACTIVE = array_fill(0, 300, '');
         $ACTIVE[0] = "active";
 
     }
@@ -1896,6 +1896,136 @@ if (!isset($ACTIVE)){
                     </li>
                 </ul>
             </li>
+
+            <!-- ===== OSCE³ 三大方向 ===== -->
+            <li class="<?php echo isset($ACTIVE[250]) ? $ACTIVE[250] : '';?>">
+                <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_hub.php">
+                    <i class="menu-icon fa fa-crosshairs" style="color:#6366f1;"></i>
+                    <span class="menu-text" style="font-weight:700;color:#a5b4fc;">🏅 OSEP 内网穿透 CTF</span>
+                </a>
+                <b class="arrow fa fa-angle-down"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[250]) ? $ACTIVE[250] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_hub.php" style="color:#6366f1!important;font-weight:bold;">
+                            🎯 OSEP 大厅 (7关 · 1650 PTS)
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[253]) ? $ACTIVE[253] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l1_enum.php">🚩 L1 主机侦察与信息收集</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[254]) ? $ACTIVE[254] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l2_phishing.php">🚩 L2 鱼叉攻击仿冒研究</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[253]) ? $ACTIVE[253] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l3_lateral.php">🚩 L3 横向移动技术</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[255]) ? $ACTIVE[255] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l4_pivot.php">🚩 L4 内网穿透隧道</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[256]) ? $ACTIVE[256] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l5_av_evasion.php">🚩 L5 检测架构研究</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[257]) ? $ACTIVE[257] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l6_persistence.php">🚩 L6 持久化机制</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[258]) ? $ACTIVE[258] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l7_exfil.php">🚩 L7 数据外渗分析 [终章]</a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="<?php echo isset($ACTIVE[260]) ? $ACTIVE[260] : '';?>">
+                <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_hub.php">
+                    <i class="menu-icon fa fa-code" style="color:#06b6d4;"></i>
+                    <span class="menu-text" style="font-weight:700;color:#67e8f9;">🏅 OSWE 白盒审计 CTF</span>
+                </a>
+                <b class="arrow fa fa-angle-down"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[261]) ? $ACTIVE[261] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_hub.php" style="color:#06b6d4!important;font-weight:bold;">
+                            🎯 OSWE 大厅 (7关 · 1500 PTS)
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[262]) ? $ACTIVE[262] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l1_whitebox.php">🚩 L1 白盒审计方法论</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[263]) ? $ACTIVE[263] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l2_auth_bypass.php">🚩 L2 认证绕过逻辑链</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[264]) ? $ACTIVE[264] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l3_sqli_auth.php">🚩 L3 SQL注入认证+提权</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[265]) ? $ACTIVE[265] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l4_deser.php">🚩 L4 反序列化 POP 链</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[266]) ? $ACTIVE[266] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l5_ssti.php">🚩 L5 SSTI 模板注入</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[267]) ? $ACTIVE[267] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l6_xxe_oob.php">🚩 L6 XXE + SSRF 带外</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[268]) ? $ACTIVE[268] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l7_rce_chain.php">🚩 L7 多漏洞 RCE 链 [终章]</a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="<?php echo isset($ACTIVE[270]) ? $ACTIVE[270] : '';?>">
+                <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_hub.php">
+                    <i class="menu-icon fa fa-microchip" style="color:#f97316;"></i>
+                    <span class="menu-text" style="font-weight:700;color:#fed7aa;">🏅 OSED 漏洞开发 CTF</span>
+                </a>
+                <b class="arrow fa fa-angle-down"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[271]) ? $ACTIVE[271] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_hub.php" style="color:#f97316!important;font-weight:bold;">
+                            🎯 OSED 大厅 (6关 · 1350 PTS)
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[272]) ? $ACTIVE[272] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l1_fuzzing.php">🚩 L1 Fuzzing 与崩溃分析</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[273]) ? $ACTIVE[273] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l2_seh.php">🚩 L2 SEH 异常处理覆盖</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[274]) ? $ACTIVE[274] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l3_dep_bypass.php">🚩 L3 DEP/NX + ROP 原理</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[275]) ? $ACTIVE[275] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l4_aslr.php">🚩 L4 ASLR 随机化研究</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[276]) ? $ACTIVE[276] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l5_egghunter.php">🚩 L5 Egghunter 技术原理</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[277]) ? $ACTIVE[277] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l6_rop.php">🚩 L6 ROP 与 CFG/CET [终章]</a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+
         </ul><!-- /.nav-list -->
 
         <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
