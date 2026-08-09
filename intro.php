@@ -649,14 +649,14 @@ try {
                         <div class="vuln-card" data-cat="auth" data-title="winrm ws-management 探测" data-desc="ws-management winrm 5985 5986 远程管理服务 端口握手 凭据泄露">
                             <div>
                                 <div class="card-top">
-                                    <h3 class="card-title">三、WS-Management (WinRM) 探测</h3>
+                                    <h3 class="card-title">三、内网侦察与 BloodHound 拓扑图论</h3>
                                     <div class="card-stars">★★★★☆</div>
                                 </div>
-                                <p class="card-desc">针对内网 Windows 机器开放的 5985/5986 端口，探测 WinRM 远程管理响应并利用进行 Shell 执行。</p>
+                                <p class="card-desc">非侵入性枚举域用户、域信任与对象 ACL，导出 ZIP 使用 BloodHound 寻找最短域管提权路径。</p>
                             </div>
                             <div class="card-bottom">
-                                <span class="card-tag tag-auth">WinRM/SOAP</span>
-                                <a href="vul/ad_security/winrm.php" class="launch-btn">⚡ 启动演练 <i class="fa fa-arrow-right"></i></a>
+                                <span class="card-tag tag-auth">BloodHound/LDAP</span>
+                                <a href="vul/ad_security/ad_ctf_recon.php" class="launch-btn">⚡ 启动演练 <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
 
@@ -670,21 +670,21 @@ try {
                             </div>
                             <div class="card-bottom">
                                 <span class="card-tag tag-auth">Kerberos/TGT</span>
-                                <a href="vul/ad_security/kerberos.php" class="launch-btn">⚡ 启动演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/ad_security/ad_ctf_kerberoast.php" class="launch-btn">⚡ 启动演练 <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
 
-                        <div class="vuln-card" data-cat="auth" data-title="ad 域内横向移动 pass-the-hash pth 凭据传递" data-desc="pass the hash pth 凭据传递 ntlm hash 横向移动 smb wmi psexec">
+                        <div class="vuln-card" data-cat="auth" data-title="ad 域内横向移动 约束性委派 RBCD 影子凭据" data-desc="委派攻击 约束性委派 RBCD 影子凭据 凭据传递 NTLM Relay">
                             <div>
                                 <div class="card-top">
-                                    <h3 class="card-title">五、AD 域内横向移动与哈希传递 (PtH)</h3>
+                                    <h3 class="card-title">五、Kerberos 委派攻击与 AD CS 证书中继</h3>
                                     <div class="card-stars">★★★★★</div>
                                 </div>
-                                <p class="card-desc">无需解密明文密码，直接在内网中使用提取到的 NTLM 哈希发起 Pass-the-Hash 攻击控制目标域主机。</p>
+                                <p class="card-desc">演练 S4U2proxy 约束委派、RBCD 基于资源的委派、AD CS ESC8 NTLM HTTP 中继与 Shadow Credentials 维持。</p>
                             </div>
                             <div class="card-bottom">
-                                <span class="card-tag tag-auth">Pass-the-Hash</span>
-                                <a href="vul/ad_security/ad_lateral.php" class="launch-btn">⚡ 启动演练 <i class="fa fa-arrow-right"></i></a>
+                                <span class="card-tag tag-auth">Delegation/ADCS</span>
+                                <a href="vul/ad_security/ad_ctf_delegation.php" class="launch-btn">⚡ 启动演练 <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>

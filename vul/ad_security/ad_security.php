@@ -229,8 +229,13 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                 <div class="ad-stats-row">
                     <div class="ad-stat-chip"><i class="fa fa-book" style="color:#a5b4fc;"></i> 6 大内网安全知识模块</div>
                     <div class="ad-stat-chip"><i class="fa fa-cubes" style="color:#34d399;"></i> 5 阶段靶场建设流程</div>
-                    <div class="ad-stat-chip"><i class="fa fa-bug" style="color:#f87171;"></i> 12+ 经典域漏洞场景</div>
+                    <div class="ad-stat-chip"><i class="fa fa-flag" style="color:#f43f5e;"></i> 6 大实战 CTF 夺旗关卡 (NEW)</div>
                     <div class="ad-stat-chip"><i class="fa fa-shield" style="color:#60a5fa;"></i> EDR / SIEM 攻防检测闭环</div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <a href="ad_ctf_hub.php" class="btn btn-danger btn-lg" style="background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); border: none; border-radius: 10px; font-weight: 800; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.4);">
+                        <i class="fa fa-trophy"></i> 立即进入 GOAD 域渗透 CTF 夺旗实战总控大厅 <i class="fa fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
 
@@ -242,6 +247,9 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                 <button class="ad-tab-btn" onclick="switchTab('lab')">
                     <i class="fa fa-cogs"></i> 二、AD 域漏洞靶场搭建大纲
                 </button>
+                <a href="ad_ctf_hub.php" class="ad-tab-btn" style="text-decoration: none; background: rgba(244, 63, 94, 0.1); color: #f43f5e; border-color: rgba(244, 63, 94, 0.3);">
+                    <i class="fa fa-flag"></i> 三、GOAD 域渗透 CTF 夺旗关卡 (1500 PTS)
+                </a>
             </div>
 
             <!-- Tab 1: Knowledge Tree -->

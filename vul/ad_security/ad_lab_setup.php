@@ -1,6 +1,7 @@
 <?php
 /**
- * Pikachu-Enhanced v2.0 AD Lab Setup Roadmap
+ * Pikachu-Enhanced v2.0 GOAD Intranet Lab Blueprint & Architecture Center
+ * Comprehensive guide for 3-Machine (GOAD-Light) & 5-Machine (Full GOAD) Topologies
  */
 include_once '../../inc/config.inc.php';
 
@@ -13,51 +14,45 @@ include_once $PIKA_ROOT_DIR . 'header.php';
 ?>
 
 <style>
-.setup-step-card {
+.bp-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 25px;
+    border-radius: 14px;
+    padding: 26px;
     margin-bottom: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    position: relative;
-    border-left: 5px solid #6366f1;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
 }
-.setup-header {
+.bp-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-top: 0;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
+    gap: 10px;
 }
-.setup-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0;
-}
-.setup-badge {
-    background: #6366f1;
-    color: #ffffff;
+.topo-badge {
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 13px;
     font-weight: 700;
+    color: #fff;
 }
-.step-list-ul {
-    padding-left: 20px;
-    color: var(--text-secondary);
-    font-size: 14px;
-    line-height: 1.8;
-}
-.code-box {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
+.cmd-box {
+    background: #0f172a;
+    color: #f8fafc;
     border-radius: 8px;
-    padding: 15px;
-    font-family: monospace;
+    padding: 14px 18px;
+    font-family: 'Consolas', 'Monaco', monospace;
     font-size: 13px;
-    color: var(--text-primary);
-    margin-top: 10px;
+    margin: 10px 0 15px 0;
+    overflow-x: auto;
+    border-left: 4px solid #6366f1;
+}
+.cred-table {
+    width: 100%;
+    margin-bottom: 0;
 }
 </style>
 
@@ -65,137 +60,193 @@ include_once $PIKA_ROOT_DIR . 'header.php';
     <div class="main-content-inner">
         <div class="page-content">
             
+            <!-- Page Header -->
             <div class="page-header">
                 <h1>
-                    二、AD 域漏洞靶场搭建大纲与实战蓝图
+                    📐 GOAD 企业级 Active Directory 内网靶场架构蓝图
                     <small>
                         <i class="ace-icon fa fa-angle-double-right"></i>
-                        从零构建企业级域控实验环境
+                        3 台精简版 (GOAD-Light) vs 5 台完整版 (Full GOAD) 全景对照
                     </small>
                 </h1>
             </div>
 
-            
-            <!-- 3 种主流搭建方案对比 -->
-            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; margin-bottom: 25px;">
-                <h3 style="margin-top: 0; font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 15px;">
-                    📊 AD 域靶场搭建 3 种主流方案对比选型
-                </h3>
+            <!-- Intro Overview -->
+            <div class="bp-card" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); color: #ffffff;">
+                <h2 style="margin-top: 0; font-weight: 800; font-size: 22px; color: #f8fafc;">
+                    🌐 GOAD (Game of Active Directory) 内网靶场蓝图设计
+                </h2>
+                <p style="font-size: 14px; color: #cbd5e1; line-height: 1.8; margin-bottom: 0;">
+                    GOAD 是全球最受欢迎的自动化域渗透测试靶场。结合了 Vagrant 基础镜像编排与 Ansible 自动化攻防场景下发。
+                    为了适应不同硬件配置（8G/16G/32G 内存）的用户需求，GOAD 提供了 **3 台精简版 (GOAD-Light)** 与 **5 台完整版 (Full GOAD)** 两种运行模式。
+                </p>
+            </div>
+
+            <!-- Architecture Comparison Cards -->
+            <div class="row">
+                
+                <!-- 3-Machine Light Architecture -->
+                <div class="col-md-6">
+                    <div class="bp-card" style="border-top: 4px solid #3b82f6;">
+                        <div class="bp-title">
+                            <span class="topo-badge" style="background: #3b82f6;">轻量首选</span>
+                            3 台精简版 (GOAD-Light) 架构
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 13px; line-height: 1.7;">
+                            适合 <strong>16GB 物理内存</strong> 宿主机。包含 1 个森林根域、1 个子域、1 个成员服务器，完美支持 80% 的经典 AD 域渗透攻击链。
+                        </p>
+                        
+                        <h4 style="font-size: 14px; font-weight: 700; color: var(--text-primary); margin-top: 15px;">全网拓扑示意图：</h4>
+                        <div class="well" style="background: var(--bg-secondary); padding: 15px; border-radius: 8px;">
+<pre style="background: transparent; border: none; font-size: 12px; margin: 0; color: var(--text-primary); font-family: monospace;">
+[ 攻击者机 (Kali / WSL) ] ---> (VMnet8 虚拟网卡 192.168.56.0/24)
+       |
+       +---> DC01 (kingslanding.sevenkingdoms.local)
+       |      IP: 192.168.56.134 | Win2019 | 根域控 + ADCS
+       |
+       +---> DC02 (winterfell.north.sevenkingdoms.local)
+       |      IP: 192.168.56.136 | Win2019 | 子域控 (父子域信任)
+       |
+       +---> SRV02 (castelblack.north.sevenkingdoms.local)
+              IP: 192.168.56.138 | Win2019 | MSSQL + WebDAV
+</pre>
+                        </div>
+
+                        <h4 style="font-size: 14px; font-weight: 700; color: var(--text-primary); margin-top: 15px;">资源开销：</h4>
+                        <ul style="color: var(--text-secondary); font-size: 13px; padding-left: 20px;">
+                            <li><strong>内存开销：</strong> 运行时约需 6.5 GB ~ 7.0 GB 物理内存</li>
+                            <li><strong>磁盘占用：</strong> 约 37.5 GB 磁盘空间</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 5-Machine Full Architecture -->
+                <div class="col-md-6">
+                    <div class="bp-card" style="border-top: 4px solid #ef4444;">
+                        <div class="bp-title">
+                            <span class="topo-badge" style="background: #ef4444;">豪华全拓扑</span>
+                            5 台完整版 (Full GOAD) 架构
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 13px; line-height: 1.7;">
+                            适合 <strong>24GB ~ 32GB 物理内存</strong> 宿主机。包含 <strong>2 个独立森林</strong>、<strong>3 个 Active Directory 域</strong>、双向跨林信任及跨林 ADCS 攻击。
+                        </p>
+                        
+                        <h4 style="font-size: 14px; font-weight: 700; color: var(--text-primary); margin-top: 15px;">全网拓扑示意图：</h4>
+                        <div class="well" style="background: var(--bg-secondary); padding: 15px; border-radius: 8px;">
+<pre style="background: transparent; border: none; font-size: 12px; margin: 0; color: var(--text-primary); font-family: monospace;">
+[ 森林 1: sevenkingdoms.local ]          [ 森林 2: essos.local ]
+       |                                         |
+ (DC01 - 根域控) <=========================> (DC03 - 外部林域控)
+ 192.168.56.10/134    (双向跨林信任)         192.168.56.12 (Win2016)
+       |                                         |
+ (DC02 - 子域控)                            (SRV03 - 林成员服务)
+ 192.168.56.11/136                          192.168.56.23 (ADCS HTTP)
+       |
+ (SRV02 - 成员服务器)
+ 192.168.56.22/138 (MSSQL)
+</pre>
+                        </div>
+
+                        <h4 style="font-size: 14px; font-weight: 700; color: var(--text-primary); margin-top: 15px;">资源开销：</h4>
+                        <ul style="color: var(--text-secondary); font-size: 13px; padding-left: 20px;">
+                            <li><strong>内存开销：</strong> 运行时约需 14.0 GB ~ 16.0 GB 物理内存</li>
+                            <li><strong>磁盘占用：</strong> 约 65.0 GB ~ 75.0 GB 磁盘空间</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Detailed Node Layout & Credential Matrix -->
+            <div class="bp-card">
+                <h3 class="bp-title"><i class="fa fa-server" style="color: #6366f1;"></i> 详细节点布局与默认凭据矩阵 (Credential Matrix)</h3>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped" style="margin-bottom: 0;">
+                    <table class="table table-bordered table-striped cred-table">
                         <thead>
                             <tr style="background: var(--bg-secondary);">
-                                <th style="width: 20%;">搭建方案</th>
-                                <th style="width: 15%;">资源消耗</th>
-                                <th style="width: 15%;">搭建难度</th>
-                                <th style="width: 50%;">特性与适用场景</th>
+                                <th>主机名</th>
+                                <th>包含于</th>
+                                <th>操作系统</th>
+                                <th>静态 IP</th>
+                                <th>FQDN / 域名</th>
+                                <th>预置关键账户与口令</th>
+                                <th>代表性漏洞场景</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong style="color: #6366f1;">1. GOAD 自动化框架</strong></td>
-                                <td><span class="label label-danger">较重 (16G+ 内存)</span></td>
-                                <td>★☆☆☆☆ (脚本一键)</td>
-                               > <strong>首选推荐！</strong> 基于 Ansible + Vagrant 自动化拉起 5 台虚拟机与多域环境，预置 Kerberoasting、AS-REP、AD CS 证书等全套经典漏洞。</td>
+                                <td><strong>DC01</strong></td>
+                                <td><span class="label label-primary">3台 / 5台</span></td>
+                                <td>Win2019</td>
+                                <td><code>192.168.56.134</code> (或 <code>.10</code>)</td>
+                                <td><code>kingslanding.sevenkingdoms.local</code></td>
+                                <td><code>administrator</code> / <code>Passw0rd123!</code><br><code>tywin.lannister</code> / <code>Passw0rd123!</code></td>
+                                <td>AD CS ESC1 模板滥用、ACL 7 级跃迁链终点、DCSync</td>
                             </tr>
                             <tr>
-                                <td><strong style="color: #3b82f6;">2. 手动 Server 虚拟机</strong></td>
-                                <td><span class="label label-warning">适中 (8G~16G 内存)</span></td>
-                                <td>★★★☆☆ (手动配置)</td>
-                                <td>基于 VMware / Hyper-V 手动安装 Windows Server 2019/2022 并提升为 DC。<strong>适合学习 Windows 原生 AD 域服务配置与防御加固。</strong></td>
+                                <td><strong>DC02</strong></td>
+                                <td><span class="label label-primary">3台 / 5台</span></td>
+                                <td>Win2019</td>
+                                <td><code>192.168.56.136</code> (或 <code>.11</code>)</td>
+                                <td><code>winterfell.north.sevenkingdoms.local</code></td>
+                                <td><code>eddard.stark</code> / <code>winterishere</code><br><code>jon.snow</code> / <code>iknownothing</code></td>
+                                <td>AS-REP Roasting (无预认证)、父子域信任跨域提权</td>
                             </tr>
                             <tr>
-                                <td><strong style="color: #10b981;">3. Samba4 Docker 容器</strong></td>
-                                <td><span class="label label-success">极轻 (1G 内存)</span></td>
-                                <td>★★☆☆☆ (Docker 一键)</td>
-                                <td>基于 Linux Docker 快速部署 Samba4 域控制器。<strong>适合内存受限设备，快速验证 Kerberos 协议工具链 (Impacket/GetNPUsers)。</strong></td>
+                                <td><strong>SRV02</strong></td>
+                                <td><span class="label label-primary">3台 / 5台</span></td>
+                                <td>Win2019</td>
+                                <td><code>192.168.56.138</code> (或 <code>.22</code>)</td>
+                                <td><code>castelblack.north.sevenkingdoms.local</code></td>
+                                <td><code>sql_svc</code> / <code>MYpassword123#</code><br><code>samwell.tarly</code> / <code>password</code></td>
+                                <td>WebDAV 上传点、Kerberoasting SPN、MSSQL 模拟特权</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DC03</strong></td>
+                                <td><span class="label label-danger">仅5台完整版</span></td>
+                                <td>Win2016</td>
+                                <td><code>192.168.56.12</code></td>
+                                <td><code>meereen.essos.local</code></td>
+                                <td><code>administrator</code> / <code>Passw0rd123!</code><br><code>daenerys.targaryen</code> / <code>Passw0rd123!</code></td>
+                                <td><strong>ZeroLogon (CVE-2020-1472)</strong>、跨林双向信任穿透</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SRV03</strong></td>
+                                <td><span class="label label-danger">仅5台完整版</span></td>
+                                <td>Win2016</td>
+                                <td><code>192.168.56.23</code></td>
+                                <td><code>braavos.essos.local</code></td>
+                                <td><code>khal.drogo</code> / <code>Passw0rd123!</code></td>
+                                <td><strong>AD CS ESC8 NTLM HTTP 中继</strong> (Web 证书端点)</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-<!-- 阶段一 -->
-            <div class="setup-step-card" style="border-left-color: #3b82f6;">
-                <div class="setup-header">
-                    <h3 class="setup-title">阶段一：环境规划与拓扑设计</h3>
-                    <span class="setup-badge" style="background: #3b82f6;">STAGE 01</span>
+            <!-- Deployment Commands Guide -->
+            <div class="bp-card">
+                <h3 class="bp-title"><i class="fa fa-terminal" style="color: #10b981;"></i> 快速部署与模式切换指令集</h3>
+                
+                <h4 style="font-size: 15px; font-weight: 700; color: var(--text-primary);">方式 A：启动 3 台精简版 (GOAD-Light)</h4>
+                <div class="cmd-box">
+cd /mnt/c/Users/Administrator/VScode/Pikachu-Enhanced/docker/goad
+./goad.sh -t start -l GOAD-Light -p vmware
+./goad.sh -t provide -l GOAD-Light -p vmware
                 </div>
-                <ul class="step-list-ul">
-                    <li><strong>虚拟化平台选择</strong>：推荐 VMware Workstation / Proxmox VE 或 VirtualBox，具备高效的虚拟网络隔离能力。</li>
-                    <li><strong>网络拓扑设计</strong>：构建包含 外网 Web/DMZ 区域、内网办公网段以及域控核心网段的三层网络拓扑。</li>
-                    <li><strong>IP 规划与网段隔离</strong>：
-                        <ul>
-                            <li>DMZ 网段：192.168.1.0/24 (网关 Web 服务器)</li>
-                            <li>内网 Core 网段：10.0.0.0/24 (域控制器 DC: 10.0.0.10)</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
 
-            <!-- 阶段二 -->
-            <div class="setup-step-card" style="border-left-color: #a855f7;">
-                <div class="setup-header">
-                    <h3 class="setup-title">阶段二：基础环境部署</h3>
-                    <span class="setup-badge" style="background: #a855f7;">STAGE 02</span>
+                <h4 style="font-size: 15px; font-weight: 700; color: var(--text-primary); margin-top: 20px;">方式 B：启动 5 台完整版 (Full GOAD)</h4>
+                <div class="cmd-box">
+cd /mnt/c/Users/Administrator/VScode/Pikachu-Enhanced/docker/goad
+./goad.sh -t start -l GOAD -p vmware
+./goad.sh -t provide -l GOAD -p vmware
                 </div>
-                <ul class="step-list-ul">
-                    <li><strong>域控制器 (DC) 部署</strong>：
-                        <br>安装 Windows Server 2019/2022，添加 AD DS (Active Directory Domain Services) 角色，提升为新树林域控 (如 <code>test.local</code>)，创建 OU、域用户与管理员组。
-                    </li>
-                    <li><strong>成员服务器部署</strong>：
-                        <br>安装 Windows Server 2016/2019，加入 <code>test.local</code> 域，配置 IIS 或 SQL Server 服务。
-                    </li>
-                    <li><strong>域客户端部署</strong>：
-                        <br>安装 Windows 10 / 11 虚拟机，加入域并使用域普通员工账号登录。
-                    </li>
-                    <li><strong>攻击机节点准备</strong>：
-                        <br>部署 Kali Linux 与 Windows 运维工具机，预装 Impacket 框架、Mimikatz、BloodHound、CrackMapExec 与 Evil-WinRM。
-                    </li>
-                </ul>
-            </div>
 
-            <!-- 阶段三 -->
-            <div class="setup-step-card" style="border-left-color: #ef4444;">
-                <div class="setup-header">
-                    <h3 class="setup-title">阶段三：漏洞场景构建 (由浅入深)</h3>
-                    <span class="setup-badge" style="background: #ef4444;">STAGE 03</span>
+                <h4 style="font-size: 15px; font-weight: 700; color: var(--text-primary); margin-top: 20px;">方式 C：一键暂停释放 CPU / 内存</h4>
+                <div class="cmd-box">
+cd C:\Users\Administrator\VScode\Pikachu-Enhanced\docker\goad\ad\GOAD-Light\providers\vmware
+vagrant suspend
                 </div>
-                <ul class="step-list-ul">
-                    <li><strong>弱口令与敏感信息</strong>：设置常见弱口令与桌面备注配置文件泄露。</li>
-                    <li><strong>Kerberoasting 场景配置</strong>：为域账户注册 SPN 实例服务。
-                        <div class="code-box">setspn -A MSSQLSvc/sql01.test.local:1433 sql_service_user</div>
-                    </li>
-                    <li><strong>委派攻击场景配置</strong>：勾选非约束委派、约束委派 (s4u2self/s4u2proxy) 或通过 ActiveDirectory 模块配置 RBCD。</li>
-                    <li><strong>ACL 错误权限赋值</strong>：使用 PowerView 赋予特定域账号对目标对象的 <code>GenericAll</code> 或 <code>WriteDacl</code> 权限。</li>
-                    <li><strong>高危 CVE 漏洞环境</strong>：保留未经补丁修补的 Windows Server 2016 镜像以演练 ZeroLogon (CVE-2020-1472) 与 NoPac。</li>
-                    <li><strong>多域与域信任场景 (进阶)</strong>：搭建父子域 (Parent/Child Domain) 演练跨域提权。</li>
-                </ul>
-            </div>
-
-            <!-- 阶段四 -->
-            <div class="setup-step-card" style="border-left-color: #f59e0b;">
-                <div class="setup-header">
-                    <h3 class="setup-title">阶段四：辅助设施与快照管理</h3>
-                    <span class="setup-badge" style="background: #f59e0b;">STAGE 04</span>
-                </div>
-                <ul class="step-list-ul">
-                    <li><strong>日志收集与 SIEM 搭建</strong>：部署 Winlogbeat / Sysmon，将 Windows 审计日志打入 ELK / Splunk 进行攻防对照学习。</li>
-                    <li><strong>快照状态管理</strong>：在阶段二基础设施搭建完毕后打下全局 <code>Clean-Base</code> 快照，完成各个漏洞场景配置后再打下专属漏洞快照，确保秒级回滚。</li>
-                </ul>
-            </div>
-
-            <!-- 阶段五 -->
-            <div class="setup-step-card" style="border-left-color: #10b981;">
-                <div class="setup-header">
-                    <h3 class="setup-title">阶段五：练习闭环与攻防复盘</h3>
-                    <span class="setup-badge" style="background: #10b981;">STAGE 05</span>
-                </div>
-                <ul class="step-list-ul">
-                    <li><strong>完整攻击链撰写</strong>：记录从“外网突破 ➔ 凭据提取 ➔ 横向移动 ➔ 域控接管”的标准渗透报告。</li>
-                    <li><strong>BloodHound 图形可视化</strong>：对比预设攻击路径与 BloodHound 计算出来的 Graph 最短路径。</li>
-                    <li><strong>防御检测复盘</strong>：对照 SIEM 日志验证 4624 (登录)、4768 (AS 请求)、4769 (TGS 请求) 等关键 Event ID。</li>
-                </ul>
             </div>
 
         </div>

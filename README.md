@@ -105,12 +105,10 @@
 
 1. **内网 6 大知识体系全景 (`ad_knowledge.php`)**：
    - 基础侦察 ➔ 域认证机制 (NTLM / Kerberos) ➔ 高危攻击 (黄金/白银票据、委派、Kerberoasting、DCSync、ZeroLogon) ➔ 横向移动 (WMI/WinRM/PtH) ➔ 权限维持 ➔ 蓝队 EDR/SIEM 审计。
-2. **AD 域靶场搭建 5 阶段蓝图 (`ad_lab_setup.php`)**：
-   - STAGE 01 环境规划 ➔ STAGE 02 基础设施部署 ➔ STAGE 03 漏洞场景配置 ➔ STAGE 04 辅助设施与快照 ➔ STAGE 05 闭环复盘。
-3. **3 个演示关卡**：
-   - WS-Management (WinRM 5985/5986) 探测 (`winrm.php`)
-   - Kerberos 协议攻击与 Kerberoasting 模拟 (`kerberos.php`)
-   - AD 域内横向移动与 Pass-the-Hash 传递 (`ad_lateral.php`)
+2. **3 台与 5 台 GOAD 拓扑与部署蓝图 (`ad_lab_setup.php`)**：
+   - 包含 3 台精简版 (GOAD-Light) 与 5 台完整版 (Full GOAD) 的网络拓扑、IP 布局表、域信任矩阵与 Vagrant/Ansible 部署干货。
+3. **10 大实战 CTF 夺旗关卡中心 (`ad_ctf_hub.php`)**：
+   - 包含侦察测绘、AS-REP Roasting、Kerberoasting、MSSQL 模拟特权、AD CS ESC1、约束性委派 (S4U2proxy)、RBCD 委派、AD CS ESC8 NTLM 中继、Shadow Credentials 影子凭据与 7 级 ACL 复合跃迁接管域控 (总分 2500 PTS)。
 
 ---
 

@@ -1743,7 +1743,7 @@ if (!isset($ACTIVE)){
 
             <?php
             $is_defense_active = false;
-            foreach (range(220, 230) as $i) {
+            foreach (range(220, 229) as $i) {
                 if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
                     $is_defense_active = true;
                     break;
@@ -1756,33 +1756,48 @@ if (!isset($ACTIVE)){
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-
-            <li class="<?php echo isset($ACTIVE[220]) ? $ACTIVE[220] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                防守模式
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[221]) ? $ACTIVE[221] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/defense/defense.php">
-                            防守实战验证
+                    <li class="<?php echo isset($ACTIVE[221]) ? $ACTIVE[221] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/defense/defense.php" style="color: #059669 !important; font-weight: bold;">
+                            📌 蓝队防守实战总控大厅
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[222]) ? $ACTIVE[222] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/defense/defense_waf.php">
+                            🛡️ [关卡 1] WAF 流量拦截与规则检测
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[223]) ? $ACTIVE[223] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/defense/defense_rasp.php">
+                            ⚡ [关卡 2] RASP 运行时 Hook 监控
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[224]) ? $ACTIVE[224] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/defense/defense_log_forensics.php">
+                            🔍 [关卡 3] Web 入侵日志取证排查
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[225]) ? $ACTIVE[225] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/defense/defense_honeypot.php">
+                            🍯 [关卡 4] 蜜罐欺骗与 Canary 蜜标
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[226]) ? $ACTIVE[226] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/defense/defense_siem.php">
+                            📊 [关卡 5] SIEM & Sysmon Sigma 规则
                         </a>
                         <b class="arrow"></b>
                     </li>
                 </ul>
             </li>
-
-
-                </ul>
-            </li>
         
             <?php
             $is_ad_active = false;
-            foreach (range(230, 240) as $i) {
+            foreach (range(230, 248) as $i) {
                 if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
                     $is_ad_active = true;
                     break;
@@ -1797,7 +1812,7 @@ if (!isset($ACTIVE)){
                 <ul class="submenu">
                     <li class="<?php echo isset($ACTIVE[231]) ? $ACTIVE[231] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_security.php">
-                            概览与总纲大厅
+                            📌 概览与总纲大厅
                         </a>
                         <b class="arrow"></b>
                     </li>
@@ -1807,33 +1822,75 @@ if (!isset($ACTIVE)){
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[235]) ? $ACTIVE[235] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_knowledge.php">
-                            一、内网 6 大知识体系全景
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
                     <li class="<?php echo isset($ACTIVE[236]) ? $ACTIVE[236] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_lab_setup.php">
-                            二、AD 靶场搭建 5 阶段蓝图
+                            📐 3台/5台 GOAD 拓扑与部署蓝图
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[232]) ? $ACTIVE[232] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/winrm.php">
-                            三、WS-Management (WinRM) 探测
+                    <li class="<?php echo isset($ACTIVE[238]) ? $ACTIVE[238] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_hub.php" style="color: #4f46e5 !important; font-weight: bold;">
+                            🏆 GOAD 域渗透 CTF 夺旗大厅 (2500 PTS)
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[233]) ? $ACTIVE[233] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/kerberos.php">
-                            四、Kerberos 协议与票据攻击
+                    <li class="<?php echo isset($ACTIVE[239]) ? $ACTIVE[239] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_recon.php">
+                            🚩 [关卡 1] 侦察与 BloodHound 测绘
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[234]) ? $ACTIVE[234] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_lateral.php">
-                            五、AD 域内横向移动 (PtH)
+                    <li class="<?php echo isset($ACTIVE[240]) ? $ACTIVE[240] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_asrep.php">
+                            🚩 [关卡 2] AS-REP Roasting 预认证爆破
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[241]) ? $ACTIVE[241] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_kerberoast.php">
+                            🚩 [关卡 3] Kerberoasting 票据离线破解
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[242]) ? $ACTIVE[242] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_mssql.php">
+                            🚩 [关卡 4] MSSQL 模拟特权与 xp_cmdshell
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[243]) ? $ACTIVE[243] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_adcs.php">
+                            🚩 [关卡 5] AD CS 证书 ESC1 模板滥用
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[244]) ? $ACTIVE[244] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_delegation.php">
+                            🚩 [关卡 6] 约束性委派 S4U2Proxy 提权
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[245]) ? $ACTIVE[245] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_rbcd.php">
+                            🚩 [关卡 7] 基于资源的约束委派 (RBCD)
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[246]) ? $ACTIVE[246] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_esc8.php">
+                            🚩 [关卡 8] AD CS ESC8 NTLM HTTP 中继
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[247]) ? $ACTIVE[247] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_shadow_cred.php">
+                            🚩 [关卡 9] 影子凭据 (Shadow Credentials)
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[248]) ? $ACTIVE[248] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_acl.php">
+                            🚩 [关卡 10] ACL 链式滥用与林根接管
                         </a>
                         <b class="arrow"></b>
                     </li>
