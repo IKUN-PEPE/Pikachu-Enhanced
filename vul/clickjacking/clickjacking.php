@@ -1,6 +1,6 @@
 <?php
 /**
- * Pikachu-Enhanced v2.0 Modern Overview Page
+ * Pikachu-Enhanced v2.0 Clickjacking UI Redressing Interactive Laboratory
  */
 include_once '../../inc/config.inc.php';
 
@@ -9,126 +9,111 @@ $ACTIVE[29] = 'active open';
 $ACTIVE[30] = 'active';
 
 $PIKA_ROOT_DIR = "../../";
+
+// Protection Mode Handling
+$defense_mode = isset($_GET['defense']) ? $_GET['defense'] : 'none';
+
+// If in target iframe context, send defense headers
+if (isset($_GET['iframe_target'])) {
+    if ($defense_mode === 'x_frame') {
+        header('X-Frame-Options: SAMEORIGIN');
+    } elseif ($defense_mode === 'csp') {
+        header("Content-Security-Policy: frame-ancestors 'self'");
+    }
+    
+    // Render Target Page inside Iframe
+    ?>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            body { font-family: sans-serif; background: #fff; margin: 0; padding: 20px; text-align: center; }
+            .target-card { border: 2px dashed #ef4444; border-radius: 10px; padding: 20px; background: #fef2f2; }
+            .btn-danger-custom { background: #dc2626; color: #fff; border: none; padding: 12px 24px; font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 14px; }
+        </style>
+    </head>
+    <body>
+        <div class="target-card">
+            <h3 style="color: #dc2626; margin-top:0;">⚠️ 银行业务 - 敏感操作确认页</h3>
+            <p>确定向黑客账户 (6222****8888) 转账 <strong>￥5,000.00</strong> 吗？</p>
+            <form method="post" action="clickjacking.php?iframe_target=1&defense=<?php echo $defense_mode; ?>">
+                <button type="submit" name="transfer_confirm" class="btn-danger-custom">【确认转账 5000 元】</button>
+            </form>
+            <?php if (isset($_POST['transfer_confirm'])) { ?>
+                <script>
+                    window.parent.postMessage('CLICKJACKING_SUCCESS', '*');
+                </script>
+            <?php } ?>
+        </div>
+    </body>
+    </html>
+    <?php
+    exit;
+}
+
 include_once $PIKA_ROOT_DIR . 'header.php';
 ?>
 
 <style>
-.overview-hero-card {
-    background: linear-gradient(135deg, #1e3a8a, #172554);
+.cj-hero-card {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
     border-radius: 16px;
-    padding: 35px;
+    padding: 30px;
     color: #ffffff;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     border: 1px solid rgba(255,255,255,0.1);
 }
-.overview-hero-card h1 {
-    font-size: 28px;
-    font-weight: 800;
-    margin-top: 0;
-    color: #f8fafc;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.overview-badge {
-    background: rgba(59, 130, 246, 0.2);
-    color: #60a5fa;
-    border: 1px solid #60a5fa;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-}
-.overview-hero-card p {
-    font-size: 15px;
-    color: #e2e8f0;
-    line-height: 1.7;
-    max-width: 950px;
-    margin-bottom: 0;
-}
-
-.workflow-section {
-    background-color: var(--bg-card);
+.cj-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 30px;
-    border: 1px solid var(--border-color);
-    margin-bottom: 30px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    padding: 24px;
+    margin-bottom: 22px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
-.workflow-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
+.stage-container {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    background: #f8fafc;
+    border: 2px solid #cbd5e1;
+    border-radius: 12px;
+    overflow: hidden;
 }
-.workflow-step {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 20px;
-    transition: transform 0.2s ease;
-}
-.workflow-step:hover {
-    transform: translateY(-3px);
-}
-.step-icon-badge {
-    width: 36px;
-    height: 36px;
-    background: #2563eb;
-    color: #ffffff;
-    border-radius: 8px;
+/* Phishing Decoy Layer (Background) */
+.decoy-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    font-size: 16px;
-    margin-bottom: 12px;
+    z-index: 1;
 }
-
-.detail-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-bottom: 30px;
+/* Target Iframe Layer (Overlaid with Opacity) */
+.iframe-overlay {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 450px;
+    height: 220px;
+    border: none;
+    z-index: 2;
+    transition: opacity 0.2s ease;
 }
-.detail-card {
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 25px;
-    border-top: 4px solid #2563eb;
-}
-
-.lab-shortcuts {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 15px;
-    margin-top: 15px;
-}
-.shortcut-card {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
+.control-panel {
+    background: var(--bg-secondary);
     border-radius: 10px;
-    padding: 16px 20px;
-    text-decoration: none !important;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: all 0.2s ease;
-}
-.shortcut-card:hover {
-    border-color: #2563eb;
-    transform: translateX(4px);
-}
-.shortcut-title {
-    font-weight: 700;
-    color: var(--text-primary);
-    font-size: 15px;
-}
-.shortcut-desc {
-    font-size: 12px;
-    color: var(--text-secondary);
-    margin-top: 2px;
+    padding: 18px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);
 }
 </style>
 
@@ -137,88 +122,119 @@ include_once $PIKA_ROOT_DIR . 'header.php';
         <div class="page-content">
             
             <!-- Hero Header -->
-            <div class="overview-hero-card">
+            <div class="cj-hero-card">
                 <h1>
-                    Clickjacking 点击劫持漏洞
-                    <span class="overview-badge">前端界面欺骗</span>
+                    🖼️ Clickjacking 点击劫持漏洞 & 视觉欺骗 POC 实验室
+                    <span class="label label-primary" style="font-size: 13px; border-radius: 20px;">UI Redressing</span>
                 </h1>
-                <p>点击劫持 (UI Redressing) 是一种视觉欺骗攻击。攻击者使用一个透明的 iframe 覆盖在网页上，然后诱使用户在该网页上进行操作，此时用户将在不知情的情况下点击透明的 iframe 页面，执行了意料之外的恶意操作。</p>
+                <p>点击劫持是一种视觉欺骗攻击。攻击者利用透明 <code>&lt;iframe&gt;</code> 覆盖在钓鱼诱饵网页（如“免费抽奖按钮”）之上。受害者点击“抽奖”时，实则触发了透明框架内部真实的“转账/删除账号”敏感操作。</p>
             </div>
 
-            <!-- Workflow Visual Section -->
-            <div class="workflow-section">
-                <h3 style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin-top: 0; margin-bottom: 25px;">
-                    <i class="fa fa-sitemap" style="color: #2563eb;"></i> 漏洞原理与攻击演进流程链
-                </h3>
-                
-                <div class="workflow-grid">
-                    
-        <div class="workflow-step">
-            <div class="step-icon-badge" style="background: #06b6d4;">1</div>
-            <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">1. 发现未受保护的页面</div>
-            <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">测试目标网页是否允许被嵌入到其他站点的 `<iframe>` 中。</div>
-        </div>
-        
-        <div class="workflow-step">
-            <div class="step-icon-badge" style="background: #3b82f6;">2</div>
-            <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">2. 构造透明框架</div>
-            <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">攻击者编写钓鱼网页，将目标站点的敏感操作页透明度设为 0 覆盖其上。</div>
-        </div>
-        
-        <div class="workflow-step">
-            <div class="step-icon-badge" style="background: #a855f7;">3</div>
-            <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">3. 诱导用户点击</div>
-            <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">使用诱惑性按钮（如“点击抽奖”）与目标站点上的“删除账号”按钮精准重叠。</div>
-        </div>
-        
-        <div class="workflow-step">
-            <div class="step-icon-badge" style="background: #10b981;">4</div>
-            <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">4. 执行非预期操作</div>
-            <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">受害者点击“抽奖”按钮，实则触发了被隐藏目标站点的敏感功能。</div>
-        </div>
-        
+            <!-- Controls -->
+            <div class="control-panel">
+                <div class="row" style="align-items: center;">
+                    <div class="col-md-6">
+                        <label style="font-weight: 700; color: var(--text-primary);">🛡️ 选择目标站点的安全防御模式：</label>
+                        <div class="btn-group" style="display: flex; width: 100%;">
+                            <a href="clickjacking.php?defense=none" class="btn btn-default <?php echo $defense_mode==='none'?'btn-danger active':'';?>" style="flex: 1; border-radius: 6px 0 0 6px; font-weight: bold;">
+                                ❌ 无防御 (脆弱允许嵌入)
+                            </a>
+                            <a href="clickjacking.php?defense=x_frame" class="btn btn-default <?php echo $defense_mode==='x_frame'?'btn-success active':'';?>" style="flex: 1; font-weight: bold;">
+                                🛡️ X-Frame-Options (SAMEORIGIN)
+                            </a>
+                            <a href="clickjacking.php?defense=csp" class="btn btn-default <?php echo $defense_mode==='csp'?'btn-info active':'';?>" style="flex: 1; border-radius: 0 6px 6px 0; font-weight: bold;">
+                                🔒 CSP (frame-ancestors 'self')
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label style="font-weight: 700; color: var(--text-primary);">
+                            👁️ 点击劫持透明度解密滑块 (<span id="opacity-val">50%</span> 透明):
+                        </label>
+                        <input type="range" id="opacity-slider" min="0" max="100" value="50" style="width: 100%; cursor: pointer;">
+                        <span style="font-size: 12px; color: var(--text-secondary);">
+                            滑动体验：<strong>0% (暴露隐藏转账表单)</strong> $\longleftrightarrow$ <strong>100% (黑客完全隐形欺骗)</strong>
+                        </span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Detail Cards -->
-            <div class="detail-grid">
-                
-        <div class="detail-card" style="border-top-color: #0891b2;">
-            <h3 style="margin-top:0; font-size:18px; color:var(--text-primary);">🖼️ 1. iframe 嵌套</h3>
-            <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:0;">目标站点缺乏 X-Frame-Options 标头，允许被第三方域任意嵌套。</p>
-        </div>
-        
-        <div class="detail-card" style="border-top-color: #7c3aed;">
-            <h3 style="margin-top:0; font-size:18px; color:var(--text-primary);">🛡️ 2. X-Frame-Options</h3>
-            <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:0;">配置 HTTP 响应头 `X-Frame-Options: DENY` 或 `SAMEORIGIN` 拒绝跨域嵌套。</p>
-        </div>
-        
-        <div class="detail-card" style="border-top-color: #10b981;">
-            <h3 style="margin-top:0; font-size:18px; color:var(--text-primary);">🛡️ 3. CSP frame-ancestors</h3>
-            <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:0;">现代浏览器支持 CSP `frame-ancestors 'self'` 作为更灵活的防护方案。</p>
-        </div>
-        
+            <!-- Attack Simulator Canvas -->
+            <div class="cj-box">
+                <h3 style="margin-top: 0; font-weight: 700; color: var(--text-primary); display: flex; justify-content: space-between;">
+                    <span><i class="fa fa-eye" style="color: #2563eb;"></i> 黑客钓鱼页面 vs 隐藏银行转账页 重叠演练画布</span>
+                    <span class="label label-warning" style="font-size: 12px;">防御状态: <?php echo strtoupper($defense_mode); ?></span>
+                </h3>
+
+                <div class="stage-container">
+                    
+                    <!-- Background Phishing Decoy -->
+                    <div class="decoy-layer">
+                        <h2 style="color: #d97706; font-weight: 900; margin-top: 0;">🎁 恭喜！您获得一次【免费抽取 iPhone 16 Pro】机会！</h2>
+                        <p style="color: #92400e; font-weight: bold; margin-bottom: 20px;">点击下方大按钮立即领取大奖：</p>
+                        <button style="background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; border: none; padding: 16px 40px; font-size: 18px; font-weight: 900; border-radius: 50px; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4); cursor: pointer;">
+                            🎉 点击此处 免费领取大奖 🎉
+                        </button>
+                    </div>
+
+                    <!-- Overlay Target Iframe -->
+                    <iframe id="target-iframe" src="clickjacking.php?iframe_target=1&defense=<?php echo $defense_mode; ?>" class="iframe-overlay" style="opacity: 0.5;"></iframe>
+
+                </div>
+
+                <!-- Incident Notification -->
+                <div id="attack-result" style="display: none; margin-top: 20px;" class="alert alert-danger">
+                    <h4 style="margin-top: 0; font-weight: bold;"><i class="fa fa-warning"></i> 🚨 警告: 点击劫持攻击成功利用！</h4>
+                    <p style="margin-bottom: 0;">受害者以为点击了“免费领取大奖”，实际上被透明 <code>&lt;iframe&gt;</code> 截获，成功触发了银行资金转账请求！</p>
+                </div>
             </div>
 
-            <!-- Interactive Lab Shortcuts -->
-            <div class="vul">
-                <h3 style="margin: 0 0 15px 0; font-size: 18px; font-weight: 700;">🎯 快速进入实战关卡演练</h3>
-                <div class="lab-shortcuts">
-                    
-        <a href="clickjacking.php" class="shortcut-card">
-            <div>
-                <div class="shortcut-title">1. 点击劫持演练</div>
-                <div class="shortcut-desc">体验透明 iframe 视觉欺骗攻击</div>
-            </div>
-            <i class="fa fa-arrow-right" style="color: #0891b2;"></i>
-        </a>
-        
+            <!-- Defense Documentation -->
+            <div class="cj-box">
+                <h3 style="margin-top: 0; font-weight: 700; color: var(--text-primary);"><i class="fa fa-shield" style="color: #10b981;"></i> 蓝队防御加固代码实施方案</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div style="background: #0f172a; color: #34d399; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 13px;">
+<div style="color: #94a3b8;">// 方案 1: HTTP 响应头 X-Frame-Options</div>
+header('X-Frame-Options: SAMEORIGIN'); <div style="color: #94a3b8;">// 仅允许同源嵌套</div>
+<div style="color: #94a3b8;">// 或直接完全禁止任何嵌套</div>
+header('X-Frame-Options: DENY');
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div style="background: #0f172a; color: #38bdf8; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 13px;">
+<div style="color: #94a3b8;">// 方案 2: W3C CSP frame-ancestors</div>
+header("Content-Security-Policy: frame-ancestors 'self'");
+<div style="color: #94a3b8;">// 支持指定安全白名单域名</div>
+header("Content-Security-Policy: frame-ancestors 'self' https://trusted.com");
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var slider = document.getElementById('opacity-slider');
+    var iframe = document.getElementById('target-iframe');
+    var valDisplay = document.getElementById('opacity-val');
+
+    slider.addEventListener('input', function() {
+        var op = (100 - slider.value) / 100;
+        iframe.style.opacity = op;
+        valDisplay.textContent = slider.value + '%';
+    });
+
+    window.addEventListener('message', function(e) {
+        if (e.data === 'CLICKJACKING_SUCCESS') {
+            document.getElementById('attack-result').style.display = 'block';
+        }
+    });
+});
+</script>
 
 <?php
 include_once $PIKA_ROOT_DIR . 'footer.php';

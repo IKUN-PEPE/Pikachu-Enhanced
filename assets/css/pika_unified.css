@@ -1261,4 +1261,96 @@ code {
     border-color: rgba(255, 255, 255, 0.12) !important;
 }
 
+/* Global Form Control & Select Dropdown Height Optimization */
+select.form-control,
+select,
+input[type="text"].form-control,
+input[type="password"].form-control,
+.form-control {
+    height: 44px !important;
+    min-height: 44px !important;
+    line-height: 1.5 !important;
+    padding: 8px 14px !important;
+    font-size: 14px !important;
+    box-sizing: border-box !important;
+    vertical-align: middle !important;
+}
+
+textarea.form-control {
+    height: auto !important;
+    min-height: 100px !important;
+    line-height: 1.6 !important;
+}
+
+/* ==========================================================================
+   Universal Hero Banner & CTF Header High-Contrast Color Unification
+   ========================================================================== */
+.ctf-stage-header,
+.overview-hero-card,
+.waf-hero-banner,
+.rasp-hero-banner,
+.forensics-hero-banner,
+.honey-hero-banner,
+.siem-hero-banner,
+.cj-hero-card {
+    color: #ffffff !important;
+}
+
+.ctf-stage-header h1,
+.ctf-stage-header h2,
+.ctf-stage-header h3,
+.ctf-stage-header .ctf-stage-title,
+.overview-hero-card h1,
+.overview-hero-card h2,
+.overview-hero-card h3,
+.waf-hero-banner h1,
+.rasp-hero-banner h1,
+.forensics-hero-banner h1,
+.honey-hero-banner h1,
+.siem-hero-banner h1,
+.cj-hero-card h1 {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+}
+
+.ctf-stage-header p,
+.overview-hero-card p,
+.waf-hero-banner p,
+.rasp-hero-banner p,
+.forensics-hero-banner p,
+.honey-hero-banner p,
+.siem-hero-banner p,
+.cj-hero-card p {
+    color: #cbd5e1 !important;
+}
+
+.ctf-stage-header code,
+.overview-hero-card code,
+.waf-hero-banner code,
+.rasp-hero-banner code,
+.forensics-hero-banner code,
+.honey-hero-banner code,
+.siem-hero-banner code,
+.cj-hero-card code {
+    background: rgba(255, 255, 255, 0.15) !important;
+    color: #fbcfe8 !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+}
+
+.ctf-stage-header strong,
+.overview-hero-card strong,
+.waf-hero-banner strong,
+.rasp-hero-banner strong,
+.forensics-hero-banner strong,
+.honey-hero-banner strong,
+.siem-hero-banner strong,
+.cj-hero-card strong {
+    color: #ffffff !important;
+}
+
+
+
 
