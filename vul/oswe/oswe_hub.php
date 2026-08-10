@@ -24,13 +24,13 @@ $flags_db = [
     'flag5' => ['flag' => 'flag{OSWE_L5_SSTI_Jinja2_OS_Command_Exec}', 'name' => 'L5: SSTI 服务端模板注入', 'points' => 300, 'file' => 'oswe_l5_ssti.php', 'difficulty' => '高级'],
     'flag6' => ['flag' => 'flag{OSWE_L6_XXE_OOB_SSRF_File_Disclosure}', 'name' => 'L6: XXE + SSRF 带外数据提取', 'points' => 300, 'file' => 'oswe_l6_xxe_oob.php', 'difficulty' => '高级'],
     'flag7' => ['flag' => 'flag{OSWE_L7_MultiVuln_Chain_RCE_Complete}', 'name' => 'L7: 多漏洞组合 RCE 利用链', 'points' => 400, 'file' => 'oswe_l7_rce_chain.php', 'difficulty' => '专家'],
-    \'flag8\' => [\'flag\' => \'flag{OSWE_L8_SQLi_Blind}\', \'name\' => \'L8: 盲注自动化脚本编写\', \'points\' => 250, \'file\' => \'oswe_l8_sqli_blind.php\', \'difficulty\' => \'中级\'],
-    \'flag9\' => [\'flag\' => \'flag{OSWE_L9_PHP_Type_Juggling}\', \'name\' => \'L9: PHP 类型混淆攻击\', \'points\' => 200, \'file\' => \'oswe_l9_type_juggling.php\', \'difficulty\' => \'中级\'],
-    \'flag10\' => [\'flag\' => \'flag{OSWE_L10_Java_Deser_JDWP_UDF}\', \'name\' => \'L10: Java 反序列化 · JDWP · UDF\', \'points\' => 300, \'file\' => \'oswe_l10_java_rce.php\', \'difficulty\' => \'高级\'],
-    \'flag11\' => [\'flag\' => \'flag{OSWE_L11_JS_Proto_Pollution}\', \'name\' => \'L11: JavaScript 原型链污染\', \'points\' => 300, \'file\' => \'oswe_l11_proto_pollution.php\', \'difficulty\' => \'高级\'],
-    \'flag12\' => [\'flag\' => \'flag{OSWE_L12_DotNet_ViewState_Deser}\', \'name\' => \'L12: .NET ViewState 反序列化\', \'points\' => 350, \'file\' => \'oswe_l12_dotnet_deser.php\', \'difficulty\' => \'专家\'],
-    \'flag13\' => [\'flag\' => \'flag{OSWE_L13_SSRF_Internal_RCE}\', \'name\' => \'L13: SSRF → 内网 RCE 链\', \'points\' => 350, \'file\' => \'oswe_l13_ssrf_rce.php\', \'difficulty\' => \'专家\'],
-    \'flag14\' => [\'flag\' => \'flag{OSWE_L14_CSRF_CORS_Bypass}\', \'name\' => \'L14: CSRF + CORS 认证绕过 [终章]\', \'points\' => 300, \'file\' => \'oswe_l14_csrf_cors.php\', \'difficulty\' => \'高级\'],
+    'flag8' => ['flag' => 'flag{OSWE_L8_SQLi_Blind}', 'name' => 'L8: 盲注自动化脚本编写', 'points' => 250, 'file' => 'oswe_l8_sqli_blind.php', 'difficulty' => '中级'],
+    'flag9' => ['flag' => 'flag{OSWE_L9_PHP_Type_Juggling}', 'name' => 'L9: PHP 类型混淆攻击', 'points' => 200, 'file' => 'oswe_l9_type_juggling.php', 'difficulty' => '中级'],
+    'flag10' => ['flag' => 'flag{OSWE_L10_Java_Deser_JDWP_UDF}', 'name' => 'L10: Java 反序列化 · JDWP · UDF', 'points' => 300, 'file' => 'oswe_l10_java_rce.php', 'difficulty' => '高级'],
+    'flag11' => ['flag' => 'flag{OSWE_L11_JS_Proto_Pollution}', 'name' => 'L11: JavaScript 原型链污染', 'points' => 300, 'file' => 'oswe_l11_proto_pollution.php', 'difficulty' => '高级'],
+    'flag12' => ['flag' => 'flag{OSWE_L12_DotNet_ViewState_Deser}', 'name' => 'L12: .NET ViewState 反序列化', 'points' => 350, 'file' => 'oswe_l12_dotnet_deser.php', 'difficulty' => '专家'],
+    'flag13' => ['flag' => 'flag{OSWE_L13_SSRF_Internal_RCE}', 'name' => 'L13: SSRF → 内网 RCE 链', 'points' => 350, 'file' => 'oswe_l13_ssrf_rce.php', 'difficulty' => '专家'],
+    'flag14' => ['flag' => 'flag{OSWE_L14_CSRF_CORS_Bypass}', 'name' => 'L14: CSRF + CORS 认证绕过 [终章]', 'points' => 300, 'file' => 'oswe_l14_csrf_cors.php', 'difficulty' => '高级'],
 ];
 
 $submit_msg = '';
@@ -188,13 +188,13 @@ $progress_pct = count($flags_db) > 0 ? round(($captured_count / count($flags_db)
                     'flag5' => '分析 SSTI 服务端模板注入：Jinja2/Twig/Smarty 各引擎注入语法差异，从 {{7*7}} 探测到 os.system() 执行的完整路径。',
                     'flag6' => '深入 XXE 外部实体注入：带外数据提取（OOB XXE）、XXE to SSRF 组合、Blind XXE via Error、参数实体与外部 DTD。',
                     'flag7' => '综合前6关技术，分析真实 CMS/框架的多漏洞 RCE 利用链：文件上传+路径穿越、SSRF+反序列化、XSS+CSRF+文件写入等组合路径。',
-                    \'flag8\' => \'编写自动化脚本以高效利用基于时间的盲注漏洞。\',
-                    \'flag9\' => \'深度分析 PHP 弱类型比较带来的漏洞，学习如何构造特定的 Payload 实现认证绕过。\',
-                    \'flag10\' => \'利用 Java 反序列化漏洞，结合 JDWP 调试端口和 MySQL UDF 提权进行复合攻击。\',
-                    \'flag11\' => \'理解 JavaScript 的原型链机制，并学习如何通过污染原型链来修改应用逻辑甚至导致 RCE。\',
-                    \'flag12\' => \'针对 .NET 应用，剖析 ViewState 机制及其在缺乏完整性校验时的反序列化漏洞利用。\',
-                    \'flag13\' => \'构建从 SSRF 探测内网服务到发现并利用内网 RCE 漏洞的完整攻击链。\',
-                    \'flag14\' => \'综合利用 CSRF 攻击与 CORS 配置不当，绕过严格的认证机制。\',
+                    'flag8' => '编写自动化脚本以高效利用基于时间的盲注漏洞。',
+                    'flag9' => '深度分析 PHP 弱类型比较带来的漏洞，学习如何构造特定的 Payload 实现认证绕过。',
+                    'flag10' => '利用 Java 反序列化漏洞，结合 JDWP 调试端口和 MySQL UDF 提权进行复合攻击。',
+                    'flag11' => '理解 JavaScript 的原型链机制，并学习如何通过污染原型链来修改应用逻辑甚至导致 RCE。',
+                    'flag12' => '针对 .NET 应用，剖析 ViewState 机制及其在缺乏完整性校验时的反序列化漏洞利用。',
+                    'flag13' => '构建从 SSRF 探测内网服务到发现并利用内网 RCE 漏洞的完整攻击链。',
+                    'flag14' => '综合利用 CSRF 攻击与 CORS 配置不当，绕过严格的认证机制。',
                 ];
                 foreach ($flags_db as $key => $item) {
                     $is_done = isset($_SESSION['oswe_flags'][$key]) && $_SESSION['oswe_flags'][$key];

@@ -23,10 +23,10 @@ $flags_db = [
     'flag4' => ['flag' => 'flag{OSED_L4_ASLR_InfoLeak_BaseAddr}', 'name' => 'L4: ASLR 随机化与信息泄露利用', 'points' => 250, 'file' => 'osed_l4_aslr.php', 'difficulty' => '高级'],
     'flag5' => ['flag' => 'flag{OSED_L5_Egghunter_WoW64_TEB}', 'name' => 'L5: Egghunter 技术原理研究', 'points' => 300, 'file' => 'osed_l5_egghunter.php', 'difficulty' => '高级'],
     'flag6' => ['flag' => 'flag{OSED_L6_ROP_CFG_CET_Stack_Defense}', 'name' => 'L6: ROP 链构造原理与 CFG/CET 防御', 'points' => 350, 'file' => 'osed_l6_rop.php', 'difficulty' => '专家'],
-    \'flag7\' => [\'flag\' => \'flag{OSED_L7_ASM_Custom_Shellcode}\', \'name\' => \'L7: x86 汇编与自定义 Shellcode\', \'points\' => 350, \'file\' => \'osed_l7_asm_shellcode.php\', \'difficulty\' => \'专家\'],
-    \'flag8\' => [\'flag\' => \'flag{OSED_L8_Format_String_Exploit}\', \'name\' => \'L8: 格式化字符串漏洞利用\', \'points\' => 400, \'file\' => \'osed_l8_format_string.php\', \'difficulty\' => \'专家\'],
-    \'flag9\' => [\'flag\' => \'flag{OSED_L9_Protocol_Reverse_Vuln_Hunt}\', \'name\' => \'L9: 协议逆向与漏洞挖掘\', \'points\' => 350, \'file\' => \'osed_l9_proto_reverse.php\', \'difficulty\' => \'专家\'],
-    \'flag10\' => [\'flag\' => \'flag{OSED_L10_WPM_DEP_ASLR_Bypass}\', \'name\' => \'L10: WPM DEP+ASLR 联合绕过 [终章]\', \'points\' => 400, \'file\' => \'osed_l10_wpm_bypass.php\', \'difficulty\' => \'专家\'],
+    'flag7' => ['flag' => 'flag{OSED_L7_ASM_Custom_Shellcode}', 'name' => 'L7: x86 汇编与自定义 Shellcode', 'points' => 350, 'file' => 'osed_l7_asm_shellcode.php', 'difficulty' => '专家'],
+    'flag8' => ['flag' => 'flag{OSED_L8_Format_String_Exploit}', 'name' => 'L8: 格式化字符串漏洞利用', 'points' => 400, 'file' => 'osed_l8_format_string.php', 'difficulty' => '专家'],
+    'flag9' => ['flag' => 'flag{OSED_L9_Protocol_Reverse_Vuln_Hunt}', 'name' => 'L9: 协议逆向与漏洞挖掘', 'points' => 350, 'file' => 'osed_l9_proto_reverse.php', 'difficulty' => '专家'],
+    'flag10' => ['flag' => 'flag{OSED_L10_WPM_DEP_ASLR_Bypass}', 'name' => 'L10: WPM DEP+ASLR 联合绕过 [终章]', 'points' => 400, 'file' => 'osed_l10_wpm_bypass.php', 'difficulty' => '专家'],
 ];
 
 $submit_msg = '';
@@ -188,10 +188,10 @@ $progress_pct = count($flags_db) > 0 ? round(($captured_count / count($flags_db)
                     'flag4' => '理解 ASLR（地址空间布局随机化）的随机化范围与信息泄露利用路径：格式字符串泄露、侧信道、非 ASLR 模块 rebasing 等研究视角。',
                     'flag5' => '研究 Egghunter 技术的工作原理：WinAPI/SEH 两种实现路径、系统调用地址空间搜索机制、在内存碎片化场景下定位 Shellcode 的原理。',
                     'flag6' => '深入 ROP 链构造的理论基础（Gadget 搜索、ROPgadget/ropper 工具原理），理解 CFG（控制流防护）和 CET（影子栈）如何从根本上阻断 ROP 攻击。',
-                    \'flag7\' => \'深入学习 x86 汇编语言，编写并优化高度定制的 Shellcode 以满足特定利用场景。\',
-                    \'flag8\' => \'探究格式化字符串漏洞的底层原理，通过任意地址读写实现执行流劫持。\',
-                    \'flag9\' => \'通过逆向工程分析私有网络协议，挖掘协议解析实现中的内存破坏漏洞。\',
-                    \'flag10\' => \'综合应用 WriteProcessMemory 技术，实战环境下联合绕过 DEP 和 ASLR。\',
+                    'flag7' => '深入学习 x86 汇编语言，编写并优化高度定制的 Shellcode 以满足特定利用场景。',
+                    'flag8' => '探究格式化字符串漏洞的底层原理，通过任意地址读写实现执行流劫持。',
+                    'flag9' => '通过逆向工程分析私有网络协议，挖掘协议解析实现中的内存破坏漏洞。',
+                    'flag10' => '综合应用 WriteProcessMemory 技术，实战环境下联合绕过 DEP 和 ASLR。',
                 ];
                 foreach ($flags_db as $key => $item) {
                     $is_done = isset($_SESSION['osed_flags'][$key]) && $_SESSION['osed_flags'][$key];
