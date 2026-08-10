@@ -1898,15 +1898,26 @@ if (!isset($ACTIVE)){
             </li>
 
             <!-- ===== OSCE³ 三大方向 ===== -->
-            <li class="<?php echo isset($ACTIVE[250]) ? $ACTIVE[250] : '';?>">
-                <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_hub.php">
-                    <i class="menu-icon fa fa-crosshairs" style="color:#6366f1;"></i>
-                    <span class="menu-text" style="font-weight:700;color:#a5b4fc;">🏅 OSEP 内网穿透 CTF</span>
+            <?php
+            $is_osep_active = false;
+            $osep_indices = array_merge(range(250, 258), range(280, 289), array(299));
+            foreach ($osep_indices as $i) {
+                if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
+                    $is_osep_active = true;
+                    break;
+                }
+            }
+            ?>
+            <li class="<?php echo $is_osep_active ? 'active open' : ''; ?>">
+                <a href="#" class="dropdown-toggle" style="background: linear-gradient(90deg, #312e81 0%, #1e1b4b 100%) !important; border-left: 4px solid #6366f1 !important;">
+                    <i class="menu-icon fa fa-crosshairs" style="color:#a855f7;"></i>
+                    <span class="menu-text" style="font-weight: bold; color: #e0e7ff;"> 🏅 OSEP 内网穿透 CTF (18关) </span>
+                    <b class="arrow fa fa-angle-down" style="color: #a855f7;"></b>
                 </a>
-                <b class="arrow fa fa-angle-down"></b>
+                <b class="arrow"></b>
                 <ul class="submenu">
                     <li class="<?php echo isset($ACTIVE[250]) ? $ACTIVE[250] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_hub.php" style="color:#6366f1!important;font-weight:bold;">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_hub.php" style="color:#a855f7!important;font-weight:bold;">
                             🏆 OSEP 夺旗大厅 (18关 · 4750 PTS)
                         </a>
                         <b class="arrow"></b>
@@ -1986,12 +1997,23 @@ if (!isset($ACTIVE)){
                 </ul>
             </li>
 
-            <li class="<?php echo isset($ACTIVE[260]) ? $ACTIVE[260] : '';?>">
-                <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_hub.php">
-                    <i class="menu-icon fa fa-code" style="color:#06b6d4;"></i>
-                    <span class="menu-text" style="font-weight:700;color:#67e8f9;">🏅 OSWE 白盒审计 CTF</span>
+            <?php
+            $is_oswe_active = false;
+            $oswe_indices = array_merge(range(260, 268), range(290, 296));
+            foreach ($oswe_indices as $i) {
+                if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
+                    $is_oswe_active = true;
+                    break;
+                }
+            }
+            ?>
+            <li class="<?php echo $is_oswe_active ? 'active open' : ''; ?>">
+                <a href="#" class="dropdown-toggle" style="background: linear-gradient(90deg, #164e63 0%, #083344 100%) !important; border-left: 4px solid #06b6d4 !important;">
+                    <i class="menu-icon fa fa-code" style="color:#22d3ee;"></i>
+                    <span class="menu-text" style="font-weight: bold; color: #cffaff;"> 🏅 OSWE 白盒审计 CTF (14关) </span>
+                    <b class="arrow fa fa-angle-down" style="color: #22d3ee;"></b>
                 </a>
-                <b class="arrow fa fa-angle-down"></b>
+                <b class="arrow"></b>
                 <ul class="submenu">
                     <li class="<?php echo isset($ACTIVE[261]) ? $ACTIVE[261] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_hub.php" style="color:#06b6d4!important;font-weight:bold;">
@@ -2058,12 +2080,23 @@ if (!isset($ACTIVE)){
                 </ul>
             </li>
 
-            <li class="<?php echo isset($ACTIVE[270]) ? $ACTIVE[270] : '';?>">
-                <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_hub.php">
-                    <i class="menu-icon fa fa-microchip" style="color:#f97316;"></i>
-                    <span class="menu-text" style="font-weight:700;color:#fed7aa;">🏅 OSED 漏洞开发 CTF</span>
+            <?php
+            $is_osed_active = false;
+            $osed_indices = array_merge(range(270, 279), range(301, 302));
+            foreach ($osed_indices as $i) {
+                if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
+                    $is_osed_active = true;
+                    break;
+                }
+            }
+            ?>
+            <li class="<?php echo $is_osed_active ? 'active open' : ''; ?>">
+                <a href="#" class="dropdown-toggle" style="background: linear-gradient(90deg, #431407 0%, #1c1917 100%) !important; border-left: 4px solid #f97316 !important;">
+                    <i class="menu-icon fa fa-microchip" style="color:#fb923c;"></i>
+                    <span class="menu-text" style="font-weight: bold; color: #ffedd5;"> 🏅 OSED 漏洞开发 CTF (10关) </span>
+                    <b class="arrow fa fa-angle-down" style="color: #fb923c;"></b>
                 </a>
-                <b class="arrow fa fa-angle-down"></b>
+                <b class="arrow"></b>
                 <ul class="submenu">
                     <li class="<?php echo isset($ACTIVE[271]) ? $ACTIVE[271] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_hub.php" style="color:#f97316!important;font-weight:bold;">
