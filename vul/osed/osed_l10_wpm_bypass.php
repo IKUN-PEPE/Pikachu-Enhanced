@@ -2,7 +2,7 @@
 include_once '../../inc/config.inc.php';
 $ACTIVE = array_fill(0, 300, '');
 $ACTIVE[270] = 'active open';
-$ACTIVE[281] = 'active';
+$ACTIVE[302] = 'active';
 $PIKA_ROOT_DIR = "../../";
 include_once $PIKA_ROOT_DIR . 'header.php';
 $correct_flag = 'flag{OSED_L10_WriteProcessMemory_DEP_ASLR_Combined}';
