@@ -157,14 +157,14 @@ if (!isset($ACTIVE)){
 
         <ul class="nav nav-list">
             <li class="<?php echo $ACTIVE[0];?>">
-                <a href="<?php echo $PIKA_ROOT_DIR;?>index.php" class="cat-sidebar-intro">
+                <a href="<?php echo $PIKA_ROOT_DIR;?>index.php" class="cat-sidebar-intro" style="background: linear-gradient(90deg, #f1f5f9 0%, #f8fafc 100%) !important; border-left: 4px solid #64748b !important; color: #334155 !important;">
                     <span class="menu-text" style="font-weight: bold;"> 📖 系统介绍与说明 </span>
                 </a>
                 <b class="arrow"></b>
             </li>
 
             <li class="<?php echo isset($ACTIVE[219]) ? $ACTIVE[219] : '';?>">
-                <a href="<?php echo $PIKA_ROOT_DIR;?>intro.php" class="cat-sidebar-intro">
+                <a href="<?php echo $PIKA_ROOT_DIR;?>intro.php" class="cat-sidebar-intro" style="background: linear-gradient(90deg, #f1f5f9 0%, #f8fafc 100%) !important; border-left: 4px solid #475569 !important; color: #1e293b !important;">
                     <span class="menu-text" style="font-weight: bold;"> 📊 全局漏洞图鉴 (v2.0) </span>
                 </a>
                 <b class="arrow"></b>
@@ -181,8 +181,8 @@ if (!isset($ACTIVE)){
             }
             ?>
             <li class="<?php echo $is_classic_active ? 'active open' : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-classic">
-                    <span class="menu-text" style="font-weight: bold;"> 🏛️ 经典 Web 攻防演练 </span><b class="arrow fa fa-angle-down" style="color: #d97706;"></b>
+                <a href="#" class="dropdown-toggle cat-sidebar-classic" style="background: linear-gradient(90deg, #fef3c7 0%, #fffbeb 100%) !important; border-left: 4px solid #f59e0b !important; color: #92400e !important;">
+                    <span class="menu-text" style="font-weight: bold;"> 🏛️ 经典 Web 攻防演练 </span><b class="arrow fa fa-angle-down" style="color: #f59e0b !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1081,8 +1081,8 @@ if (!isset($ACTIVE)){
             }
             ?>
             <li class="<?php echo $is_cloud_active ? 'active open' : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-cloud">
-                    <span class="menu-text" style="font-weight: bold;"> ☁️ 云原生与微服务架构 </span><b class="arrow fa fa-angle-down" style="color: #0891b2;"></b>
+                <a href="#" class="dropdown-toggle cat-sidebar-cloud" style="background: linear-gradient(90deg, #cffafe 0%, #ecfeff 100%) !important; border-left: 4px solid #06b6d4 !important; color: #155e75 !important;">
+                    <span class="menu-text" style="font-weight: bold;"> ☁️ 云原生与微服务架构 </span><b class="arrow fa fa-angle-down" style="color: #06b6d4 !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1317,8 +1317,8 @@ if (!isset($ACTIVE)){
             }
             ?>
             <li class="<?php echo $is_ai_active ? 'active open' : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-ai">
-                    <span class="menu-text" style="font-weight: bold;"> 🤖 AI 与大模型应用安全 </span><b class="arrow fa fa-angle-down" style="color: #7c3aed;"></b>
+                <a href="#" class="dropdown-toggle cat-sidebar-ai" style="background: linear-gradient(90deg, #f3e8ff 0%, #faf5ff 100%) !important; border-left: 4px solid #a855f7 !important; color: #6b21a8 !important;">
+                    <span class="menu-text" style="font-weight: bold;"> 🤖 AI 与大模型应用安全 </span><b class="arrow fa fa-angle-down" style="color: #a855f7 !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1517,8 +1517,8 @@ if (!isset($ACTIVE)){
             }
             ?>
             <li class="<?php echo $is_proto_active ? 'active open' : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-proto">
-                    <span class="menu-text" style="font-weight: bold;"> 🌐 前沿协议与数据安全 </span><b class="arrow fa fa-angle-down" style="color: #2563eb;"></b>
+                <a href="#" class="dropdown-toggle cat-sidebar-proto" style="background: linear-gradient(90deg, #dbeafe 0%, #eff6ff 100%) !important; border-left: 4px solid #3b82f6 !important; color: #1e40af !important;">
+                    <span class="menu-text" style="font-weight: bold;"> 🌐 前沿协议与数据安全 </span><b class="arrow fa fa-angle-down" style="color: #3b82f6 !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1749,8 +1749,8 @@ if (!isset($ACTIVE)){
             }
             ?>
             <li class="<?php echo $is_defense_active ? 'active open' : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-defense">
-                    <span class="menu-text" style="font-weight: bold;"> 🛡️ 蓝队防守与实战防御 </span><b class="arrow fa fa-angle-down" style="color: #059669;"></b>
+                <a href="#" class="dropdown-toggle cat-sidebar-defense" style="background: linear-gradient(90deg, #dcfce7 0%, #f0fdf4 100%) !important; border-left: 4px solid #22c55e !important; color: #15803d !important;">
+                    <span class="menu-text" style="font-weight: bold;"> 🛡️ 蓝队防守与实战防御 </span><b class="arrow fa fa-angle-down" style="color: #22c55e !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1803,8 +1803,8 @@ if (!isset($ACTIVE)){
             }
             ?>
             <li class="<?php echo $is_ad_active ? 'active open' : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-ad">
-                    <span class="menu-text" style="font-weight: bold;"> 🌐 内网与 AD 域安全 </span><b class="arrow fa fa-angle-down"></b>
+                <a href="#" class="dropdown-toggle cat-sidebar-ad" style="background: linear-gradient(90deg, #e0e7ff 0%, #eef2ff 100%) !important; border-left: 4px solid #6366f1 !important; color: #3730a3 !important;">
+                    <span class="menu-text" style="font-weight: bold;"> 🌐 内网与 AD 域安全 </span><b class="arrow fa fa-angle-down" style="color: #6366f1 !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1907,8 +1907,8 @@ if (!isset($ACTIVE)){
             }
             ?>
             <li class="<?php echo $is_osep_active ? 'active open' : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-osep">
-                    <span class="menu-text" style="font-weight: bold;"> 🎯 OSEP 内网穿透 </span><b class="arrow fa fa-angle-down"></b>
+                <a href="#" class="dropdown-toggle cat-sidebar-osep" style="background: linear-gradient(90deg, #ede9fe 0%, #f5f3ff 100%) !important; border-left: 4px solid #8b5cf6 !important; color: #5b21b6 !important;">
+                    <span class="menu-text" style="font-weight: bold;"> 🎯 OSEP 内网穿透 </span><b class="arrow fa fa-angle-down" style="color: #8b5cf6 !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -2040,8 +2040,8 @@ if (!isset($ACTIVE)){
             }
             ?>
             <li class="<?php echo $is_oswe_active ? 'active open' : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-oswe">
-                    <span class="menu-text" style="font-weight: bold;"> 🔍 OSWE 白盒审计 </span><b class="arrow fa fa-angle-down"></b>
+                <a href="#" class="dropdown-toggle cat-sidebar-oswe" style="background: linear-gradient(90deg, #cffaff 0%, #e0f2fe 100%) !important; border-left: 4px solid #06b6d4 !important; color: #08596b !important;">
+                    <span class="menu-text" style="font-weight: bold;"> 🔍 OSWE 白盒审计 </span><b class="arrow fa fa-angle-down" style="color: #06b6d4 !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -2149,8 +2149,8 @@ if (!isset($ACTIVE)){
             }
             ?>
             <li class="<?php echo $is_osed_active ? 'active open' : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-osed">
-                    <span class="menu-text" style="font-weight: bold;"> 🔬 OSED 漏洞开发 </span><b class="arrow fa fa-angle-down"></b>
+                <a href="#" class="dropdown-toggle cat-sidebar-osed" style="background: linear-gradient(90deg, #ffedd5 0%, #fff7ed 100%) !important; border-left: 4px solid #f97316 !important; color: #9a3412 !important;">
+                    <span class="menu-text" style="font-weight: bold;"> 🔬 OSED 漏洞开发 </span><b class="arrow fa fa-angle-down" style="color: #f97316 !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
