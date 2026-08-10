@@ -50,7 +50,108 @@ if (!isset($ACTIVE)){
     <![endif]-->
     <link rel="stylesheet" href="<?php echo $PIKA_ROOT_DIR;?>assets/css/ace-skins.min.css" />
     <link rel="stylesheet" href="<?php echo $PIKA_ROOT_DIR;?>assets/css/ace-rtl.min.css" />
-    <link rel="stylesheet" href="<?php echo $PIKA_ROOT_DIR;?>assets/css/pika_unified.css" />
+    <link rel="stylesheet" href="<?php echo $PIKA_ROOT_DIR;?>assets/css/pika_unified.css?v=<?php echo filemtime(dirname(__FILE__) . '/assets/css/pika_unified.css'); ?>" />
+
+    <style>
+    /* Daylight Light Mode: All fonts must be crisp, high-contrast black/dark slate */
+    html:not([data-theme="dark"]),
+    :root:not([data-theme="dark"]),
+    [data-theme="light"] {
+        --text-primary: #0f172a !important;
+        --text-secondary: #1e293b !important;
+        --text-muted: #475569 !important;
+    }
+
+    html:not([data-theme="dark"]) body,
+    html:not([data-theme="dark"]) .page-content,
+    html:not([data-theme="dark"]) .main-content {
+        color: #0f172a !important;
+    }
+
+    /* Stage Headers & Titles */
+    html:not([data-theme="dark"]) .ctf-stage-header,
+    html:not([data-theme="dark"]) .overview-hero-card {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    html:not([data-theme="dark"]) .ctf-stage-title,
+    html:not([data-theme="dark"]) .ctf-stage-header h1,
+    html:not([data-theme="dark"]) .ctf-stage-header h2,
+    html:not([data-theme="dark"]) .ctf-stage-header h3,
+    html:not([data-theme="dark"]) .overview-hero-card h1,
+    html:not([data-theme="dark"]) h1,
+    html:not([data-theme="dark"]) h2,
+    html:not([data-theme="dark"]) h3,
+    html:not([data-theme="dark"]) h4 {
+        color: #0f172a !important;
+        text-shadow: none !important;
+        font-weight: 800 !important;
+    }
+
+    html:not([data-theme="dark"]) .ctf-stage-header p,
+    html:not([data-theme="dark"]) .ctf-stage-header .stage-desc,
+    html:not([data-theme="dark"]) .overview-hero-card p {
+        color: #334155 !important;
+        font-weight: 500 !important;
+        text-shadow: none !important;
+    }
+
+    /* Tag Chips & Back Links in Light Mode */
+    html:not([data-theme="dark"]) .ctf-stage-header div span,
+    html:not([data-theme="dark"]) .ctf-stage-header .stage-chip {
+        background: #f1f5f9 !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+        font-weight: 600 !important;
+    }
+
+    html:not([data-theme="dark"]) .ctf-stage-header a,
+    html:not([data-theme="dark"]) .ctf-stage-header .stage-back-link {
+        color: #4338ca !important;
+        font-weight: bold !important;
+    }
+
+    /* Difficulty & PTS Badges in Light Mode */
+    html:not([data-theme="dark"]) .ctf-stage-title span,
+    html:not([data-theme="dark"]) .ctf-stage-header h1 span {
+        background: #dcfce7 !important;
+        color: #14532d !important;
+        border: 1px solid #86efac !important;
+        font-weight: 700 !important;
+        text-shadow: none !important;
+    }
+
+    /* Step Boxes & Code Blocks */
+    html:not([data-theme="dark"]) .step-box,
+    html:not([data-theme="dark"]) .ctf-card {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        border: 1px solid #e2e8f0 !important;
+    }
+
+    html:not([data-theme="dark"]) .step-title {
+        color: #0f172a !important;
+        font-weight: 800 !important;
+    }
+
+    html:not([data-theme="dark"]) .cmd-box,
+    html:not([data-theme="dark"]) pre,
+    html:not([data-theme="dark"]) .code-block,
+    html:not([data-theme="dark"]) .terminal-box {
+        background: #f8fafc !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1 !important;
+    }
+
+    html:not([data-theme="dark"]) .cmd-box .comment { color: #64748b !important; }
+    html:not([data-theme="dark"]) .cmd-box .cmd,
+    html:not([data-theme="dark"]) .cmd-box .keyword { color: #2563eb !important; font-weight: bold; }
+    html:not([data-theme="dark"]) .cmd-box .flag-text { color: #b45309 !important; font-weight: bold; }
+    html:not([data-theme="dark"]) .cmd-box .dangerous { color: #b91c1c !important; font-weight: bold; }
+    </style>
 
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="<?php echo $PIKA_ROOT_DIR;?>assets/css/ace-ie.min.css" />
