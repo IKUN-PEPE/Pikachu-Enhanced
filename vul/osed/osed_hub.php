@@ -23,10 +23,10 @@ $flags_db = [
     'flag4' => ['flag' => 'flag{OSED_L4_ASLR_InfoLeak_BaseAddr}', 'name' => 'L4: ASLR 随机化与信息泄露利用', 'points' => 250, 'file' => 'osed_l4_aslr.php', 'difficulty' => '高级'],
     'flag5' => ['flag' => 'flag{OSED_L5_Egghunter_WoW64_TEB}', 'name' => 'L5: Egghunter 技术原理研究', 'points' => 300, 'file' => 'osed_l5_egghunter.php', 'difficulty' => '高级'],
     'flag6' => ['flag' => 'flag{OSED_L6_ROP_CFG_CET_Stack_Defense}', 'name' => 'L6: ROP 链构造原理与 CFG/CET 防御', 'points' => 350, 'file' => 'osed_l6_rop.php', 'difficulty' => '专家'],
-    'flag7' => ['flag' => 'flag{OSED_L7_ASM_Custom_Shellcode}', 'name' => 'L7: x86 汇编与自定义 Shellcode', 'points' => 350, 'file' => 'osed_l7_asm_shellcode.php', 'difficulty' => '专家'],
-    'flag8' => ['flag' => 'flag{OSED_L8_Format_String_Exploit}', 'name' => 'L8: 格式化字符串漏洞利用', 'points' => 400, 'file' => 'osed_l8_format_string.php', 'difficulty' => '专家'],
-    'flag9' => ['flag' => 'flag{OSED_L9_Protocol_Reverse_Vuln_Hunt}', 'name' => 'L9: 协议逆向与漏洞挖掘', 'points' => 350, 'file' => 'osed_l9_proto_reverse.php', 'difficulty' => '专家'],
-    'flag10' => ['flag' => 'flag{OSED_L10_WPM_DEP_ASLR_Bypass}', 'name' => 'L10: WPM DEP+ASLR 联合绕过 [终章]', 'points' => 400, 'file' => 'osed_l10_wpm_bypass.php', 'difficulty' => '专家'],
+    'flag7' => ['flag' => 'flag{OSED_L7_x86_ASM_PIC_NullFree_Shellcode}', 'name' => 'L7: x86 汇编与自定义 Shellcode', 'points' => 350, 'file' => 'osed_l7_asm_shellcode.php', 'difficulty' => '专家'],
+    'flag8' => ['flag' => 'flag{OSED_L8_FormatStr_Read_Write_EIP_Control}', 'name' => 'L8: 格式化字符串漏洞利用', 'points' => 400, 'file' => 'osed_l8_format_string.php', 'difficulty' => '专家'],
+    'flag9' => ['flag' => 'flag{OSED_L9_Protocol_Reverse_IDA_WinDbg_Vuln}', 'name' => 'L9: 协议逆向与漏洞挖掘', 'points' => 350, 'file' => 'osed_l9_proto_reverse.php', 'difficulty' => '专家'],
+    'flag10' => ['flag' => 'flag{OSED_L10_WriteProcessMemory_DEP_ASLR_Combined}', 'name' => 'L10: WPM DEP+ASLR 联合绕过 [终章]', 'points' => 400, 'file' => 'osed_l10_wpm_bypass.php', 'difficulty' => '专家'],
 ];
 
 $submit_msg = '';

@@ -24,13 +24,13 @@ $flags_db = [
     'flag5' => ['flag' => 'flag{OSWE_L5_SSTI_Jinja2_OS_Command_Exec}', 'name' => 'L5: SSTI 服务端模板注入', 'points' => 300, 'file' => 'oswe_l5_ssti.php', 'difficulty' => '高级'],
     'flag6' => ['flag' => 'flag{OSWE_L6_XXE_OOB_SSRF_File_Disclosure}', 'name' => 'L6: XXE + SSRF 带外数据提取', 'points' => 300, 'file' => 'oswe_l6_xxe_oob.php', 'difficulty' => '高级'],
     'flag7' => ['flag' => 'flag{OSWE_L7_MultiVuln_Chain_RCE_Complete}', 'name' => 'L7: 多漏洞组合 RCE 利用链', 'points' => 400, 'file' => 'oswe_l7_rce_chain.php', 'difficulty' => '专家'],
-    'flag8' => ['flag' => 'flag{OSWE_L8_SQLi_Blind}', 'name' => 'L8: 盲注自动化脚本编写', 'points' => 250, 'file' => 'oswe_l8_sqli_blind.php', 'difficulty' => '中级'],
-    'flag9' => ['flag' => 'flag{OSWE_L9_PHP_Type_Juggling}', 'name' => 'L9: PHP 类型混淆攻击', 'points' => 200, 'file' => 'oswe_l9_type_juggling.php', 'difficulty' => '中级'],
-    'flag10' => ['flag' => 'flag{OSWE_L10_Java_Deser_JDWP_UDF}', 'name' => 'L10: Java 反序列化 · JDWP · UDF', 'points' => 300, 'file' => 'oswe_l10_java_rce.php', 'difficulty' => '高级'],
-    'flag11' => ['flag' => 'flag{OSWE_L11_JS_Proto_Pollution}', 'name' => 'L11: JavaScript 原型链污染', 'points' => 300, 'file' => 'oswe_l11_proto_pollution.php', 'difficulty' => '高级'],
-    'flag12' => ['flag' => 'flag{OSWE_L12_DotNet_ViewState_Deser}', 'name' => 'L12: .NET ViewState 反序列化', 'points' => 350, 'file' => 'oswe_l12_dotnet_deser.php', 'difficulty' => '专家'],
-    'flag13' => ['flag' => 'flag{OSWE_L13_SSRF_Internal_RCE}', 'name' => 'L13: SSRF → 内网 RCE 链', 'points' => 350, 'file' => 'oswe_l13_ssrf_rce.php', 'difficulty' => '专家'],
-    'flag14' => ['flag' => 'flag{OSWE_L14_CSRF_CORS_Bypass}', 'name' => 'L14: CSRF + CORS 认证绕过 [终章]', 'points' => 300, 'file' => 'oswe_l14_csrf_cors.php', 'difficulty' => '高级'],
+    'flag8' => ['flag' => 'flag{OSWE_L8_BlindSQLi_Automation_Exfil_Script}', 'name' => 'L8: 盲注自动化脚本编写', 'points' => 250, 'file' => 'oswe_l8_sqli_blind.php', 'difficulty' => '中级'],
+    'flag9' => ['flag' => 'flag{OSWE_L9_PHP_Type_Juggling_0e_Hash_Bypass}', 'name' => 'L9: PHP 类型混淆攻击', 'points' => 200, 'file' => 'oswe_l9_type_juggling.php', 'difficulty' => '中级'],
+    'flag10' => ['flag' => 'flag{OSWE_L10_Java_Deser_JDWP_UDF_RCE}', 'name' => 'L10: Java 反序列化 · JDWP · UDF', 'points' => 300, 'file' => 'oswe_l10_java_rce.php', 'difficulty' => '高级'],
+    'flag11' => ['flag' => 'flag{OSWE_L11_Prototype_Pollution_EJS_Handlebars}', 'name' => 'L11: JavaScript 原型链污染', 'points' => 300, 'file' => 'oswe_l11_proto_pollution.php', 'difficulty' => '高级'],
+    'flag12' => ['flag' => 'flag{OSWE_L12_DotNet_ViewState_Cookie_Deser_RCE}', 'name' => 'L12: .NET ViewState 反序列化', 'points' => 350, 'file' => 'oswe_l12_dotnet_deser.php', 'difficulty' => '专家'],
+    'flag13' => ['flag' => 'flag{OSWE_L13_SSRF_Microservice_Headless_Chrome_RCE}', 'name' => 'L13: SSRF → 内网 RCE 链', 'points' => 350, 'file' => 'oswe_l13_ssrf_rce.php', 'difficulty' => '专家'],
+    'flag14' => ['flag' => 'flag{OSWE_L14_CSRF_CORS_Auth_Bypass_Concord}', 'name' => 'L14: CSRF + CORS 认证绕过 [终章]', 'points' => 300, 'file' => 'oswe_l14_csrf_cors.php', 'difficulty' => '高级'],
 ];
 
 $submit_msg = '';
