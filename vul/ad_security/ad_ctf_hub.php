@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Pikachu-Enhanced v2.0 GOAD Active Directory CTF Master Hub (10 Stages - 2500 PTS)
  */

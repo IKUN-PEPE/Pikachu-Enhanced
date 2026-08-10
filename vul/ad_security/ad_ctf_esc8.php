@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Pikachu-Enhanced v2.0 GOAD AD CTF Level 8: AD CS ESC8 NTLM Relay via HTTP Enrollment
  */

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Pikachu-Enhanced v2.0 GOAD AD CTF Level 4: MSSQL Impersonation & xp_cmdshell
  */
