@@ -1939,6 +1939,42 @@ if (!isset($ACTIVE)){
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l7_exfil.php">🚩 L7 数据外渗分析 [终章]</a>
                         <b class="arrow"></b>
                     </li>
+                    <li class="<?php echo isset($ACTIVE[280]) ? $ACTIVE[280] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l8_win_api.php">🚩 L8 Win32 API·WOW64·架构</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[281]) ? $ACTIVE[281] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l9_office_macro.php">🚩 L9 Office宏武器化</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[282]) ? $ACTIVE[282] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l10_process_inject.php">🚩 L10 进程注入与镂空</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[283]) ? $ACTIVE[283] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l11_amsi_bypass.php">🚩 L11 AMSI·UAC绕过</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[284]) ? $ACTIVE[284] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l12_applocker.php">🚩 L12 AppLocker绕过</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[285]) ? $ACTIVE[285] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l13_net_evasion.php">🚩 L13 网络过滤·DNS隧道</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[286]) ? $ACTIVE[286] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l14_cred_attack.php">🚩 L14 凭据攻击·令牌操纵</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[287]) ? $ACTIVE[287] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l15_mssql.php">🚩 L15 MSSQL深度利用</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[288]) ? $ACTIVE[288] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l16_kiosk_escape.php">🚩 L16 Kiosk逃逸技术 [终章]</a>
+                        <b class="arrow"></b>
+                    </li>
                 </ul>
             </li>
 
@@ -1983,6 +2019,34 @@ if (!isset($ACTIVE)){
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l7_rce_chain.php">🚩 L7 多漏洞 RCE 链 [终章]</a>
                         <b class="arrow"></b>
                     </li>
+                    <li class="<?php echo isset($ACTIVE[290]) ? $ACTIVE[290] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l8_sqli_blind.php">🚩 L8 盲注自动化脚本</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[291]) ? $ACTIVE[291] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l9_type_juggling.php">🚩 L9 PHP类型混淆</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[292]) ? $ACTIVE[292] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l10_java_rce.php">🚩 L10 Java反序列化RCE</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[293]) ? $ACTIVE[293] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l11_proto_pollution.php">🚩 L11 JS原型链污染</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[294]) ? $ACTIVE[294] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l12_dotnet_deser.php">🚩 L12 .NET ViewState反序列化</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[295]) ? $ACTIVE[295] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l13_ssrf_rce.php">🚩 L13 SSRF→内网RCE链</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[296]) ? $ACTIVE[296] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l14_csrf_cors.php">🚩 L14 CSRF+CORS绕过 [终章]</a>
+                        <b class="arrow"></b>
+                    </li>
                 </ul>
             </li>
 
@@ -2021,6 +2085,22 @@ if (!isset($ACTIVE)){
                     </li>
                     <li class="<?php echo isset($ACTIVE[277]) ? $ACTIVE[277] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l6_rop.php">🚩 L6 ROP 与 CFG/CET [终章]</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[278]) ? $ACTIVE[278] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l7_asm_shellcode.php">🚩 L7 x86汇编·自定义Shellcode</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[279]) ? $ACTIVE[279] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l8_format_string.php">🚩 L8 格式化字符串漏洞</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[280]) ? $ACTIVE[280] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l9_proto_reverse.php">🚩 L9 协议逆向分析</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[281]) ? $ACTIVE[281] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l10_wpm_bypass.php">🚩 L10 WPM DEP+ASLR绕过 [终章]</a>
                         <b class="arrow"></b>
                     </li>
                 </ul>
