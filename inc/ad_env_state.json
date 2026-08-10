@@ -1,0 +1,19 @@
+{
+    "vmware_installed": true,
+    "vmware_version": "17.6.3 Pro (64-bit)",
+    "vmware_path": "C:\\Program Files (x86)\\VMware\\VMware Workstation\\vmware.exe",
+    "vmware_status": "运行中 (VMAuthdService / VMnetDHCP / VMware NAT Service Active)",
+    "wsl_installed": true,
+    "wsl_version": "WSL2 (Kernel 5.15+)",
+    "wsl_distro": "Kali Linux (WSL2 默认分发版)",
+    "wsl_path": "C:\\Windows\\System32\\wsl.exe",
+    "vagrant_installed": true,
+    "vagrant_version": "2.4.1 (64-bit)",
+    "vagrant_path": "C:\\Program Files\\Vagrant\\bin\\vagrant.exe",
+    "vagrant_utility": "已就绪 (vagrant-vmware-utility 服务正常运行)",
+    "goad_exists": true,
+    "goad_path": "docker/goad/goad.py (已集成 3台/5台 拓扑蓝图与自动化脚本)",
+    "disk_status": "本地存储充足 (C盘可用: 195.5 GB / D盘可用: 121.8 GB)",
+    "overall_status": "ALL_GREEN_READY",
+    "last_checked": "2026-08-10 11:55:30"
+}
