@@ -1909,89 +1909,126 @@ if (!isset($ACTIVE)){
             }
             ?>
             <li class="<?php echo $is_osep_active ? 'active open' : ''; ?>">
-                <a href="#" class="dropdown-toggle" style="background: linear-gradient(90deg, #312e81 0%, #1e1b4b 100%) !important; border-left: 4px solid #6366f1 !important;">
-                    <i class="menu-icon fa fa-crosshairs" style="color:#a855f7;"></i>
-                    <span class="menu-text" style="font-weight: bold; color: #e0e7ff;"> 🏅 OSEP 内网穿透 CTF (18关) </span>
-                    <b class="arrow fa fa-angle-down" style="color: #a855f7;"></b>
+                <a href="#" class="dropdown-toggle">
+                    <span class="menu-text">
+                OSEP 内网穿透 (PEN-300)
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
                     <li class="<?php echo isset($ACTIVE[250]) ? $ACTIVE[250] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_hub.php" style="color:#a855f7!important;font-weight:bold;">
-                            🏆 OSEP 夺旗大厅 (18关 · 4750 PTS)
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_hub.php">
+                            概述与夺旗大厅
                         </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[252]) ? $ACTIVE[252] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l1_enum.php">🚩 [关卡 1] 主机侦察与信息收集</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l1_enum.php">
+                            L1 主机侦察与信息收集
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[253]) ? $ACTIVE[253] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l2_phishing.php">🚩 [关卡 2] 鱼叉钓鱼与载荷投递</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l2_phishing.php">
+                            L2 鱼叉钓鱼与载荷投递
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[254]) ? $ACTIVE[254] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l3_lateral.php">🚩 [关卡 3] 横向移动 WMI/Remoting</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l3_lateral.php">
+                            L3 横向移动 WMI/Remoting
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[255]) ? $ACTIVE[255] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l4_pivot.php">🚩 [关卡 4] 内网穿透 SOCKS5 隧道</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l4_pivot.php">
+                            L4 内网穿透 SOCKS5 隧道
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[256]) ? $ACTIVE[256] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l5_av_evasion.php">🚩 [关卡 5] 杀软检测架构与防御</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l5_av_evasion.php">
+                            L5 杀软检测架构与防御
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[257]) ? $ACTIVE[257] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l6_persistence.php">🚩 [关卡 6] 系统持久化机制研究</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l6_persistence.php">
+                            L6 系统持久化机制研究
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[258]) ? $ACTIVE[258] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l7_exfil.php">🚩 [关卡 7] 隐蔽数据外渗通道分析</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l7_exfil.php">
+                            L7 隐蔽数据外渗通道分析
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[280]) ? $ACTIVE[280] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l8_win_api.php">🚩 [关卡 8] Win32 API·WOW64·注册表</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l8_win_api.php">
+                            L8 Win32 API·WOW64·注册表
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[281]) ? $ACTIVE[281] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l9_office_macro.php">🚩 [关卡 9] Office 宏武器与 VBA 免杀</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l9_office_macro.php">
+                            L9 Office 宏武器与 VBA 免杀
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[282]) ? $ACTIVE[282] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l10_process_inject.php">🚩 [关卡 10] 进程注入与 Process Hollow</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l10_process_inject.php">
+                            L10 进程注入与 Process Hollow
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[283]) ? $ACTIVE[283] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l11_amsi_bypass.php">🚩 [关卡 11] AMSI 深入绕过与 UAC 提权</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l11_amsi_bypass.php">
+                            L11 AMSI 深入绕过与 UAC 提权
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[284]) ? $ACTIVE[284] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l12_applocker.php">🚩 [关卡 12] AppLocker 与 LOLBIN 绕过</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l12_applocker.php">
+                            L12 AppLocker 与 LOLBIN 绕过
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[285]) ? $ACTIVE[285] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l13_net_evasion.php">🚩 [关卡 13] 网络过滤·DNS隧道·域前置</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l13_net_evasion.php">
+                            L13 网络过滤·DNS隧道·域前置
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[286]) ? $ACTIVE[286] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l14_cred_attack.php">🚩 [关卡 14] 凭据攻击·Token操纵·Kerberos</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l14_cred_attack.php">
+                            L14 凭据攻击·Token操纵·Kerberos
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[287]) ? $ACTIVE[287] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l15_mssql.php">🚩 [关卡 15] AD 环境下 MSSQL 深度利用</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l15_mssql.php">
+                            L15 AD 环境下 MSSQL 深度利用
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[288]) ? $ACTIVE[288] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l16_kiosk_escape.php">🚩 [关卡 16] Kiosk 受限桌面逃逸技术</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l16_kiosk_escape.php">
+                            L16 Kiosk 受限桌面逃逸技术
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[289]) ? $ACTIVE[289] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l17_linux_postex.php">🚩 [关卡 17] Linux 后渗透·共享库·DevOps</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l17_linux_postex.php">
+                            L17 Linux 后渗透·共享库·DevOps
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[299]) ? $ACTIVE[299] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l18_ad_deep.php" style="color:#f59e0b!important;font-weight:bold;">🏆 [关卡 18] AD 深度·ACL·委派·跨林 [终章]</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l18_ad_deep.php">
+                            L18 AD 深度·ACL·委派·跨林
+                        </a>
                         <b class="arrow"></b>
                     </li>
                 </ul>
@@ -2008,73 +2045,102 @@ if (!isset($ACTIVE)){
             }
             ?>
             <li class="<?php echo $is_oswe_active ? 'active open' : ''; ?>">
-                <a href="#" class="dropdown-toggle" style="background: linear-gradient(90deg, #164e63 0%, #083344 100%) !important; border-left: 4px solid #06b6d4 !important;">
-                    <i class="menu-icon fa fa-code" style="color:#22d3ee;"></i>
-                    <span class="menu-text" style="font-weight: bold; color: #cffaff;"> 🏅 OSWE 白盒审计 CTF (14关) </span>
-                    <b class="arrow fa fa-angle-down" style="color: #22d3ee;"></b>
+                <a href="#" class="dropdown-toggle">
+                    <span class="menu-text">
+                OSWE 白盒审计 (WEB-300)
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
                     <li class="<?php echo isset($ACTIVE[261]) ? $ACTIVE[261] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_hub.php" style="color:#06b6d4!important;font-weight:bold;">
-                            🏆 OSWE 夺旗大厅 (14关 · 3450 PTS)
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_hub.php">
+                            概述与夺旗大厅
                         </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[262]) ? $ACTIVE[262] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l1_whitebox.php">🚩 [关卡 1] 白盒代码审计方法论</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l1_whitebox.php">
+                            L1 白盒代码审计方法论
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[263]) ? $ACTIVE[263] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l2_auth_bypass.php">🚩 [关卡 2] 认证绕过与逻辑漏洞链</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l2_auth_bypass.php">
+                            L2 认证绕过与逻辑漏洞链
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[264]) ? $ACTIVE[264] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l3_sqli_auth.php">🚩 [关卡 3] SQL 注入认证绕过与 RCE</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l3_sqli_auth.php">
+                            L3 SQL 注入认证绕过与 RCE
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[265]) ? $ACTIVE[265] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l4_deser.php">🚩 [关卡 4] PHP / Java 反序列化 POP 链</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l4_deser.php">
+                            L4 PHP / Java 反序列化 POP 链
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[266]) ? $ACTIVE[266] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l5_ssti.php">🚩 [关卡 5] SSTI 服务端模板注入 RCE</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l5_ssti.php">
+                            L5 SSTI 服务端模板注入 RCE
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[267]) ? $ACTIVE[267] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l6_xxe_oob.php">🚩 [关卡 6] XXE 盲注与 SSRF 带外提取</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l6_xxe_oob.php">
+                            L6 XXE 盲注与 SSRF 带外提取
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[268]) ? $ACTIVE[268] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l7_rce_chain.php">🚩 [关卡 7] 多漏洞组合深度 RCE 利用链</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l7_rce_chain.php">
+                            L7 多漏洞组合深度 RCE 利用链
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[290]) ? $ACTIVE[290] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l8_sqli_blind.php">🚩 [关卡 8] 盲注自动化 Python 脚本</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l8_sqli_blind.php">
+                            L8 盲注自动化 Python 脚本
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[291]) ? $ACTIVE[291] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l9_type_juggling.php">🚩 [关卡 9] PHP 类型混淆与 0e 哈希</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l9_type_juggling.php">
+                            L9 PHP 类型混淆与 0e 哈希
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[292]) ? $ACTIVE[292] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l10_java_rce.php">🚩 [关卡 10] Java 反序列化·JDWP·UDF</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l10_java_rce.php">
+                            L10 Java 反序列化·JDWP·UDF
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[293]) ? $ACTIVE[293] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l11_proto_pollution.php">🚩 [关卡 11] JavaScript 原型链污染</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l11_proto_pollution.php">
+                            L11 JavaScript 原型链污染
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[294]) ? $ACTIVE[294] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l12_dotnet_deser.php">🚩 [关卡 12] .NET ViewState 反序列化</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l12_dotnet_deser.php">
+                            L12 .NET ViewState 反序列化
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[295]) ? $ACTIVE[295] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l13_ssrf_rce.php">🚩 [关卡 13] SSRF → 微服务内网 RCE 链</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l13_ssrf_rce.php">
+                            L13 SSRF → 微服务内网 RCE 链
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[296]) ? $ACTIVE[296] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l14_csrf_cors.php" style="color:#06b6d4!important;font-weight:bold;">🏆 [关卡 14] CSRF + CORS 认证绕过 [终章]</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l14_csrf_cors.php">
+                            L14 CSRF + CORS 认证绕过
+                        </a>
                         <b class="arrow"></b>
                     </li>
                 </ul>
@@ -2091,57 +2157,78 @@ if (!isset($ACTIVE)){
             }
             ?>
             <li class="<?php echo $is_osed_active ? 'active open' : ''; ?>">
-                <a href="#" class="dropdown-toggle" style="background: linear-gradient(90deg, #431407 0%, #1c1917 100%) !important; border-left: 4px solid #f97316 !important;">
-                    <i class="menu-icon fa fa-microchip" style="color:#fb923c;"></i>
-                    <span class="menu-text" style="font-weight: bold; color: #ffedd5;"> 🏅 OSED 漏洞开发 CTF (10关) </span>
-                    <b class="arrow fa fa-angle-down" style="color: #fb923c;"></b>
+                <a href="#" class="dropdown-toggle">
+                    <span class="menu-text">
+                OSED 漏洞开发 (EXP-301)
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
                     <li class="<?php echo isset($ACTIVE[271]) ? $ACTIVE[271] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_hub.php" style="color:#f97316!important;font-weight:bold;">
-                            🏆 OSED 夺旗大厅 (10关 · 2850 PTS)
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_hub.php">
+                            概述与夺旗大厅
                         </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[272]) ? $ACTIVE[272] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l1_fuzzing.php">🚩 [关卡 1] 模糊测试 Fuzzing 与崩溃分析</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l1_fuzzing.php">
+                            L1 模糊测试 Fuzzing 与崩溃分析
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[273]) ? $ACTIVE[273] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l2_seh.php">🚩 [关卡 2] SEH 异常处理覆盖机制</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l2_seh.php">
+                            L2 SEH 异常处理覆盖机制
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[274]) ? $ACTIVE[274] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l3_dep_bypass.php">🚩 [关卡 3] DEP / NX 防御与 ROP 链原理</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l3_dep_bypass.php">
+                            L3 DEP / NX 防御与 ROP 链原理
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[275]) ? $ACTIVE[275] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l4_aslr.php">🚩 [关卡 4] ASLR 随机化与信息泄露利用</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l4_aslr.php">
+                            L4 ASLR 随机化与信息泄露利用
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[276]) ? $ACTIVE[276] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l5_egghunter.php">🚩 [关卡 5] Egghunter 技术与内存检索</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l5_egghunter.php">
+                            L5 Egghunter 技术与内存检索
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[277]) ? $ACTIVE[277] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l6_rop.php">🚩 [关卡 6] ROP 链精炼与 CFG/CET 防御</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l6_rop.php">
+                            L6 ROP 链精炼与 CFG/CET 防御
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[278]) ? $ACTIVE[278] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l7_asm_shellcode.php">🚩 [关卡 7] x86 汇编与 NULL-Free Shellcode</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l7_asm_shellcode.php">
+                            L7 x86 汇编与 NULL-Free Shellcode
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[279]) ? $ACTIVE[279] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l8_format_string.php">🚩 [关卡 8] 格式化字符串漏洞读写原语</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l8_format_string.php">
+                            L8 格式化字符串漏洞读写原语
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[301]) ? $ACTIVE[301] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l9_proto_reverse.php">🚩 [关卡 9] 复杂应用协议逆向与漏洞挖掘</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l9_proto_reverse.php">
+                            L9 复杂应用协议逆向与漏洞挖掘
+                        </a>
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[302]) ? $ACTIVE[302] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l10_wpm_bypass.php" style="color:#f97316!important;font-weight:bold;">🏆 [关卡 10] WPM DEP+ASLR 联合绕过 [终章]</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l10_wpm_bypass.php">
+                            L10 WPM DEP+ASLR 联合绕过
+                        </a>
                         <b class="arrow"></b>
                     </li>
                 </ul>
