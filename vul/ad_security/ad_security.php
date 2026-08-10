@@ -227,7 +227,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                     全面梳理企业级内网横向、Active Directory 域控制器攻防、凭据传递与权限维持的全套知识体系，并规划了从虚拟化环境搭建、域控角色部署到高级漏洞场景构建与日志 SIEM 审计的标准靶场落地蓝图。
                 </p>
                 <div class="ad-stats-row">
-                    <div class="ad-stat-chip"><i class="fa fa-book" style="color:#a5b4fc;"></i> 6 大内网安全知识模块</div>
+                    <div class="ad-stat-chip"><i class="fa fa-book" style="color: var(--text-secondary);"></i> 6 大内网安全知识模块</div>
                     <div class="ad-stat-chip"><i class="fa fa-cubes" style="color:#34d399;"></i> 5 阶段靶场建设流程</div>
                     <div class="ad-stat-chip"><i class="fa fa-flag" style="color:#f43f5e;"></i> 6 大实战 CTF 夺旗关卡 (NEW)</div>
                     <div class="ad-stat-chip"><i class="fa fa-shield" style="color:#60a5fa;"></i> EDR / SIEM 攻防检测闭环</div>

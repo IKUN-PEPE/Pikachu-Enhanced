@@ -39,17 +39,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
     font-weight: 700;
     color: #fff;
 }
-.cmd-box {
-    background: #0f172a;
-    color: #f8fafc;
-    border-radius: 8px;
-    padding: 14px 18px;
-    font-family: 'Consolas', 'Monaco', monospace;
-    font-size: 13px;
-    margin: 10px 0 15px 0;
-    overflow-x: auto;
-    border-left: 4px solid #6366f1;
-}
+.cmd-box { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px 18px; font-family: monospace; font-size: 13px; color: var(--text-primary); margin: 12px 0; overflow-x: auto; line-height: 1.8; }
 .cred-table {
     width: 100%;
     margin-bottom: 0;

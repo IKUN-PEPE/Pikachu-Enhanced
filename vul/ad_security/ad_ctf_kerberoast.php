@@ -26,24 +26,8 @@ if (isset($_POST['check_flag'])) {
 ?>
 
 <style>
-.ctf-stage-header {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border-radius: 14px;
-    padding: 25px 30px;
-    color: #fff;
-    margin-bottom: 25px;
-    border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-.ctf-stage-title {
-    color: #ffffff !important;
-    font-size: 24px;
-    font-weight: 800;
-    margin: 0 0 10px 0;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+.ctf-stage-header { background: var(--bg-card); border-radius: 14px; padding: 25px 30px; margin-bottom: 25px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.ctf-stage-title { color: var(--text-primary) !important; font-size: 22px; font-weight: 800; margin: 0 0 10px 0; display: flex; align-items: center; gap: 12px; }
 .step-box {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -62,17 +46,7 @@ if (isset($_POST['check_flag'])) {
     align-items: center;
     gap: 8px;
 }
-.cmd-box {
-    background: #0f172a;
-    color: #f8fafc;
-    border-radius: 8px;
-    padding: 14px 18px;
-    font-family: 'Consolas', 'Monaco', monospace;
-    font-size: 13px;
-    margin: 10px 0 15px 0;
-    overflow-x: auto;
-    border-left: 4px solid #a855f7;
-}
+.cmd-box { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px 18px; font-family: monospace; font-size: 13px; color: var(--text-primary); margin: 12px 0; overflow-x: auto; line-height: 1.8; }
 .output-box {
     background: #1e1e2e;
     color: #a6accd;

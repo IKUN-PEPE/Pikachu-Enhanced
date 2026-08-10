@@ -30,12 +30,12 @@ if (isset($_POST['submit_quiz'])) {
 }
 ?>
 <style>
-.ctf-stage-header { background: linear-gradient(135deg, #0c1218 0%, #0f1e30 100%); border-radius: 14px; padding: 25px 30px; color: #fff; margin-bottom: 25px; border: 1px solid rgba(99,102,241,0.3); }
-.ctf-stage-title { color: #ffffff !important; font-size: 22px; font-weight: 800; margin: 0 0 10px 0; display: flex; align-items: center; gap: 12px; }
+.ctf-stage-header { background: var(--bg-card); border-radius: 14px; padding: 25px 30px; margin-bottom: 25px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.ctf-stage-title { color: var(--text-primary) !important; font-size: 22px; font-weight: 800; margin: 0 0 10px 0; display: flex; align-items: center; gap: 12px; }
 .step-box { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; margin-bottom: 22px; }
 .step-title { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-top: 0; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
 .step-num { background: linear-gradient(135deg, #6366f1, #06b6d4); color: #fff; width: 26px; height: 26px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
-.cmd-box { background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 14px 18px; font-family: monospace; font-size: 13px; color: #7dd3fc; margin: 12px 0; overflow-x: auto; line-height: 1.8; }
+.cmd-box { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px 18px; font-family: monospace; font-size: 13px; color: var(--text-primary); margin: 12px 0; overflow-x: auto; line-height: 1.8; }
 .cmd-box .comment { color: #64748b; }
 .cmd-box .dangerous { color: #f87171; font-weight: bold; }
 .cmd-box .flag-text { color: #fbbf24; font-weight: bold; }
@@ -50,10 +50,10 @@ if (isset($_POST['submit_quiz'])) {
         <h1 class="ctf-stage-title">🔍 OSWE L1：白盒代码审计方法论
             <span style="background: rgba(16,185,129,0.2); color: #34d399; border: 1px solid #10b981; padding: 3px 10px; border-radius: 12px; font-size: 12px;">入门 · 100 PTS</span>
         </h1>
-        <p style="color: #a5b4fc; font-size: 14px; margin: 0; line-height: 1.6;">学习白盒代码审计的系统方法论：污点分析（Taint Analysis）、危险函数定位、数据流追踪，以及 Semgrep/CodeQL 自动化工具的使用。</p>
+        <p style="color: var(--text-secondary); font-size: 14px; margin: 0; line-height: 1.6;">学习白盒代码审计的系统方法论：污点分析（Taint Analysis）、危险函数定位、数据流追踪，以及 Semgrep/CodeQL 自动化工具的使用。</p>
         <div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;">
-            <span style="background: rgba(255,255,255,0.08); padding: 4px 12px; border-radius: 8px; font-size: 12px; color: #e2e8f0;">🔧 工具：Semgrep · CodeQL · grep · PHP/Python/Java 审计要点</span>
-            <span style="background: rgba(255,255,255,0.08); padding: 4px 12px; border-radius: 8px; font-size: 12px; color: #e2e8f0;"><a href="oswe_hub.php" style="color: #a5b4fc;">← 返回 OSWE 大厅</a></span>
+            <span style="background: var(--bg-secondary); padding: 4px 12px; border-radius: 8px; font-size: 12px; color: var(--text-secondary); border: 1px solid var(--border-color);">🔧 工具：Semgrep · CodeQL · grep · PHP/Python/Java 审计要点</span>
+            <span style="background: var(--bg-secondary); padding: 4px 12px; border-radius: 8px; font-size: 12px; color: var(--text-secondary); border: 1px solid var(--border-color);"><a href="oswe_hub.php" style="color: var(--text-secondary);">← 返回 OSWE 大厅</a></span>
         </div>
     </div>
 
