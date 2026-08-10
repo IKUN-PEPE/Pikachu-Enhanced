@@ -1,6 +1,6 @@
 <?php
 /**
- * OSED CTF Hub - Exploit Development (6 Stages, 1350 PTS)
+ * OSED CTF Hub - Exploit Development (10 Stages, 2850 PTS)
  * OSCE³ - OSED Direction: Windows Exploit Development (EXP-301)
  */
 include_once '../../inc/config.inc.php';
@@ -23,6 +23,10 @@ $flags_db = [
     'flag4' => ['flag' => 'flag{OSED_L4_ASLR_InfoLeak_BaseAddr}', 'name' => 'L4: ASLR 随机化与信息泄露利用', 'points' => 250, 'file' => 'osed_l4_aslr.php', 'difficulty' => '高级'],
     'flag5' => ['flag' => 'flag{OSED_L5_Egghunter_WoW64_TEB}', 'name' => 'L5: Egghunter 技术原理研究', 'points' => 300, 'file' => 'osed_l5_egghunter.php', 'difficulty' => '高级'],
     'flag6' => ['flag' => 'flag{OSED_L6_ROP_CFG_CET_Stack_Defense}', 'name' => 'L6: ROP 链构造原理与 CFG/CET 防御', 'points' => 350, 'file' => 'osed_l6_rop.php', 'difficulty' => '专家'],
+    \'flag7\' => [\'flag\' => \'flag{OSED_L7_ASM_Custom_Shellcode}\', \'name\' => \'L7: x86 汇编与自定义 Shellcode\', \'points\' => 350, \'file\' => \'osed_l7_asm_shellcode.php\', \'difficulty\' => \'专家\'],
+    \'flag8\' => [\'flag\' => \'flag{OSED_L8_Format_String_Exploit}\', \'name\' => \'L8: 格式化字符串漏洞利用\', \'points\' => 400, \'file\' => \'osed_l8_format_string.php\', \'difficulty\' => \'专家\'],
+    \'flag9\' => [\'flag\' => \'flag{OSED_L9_Protocol_Reverse_Vuln_Hunt}\', \'name\' => \'L9: 协议逆向与漏洞挖掘\', \'points\' => 350, \'file\' => \'osed_l9_proto_reverse.php\', \'difficulty\' => \'专家\'],
+    \'flag10\' => [\'flag\' => \'flag{OSED_L10_WPM_DEP_ASLR_Bypass}\', \'name\' => \'L10: WPM DEP+ASLR 联合绕过 [终章]\', \'points\' => 400, \'file\' => \'osed_l10_wpm_bypass.php\', \'difficulty\' => \'专家\'],
 ];
 
 $submit_msg = '';
@@ -116,7 +120,7 @@ $progress_pct = count($flags_db) > 0 ? round(($captured_count / count($flags_db)
             <div class="osed-hero-banner">
                 <h1 class="osed-title">
                     💥 OSCE³ · OSED 漏洞利用开发 CTF 靶场
-                    <span class="osed-badge">6 大关卡 · 1350 PTS</span>
+                    <span class="osed-badge">10 大关卡 · 2850 PTS</span>
                     <span class="osed-badge" style="background: rgba(239,68,68,0.2); color: #fca5a5; border-color: #ef4444;">内存安全研究方向</span>
                 </h1>
                 <p style="font-size: 15px; color: #fed7aa; line-height: 1.7; max-width: 950px; margin: 15px 0 20px 0;">
@@ -124,7 +128,7 @@ $progress_pct = count($flags_db) > 0 ? round(($captured_count / count($flags_db)
                 </p>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                     <div class="stat-pill"><i class="fa fa-flag" style="color: #f97316;"></i> 通关进度：<strong><?php echo $captured_count; ?> / <?php echo count($flags_db); ?></strong> 关</div>
-                    <div class="stat-pill"><i class="fa fa-trophy" style="color: #fbbf24;"></i> 当前积分：<strong><?php echo $total_score; ?> / 1350</strong> PTS</div>
+                    <div class="stat-pill"><i class="fa fa-trophy" style="color: #fbbf24;"></i> 当前积分：<strong><?php echo $total_score; ?> / 2850</strong> PTS</div>
                     <div class="stat-pill"><i class="fa fa-certificate" style="color: #34d399;"></i> 目标认证：<strong>OSED (EXP-301)</strong></div>
                     <div class="stat-pill"><i class="fa fa-shield" style="color: #93c5fd;"></i> 防御机制：<strong>DEP · ASLR · CFG · CET · SafeSEH</strong></div>
                 </div>
@@ -184,6 +188,10 @@ $progress_pct = count($flags_db) > 0 ? round(($captured_count / count($flags_db)
                     'flag4' => '理解 ASLR（地址空间布局随机化）的随机化范围与信息泄露利用路径：格式字符串泄露、侧信道、非 ASLR 模块 rebasing 等研究视角。',
                     'flag5' => '研究 Egghunter 技术的工作原理：WinAPI/SEH 两种实现路径、系统调用地址空间搜索机制、在内存碎片化场景下定位 Shellcode 的原理。',
                     'flag6' => '深入 ROP 链构造的理论基础（Gadget 搜索、ROPgadget/ropper 工具原理），理解 CFG（控制流防护）和 CET（影子栈）如何从根本上阻断 ROP 攻击。',
+                    \'flag7\' => \'深入学习 x86 汇编语言，编写并优化高度定制的 Shellcode 以满足特定利用场景。\',
+                    \'flag8\' => \'探究格式化字符串漏洞的底层原理，通过任意地址读写实现执行流劫持。\',
+                    \'flag9\' => \'通过逆向工程分析私有网络协议，挖掘协议解析实现中的内存破坏漏洞。\',
+                    \'flag10\' => \'综合应用 WriteProcessMemory 技术，实战环境下联合绕过 DEP 和 ASLR。\',
                 ];
                 foreach ($flags_db as $key => $item) {
                     $is_done = isset($_SESSION['osed_flags'][$key]) && $_SESSION['osed_flags'][$key];

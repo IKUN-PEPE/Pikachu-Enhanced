@@ -1,7 +1,7 @@
 <?php
 /**
  * Pikachu-Enhanced v2.0 OSEP Advanced Penetration Testing CTF Hub
- * OSCE³ - OSEP Direction: 7 Stages, 1650 PTS Total
+ * OSCE³ - OSEP Direction: 17 Stages, 4450 PTS Total
  */
 include_once '../../inc/config.inc.php';
 
@@ -24,6 +24,16 @@ $flags_db = [
     'flag5' => ['flag' => 'flag{OSEP_L5_AV_AMSI_ETW_Defense_Arch}', 'name' => 'L5: 杀软检测架构与防御研究', 'points' => 300, 'file' => 'osep_l5_av_evasion.php', 'difficulty' => '高级'],
     'flag6' => ['flag' => 'flag{OSEP_L6_Persistence_Task_Reg_Service}', 'name' => 'L6: 持久化 计划任务/注册表/服务', 'points' => 300, 'file' => 'osep_l6_persistence.php', 'difficulty' => '高级'],
     'flag7' => ['flag' => 'flag{OSEP_L7_Exfil_DNS_ICMP_HTTP_Channel}', 'name' => 'L7: 数据外渗通道分析与防御', 'points' => 350, 'file' => 'osep_l7_exfil.php', 'difficulty' => '专家'],
+    \'flag8\' => [\'flag\' => \'flag{OSEP_L8_Win32_API_WOW64}\', \'name\' => \'L8: Win32 API · WOW64 · 架构基础\', \'points\' => 150, \'file\' => \'osep_l8_win_api.php\', \'difficulty\' => \'初级\'],
+    \'flag9\' => [\'flag\' => \'flag{OSEP_L9_Office_Macro_Weaponization}\', \'name\' => \'L9: Office 宏武器化 · VBA 免杀\', \'points\' => 200, \'file\' => \'osep_l9_office_macro.php\', \'difficulty\' => \'中级\'],
+    \'flag10\' => [\'flag\' => \'flag{OSEP_L10_Process_Inject_Hollowing}\', \'name\' => \'L10: 进程注入与进程镂空\', \'points\' => 250, \'file\' => \'osep_l10_process_inject.php\', \'difficulty\' => \'中级\'],
+    \'flag11\' => [\'flag\' => \'flag{OSEP_L11_AMSI_UAC_Bypass}\', \'name\' => \'L11: AMSI · UAC 绕过研究\', \'points\' => 300, \'file\' => \'osep_l11_amsi_bypass.php\', \'difficulty\' => \'高级\'],
+    \'flag12\' => [\'flag\' => \'flag{OSEP_L12_AppLocker_Bypass}\', \'name\' => \'L12: AppLocker 应用白名单绕过\', \'points\' => 250, \'file\' => \'osep_l12_applocker.php\', \'difficulty\' => \'中级\'],
+    \'flag13\' => [\'flag\' => \'flag{OSEP_L13_Net_Evasion_DNS_Fronting}\', \'name\' => \'L13: 网络过滤 · DNS隧道 · 域前置\', \'points\' => 300, \'file\' => \'osep_l13_net_evasion.php\', \'difficulty\' => \'高级\'],
+    \'flag14\' => [\'flag\' => \'flag{OSEP_L14_Cred_Attack_Token_Manip}\', \'name\' => \'L14: 凭据攻击 · Access Token 操纵\', \'points\' => 350, \'file\' => \'osep_l14_cred_attack.php\', \'difficulty\' => \'专家\'],
+    \'flag15\' => [\'flag\' => \'flag{OSEP_L15_MSSQL_Link_Server}\', \'name\' => \'L15: MSSQL 深度利用 · 链接服务器\', \'points\' => 350, \'file\' => \'osep_l15_mssql.php\', \'difficulty\' => \'专家\'],
+    \'flag16\' => [\'flag\' => \'flag{OSEP_L16_Linux_PostEx_SharedLib_Profile_Kerberos}\', \'name\' => \'L16: Linux 后渗透\', \'points\' => 300, \'file\' => \'osep_l16_linux_postex.php\', \'difficulty\' => \'高级\'],
+    \'flag17\' => [\'flag\' => \'flag{OSEP_L17_AD_Forest_ACL_Delegation_Abuse}\', \'name\' => \'L17: Active Directory 深度利用：ACL·委派·跨林\', \'points\' => 350, \'file\' => \'osep_l17_kiosk_escape.php\', \'difficulty\' => \'专家\'],
 ];
 
 $submit_msg = '';
@@ -228,7 +238,7 @@ $progress_pct = count($flags_db) > 0 ? round(($captured_count / count($flags_db)
             <div class="osep-hero-banner">
                 <h1 class="osep-title">
                     🎯 OSCE³ · OSEP 进阶渗透测试 CTF 靶场
-                    <span class="osep-badge">7 大关卡 · 1650 PTS</span>
+                    <span class="osep-badge">17 大关卡 · 4450 PTS</span>
                     <span class="osep-badge" style="background: rgba(236,72,153,0.2); color: #f9a8d4; border-color: #ec4899;">OSCE³ 认证路径</span>
                 </h1>
                 <p style="font-size: 15px; color: #c4b5fd; line-height: 1.7; max-width: 950px; margin: 15px 0 20px 0;">
@@ -236,7 +246,7 @@ $progress_pct = count($flags_db) > 0 ? round(($captured_count / count($flags_db)
                 </p>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                     <div class="stat-pill"><i class="fa fa-flag" style="color: #ec4899;"></i> 通关进度：<strong><?php echo $captured_count; ?> / <?php echo count($flags_db); ?></strong> 关</div>
-                    <div class="stat-pill"><i class="fa fa-trophy" style="color: #fbbf24;"></i> 当前积分：<strong><?php echo $total_score; ?> / 1650</strong> PTS</div>
+                    <div class="stat-pill"><i class="fa fa-trophy" style="color: #fbbf24;"></i> 当前积分：<strong><?php echo $total_score; ?> / 4450</strong> PTS</div>
                     <div class="stat-pill"><i class="fa fa-certificate" style="color: #34d399;"></i> 目标认证：<strong>OSEP (PEN-300)</strong></div>
                     <div class="stat-pill"><i class="fa fa-clock-o" style="color: #93c5fd;"></i> 考试时长：<strong>47.75 小时</strong></div>
                 </div>
@@ -302,6 +312,16 @@ $progress_pct = count($flags_db) > 0 ? round(($captured_count / count($flags_db)
                     'flag5' => '从防御者视角研究 AMSI（反恶意软件扫描接口）和 ETW（Windows 事件追踪）的工作机制，理解杀软检测模型与 EDR 行为分析架构。',
                     'flag6' => '分析 Windows 持久化四大技术路径：计划任务、服务注册、注册表 Run 键、WMI 事件订阅，理解各路径的告警规则与防御检测点。',
                     'flag7' => '研究 DNS 隐蔽通道、ICMP 隧道、HTTPS 回传等数据外渗检测技术，理解 DLP 系统的工作原理和网络层检测策略。',
+                    \'flag8\' => \'深入理解 Win32 API 架构和 WOW64 子系统的工作原理，掌握基础操作系统交互方式。\',
+                    \'flag9\' => \'探索 Office 宏的武器化技术，学习 VBA 混淆与免杀机制，逃避静态和动态检测。\',
+                    \'flag10\' => \'剖析进程注入与进程镂空（Process Hollowing）等高级内存执行技术原理。\',
+                    \'flag11\' => \'研究 AMSI 接口的底层检测机制及其绕过策略，同时探讨 UAC 绕过的不同实现路径。\',
+                    \'flag12\' => \'分析 AppLocker 等应用白名单系统的策略，学习如何利用内置信任二进制（LOLBins）绕过限制。\',
+                    \'flag13\' => \'应对现代网络过滤系统，搭建 DNS 隐蔽隧道，并利用域前置（Domain Fronting）技术隐藏流量。\',
+                    \'flag14\' => \'研究高级凭据获取与利用技术，深入分析 Access Token 窃取与模拟机制。\',
+                    \'flag15\' => \'对 MSSQL 数据库进行深度利用，挖掘配置缺陷并利用链接服务器（Linked Servers）进行横向移动。\',
+                    \'flag16\' => \'Linux 后渗透技术研究，涵盖持久化、共享库劫持、杀软规避以及 Linux Kerberos 滥用和 DevOps 横向移动。\',
+                    \'flag17\' => \'Active Directory 深度利用：ACL 滥用研究、Kerberos 委派攻击（非约束、约束、RBCD）及跨林 TGT 伪造等。\',
                 ];
                 foreach ($flags_db as $key => $item) {
                     $is_done = isset($_SESSION['osep_flags'][$key]) && $_SESSION['osep_flags'][$key];
