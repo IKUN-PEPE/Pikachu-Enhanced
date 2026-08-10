@@ -1972,7 +1972,15 @@ if (!isset($ACTIVE)){
                         <b class="arrow"></b>
                     </li>
                     <li class="<?php echo isset($ACTIVE[288]) ? $ACTIVE[288] : '';?>">
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l16_kiosk_escape.php">🚩 L16 Kiosk逃逸技术 [终章]</a>
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l16_kiosk_escape.php">🚩 L16 Kiosk逃逸技术</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[289]) ? $ACTIVE[289] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l17_linux_postex.php">🚩 L17 Linux后渗透·共享库劫持</a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[299]) ? $ACTIVE[299] : '';?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l18_ad_deep.php" style="color:#f59e0b!important;font-weight:bold;">🏆 L18 AD深度·ACL·委派·跨林 [终章]</a>
                         <b class="arrow"></b>
                     </li>
                 </ul>
