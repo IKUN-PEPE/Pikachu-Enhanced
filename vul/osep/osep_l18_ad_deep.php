@@ -17,12 +17,12 @@ if (isset($_POST['check_flag'])) {
 }
 ?>
 <style>
-.ctf-stage-header{background:linear-gradient(135deg,#0c0a06 0%,#1c1000 100%);border-radius:14px;padding:25px 30px;color:#fff;margin-bottom:25px;border:1px solid rgba(245,158,11,0.4);}
-.ctf-stage-title{color:#fff!important;font-size:22px;font-weight:800;margin:0 0 10px 0;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.ctf-stage-header { background: var(--bg-card); border-radius: 14px; padding: 25px 30px; margin-bottom: 25px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.ctf-stage-title { color: var(--text-primary) !important; font-size: 22px; font-weight: 800; margin: 0 0 10px 0; display: flex; align-items: center; gap: 12px; }
 .step-box{background:var(--bg-card);border:1px solid var(--border-color);border-radius:12px;padding:24px;margin-bottom:22px;}
 .step-title{font-size:16px;font-weight:700;color:var(--text-primary);margin-top:0;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
 .step-num{background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;width:28px;height:28px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;}
-.cmd-box{background:#0c0a00;border:1px solid #44330a;border-radius:8px;padding:14px 18px;font-family:monospace;font-size:13px;color:#fcd34d;margin:12px 0;overflow-x:auto;line-height:1.9;}
+.cmd-box { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px 18px; font-family: monospace; font-size: 13px; color: var(--text-primary); margin: 12px 0; overflow-x: auto; line-height: 1.8; }
 .cmd-box .comment{color:#78716c;}
 .cmd-box .flag-text{color:#f59e0b;font-weight:bold;}
 .cmd-box .key{color:#fb923c;font-weight:bold;}

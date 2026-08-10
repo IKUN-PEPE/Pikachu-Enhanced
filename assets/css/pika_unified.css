@@ -1383,6 +1383,11 @@ html:not([data-theme="dark"]) .cj-hero-card h1 {
 }
 
 html:not([data-theme="dark"]) .ctf-stage-header p,
+html:not([data-theme="dark"]) .ctf-stage-header p[style],
+html:not([data-theme="dark"]) .ctf-stage-header [style*="color: #a5b4fc"],
+html:not([data-theme="dark"]) .ctf-stage-header [style*="color:#a5b4fc"],
+html:not([data-theme="dark"]) .ctf-stage-header [style*="color: #c4b5fd"],
+html:not([data-theme="dark"]) .ctf-stage-header [style*="color:#c4b5fd"],
 html:not([data-theme="dark"]) .overview-hero-card p,
 html:not([data-theme="dark"]) .waf-hero-banner p,
 html:not([data-theme="dark"]) .rasp-hero-banner p,
@@ -1391,6 +1396,26 @@ html:not([data-theme="dark"]) .honey-hero-banner p,
 html:not([data-theme="dark"]) .siem-hero-banner p,
 html:not([data-theme="dark"]) .cj-hero-card p {
     color: #475569 !important;
+}
+
+html:not([data-theme="dark"]) .ctf-stage-header div span,
+html:not([data-theme="dark"]) .ctf-stage-header div span[style],
+html:not([data-theme="dark"]) .ctf-stage-header span[style*="rgba(255,255,255"],
+html:not([data-theme="dark"]) .ctf-stage-header span[style*="rgba(255, 255, 255"] {
+    background: #f1f5f9 !important;
+    color: #334155 !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+html:not([data-theme="dark"]) .ctf-stage-header a,
+html:not([data-theme="dark"]) .ctf-stage-header a[style] {
+    color: #4f46e5 !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+}
+html:not([data-theme="dark"]) .ctf-stage-header a:hover {
+    color: #3730a3 !important;
+    text-decoration: underline !important;
 }
 
 html:not([data-theme="dark"]) .ctf-stage-header code,
@@ -1434,6 +1459,45 @@ html:not([data-theme="dark"]) .overview-hero-card .btn:hover {
     background: #f1f5f9 !important;
     color: #0284c7 !important;
     border-color: #38bdf8 !important;
+}
+
+/* Light Mode: Command Boxes & Interactive Simulations */
+html:not([data-theme="dark"]) .cmd-box,
+html:not([data-theme="dark"]) .interactive-sim,
+html:not([data-theme="dark"]) .sim-input {
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    color: #0f172a !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+html:not([data-theme="dark"]) .cmd-box .comment {
+    color: #64748b !important;
+}
+html:not([data-theme="dark"]) .cmd-box .cmd,
+html:not([data-theme="dark"]) .cmd-box .keyword {
+    color: #2563eb !important;
+    font-weight: bold;
+}
+html:not([data-theme="dark"]) .cmd-box .flag-text {
+    color: #d97706 !important;
+    font-weight: bold;
+}
+html:not([data-theme="dark"]) .cmd-box .dangerous {
+    color: #dc2626 !important;
+    font-weight: bold;
+}
+
+/* Light Mode: Highlight & Warning Boxes */
+html:not([data-theme="dark"]) .highlight-box {
+    background: #eff6ff !important;
+    border: 1px solid #bfdbfe !important;
+    color: #1e3a8a !important;
+}
+html:not([data-theme="dark"]) .warning-box {
+    background: #fffbeb !important;
+    border: 1px solid #fde68a !important;
+    color: #92400e !important;
 }
 
 /* Light Mode: Step Boxes & Content Cards (日光纯白卡片) */

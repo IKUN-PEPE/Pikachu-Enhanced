@@ -37,24 +37,8 @@ if (isset($_POST['submit_quiz'])) {
 ?>
 
 <style>
-.ctf-stage-header {
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    border-radius: 14px;
-    padding: 25px 30px;
-    color: #fff;
-    margin-bottom: 25px;
-    border: 1px solid rgba(139,92,246,0.3);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-.ctf-stage-title {
-    color: #ffffff !important;
-    font-size: 22px;
-    font-weight: 800;
-    margin: 0 0 10px 0;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+.ctf-stage-header { background: var(--bg-card); border-radius: 14px; padding: 25px 30px; margin-bottom: 25px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.ctf-stage-title { color: var(--text-primary) !important; font-size: 22px; font-weight: 800; margin: 0 0 10px 0; display: flex; align-items: center; gap: 12px; }
 .step-box {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -86,18 +70,7 @@ if (isset($_POST['submit_quiz'])) {
     font-weight: 800;
     flex-shrink: 0;
 }
-.cmd-box {
-    background: #0f172a;
-    border: 1px solid #334155;
-    border-radius: 8px;
-    padding: 14px 18px;
-    font-family: 'Courier New', monospace;
-    font-size: 13px;
-    color: #7dd3fc;
-    margin: 12px 0;
-    overflow-x: auto;
-    line-height: 1.6;
-}
+.cmd-box { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px 18px; font-family: monospace; font-size: 13px; color: var(--text-primary); margin: 12px 0; overflow-x: auto; line-height: 1.8; }
 .cmd-box .comment { color: #64748b; }
 .cmd-box .cmd { color: #34d399; }
 .cmd-box .flag-text { color: #fbbf24; font-weight: bold; }
@@ -133,16 +106,7 @@ if (isset($_POST['submit_quiz'])) {
     margin-top: 25px;
     text-align: center;
 }
-.interactive-sim {
-    background: #0f172a;
-    border: 1px solid #1e293b;
-    border-radius: 12px;
-    padding: 20px;
-    margin: 14px 0;
-    font-family: monospace;
-    font-size: 12px;
-    color: #94a3b8;
-}
+.interactive-sim { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin: 14px 0; font-family: monospace; font-size: 12px; color: var(--text-secondary); }
 .sim-input { background: #1e293b; border: 1px solid #334155; color: #7dd3fc; padding: 6px 12px; border-radius: 4px; font-family: monospace; width: 100%; margin-top: 8px; }
 </style>
 
@@ -156,13 +120,13 @@ if (isset($_POST['submit_quiz'])) {
                     🎯 OSEP L1：初始侦察与 OPSEC 操守
                     <span style="background: rgba(16,185,129,0.2); color: #34d399; border: 1px solid #10b981; padding: 3px 10px; border-radius: 12px; font-size: 12px;">入门 · 100 PTS</span>
                 </h1>
-                <p style="color: #c4b5fd; font-size: 14px; margin: 0; line-height: 1.6;">
+                <p style="color: var(--text-secondary); font-size: 14px; margin: 0; line-height: 1.6;">
                     对标 OSEP PEN-300 考纲 Module 1 & 2。掌握不触发 IDS/EDR 告警的 OPSEC 优化侦察手法，理解被动与主动侦察的区别，学会控制扫描流量噪声。
                 </p>
                 <div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;">
-                    <span style="background: rgba(255,255,255,0.08); padding: 4px 12px; border-radius: 8px; font-size: 12px; color: #e2e8f0;">🔧 工具：Nmap · Shodan · Amass · OSINT Framework</span>
-                    <span style="background: rgba(255,255,255,0.08); padding: 4px 12px; border-radius: 8px; font-size: 12px; color: #e2e8f0;">🎯 目标：掌握 OPSEC 侦察框架</span>
-                    <span style="background: rgba(255,255,255,0.08); padding: 4px 12px; border-radius: 8px; font-size: 12px; color: #e2e8f0;"><a href="osep_hub.php" style="color: #c4b5fd;">← 返回 OSEP 大厅</a></span>
+                    <span style="background: var(--bg-secondary); padding: 4px 12px; border-radius: 8px; font-size: 12px; color: var(--text-secondary); border: 1px solid var(--border-color);">🔧 工具：Nmap · Shodan · Amass · OSINT Framework</span>
+                    <span style="background: var(--bg-secondary); padding: 4px 12px; border-radius: 8px; font-size: 12px; color: var(--text-secondary); border: 1px solid var(--border-color);">🎯 目标：掌握 OPSEC 侦察框架</span>
+                    <span style="background: var(--bg-secondary); padding: 4px 12px; border-radius: 8px; font-size: 12px; color: var(--text-secondary); border: 1px solid var(--border-color);"><a href="osep_hub.php" style="color: var(--text-secondary);">← 返回 OSEP 大厅</a></span>
                 </div>
             </div>
 

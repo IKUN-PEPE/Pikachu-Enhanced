@@ -17,12 +17,12 @@ if (isset($_POST['check_flag'])) {
 }
 ?>
 <style>
-.ctf-stage-header{background:linear-gradient(135deg,#0c1218 0%,#1a1030 100%);border-radius:14px;padding:25px 30px;color:#fff;margin-bottom:25px;border:1px solid rgba(99,102,241,0.35);}
-.ctf-stage-title{color:#fff!important;font-size:22px;font-weight:800;margin:0 0 10px 0;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.ctf-stage-header { background: var(--bg-card); border-radius: 14px; padding: 25px 30px; margin-bottom: 25px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.ctf-stage-title { color: var(--text-primary) !important; font-size: 22px; font-weight: 800; margin: 0 0 10px 0; display: flex; align-items: center; gap: 12px; }
 .step-box{background:var(--bg-card);border:1px solid var(--border-color);border-radius:12px;padding:24px;margin-bottom:22px;}
 .step-title{font-size:16px;font-weight:700;color:var(--text-primary);margin-top:0;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
 .step-num{background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;width:28px;height:28px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;}
-.cmd-box{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:14px 18px;font-family:monospace;font-size:13px;color:#7dd3fc;margin:12px 0;overflow-x:auto;line-height:1.9;}
+.cmd-box { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px 18px; font-family: monospace; font-size: 13px; color: var(--text-primary); margin: 12px 0; overflow-x: auto; line-height: 1.8; }
 .cmd-box .comment{color:#64748b;}
 .cmd-box .flag-text{color:#fbbf24;font-weight:bold;}
 .cmd-box .key{color:#a78bfa;font-weight:bold;}
@@ -37,7 +37,7 @@ if (isset($_POST['check_flag'])) {
   <h1 class="ctf-stage-title">🐧 OSEP L17：Linux 后渗透、共享库劫持与 DevOps 横向移动
     <span style="background:rgba(99,102,241,0.2);color:#a5b4fc;border:1px solid #6366f1;padding:3px 10px;border-radius:12px;font-size:12px;">Linux 后渗透 · 300 PTS</span>
   </h1>
-  <p style="color:#c4b5fd;font-size:14px;margin:0;line-height:1.6;">从蓝队视角理解 Linux 环境下的后渗透技术：用户配置文件持久化机制、共享库劫持攻击链、Linux Kerberos 凭据复用，以及 DevOps 基础设施（Jenkins/GitLab/Docker/K8s）中常见的权限升级路径与检测方法。</p>
+  <p style="color: var(--text-secondary);font-size:14px;margin:0;line-height:1.6;">从蓝队视角理解 Linux 环境下的后渗透技术：用户配置文件持久化机制、共享库劫持攻击链、Linux Kerberos 凭据复用，以及 DevOps 基础设施（Jenkins/GitLab/Docker/K8s）中常见的权限升级路径与检测方法。</p>
   <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
     <span style="background:rgba(255,255,255,0.08);padding:3px 10px;border-radius:8px;font-size:12px;color:#e2e8f0;">🔧 Linux · LD_PRELOAD · ccache · Jenkins · Docker · K8s</span>
     <a href="osep_hub.php" style="background:rgba(255,255,255,0.08);padding:3px 10px;border-radius:8px;font-size:12px;color:#a5b4fc;text-decoration:none;">← OSEP 大厅</a>
