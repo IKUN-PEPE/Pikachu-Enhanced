@@ -1368,6 +1368,7 @@ html:not([data-theme="dark"]) .ctf-stage-header h1,
 html:not([data-theme="dark"]) .ctf-stage-header h2,
 html:not([data-theme="dark"]) .ctf-stage-header h3,
 html:not([data-theme="dark"]) .ctf-stage-header .ctf-stage-title,
+html:not([data-theme="dark"]) .ctf-stage-title,
 html:not([data-theme="dark"]) .overview-hero-card h1,
 html:not([data-theme="dark"]) .overview-hero-card h2,
 html:not([data-theme="dark"]) .overview-hero-card h3,
@@ -1384,6 +1385,7 @@ html:not([data-theme="dark"]) .cj-hero-card h1 {
 
 html:not([data-theme="dark"]) .ctf-stage-header p,
 html:not([data-theme="dark"]) .ctf-stage-header p[style],
+html:not([data-theme="dark"]) .ctf-stage-header .stage-desc,
 html:not([data-theme="dark"]) .ctf-stage-header [style*="color: #a5b4fc"],
 html:not([data-theme="dark"]) .ctf-stage-header [style*="color:#a5b4fc"],
 html:not([data-theme="dark"]) .ctf-stage-header [style*="color: #c4b5fd"],
@@ -1395,7 +1397,9 @@ html:not([data-theme="dark"]) .forensics-hero-banner p,
 html:not([data-theme="dark"]) .honey-hero-banner p,
 html:not([data-theme="dark"]) .siem-hero-banner p,
 html:not([data-theme="dark"]) .cj-hero-card p {
-    color: #475569 !important;
+    color: #334155 !important;
+    font-weight: 500 !important;
+    text-shadow: none !important;
 }
 
 html:not([data-theme="dark"]) .ctf-stage-header div span,
