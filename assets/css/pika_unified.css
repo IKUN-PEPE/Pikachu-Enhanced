@@ -1335,72 +1335,287 @@ textarea.form-control {
 }
 
 /* ==========================================================================
-   Universal Hero Banner & CTF Header High-Contrast Color Unification
+   Daylight / Light Mode (日光白天模式) Comprehensive Override System
    ========================================================================== */
-.ctf-stage-header,
-.overview-hero-card,
-.waf-hero-banner,
-.rasp-hero-banner,
-.forensics-hero-banner,
-.honey-hero-banner,
-.siem-hero-banner,
-.cj-hero-card {
-    color: #ffffff !important;
+html:not([data-theme="dark"]),
+:root:not([data-theme="dark"]) {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --bg-sidebar: #ffffff;
+    --bg-card: #ffffff;
+    --border-color: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
 }
 
-.ctf-stage-header h1,
-.ctf-stage-header h2,
-.ctf-stage-header h3,
-.ctf-stage-header .ctf-stage-title,
-.overview-hero-card h1,
-.overview-hero-card h2,
-.overview-hero-card h3,
-.waf-hero-banner h1,
-.rasp-hero-banner h1,
-.forensics-hero-banner h1,
-.honey-hero-banner h1,
-.siem-hero-banner h1,
-.cj-hero-card h1 {
-    color: #ffffff !important;
+/* Light Mode: Hero Banners & CTF Stage Headers (白底浅色渐变卡片) */
+html:not([data-theme="dark"]) .ctf-stage-header,
+html:not([data-theme="dark"]) .overview-hero-card,
+html:not([data-theme="dark"]) .waf-hero-banner,
+html:not([data-theme="dark"]) .rasp-hero-banner,
+html:not([data-theme="dark"]) .forensics-hero-banner,
+html:not([data-theme="dark"]) .honey-hero-banner,
+html:not([data-theme="dark"]) .siem-hero-banner,
+html:not([data-theme="dark"]) .cj-hero-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%) !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+html:not([data-theme="dark"]) .ctf-stage-header h1,
+html:not([data-theme="dark"]) .ctf-stage-header h2,
+html:not([data-theme="dark"]) .ctf-stage-header h3,
+html:not([data-theme="dark"]) .ctf-stage-header .ctf-stage-title,
+html:not([data-theme="dark"]) .overview-hero-card h1,
+html:not([data-theme="dark"]) .overview-hero-card h2,
+html:not([data-theme="dark"]) .overview-hero-card h3,
+html:not([data-theme="dark"]) .waf-hero-banner h1,
+html:not([data-theme="dark"]) .rasp-hero-banner h1,
+html:not([data-theme="dark"]) .forensics-hero-banner h1,
+html:not([data-theme="dark"]) .honey-hero-banner h1,
+html:not([data-theme="dark"]) .siem-hero-banner h1,
+html:not([data-theme="dark"]) .cj-hero-card h1 {
+    color: #0f172a !important;
     font-weight: 800 !important;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+    text-shadow: none !important;
 }
 
-.ctf-stage-header p,
-.overview-hero-card p,
-.waf-hero-banner p,
-.rasp-hero-banner p,
-.forensics-hero-banner p,
-.honey-hero-banner p,
-.siem-hero-banner p,
-.cj-hero-card p {
+html:not([data-theme="dark"]) .ctf-stage-header p,
+html:not([data-theme="dark"]) .overview-hero-card p,
+html:not([data-theme="dark"]) .waf-hero-banner p,
+html:not([data-theme="dark"]) .rasp-hero-banner p,
+html:not([data-theme="dark"]) .forensics-hero-banner p,
+html:not([data-theme="dark"]) .honey-hero-banner p,
+html:not([data-theme="dark"]) .siem-hero-banner p,
+html:not([data-theme="dark"]) .cj-hero-card p {
+    color: #475569 !important;
+}
+
+html:not([data-theme="dark"]) .ctf-stage-header code,
+html:not([data-theme="dark"]) .overview-hero-card code,
+html:not([data-theme="dark"]) .waf-hero-banner code,
+html:not([data-theme="dark"]) .rasp-hero-banner code,
+html:not([data-theme="dark"]) .forensics-hero-banner code,
+html:not([data-theme="dark"]) .honey-hero-banner code,
+html:not([data-theme="dark"]) .siem-hero-banner code,
+html:not([data-theme="dark"]) .cj-hero-card code {
+    background: #e2e8f0 !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 2px 6px !important;
+    border-radius: 4px !important;
+    font-weight: 600 !important;
+}
+
+html:not([data-theme="dark"]) .ctf-stage-header strong,
+html:not([data-theme="dark"]) .overview-hero-card strong,
+html:not([data-theme="dark"]) .waf-hero-banner strong,
+html:not([data-theme="dark"]) .rasp-hero-banner strong,
+html:not([data-theme="dark"]) .forensics-hero-banner strong,
+html:not([data-theme="dark"]) .honey-hero-banner strong,
+html:not([data-theme="dark"]) .siem-hero-banner strong,
+html:not([data-theme="dark"]) .cj-hero-card strong {
+    color: #0f172a !important;
+}
+
+html:not([data-theme="dark"]) .ctf-stage-header .btn,
+html:not([data-theme="dark"]) .ctf-stage-header a.btn-default,
+html:not([data-theme="dark"]) .overview-hero-card .btn {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+}
+html:not([data-theme="dark"]) .ctf-stage-header .btn:hover,
+html:not([data-theme="dark"]) .ctf-stage-header a.btn-default:hover,
+html:not([data-theme="dark"]) .overview-hero-card .btn:hover {
+    background: #f1f5f9 !important;
+    color: #0284c7 !important;
+    border-color: #38bdf8 !important;
+}
+
+/* Light Mode: Step Boxes & Content Cards (日光纯白卡片) */
+html:not([data-theme="dark"]) .step-box,
+html:not([data-theme="dark"]) .ctf-card,
+html:not([data-theme="dark"]) .card,
+html:not([data-theme="dark"]) .panel,
+html:not([data-theme="dark"]) .panel-default,
+html:not([data-theme="dark"]) .well,
+html:not([data-theme="dark"]) .flag-box,
+html:not([data-theme="dark"]) .ctf-flag-section {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03) !important;
+}
+
+html:not([data-theme="dark"]) .step-box h1,
+html:not([data-theme="dark"]) .step-box h2,
+html:not([data-theme="dark"]) .step-box h3,
+html:not([data-theme="dark"]) .step-box h4,
+html:not([data-theme="dark"]) .step-box strong,
+html:not([data-theme="dark"]) .step-box b,
+html:not([data-theme="dark"]) .step-box .step-title,
+html:not([data-theme="dark"]) .ctf-card h3,
+html:not([data-theme="dark"]) .ctf-card h4 {
+    color: #0f172a !important;
+}
+
+html:not([data-theme="dark"]) .step-box p,
+html:not([data-theme="dark"]) .step-box li,
+html:not([data-theme="dark"]) .ctf-card p {
+    color: #334155 !important;
+}
+
+/* Light Mode: Code Blocks & Terminal Boxes (日光淡雅代码/终端框) */
+html:not([data-theme="dark"]) pre,
+html:not([data-theme="dark"]) .code-block,
+html:not([data-theme="dark"]) .terminal-box,
+html:not([data-theme="dark"]) .step-box pre,
+html:not([data-theme="dark"]) .command-box pre {
+    background: #f8fafc !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+html:not([data-theme="dark"]) pre code,
+html:not([data-theme="dark"]) .code-block code,
+html:not([data-theme="dark"]) .terminal-box code,
+html:not([data-theme="dark"]) .step-box pre code {
+    background: transparent !important;
+    color: #0f172a !important;
+}
+
+/* Syntax Highlighting for Light Mode */
+html:not([data-theme="dark"]) pre .keyword,
+html:not([data-theme="dark"]) pre .command {
+    color: #2563eb !important;
+    font-weight: bold;
+}
+html:not([data-theme="dark"]) pre .string {
+    color: #059669 !important;
+}
+html:not([data-theme="dark"]) pre .comment {
+    color: #64748b !important;
+    font-style: italic;
+}
+html:not([data-theme="dark"]) pre .number,
+html:not([data-theme="dark"]) pre .val {
+    color: #d97706 !important;
+}
+
+/* Light Mode Input Controls & Flag Inputs */
+html:not([data-theme="dark"]) input[type="text"],
+html:not([data-theme="dark"]) input[type="password"],
+html:not([data-theme="dark"]) textarea,
+html:not([data-theme="dark"]) select,
+html:not([data-theme="dark"]) .form-control {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+}
+html:not([data-theme="dark"]) input[type="text"]:focus,
+html:not([data-theme="dark"]) input[type="password"]:focus,
+html:not([data-theme="dark"]) textarea:focus,
+html:not([data-theme="dark"]) select:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+}
+
+
+/* ==========================================================================
+   Dark Mode (黑夜暗色模式) High-Contrast Cyber Override System
+   ========================================================================== */
+html[data-theme="dark"] .ctf-stage-header,
+html[data-theme="dark"] .overview-hero-card,
+html[data-theme="dark"] .waf-hero-banner,
+html[data-theme="dark"] .rasp-hero-banner,
+html[data-theme="dark"] .forensics-hero-banner,
+html[data-theme="dark"] .honey-hero-banner,
+html[data-theme="dark"] .siem-hero-banner,
+html[data-theme="dark"] .cj-hero-card {
+    background: linear-gradient(135deg, #0b1329 0%, #1e293b 100%) !important;
+    color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+html[data-theme="dark"] .ctf-stage-header h1,
+html[data-theme="dark"] .ctf-stage-header h2,
+html[data-theme="dark"] .ctf-stage-header h3,
+html[data-theme="dark"] .ctf-stage-header .ctf-stage-title,
+html[data-theme="dark"] .overview-hero-card h1,
+html[data-theme="dark"] .overview-hero-card h2,
+html[data-theme="dark"] .overview-hero-card h3 {
+    color: #f8fafc !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+}
+
+html[data-theme="dark"] .ctf-stage-header p,
+html[data-theme="dark"] .overview-hero-card p {
     color: #cbd5e1 !important;
 }
 
-.ctf-stage-header code,
-.overview-hero-card code,
-.waf-hero-banner code,
-.rasp-hero-banner code,
-.forensics-hero-banner code,
-.honey-hero-banner code,
-.siem-hero-banner code,
-.cj-hero-card code {
-    background: rgba(255, 255, 255, 0.15) !important;
-    color: #fbcfe8 !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    padding: 2px 6px !important;
-    border-radius: 4px !important;
+html[data-theme="dark"] .ctf-stage-header code,
+html[data-theme="dark"] .overview-hero-card code {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #38bdf8 !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
 }
 
-.ctf-stage-header strong,
-.overview-hero-card strong,
-.waf-hero-banner strong,
-.rasp-hero-banner strong,
-.forensics-hero-banner strong,
-.honey-hero-banner strong,
-.siem-hero-banner strong,
-.cj-hero-card strong {
-    color: #ffffff !important;
+html[data-theme="dark"] .ctf-stage-header strong,
+html[data-theme="dark"] .overview-hero-card strong {
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] .step-box,
+html[data-theme="dark"] .ctf-card,
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .panel,
+html[data-theme="dark"] .panel-default,
+html[data-theme="dark"] .well,
+html[data-theme="dark"] .flag-box {
+    background: #1e293b !important;
+    color: #f8fafc !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+html[data-theme="dark"] .step-box h1,
+html[data-theme="dark"] .step-box h2,
+html[data-theme="dark"] .step-box h3,
+html[data-theme="dark"] .step-box h4,
+html[data-theme="dark"] .step-box strong,
+html[data-theme="dark"] .step-box b,
+html[data-theme="dark"] .step-box .step-title,
+html[data-theme="dark"] .ctf-card h3 {
+    color: #f8fafc !important;
+}
+
+html[data-theme="dark"] .step-box p,
+html[data-theme="dark"] .step-box li,
+html[data-theme="dark"] .ctf-card p {
+    color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] pre,
+html[data-theme="dark"] .code-block,
+html[data-theme="dark"] .terminal-box,
+html[data-theme="dark"] .step-box pre {
+    background: #090d16 !important;
+    color: #38bdf8 !important;
+    border: 1px solid #1e293b !important;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+html[data-theme="dark"] pre code,
+html[data-theme="dark"] .code-block code,
+html[data-theme="dark"] .terminal-box code {
+    background: transparent !important;
+    color: #38bdf8 !important;
 }
 
 
