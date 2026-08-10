@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Pikachu-Enhanced v2.0 GOAD AD CTF Level 6: ACL Chain Abuse & Forest Root Domain Dominance
  */
