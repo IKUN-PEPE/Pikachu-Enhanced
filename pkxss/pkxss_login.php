@@ -19,6 +19,7 @@ if(isset($_POST['submit'])){
             $_SESSION['pkxss']['username']=$username;
             $_SESSION['pkxss']['password']=sha1(md5($password));
             header("location:xssmanager.php");
+        exit;
         }else{
             $html.="<p>登录失败,请重新登录</p>";
         }

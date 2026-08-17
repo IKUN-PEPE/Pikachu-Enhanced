@@ -24,6 +24,7 @@ $link=connect();
 $is_login_id=check_sqli_login($link);
 if(!$is_login_id){
     header("location:sqli_header_login.php");
+    exit;
 }
 // $remoteipadd=escape($link, $_SERVER['REMOTE_ADDR']);
 // $useragent=escape($link, $_SERVER['HTTP_USER_AGENT']);
@@ -46,6 +47,7 @@ if(isset($_GET['logout']) && $_GET['logout'] == 1){
     setcookie('ant[uname]','',time()-3600);
     setcookie('ant[pw]','',time()-3600);
     header("location:sqli_header_login.php");
+exit;
 }
 
 

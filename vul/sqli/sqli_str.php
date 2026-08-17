@@ -20,7 +20,7 @@ if (isset($_GET['submit']) && !empty($user_name)) {
     $query = "select id,email from member where username='$user_name'";
     $result = @mysqli_query($link, $query);
     
-    if (preg_match('/'|union|select|database|schema|flag|#|--/i', $user_name)) {
+    if (preg_match('/\'|union|select|database|schema|flag|#|--/i', $user_name)) {
         $sqli_triggered = true;
     }
     

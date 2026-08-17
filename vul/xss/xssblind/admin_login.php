@@ -44,6 +44,7 @@ if(isset($_POST['submit'])){
 
 
             header("location:admin.php");
+exit;
 //            echo '"<script>windows.location.href="xss_reflected_post.php"</script>';
 
         }else{

@@ -135,6 +135,19 @@ if(isset($_POST['submit'])){
     (3, 'deser_flag', 'flag{Pikachu_Deserialization_POP_Chain_Executed}')";
     @mysqli_query($link, $insert_flag_vault);
 
+    //创建 httpinfo 表 (用于 HTTP Header 注入)
+    $create_httpinfo =
+        "CREATE TABLE IF NOT EXISTS `httpinfo` (
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `userid` int(10) NOT NULL,
+    `ipaddress` varchar(255) NOT NULL,
+    `useragent` varchar(255) NOT NULL,
+    `httpaccept` varchar(255) NOT NULL,
+    `remoteport` varchar(255) NOT NULL,
+    PRIMARY KEY (`id`)
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+    @mysqli_query($link, $create_httpinfo);
+
 
 
     $mes_data="<p class='notice'>创建数据库数据成功!</p>";

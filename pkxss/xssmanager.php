@@ -6,6 +6,7 @@ $link=connect();
 // 判断是否登录，没有登录不能访问
 if(!check_login($link)){
     header("location:index.php");
+exit;
 }
 
 
@@ -14,6 +15,7 @@ if(isset($_GET['logout']) && $_GET['logout'] == 1){
     session_destroy();
     setcookie(session_name(),'',time()-3600,'/');
     header("location:index.php");
+exit;
 }
 
 

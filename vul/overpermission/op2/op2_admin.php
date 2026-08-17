@@ -39,6 +39,8 @@ if(isset($_GET['logout']) && $_GET['logout'] == 1){
     setcookie(session_name(),'',time()-3600,'/');
     header("location:op2_login.php");
 
+exit;
+
 }
 
 

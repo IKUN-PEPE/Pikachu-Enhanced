@@ -25,6 +25,7 @@ $link=connect();
 //判断是是否登录，如果已经登录，点击时，直接进入会员中心
 if(check_sqli_session($link)){
     header("location:sqli_mem.php");
+exit;
 }
 $html='';
 if(isset($_GET['submit'])){
@@ -39,6 +40,7 @@ if(isset($_GET['submit'])){
             $_SESSION['sqli']['username']=$username;
             $_SESSION['sqli']['password']=sha1(md5($password));
             header("location:sqli_mem.php");
+        exit;
         }else{
             $html.="<p>登录失败,请重新登录</p>";
         }

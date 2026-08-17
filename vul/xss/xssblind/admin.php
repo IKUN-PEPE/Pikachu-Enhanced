@@ -24,6 +24,7 @@ $link=connect();
 $is_login_id=check_xss_login($link);
 if(!$is_login_id){
     header("location:admin_login.php");
+exit;
 }
 
 
@@ -40,6 +41,8 @@ if(isset($_GET['logout']) && $_GET['logout'] == '1'){
     setcookie('ant[uname]','');
     setcookie('ant[pw]','');
     header("location:admin_login.php");
+
+exit;
 
 }
 

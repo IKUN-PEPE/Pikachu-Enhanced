@@ -21,6 +21,7 @@ catch(Exception $e)
 if (@$link)
 {
     header("location:pkxss_login.php");
+exit;
 }
 
 

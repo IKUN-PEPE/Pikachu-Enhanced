@@ -24,6 +24,7 @@ $link=connect();
 if(!check_sqli_session($link)){
     echo "<script>alert('登录后才能进入会员中心哦')</script>";
     header("location:sqli_login.php");
+exit;
 }
 
 
@@ -38,6 +39,7 @@ if(isset($_POST['submit'])){
         $result=execute($link, $query);
         if(mysqli_affected_rows($link)==1 || mysqli_affected_rows($link)==0){
             header("location:sqli_mem.php");
+        exit;
         }else {
             $html1.='修改失败，请重试';
 
@@ -72,7 +74,7 @@ if(isset($_POST['submit'])){
             $username=$_SESSION['sqli']['username'];
             $query="select * from member where username='$username'";
             $result=execute($link, $query);
-            $data=mysqli_fetch_array($result, MYSQL_ASSOC);
+            $data=mysqli_fetch_array($result, MYSQLI_ASSOC);
             $name=$data['username'];
             $sex=$data['sex'];
             $phonenum=$data['phonenum'];

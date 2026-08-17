@@ -38,6 +38,7 @@ if(isset($_POST['submit'])){
             setcookie('ant[pw]',sha1(md5($_POST['password'])),time()+36000);
             //登录时，生成cookie,10个小时有效期，供其他页面判断
             header("location:sqli_header.php");
+        exit;
         }else{
             $html.=("<p>登录失败,请重新登录</p>");
         }

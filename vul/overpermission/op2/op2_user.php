@@ -20,6 +20,7 @@ $link=connect();
 // 判断是否登录，没有登录不能访问
 if(!check_op2_login($link)){
     header("location:op2_login.php");
+exit;
 }
 
 if(isset($_GET['logout']) && $_GET['logout'] == 1){
@@ -27,6 +28,8 @@ if(isset($_GET['logout']) && $_GET['logout'] == 1){
     session_destroy();
     setcookie(session_name(),'',time()-3600,'/');
     header("location:op2_login.php");
+
+exit;
 
 }
 

@@ -7,6 +7,7 @@ $link=connect();
 // 判断是否登录，没有登录不能访问
 if(!check_login($link)){
     header("location:../pkxss_login.php");
+exit;
 }
 
 
