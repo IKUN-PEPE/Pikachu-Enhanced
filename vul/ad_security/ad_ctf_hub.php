@@ -26,7 +26,12 @@ $flags_db = [
     'flag7' => ['flag' => 'flag{Resource_Based_Constrained_Delegation_RBCD_Pwned}', 'name' => '第七关：基于资源的约束委派 (RBCD) 跃迁', 'points' => 300, 'file' => 'ad_ctf_rbcd.php'],
     'flag8' => ['flag' => 'flag{ADCS_ESC8_NTLM_Relay_HTTP_Enrollment}', 'name' => '第八关：AD CS ESC8 NTLM HTTP 中继注册', 'points' => 350, 'file' => 'ad_ctf_esc8.php'],
     'flag9' => ['flag' => 'flag{Shadow_Credentials_KeyCredentialLink_PKINIT}', 'name' => '第九关：影子凭据 (Shadow Credentials) 维持', 'points' => 350, 'file' => 'ad_ctf_shadow_cred.php'],
-    'flag10' => ['flag' => 'flag{Forest_Root_DC_Kingslanding_Fully_Owned}', 'name' => '第十关：ACL 链式滥用与林根完全接管', 'points' => 500, 'file' => 'ad_ctf_acl.php']
+    'flag10' => ['flag' => 'flag{Forest_Root_DC_Kingslanding_Fully_Owned}', 'name' => '第十关：ACL 链式滥用与林根完全接管', 'points' => 500, 'file' => 'ad_ctf_acl.php'],
+    'flag11' => ['flag' => 'flag{GOAD_Coerce_PetitPotam_PrinterBug_NTLM_Relay_2026}', 'name' => '第十一关：强制认证 (Coerce) 与 NTLM Relay 中继组合利用', 'points' => 300, 'file' => 'ad_ctf_coerce.php'],
+    'flag12' => ['flag' => 'flag{GOAD_noPac_sAMAccountName_Impersonation_DC_2026}', 'name' => '第十二关：noPac (CVE-2021-42278/42287) 欺骗与高级 Kerberos', 'points' => 350, 'file' => 'ad_ctf_nopac.php'],
+    'flag13' => ['flag' => 'flag{GOAD_Child_Parent_Trust_SID_History_ExtraSids_2026}', 'name' => '第十三关：父子域信任 (Child-to-Parent) 与 SID History 跨域提权', 'points' => 400, 'file' => 'ad_ctf_domain_trust.php'],
+    'flag14' => ['flag' => 'flag{GOAD_Cross_Forest_MSSQL_Link_FSP_RID_Filtering_2026}', 'name' => '第十四关：独立林跨林攻击 (Cross-Forest Trust)、FSP 外域组与 MSSQL 信任链', 'points' => 450, 'file' => 'ad_ctf_forest_trust.php'],
+    'flag15' => ['flag' => 'flag{GOAD_GPO_Abuse_STARKWALLPAPER_Scheduled_Tasks_2026}', 'name' => '第十五关：GPO 组策略滥用与计划任务横向移动 (GPO Abuse)', 'points' => 300, 'file' => 'ad_ctf_gpo.php']
 ];
 
 $submit_msg = '';
@@ -184,10 +189,10 @@ $progress_pct = count($flags_db) > 0 ? round(($captured_count / count($flags_db)
             <div class="ctf-hero-banner">
                 <h1 class="ctf-title">
                     🏆 GOAD Active Directory 域渗透 CTF 夺旗总控大厅
-                    <span class="ctf-badge">10 大关卡大师版</span>
+                    <span class="ctf-badge">15 大关卡全量巅峰版 (4300 PTS)</span>
                 </h1>
                 <p style="font-size: 15px; color: #e2e8f0; line-height: 1.7; max-width: 950px; margin-bottom: 20px;">
-                    本大厅已扩容至 <strong>10 大经典 AD 域渗透实战关卡（总分 2500 PTS）</strong>，涵盖侦察测绘、票据攻击、数据库提权、委派攻击 (S4U/RBCD)、AD CS 证书服务 (ESC1/ESC8)、影子凭据与 7 级 ACL 复合权限跃迁！
+                    本大厅已重磅扩容至 <strong>15 大全量 GOAD AD 域渗透实战关卡（总分 4300 PTS）</strong>，全方位涵盖侦察测绘、AS-REP/Kerberoasting 爆破、MSSQL 模拟特权与跨林 Trusted Link、AD CS 全套证书攻击 (ESC1/ESC8)、约束/RBCD 委派、影子凭据、ACL 链式滥用、强制认证 (PetitPotam/PrinterBug)、noPac (CVE-2021-42278/42287) SAM 欺骗、父子域信任 (SID History ExtraSids 注入)、独立林跨林攻击 (Forest Trust/FSP 外域组) 以及 GPO 组策略派发横向移动！
                 </p>
                 <div style="display: flex; gap: 20px; flex-wrap: wrap;">
                     <div style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 8px 16px; border-radius: 10px; font-size: 13px;">

@@ -1,0 +1,24 @@
+{
+  "id": "docker-sock-escape",
+  "name": "Docker Socket 敏感挂载逃逸 (/var/run/docker.sock)",
+  "category": "cloudnative",
+  "image": "ghcr.io/pikachu-lab/docker-sock-escape:latest",
+  "container_name": "pikachu-docker-sock",
+  "labels": {
+    "pikachu.lab": "true",
+    "pikachu.template": "docker-sock-escape"
+  },
+  "ports": [
+    {
+      "host_ip": "127.0.0.1",
+      "host_port": 15002,
+      "container_port": 80,
+      "protocol": "tcp"
+    }
+  ],
+  "env": [],
+  "cmd": [],
+  "entry_url": "http://127.0.0.1:8765/vul/dockerlab/docker_sock_escape.php",
+  "notes": "演示敏感挂载 /var/run/docker.sock 时，通过 cURL 与 Docker Daemon REST API 交互创建挂载宿主机根目录的新容器逃逸。",
+  "enabled": true
+}

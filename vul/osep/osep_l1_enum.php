@@ -245,12 +245,12 @@ nmap -A -T4 -p- 192.168.1.0/24<br><br>
             <div class="flag-submit-area">
                 <h4 style="font-weight: 800; color: var(--text-primary); margin-top: 0;">🚩 Flag 验证 — 关卡 L1</h4>
                 <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
-                    完成以上所有步骤，深入理解 OPSEC 侦察方法论后，你已经掌握了：<br>
-                    被动侦察工具链 → 低噪 Nmap 扫描策略 → 内网 AD 快速枚举方法<br><br>
-                    <strong style="color: #8b5cf6;">此关卡的 Flag 为：</strong>
+                    完成以上所有步骤，深入理解 OPSEC 侦察方法论后，你可以通过在真实目标系统节点上执行检索或提取 <code>C:\Flags\osep_l1.txt</code> 获取本关 Flag！<br><br>
+                    <strong style="color: #8b5cf6;">🔒 Flag 提取消化指南：</strong>
                 </p>
-                <div class="cmd-box" style="display: inline-block; padding: 10px 24px; margin: 0 auto 16px;">
-                    <span class="flag-text">flag{OSEP_L1_OPSEC_Enum_NoiseReduction_Done}</span>
+                <div class="cmd-box" style="display: block; padding: 12px 20px; margin: 0 auto 16px; text-align: left;">
+                    <span class="comment"># 在目标系统/机器节点上查看侦察Flag文件：</span><br>
+                    <span class="cmd">type C:\Flags\osep_l1.txt</span>
                 </div>
                 <p style="font-size: 12px; color: var(--text-secondary); margin-bottom: 16px;">在下方输入框中填入 Flag 并验证（同时可到 <a href="osep_hub.php" style="color: #8b5cf6;">OSEP 大厅</a> 提交累计积分）</p>
                 <form method="post" style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">

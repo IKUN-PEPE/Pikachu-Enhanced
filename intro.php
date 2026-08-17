@@ -35,9 +35,9 @@ try {
             <ul class="breadcrumb">
                 <li>
                     <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="index.php">系统介绍与说明</a>
+                    <a href="index.php">主页</a>
                 </li>
-                <li class="active">全局漏洞图鉴</li>
+                <li class="active">🗺️ 全站漏洞学习路线图 (Roadmap)</li>
             </ul>
         </div>
 
@@ -48,11 +48,11 @@ try {
                 <!-- Hero Banner -->
                 <div class="hero-banner">
                     <div class="hero-title">
-                        <i class="fa fa-shield"></i>
-                        Pikachu-Enhanced v2.0 现代化综合安全靶场控制台
+                        <i class="fa fa-map-signs"></i>
+                        Pikachu-Enhanced v2.0 全站漏洞学习路线图 (Roadmap)
                     </div>
                     <div class="hero-subtitle">
-                        打破传统 Web 边界！涵盖大模型 AI 安全 (OWASP LLM 2025)、云原生 K8s 容器逃逸、Serverless、微服务 gRPC、JWT、SAML XSW 与经典 OWASP Top 10 的全栈体系化实战渗透控制平台。
+                        系统化攻防全景图谱！涵盖 5 大核心演练方向（经典 Web、现代 Web / RCE、内网渗透、AD 域控安全、云原生与微服务），帮助攻防人员清晰掌握漏洞演进路线与体系化技能树。
                     </div>
                     <div class="hero-badges">
                         <div class="hero-badge"><i class="fa fa-bug"></i> 41 个漏洞大类图鉴</div>
@@ -156,19 +156,71 @@ try {
                             <div class="category-icon cat-icon-cloud"><i class="fa fa-cloud"></i></div>
                             <h2 class="category-title">二、 云原生、容器化与微服务架构安全 (Cloud Native & Microservices)</h2>
                         </div>
-                        <span class="category-count">9 大核心场景</span>
+                        <span class="category-count">13 大核心场景</span>
                     </div>
                     <div class="vuln-grid">
                         <div class="vuln-card" data-cat="cloud">
                             <div>
                                 <div class="card-top">
-                                    <h3 class="card-title">Kubernetes 越权与凭证逃逸</h3>
-                                    <span class="card-stars">★★★★★</span>
+                                    <h3 class="card-title">1. Docker 特权模式逃逸 (--privileged)</h3>
+                                    <span class="card-stars">★★★★☆</span>
                                 </div>
-                                <p class="card-desc">利用 Pod 内存放的 `/var/run/secrets/.../token`，向 K8s API Server 越权发送认证请求，获取集群命名空间与控制权。</p>
+                                <p class="card-desc">当开启 `--privileged` 特权模式启动容器时，硬件设备 `/dev/vda1` 裸露暴露，通过 `mount` 重挂载宿主机根磁盘并 `chroot` 切入 Host OS。</p>
                             </div>
                             <div class="card-bottom">
-                                <span class="card-tag tag-cloud">云原生 K8s</span>
+                                <span class="card-tag tag-cloud">特权逃逸 100 PTS</span>
+                                <a href="vul/dockerlab/docker_privileged_escape.php" class="launch-btn">⚡ 启动关卡 <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="vuln-card" data-cat="cloud">
+                            <div>
+                                <div class="card-top">
+                                    <h3 class="card-title">2. Docker Socket 挂载逃逸 (docker.sock)</h3>
+                                    <span class="card-stars">★★★★☆</span>
+                                </div>
+                                <p class="card-desc">容器挂载 `/var/run/docker.sock` 后，攻击者可用 cURL 向宿主机 REST API 发送请求创建挂载宿主机根目录的新特权容器 `escape_pod`。</p>
+                            </div>
+                            <div class="card-bottom">
+                                <span class="card-tag tag-cloud">Socket 逃逸 150 PTS</span>
+                                <a href="vul/dockerlab/docker_sock_escape.php" class="launch-btn">⚡ 启动关卡 <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="vuln-card" data-cat="cloud">
+                            <div>
+                                <div class="card-top">
+                                    <h3 class="card-title">3. Linux Capabilities 逃逸 (CAP_SYS_ADMIN)</h3>
+                                    <span class="card-stars">★★★★★</span>
+                                </div>
+                                <p class="card-desc">利用 `CAP_SYS_ADMIN` 特权能力挂载 cgroups v1 控制树，注入 `release_agent` 回调脚本，使宿主机内核在进程终止时以 Host Root 执行提权命令。</p>
+                            </div>
+                            <div class="card-bottom">
+                                <span class="card-tag tag-cloud">Capabilities 200 PTS</span>
+                                <a href="vul/dockerlab/docker_caps_escape.php" class="launch-btn">⚡ 启动关卡 <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="vuln-card" data-cat="cloud">
+                            <div>
+                                <div class="card-top">
+                                    <h3 class="card-title">4. runc & Dirty Pipe CVE 逃逸</h3>
+                                    <span class="card-stars">★★★★★</span>
+                                </div>
+                                <p class="card-desc">针对 CVE-2019-5736 (runc 句柄泄露反向覆写宿主机 `/usr/bin/runc`) 与 CVE-2022-0847 (脏管道内存强写只读 `/etc/passwd`) 进行漏洞利用实操。</p>
+                            </div>
+                            <div class="card-bottom">
+                                <span class="card-tag tag-cloud">CVE 逃逸 250 PTS</span>
+                                <a href="vul/dockerlab/docker_cve_escape.php" class="launch-btn">⚡ 启动关卡 <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="vuln-card" data-cat="cloud">
+                            <div>
+                                <div class="card-top">
+                                    <h3 class="card-title">5. Kubernetes ServiceAccount 越权逃逸</h3>
+                                    <span class="card-stars">★★★★★</span>
+                                </div>
+                                <p class="card-desc">利用 Pod 内自动挂载的 ServiceAccount Token，向 K8s API Server 发起越权请求，部署特权 Pod 挂载宿主机根目录夺取 Master 节点控制权。</p>
+                            </div>
+                            <div class="card-bottom">
+                                <span class="card-tag tag-cloud">K8s 越权 300 PTS</span>
                                 <a href="vul/dockerlab/k8s_token_escape.php" class="launch-btn">⚡ 启动关卡 <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
@@ -227,6 +279,19 @@ try {
                         <div class="vuln-card" data-cat="cloud">
                             <div>
                                 <div class="card-top">
+                                    <h3 class="card-title">Flask / Jinja2 SSTI 模板注入 (15000端口)</h3>
+                                    <span class="card-stars">★★★★☆</span>
+                                </div>
+                                <p class="card-desc">针对 Python Flask / Jinja2 模板引擎的 SSTI 漏洞。利用 `{{7*7}}` 探测，通过类继承链 `__mro__` / `__subclasses__` 绕过沙箱执行系统命令。</p>
+                            </div>
+                            <div class="card-bottom">
+                                <span class="card-tag tag-cloud">Flask SSTI (15000)</span>
+                                <a href="vul/rce/rce_ssti.php" class="launch-btn">⚡ 启动关卡 <i class="fa fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="vuln-card" data-cat="cloud">
+                            <div>
+                                <div class="card-top">
                                     <h3 class="card-title">.env 数据库账密泄露</h3>
                                     <span class="card-stars">★★☆☆☆</span>
                                 </div>
@@ -253,7 +318,7 @@ try {
                         <div class="vuln-card" data-cat="cloud">
                             <div>
                                 <div class="card-top">
-                                    <h3 class="card-title">Swagger UI 在线调试调试</h3>
+                                    <h3 class="card-title">Swagger UI 在线调试暴露</h3>
                                     <span class="card-stars">★★☆☆☆</span>
                                 </div>
                                 <p class="card-desc">Spring Boot / OpenAPI 接口文档及 Swagger 在线调试界面未授权暴露在公网上，直接成为黑客进行全站接口发包攻击的天然面板。</p>
@@ -266,14 +331,14 @@ try {
                         <div class="vuln-card" data-cat="cloud">
                             <div>
                                 <div class="card-top">
-                                    <h3 class="card-title">Docker Lab 镜像与靶场演练</h3>
+                                    <h3 class="card-title">Docker Lab 镜像与靶场演练中心</h3>
                                     <span class="card-stars">★★★☆☆</span>
                                 </div>
-                                <p class="card-desc">专属 Docker 容器化实验模块，学习容器运行环境检测、Docker API 未授权调用与容器特权配置滥用的实战对抗。</p>
+                                <p class="card-desc">专属 Docker 容器化实验模块，学习容器运行环境检测、Docker API 未授权调用与 10+ 容器靶场模板管理。</p>
                             </div>
                             <div class="card-bottom">
                                 <span class="card-tag tag-cloud">Docker 实验室</span>
-                                <a href="vul/dockerlab/dockerlab.php" class="launch-btn">⚡ 启动关卡 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/dockerlab/dockerlab_center.php" class="launch-btn">⚡ 启动关卡 <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>

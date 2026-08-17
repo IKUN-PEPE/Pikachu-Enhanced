@@ -158,12 +158,12 @@ Type 'help' for a list of available commands.
 
             <!-- Flag Section -->
             <div class="step-box flag-box">
-                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取点</h3>
+                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取指南</h3>
                 <p style="color: var(--text-secondary); font-size: 14px;">
-                    利用约束性委派成功伪造 Domain Admin 票据并访问域控后，提取 Flag：
+                    <strong>Flag 隐匿位置：</strong> 约束性委派成功伪造票据 ➔ 使用 <code>smbclient.py -k -no-pass ...</code> 连接域控 C$ 共享读取 <code>C:\Flags\flag6.txt</code>：
                 </p>
-                <div class="well" style="background: #ffffff; border: 1px dashed #10b981; padding: 12px; font-family: monospace; font-size: 15px; color: #059669; font-weight: bold;">
-                    flag{Constrained_Delegation_S4U2Proxy_TGT_Impersonation}
+                <div class="well" style="background: var(--bg-secondary); border: 1px dashed #10b981; padding: 14px; font-family: monospace; font-size: 13px; color: var(--text-primary);">
+                    🔒 [提示]：导入 <code>export KRB5CCNAME=administrator.ccache</code> 后运行 <code>smbclient -k</code> 读取 C$ 目标文件。
                 </div>
 
                 <form method="post" style="margin-top: 15px; max-width: 500px;">

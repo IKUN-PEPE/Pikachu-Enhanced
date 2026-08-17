@@ -10,8 +10,7 @@ include_once $PIKA_ROOT_DIR . 'inc/config.inc.php';
 include_once $PIKA_ROOT_DIR . 'inc/mysql.inc.php';
 include_once $PIKA_ROOT_DIR . 'inc/function.php';
 
-$ACTIVE = array_fill(0, 150, '');
-$ACTIVE[122] = 'active open';
+$ACTIVE = array_fill(0, 300, '');
 $ACTIVE[157] = 'active open';
 $ACTIVE[124] = 'active';
 

@@ -1,11 +1,13 @@
+name: pikachu
 services:
   web:
-    build: .
-    container_name: pikachu-enhanced-web
+    image: pikachu-web
+    container_name: pikachu-web
     ports:
       - "127.0.0.1:8765:80"
     volumes:
       - ./:/var/www/html
+      - //var/run/docker.sock:/var/run/docker.sock
     depends_on:
       db:
         condition: service_healthy
@@ -22,7 +24,7 @@ services:
 
   db:
     image: mysql:8.0
-    container_name: pikachu-enhanced-db
+    container_name: pikachu-db
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -40,10 +42,8 @@ services:
       - pikachu-net
 
   java:
-    build:
-      context: .
-      dockerfile: docker/java/Dockerfile
-    container_name: pikachu-enhanced-java
+    image: pikachu-java
+    container_name: pikachu-java
     ports:
       - "127.0.0.1:8088:8088"
     networks:
@@ -55,3 +55,6 @@ networks:
 
 volumes:
   pikachu_mysql_data:
+
+
+

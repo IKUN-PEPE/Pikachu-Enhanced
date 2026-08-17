@@ -148,12 +148,12 @@ nt authority\system
 
             <!-- Flag Section -->
             <div class="step-box flag-box">
-                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取点</h3>
+                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取指南</h3>
                 <p style="color: var(--text-secondary); font-size: 14px;">
-                    成功利用 RBCD 获取目标服务器 SYSTEM 权限后，提取本关 Flag：
+                    <strong>Flag 隐匿位置：</strong> 写入 RBCD 属性 ➔ 伪造白银票据 ➔ 执行 <code>psexec.py</code> 获取 SYSTEM 权限后读取 <code>C:\ProgramData\flag7.txt</code>：
                 </p>
-                <div class="well" style="background: #ffffff; border: 1px dashed #10b981; padding: 12px; font-family: monospace; font-size: 15px; color: #059669; font-weight: bold;">
-                    flag{Resource_Based_Constrained_Delegation_RBCD_Pwned}
+                <div class="well" style="background: var(--bg-secondary); border: 1px dashed #10b981; padding: 14px; font-family: monospace; font-size: 13px; color: var(--text-primary);">
+                    🔒 [提示]：在命令 Shell 中运行 <code>type C:\ProgramData\flag7.txt</code> 读取获得的字符串。
                 </div>
 
                 <form method="post" style="margin-top: 15px; max-width: 500px;">

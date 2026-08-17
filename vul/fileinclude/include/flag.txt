@@ -1,0 +1,1 @@
+flag{Pikachu_File_Inclusion_Local_Secret_Extracted}

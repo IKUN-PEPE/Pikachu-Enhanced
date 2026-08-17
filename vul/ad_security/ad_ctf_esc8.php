@@ -152,12 +152,12 @@ certipy auth -pfx kingslanding.pfx -dc-ip 192.168.56.134
 
             <!-- Flag Section -->
             <div class="step-box flag-box">
-                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取点</h3>
+                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取指南</h3>
                 <p style="color: var(--text-secondary); font-size: 14px;">
-                    成功通过 HTTP NTLM 中继申请域控证书并完成 PKINIT 认证后，提取 Flag：
+                    <strong>Flag 隐匿位置：</strong> 中继成功获得的 <code>kingslanding.pfx</code> 证书信息中（或利用获取的机器账户登录域控读取 <code>C:\Flags\flag8.txt</code>）：
                 </p>
-                <div class="well" style="background: #ffffff; border: 1px dashed #10b981; padding: 12px; font-family: monospace; font-size: 15px; color: #059669; font-weight: bold;">
-                    flag{ADCS_ESC8_NTLM_Relay_HTTP_Enrollment}
+                <div class="well" style="background: var(--bg-secondary); border: 1px dashed #10b981; padding: 14px; font-family: monospace; font-size: 13px; color: var(--text-primary);">
+                    🔒 [提示]：在终端执行 <code>certipy auth -pfx kingslanding.pfx</code> 认证导出域控票据及明文 Flag。
                 </div>
 
                 <form method="post" style="margin-top: 15px; max-width: 500px;">

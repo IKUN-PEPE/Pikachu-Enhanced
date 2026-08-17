@@ -161,12 +161,12 @@ bloodhound-python -u 'jon.snow' -p 'iknownothing' -d 'north.sevenkingdoms.local'
 
             <!-- Flag Section -->
             <div class="step-box flag-box">
-                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取点</h3>
+                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取指南</h3>
                 <p style="color: var(--text-secondary); font-size: 14px;">
-                    通过对林根域控 <code>kingslanding.sevenkingdoms.local</code> 侦察，确认根域与全网图论分析的 Flag 标识：
+                    <strong>Flag 隐匿位置：</strong> 根域控 <code>kingslanding.sevenkingdoms.local</code> 的 LDAP 属性或子域用户 <code>samwell.tarly</code> 的 <code>description</code> 备注字段中（或位于靶场节点 <code>C:\AD\Flags\flag1.txt</code>）。请根据上方步骤 3 执行数据采集并解密提取：
                 </p>
-                <div class="well" style="background: #ffffff; border: 1px dashed #10b981; padding: 12px; font-family: monospace; font-size: 15px; color: #059669; font-weight: bold;">
-                    flag{KingsLanding_BloodHound_Recon_2026}
+                <div class="well" style="background: var(--bg-secondary); border: 1px dashed #10b981; padding: 14px; font-family: monospace; font-size: 13px; color: var(--text-primary);">
+                    🔒 [提示]：在终端运行 <code>netexec ldap 192.168.56.136 -u 'samwell.tarly' -p '...' --description</code> 提取结果。
                 </div>
 
                 <form method="post" style="margin-top: 15px; max-width: 500px;">

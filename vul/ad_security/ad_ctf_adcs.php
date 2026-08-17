@@ -102,6 +102,33 @@ if (isset($_POST['check_flag'])) {
                     <li>证书模板不需要管理员审批 (Manager Approval) 或已有签名证书。</li>
                     <li>证书模板设置了 <strong><code>CT_FLAG_ENROLLEE_SUPPLIES_SUBJECT</code> (1)</strong> 标志，即允许请求者在证书签名请求 (CSR) 中<strong>任意指定使用者备用名称 (SAN, Subject Alternative Name)</strong>！</li>
                 </ol>
+
+                <h4 style="font-size:15px; font-weight:700; color:var(--text-primary); margin-top:20px;">全套 AD CS 证书漏洞全景表 (ESC1 ~ ESC15)：</h4>
+                <div style="overflow-x:auto;">
+                    <table class="table table-bordered table-striped" style="font-size:12px; color:var(--text-primary); margin-top:10px;">
+                        <thead>
+                            <tr style="background:var(--bg-secondary);">
+                                <th>编号</th>
+                                <th>漏洞类型 / 触发特征</th>
+                                <th>利用路径 / 攻击结果</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>ESC1</strong></td><td>模板允许 Enrollee 指定任意 SAN + Client Authentication EKU</td><td>伪造任意域管/域控身份申请证书 ➔ PKINIT 获取 TGT 提权</td></tr>
+                            <tr><td><strong>ESC2</strong></td><td>模板设置了“任意目的” (Any Purpose) EKU 或无 EKU 限制</td><td>可充当任意用途证书（相当于 ESC1/ESC3 的基石）</td></tr>
+                            <tr><td><strong>ESC3</strong></td><td>模板包含证书申请代理 (Certificate Request Agent) EKU</td><td>先申请代理证书，再代表任意高权用户申请目标身份证书</td></tr>
+                            <tr><td><strong>ESC4</strong></td><td>证书模板本身配置了可写 ACL 权限 (如 GenericAll / WriteDACL)</td><td>修改安全模板配置为 ESC1 状态后再行提权</td></tr>
+                            <tr><td><strong>ESC5</strong></td><td>CA 颁发机构对象或 PKI 容器 ACL 被修改</td><td>控制根域 PKI 容器、修改 CA 配置或提取 CA 私钥</td></tr>
+                            <tr><td><strong>ESC6</strong></td><td>CA 全局标志启用 <code>EDITF_ATTRIBUTESUBJECTALTNAME2</code></td><td>无论模板如何限制，强制 CA 接受任意请求中的 SAN 伪造</td></tr>
+                            <tr><td><strong>ESC7</strong></td><td>对 CA 具有 <code>ManageCA</code> 或 <code>ManageCertificates</code> 管理权限</td><td>批准挂起的请求或开启高危标志提权</td></tr>
+                            <tr><td><strong>ESC8</strong></td><td>AD CS Web 注册端点 (<code>HTTP/certsrv</code>) 开放且无 NTLM EPA/签名保护</td><td>PetitPotam / Coerce 强制域控中继 NTLM 导出 DC 证书</td></tr>
+                            <tr><td><strong>ESC9/ESC10</strong></td><td>禁用 Strong Certificate Mapping 弱绑定 + 结合篡改 UPN</td><td>将证书关联至目标受害者账户实现身份伪造</td></tr>
+                            <tr><td><strong>ESC11</strong></td><td>RPC 接口未强制加密 (<code>IF_ENFORCEENCRYPTICRPC</code> 缺失)</td><td>RPC 版的 NTLM Relay 证书注册提权</td></tr>
+                            <tr><td><strong>ESC13</strong></td><td>证书模板绑定到特定的 OID 组/组策略提权</td><td>申请包含特定 OID 的证书绕过访问控制</td></tr>
+                            <tr><td><strong>ESC14/ESC15</strong></td><td>弱映射碰撞与较新 Windows Server 证书弱校验机制</td><td>利用身份映射碰撞或算法瑕疵伪造特权凭证</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <!-- Step 1 -->
@@ -170,12 +197,12 @@ certipy auth -pfx administrator.pfx -dc-ip 192.168.56.134
 
             <!-- Flag Section -->
             <div class="step-box flag-box">
-                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取点</h3>
+                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取指南</h3>
                 <p style="color: var(--text-secondary); font-size: 14px;">
-                    成功利用 ESC1 申请域管证书并验证 PKINIT 导出哈希后，提取本关 Flag：
+                    <strong>Flag 隐匿位置：</strong> 利用 ESC1 申请伪造 SAN 证书 ➔ 执行 PKINIT 导出 <code>Administrator</code> 账号的 NTLM 哈希字符串中（或成功 Pass-The-Hash 登录 <code>GOAD-DC01</code> 读取桌面 <code>C:\Users\Administrator\Desktop\flag5.txt</code>）：
                 </p>
-                <div class="well" style="background: #ffffff; border: 1px dashed #10b981; padding: 12px; font-family: monospace; font-size: 15px; color: #059669; font-weight: bold;">
-                    flag{ADCS_ESC1_Cert_Authority_Administrator}
+                <div class="well" style="background: var(--bg-secondary); border: 1px dashed #10b981; padding: 14px; font-family: monospace; font-size: 13px; color: var(--text-primary);">
+                    🔒 [提示]：在终端执行 <code>certipy auth -pfx administrator.pfx -dc-ip 192.168.56.134</code> 解密证书并获取 NTLM Hash 认证。
                 </div>
 
                 <form method="post" style="margin-top: 15px; max-width: 500px;">

@@ -1,0 +1,24 @@
+{
+  "id": "fastjson-rce",
+  "name": "Fastjson 反序列化 RCE 微服务靶场 (1.2.24/1.2.47)",
+  "category": "middleware",
+  "image": "ghcr.io/pikachu-lab/fastjson-rce:latest",
+  "container_name": "pikachu-fastjson-rce",
+  "labels": {
+    "pikachu.lab": "true",
+    "pikachu.template": "fastjson-rce"
+  },
+  "ports": [
+    {
+      "host_ip": "127.0.0.1",
+      "host_port": 15007,
+      "container_port": 8090,
+      "protocol": "tcp"
+    }
+  ],
+  "env": [],
+  "cmd": [],
+  "entry_url": "http://127.0.0.1:8765/vul/rce/rce_fastjson.php",
+  "notes": "演示 Alibaba Fastjson 解析恶意 `@type` 字符串加载远程 Class 类实现 Java 反序列化提权 RCE 的实战路线。",
+  "enabled": true
+}

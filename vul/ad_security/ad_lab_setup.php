@@ -66,7 +66,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                 <h2 style="margin-top: 0; font-weight: 800; font-size: 22px; color: #f8fafc;">
                     🌐 GOAD (Game of Active Directory) 内网靶场蓝图设计
                 </h2>
-                <p style="font-size: 14px; color: #cbd5e1; line-height: 1.8; margin-bottom: 0;">
+                <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 0;">
                     GOAD 是全球最受欢迎的自动化域渗透测试靶场。结合了 Vagrant 基础镜像编排与 Ansible 自动化攻防场景下发。
                     为了适应不同硬件配置（8G/16G/32G 内存）的用户需求，GOAD 提供了 **3 台精简版 (GOAD-Light)** 与 **5 台完整版 (Full GOAD)** 两种运行模式。
                 </p>

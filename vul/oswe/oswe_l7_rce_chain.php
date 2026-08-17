@@ -31,7 +31,7 @@ if (isset($_POST['check_flag'])) {
 .cmd-box .highlight{color:#a78bfa;font-weight:bold;}
 .cmd-box .flag-text{color:#fbbf24;font-weight:bold;}
 .highlight-box{background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.25);border-radius:8px;padding:14px 18px;margin:12px 0;font-size:13px;color:var(--text-secondary);line-height:1.7;}
-.chain-diagram{background:#0f172a;border:1px solid #1e293b;border-radius:10px;padding:18px;font-family:monospace;font-size:13px;color:#94a3b8;margin:12px 0;line-height:2;}
+.chain-diagram{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:10px;padding:18px;font-family:monospace;font-size:13px;color:var(--text-secondary);margin:12px 0;line-height:2;}
 .flag-submit-area{background:var(--bg-card);border:2px dashed rgba(139,92,246,0.5);border-radius:12px;padding:24px;margin-top:25px;text-align:center;}
 .completion-banner{background:linear-gradient(135deg,#0c3a0c,#1a3a1a);border:1px solid rgba(52,211,153,0.4);border-radius:14px;padding:28px;margin-bottom:24px;text-align:center;}
 </style>

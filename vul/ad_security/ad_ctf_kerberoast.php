@@ -148,12 +148,12 @@ Password.........: MYpassword123#
 
             <!-- Flag Section -->
             <div class="step-box flag-box">
-                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取点</h3>
+                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取指南</h3>
                 <p style="color: var(--text-secondary); font-size: 14px;">
-                    成功离线破解出 MSSQL SPN 服务账号口令后，提取本关 Flag 凭据：
+                    <strong>Flag 隐匿位置：</strong> 对 <code>jon.snow</code> 或 SPN 服务账号 <code>sql_svc</code> 的 TGS 票据经过 Hashcat 模式 <code>13100</code> 碰撞提取出的明文口令字符串（或登录成员服务器读取 <code>C:\Flags\flag3.txt</code>）：
                 </p>
-                <div class="well" style="background: #ffffff; border: 1px dashed #10b981; padding: 12px; font-family: monospace; font-size: 15px; color: #059669; font-weight: bold;">
-                    flag{Kerberoast_MSSQL_Service_Ticket_Cracked}
+                <div class="well" style="background: var(--bg-secondary); border: 1px dashed #10b981; padding: 14px; font-family: monospace; font-size: 13px; color: var(--text-primary);">
+                    🔒 [提示]：使用 <code>hashcat -m 13100 kerberoast.hashes rockyou.txt</code> 成功解密离线票据后填入得到的 Flag。
                 </div>
 
                 <form method="post" style="margin-top: 15px; max-width: 500px;">

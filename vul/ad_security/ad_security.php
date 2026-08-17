@@ -224,17 +224,17 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                     <span class="ad-badge">知识体系与实战蓝图</span>
                 </h1>
                 <p class="ad-hero-desc">
-                    全面梳理企业级内网横向、Active Directory 域控制器攻防、凭据传递与权限维持的全套知识体系，并规划了从虚拟化环境搭建、域控角色部署到高级漏洞场景构建与日志 SIEM 审计的标准靶场落地蓝图。
+                    全面覆盖企业级 Active Directory 域控制器攻防、凭据传递、委派提权、证书服务 (AD CS)、父子域/跨林信任与权限维持的全套知识体系。已全面重构集成 GOAD (Game of Active Directory) 3 域 5 节点 13 大全量攻防板块与 15 大实战 CTF 关卡！
                 </p>
                 <div class="ad-stats-row">
-                    <div class="ad-stat-chip"><i class="fa fa-book" style="color: var(--text-secondary);"></i> 6 大内网安全知识模块</div>
-                    <div class="ad-stat-chip"><i class="fa fa-cubes" style="color:#34d399;"></i> 5 阶段靶场建设流程</div>
-                    <div class="ad-stat-chip"><i class="fa fa-flag" style="color:#f43f5e;"></i> 6 大实战 CTF 夺旗关卡 (NEW)</div>
-                    <div class="ad-stat-chip"><i class="fa fa-shield" style="color:#60a5fa;"></i> EDR / SIEM 攻防检测闭环</div>
+                    <div class="ad-stat-chip"><i class="fa fa-book" style="color: var(--text-secondary);"></i> 13 大 GOAD 域攻防技术板块</div>
+                    <div class="ad-stat-chip"><i class="fa fa-sitemap" style="color:#a855f7;"></i> 3 域 5 节点 GOAD 拓扑</div>
+                    <div class="ad-stat-chip"><i class="fa fa-flag" style="color:#f43f5e;"></i> 15 大实战 CTF 夺旗关卡 (4300 PTS)</div>
+                    <div class="ad-stat-chip"><i class="fa fa-fire" style="color:#f59e0b;"></i> 4 大顶级综合杀链 (Kill-Chains)</div>
                 </div>
                 <div style="margin-top: 20px;">
                     <a href="ad_ctf_hub.php" class="btn btn-danger btn-lg" style="background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); border: none; border-radius: 10px; font-weight: 800; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.4);">
-                        <i class="fa fa-trophy"></i> 立即进入 GOAD 域渗透 CTF 夺旗实战总控大厅 <i class="fa fa-arrow-right"></i>
+                        <i class="fa fa-trophy"></i> 立即进入 GOAD 域渗透 CTF 夺旗实战总控大厅 (4300 PTS) <i class="fa fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
@@ -242,13 +242,16 @@ include_once $PIKA_ROOT_DIR . 'header.php';
             <!-- Navigation Tabs -->
             <div class="ad-tab-nav">
                 <button class="ad-tab-btn active" onclick="switchTab('knowledge')">
-                    <i class="fa fa-sitemap"></i> 一、内网安全 6 大知识体系
+                    <i class="fa fa-sitemap"></i> 一、GOAD 13 大域攻防知识体系
+                </button>
+                <button class="ad-tab-btn" onclick="switchTab('killchains')">
+                    <i class="fa fa-fire" style="color:#f59e0b;"></i> 二、4 大顶级综合杀链 (Kill-Chains)
                 </button>
                 <button class="ad-tab-btn" onclick="switchTab('lab')">
-                    <i class="fa fa-cogs"></i> 二、AD 域漏洞靶场搭建大纲
+                    <i class="fa fa-cogs"></i> 三、5台 GOAD 拓扑与搭建蓝图
                 </button>
                 <a href="ad_ctf_hub.php" class="ad-tab-btn" style="text-decoration: none; background: rgba(244, 63, 94, 0.1); color: #f43f5e; border-color: rgba(244, 63, 94, 0.3);">
-                    <i class="fa fa-flag"></i> 三、GOAD 域渗透 CTF 夺旗关卡 (1500 PTS)
+                    <i class="fa fa-flag"></i> 四、GOAD 15 大 CTF 关卡 (4300 PTS)
                 </a>
             </div>
 
@@ -464,9 +467,64 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                     <h4 style="margin-top:0; font-weight:700; color:var(--text-primary);"><i class="fa fa-info-circle" style="color:#6366f1;"></i> 后续规划提示</h4>
                     <p style="margin-bottom:0; font-size:14px; color:var(--text-secondary); line-height:1.6;">
                         当前页面已完成对<strong>内网与 AD 域安全完整知识体系与靶场搭建大纲</strong>的前端可视化展示。根据规划指令，后端靶场底层镜像及自动化利用脚本将在大纲确定后开启落地构建！
+            </div>
+
+            <!-- Tab 2: 4 Major Kill-Chains Block -->
+            <div id="tab-killchains" class="tab-content-block" style="display: none;">
+                <div class="pillar-card" style="border-top-color: #f59e0b;">
+                    <h3 style="margin-top:0; font-size:20px; font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:10px;">
+                        <i class="fa fa-fire" style="color:#f59e0b;"></i> GOAD 3域5节点 4 大顶级综合杀链 (Comprehensive Kill-Chains)
+                    </h3>
+                    <p style="font-size:14px; color:var(--text-secondary); line-height:1.6;">
+                        GOAD 靶场设计的核心精髓在于多维度的全杀链复现。以下 4 条杀链代表了红蓝对抗与 CRTP / CRTE 认证考试中最经典的域渗透突破路线：
                     </p>
                 </div>
 
+                <div class="stage-timeline">
+                    <!-- 杀链一 -->
+                    <div class="stage-box" style="border-top-color: #ef4444;">
+                        <div class="stage-num" style="color:#ef4444;">KILL-CHAIN 01</div>
+                        <div class="stage-name">单域完整提权杀链 (sevenkingdoms 域)</div>
+                        <div class="stage-detail">
+                            • <strong>起点</strong>：匿名 LDAP / 密码喷洒（<code>tywin.lannister</code>）<br>
+                            • <strong>核心推进</strong>：GenericWrite ➔ GenericAll ➔ ForceChangePassword ➔ WriteDACL ➔ Self-Membership<br>
+                            • <strong>终点</strong>：取得 <code>sevenkingdoms.local</code> Domain Admin 域管理员权限
+                        </div>
+                    </div>
+
+                    <!-- 杀链二 -->
+                    <div class="stage-box" style="border-top-color: #6366f1;">
+                        <div class="stage-num" style="color:#6366f1;">KILL-CHAIN 02</div>
+                        <div class="stage-name">子域到父域跨域突破 (north ➔ sevenkingdoms)</div>
+                        <div class="stage-detail">
+                            • <strong>起点</strong>：<code>north.sevenkingdoms.local</code> 子域低权用户<br>
+                            • <strong>核心推进</strong>：子域 DCSync 提取 <code>krbtgt</code> ➔ ExtraSids (SID History) 伪造黄金票据<br>
+                            • <strong>终点</strong>：注入 Enterprise Admins (519) 跨域接管根域控 <code>GOAD-DC01</code>
+                        </div>
+                    </div>
+
+                    <!-- 杀链三 -->
+                    <div class="stage-box" style="border-top-color: #10b981;">
+                        <div class="stage-num" style="color:#10b981;">KILL-CHAIN 03</div>
+                        <div class="stage-name">独立林跨林横向突破 (sevenkingdoms ➔ essos)</div>
+                        <div class="stage-detail">
+                            • <strong>起点</strong>：<code>north</code> 域 <code>samwell.tarly</code> 明文密码<br>
+                            • <strong>核心推进</strong>：跨林 MSSQL Trusted Link (<code>castelblack</code> ➔ <code>braavos</code> ➔ <code>meereen</code>)<br>
+                            • <strong>终点</strong>：利用 Foreign Security Principal (FSP) 外域组沦陷 <code>essos.local</code> 独立林
+                        </div>
+                    </div>
+
+                    <!-- 杀链四 -->
+                    <div class="stage-box" style="border-top-color: #a855f7;">
+                        <div class="stage-num" style="color:#a855f7;">KILL-CHAIN 04</div>
+                        <div class="stage-name">AD CS 证书服务全链路提权 (ESC1 ➔ ESC8 ➔ ESC5)</div>
+                        <div class="stage-detail">
+                            • <strong>起点</strong>：域内任意普通认证用户<br>
+                            • <strong>核心推进</strong>：ESC1 任意 SAN 伪造 ➔ ESC8 NTLM HTTP 中继 ➔ ESC5 PKI 容器 ACL 篡改<br>
+                            • <strong>终点</strong>：取得根域 CA 证书颁发机构最高管理员控制权
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -481,6 +539,9 @@ function switchTab(tabName) {
     if (tabName === 'knowledge') {
         event.currentTarget.classList.add('active');
         document.getElementById('tab-knowledge').style.display = 'block';
+    } else if (tabName === 'killchains') {
+        event.currentTarget.classList.add('active');
+        document.getElementById('tab-killchains').style.display = 'block';
     } else if (tabName === 'lab') {
         event.currentTarget.classList.add('active');
         document.getElementById('tab-lab').style.display = 'block';

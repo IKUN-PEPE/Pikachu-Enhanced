@@ -148,12 +148,12 @@ certipy shadow remove -u jon.snow@north.sevenkingdoms.local -p iknownothing -acc
 
             <!-- Flag Section -->
             <div class="step-box flag-box">
-                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取点</h3>
+                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取指南</h3>
                 <p style="color: var(--text-secondary); font-size: 14px;">
-                    成功利用 Shadow Credentials 获取账号 TGT 票据并导出 NTLM 哈希后，提取 Flag：
+                    <strong>Flag 隐匿位置：</strong> 注入密钥凭据 ➔ 成功运行 PKINIT 导出的 <code>samwell.tarly</code> 目标 NT 哈希解密解密后获取（或登录机器读取 <code>C:\Flags\flag9.txt</code>）：
                 </p>
-                <div class="well" style="background: #ffffff; border: 1px dashed #10b981; padding: 12px; font-family: monospace; font-size: 15px; color: #059669; font-weight: bold;">
-                    flag{Shadow_Credentials_KeyCredentialLink_PKINIT}
+                <div class="well" style="background: var(--bg-secondary); border: 1px dashed #10b981; padding: 14px; font-family: monospace; font-size: 13px; color: var(--text-primary);">
+                    🔒 [提示]：在终端执行 <code>certipy shadow auto -u jon.snow ...</code> 提取并解密获取明文 Flag。
                 </div>
 
                 <form method="post" style="margin-top: 15px; max-width: 500px;">

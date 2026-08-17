@@ -3,4 +3,9 @@
 *.rar
 *.tar
 *.gz
+*.tgz
 .DS_Store
+scratch/
+docker-cli
+docker-cli.exe
+

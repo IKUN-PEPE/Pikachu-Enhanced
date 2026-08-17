@@ -1,10 +1,8 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
 $ACTIVE = array_fill(0, 250, '');
-$ACTIVE[220] = 'active open';
-$ACTIVE[221] = 'active';
-$ACTIVE[220] = 'active open';
-$ACTIVE[221] = 'active';
+$ACTIVE[200] = 'active open';
+$ACTIVE['proto_215'] = 'active';
 
 $PIKA_ROOT_DIR = "../../";
 include_once $PIKA_ROOT_DIR . 'header.php';
@@ -156,5 +154,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php
 include_once $PIKA_ROOT_DIR . 'footer.php';
 ?>
+
 
 

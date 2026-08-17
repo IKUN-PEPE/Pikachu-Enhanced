@@ -18,7 +18,7 @@
   ],
   "env": [],
   "cmd": [],
-  "entry_url": "http://127.0.0.1:15000",
-  "notes": "演示 Flask/Jinja2 SSTI，仅允许本地 127.0.0.1 访问。Phase 2 前需替换为真实可用镜像。",
+  "entry_url": "http://127.0.0.1:8765/vul/rce/rce_ssti.php",
+  "notes": "演示 Python Flask / Jinja2 服务器端模板注入 (SSTI)，支持通过 {{7*7}} 表达式与类继承链突破沙箱 RCE。",
   "enabled": true
 }

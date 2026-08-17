@@ -5,6 +5,7 @@ RUN apt-get update \
         default-mysql-client \
         curl \
         ca-certificates \
+        docker.io \
     && docker-php-ext-install mysqli pdo_mysql \
     && a2enmod rewrite \
     && rm -rf /var/lib/apt/lists/*
@@ -23,3 +24,5 @@ EXPOSE 80
 
 ENTRYPOINT ["pikachu-entrypoint"]
 CMD ["apache2-foreground"]
+
+

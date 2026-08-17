@@ -9,6 +9,9 @@ ob_start();
 
 $PIKA_ROOT_DIR = isset($PIKA_ROOT_DIR) ? $PIKA_ROOT_DIR : '';
 $ACTIVE = array_pad((array)@$ACTIVE, 200, '');
+include_once __DIR__ . '/inc/nav.inc.php';
+$CAT_ACTIVE = [];
+pika_resolve_navigation($ACTIVE, $CAT_ACTIVE, $PIKA_ROOT_DIR);
 
 
 //$ACTIVE = array("active open","active","","","");
@@ -53,104 +56,8 @@ if (!isset($ACTIVE)){
     <link rel="stylesheet" href="<?php echo $PIKA_ROOT_DIR;?>assets/css/pika_unified.css?v=<?php echo filemtime(dirname(__FILE__) . '/assets/css/pika_unified.css'); ?>" />
 
     <style>
-    /* Daylight Light Mode: All fonts must be crisp, high-contrast black/dark slate */
-    html:not([data-theme="dark"]),
-    :root:not([data-theme="dark"]),
-    [data-theme="light"] {
-        --text-primary: #0f172a !important;
-        --text-secondary: #1e293b !important;
-        --text-muted: #475569 !important;
-    }
-
-    html:not([data-theme="dark"]) body,
-    html:not([data-theme="dark"]) .page-content,
-    html:not([data-theme="dark"]) .main-content {
-        color: #0f172a !important;
-    }
-
-    /* Stage Headers & Titles */
-    html:not([data-theme="dark"]) .ctf-stage-header,
-    html:not([data-theme="dark"]) .overview-hero-card {
-        background: #ffffff !important;
-        color: #0f172a !important;
-        border: 1px solid #cbd5e1 !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
-    }
-
-    html:not([data-theme="dark"]) .ctf-stage-title,
-    html:not([data-theme="dark"]) .ctf-stage-header h1,
-    html:not([data-theme="dark"]) .ctf-stage-header h2,
-    html:not([data-theme="dark"]) .ctf-stage-header h3,
-    html:not([data-theme="dark"]) .overview-hero-card h1,
-    html:not([data-theme="dark"]) h1,
-    html:not([data-theme="dark"]) h2,
-    html:not([data-theme="dark"]) h3,
-    html:not([data-theme="dark"]) h4 {
-        color: #0f172a !important;
-        text-shadow: none !important;
-        font-weight: 800 !important;
-    }
-
-    html:not([data-theme="dark"]) .ctf-stage-header p,
-    html:not([data-theme="dark"]) .ctf-stage-header .stage-desc,
-    html:not([data-theme="dark"]) .overview-hero-card p {
-        color: #334155 !important;
-        font-weight: 500 !important;
-        text-shadow: none !important;
-    }
-
-    /* Tag Chips & Back Links in Light Mode */
-    html:not([data-theme="dark"]) .ctf-stage-header div span,
-    html:not([data-theme="dark"]) .ctf-stage-header .stage-chip {
-        background: #f1f5f9 !important;
-        color: #0f172a !important;
-        border: 1px solid #cbd5e1 !important;
-        font-weight: 600 !important;
-    }
-
-    html:not([data-theme="dark"]) .ctf-stage-header a,
-    html:not([data-theme="dark"]) .ctf-stage-header .stage-back-link {
-        color: #4338ca !important;
-        font-weight: bold !important;
-    }
-
-    /* Difficulty & PTS Badges in Light Mode */
-    html:not([data-theme="dark"]) .ctf-stage-title span,
-    html:not([data-theme="dark"]) .ctf-stage-header h1 span {
-        background: #dcfce7 !important;
-        color: #14532d !important;
-        border: 1px solid #86efac !important;
-        font-weight: 700 !important;
-        text-shadow: none !important;
-    }
-
-    /* Step Boxes & Code Blocks */
-    html:not([data-theme="dark"]) .step-box,
-    html:not([data-theme="dark"]) .ctf-card {
-        background: #ffffff !important;
-        color: #0f172a !important;
-        border: 1px solid #e2e8f0 !important;
-    }
-
-    html:not([data-theme="dark"]) .step-title {
-        color: #0f172a !important;
-        font-weight: 800 !important;
-    }
-
-    html:not([data-theme="dark"]) .cmd-box,
-    html:not([data-theme="dark"]) pre,
-    html:not([data-theme="dark"]) .code-block,
-    html:not([data-theme="dark"]) .terminal-box {
-        background: #f8fafc !important;
-        color: #0f172a !important;
-        border: 1px solid #cbd5e1 !important;
-    }
-
-    html:not([data-theme="dark"]) .cmd-box .comment { color: #64748b !important; }
-    html:not([data-theme="dark"]) .cmd-box .cmd,
-    html:not([data-theme="dark"]) .cmd-box .keyword { color: #2563eb !important; font-weight: bold; }
-    html:not([data-theme="dark"]) .cmd-box .flag-text { color: #b45309 !important; font-weight: bold; }
-    html:not([data-theme="dark"]) .cmd-box .dangerous { color: #b91c1c !important; font-weight: bold; }
+    .sidebar .nav-list > li > a { border-left: none !important; }
+    .sidebar .nav-list > li.active > a:after, .sidebar .nav-list > li.active:after { display: none !important; }
     </style>
 
     <!--[if lte IE 9]>
@@ -186,15 +93,14 @@ if (!isset($ACTIVE)){
 </head>
 
 <body class="no-skin">
-<div id="navbar" class="navbar navbar-default          ace-save-state">
+<div id="navbar" class="navbar navbar-default ace-save-state">
     <div class="navbar-container ace-save-state" id="navbar-container">
 
         <div class="navbar-header pull-left">
             <a href="<?php echo $PIKA_ROOT_DIR;?>index.php" class="navbar-brand">
-                <small>
-                    <i class="fa fa-key"></i>
-                    Pikachu 漏洞练习平台 pika~pika~
-                </small>
+                <span class="brand-logo-badge"><i class="fa fa-bolt"></i></span>
+                <span class="brand-title">Pikachu-Enhanced</span>
+                <span class="brand-badge">v2.0 NEXT-GEN</span>
             </a>
         </div>
 
@@ -205,40 +111,58 @@ if (!isset($ACTIVE)){
                 
                 function updateIcon(theme) {
                     if (theme === 'dark') {
-                        icon.className = 'fa fa-sun-o'; // Show sun to switch to light
+                        icon.className = 'fa fa-sun-o';
                     } else {
-                        icon.className = 'fa fa-moon-o'; // Show moon to switch to dark
+                        icon.className = 'fa fa-moon-o';
                     }
                 }
                 
                 var current = document.documentElement.getAttribute('data-theme') || 'dark';
                 updateIcon(current);
                 
-                btn.addEventListener('click', function() {
-                    var currentTheme = document.documentElement.getAttribute('data-theme');
-                    var newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('pika_theme', newTheme);
-                    updateIcon(newTheme);
-                });
+                if (btn) {
+                    btn.addEventListener('click', function() {
+                        var currentTheme = document.documentElement.getAttribute('data-theme');
+                        var newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                        document.documentElement.setAttribute('data-theme', newTheme);
+                        localStorage.setItem('pika_theme', newTheme);
+                        updateIcon(newTheme);
+                    });
+                }
             });
         </script>
 
-        <div class="navbar-buttons navbar-header pull-right" role="navigation" style="display: flex; align-items: center;">
-            <button id="theme-toggle-btn" class="theme-toggle" title="切换黑夜/白天模式" style="height: 45px; border: none; background: transparent; color: var(--nav-text-muted); font-size: 18px; padding: 0 15px;">
+        <div class="navbar-buttons navbar-header pull-right" role="navigation">
+            <button id="theme-toggle-btn" class="theme-toggle-btn" title="切换深色/浅色模式">
                 <i class="fa fa-sun-o" id="theme-icon"></i>
             </button>
-            <ul class="nav ace-nav">
-
-                <li class="light-blue dropdown-modal">
-                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="<?php echo $PIKA_ROOT_DIR;?>assets/images/avatars/pikachu1.png" alt="Jason's Photo" />
+            <ul class="nav ace-nav" style="display:flex; align-items:center; background:transparent;">
+                <li class="dropdown-modal">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle user-profile-btn" style="background:transparent; padding:0 8px; display:flex; align-items:center;">
+                        <img class="nav-user-photo" src="<?php echo $PIKA_ROOT_DIR;?>assets/images/avatars/pikachu1.png" alt="Pikachu" />
                         <span class="user-info">
-									<small>欢迎</small>
-									骚年
+                            <span style="font-weight:700; color:var(--text-primary); font-size:13px;">Security Operator</span>
                         </span>
+                        <i class="ace-icon fa fa-caret-down" style="color:var(--text-muted); margin-left:4px;"></i>
                     </a>
-
+                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close" style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-md); box-shadow:var(--shadow-lg); padding:8px 0;">
+                        <li>
+                            <a href="<?php echo $PIKA_ROOT_DIR;?>index.php" style="color:var(--text-primary); padding:8px 16px; font-weight:600;">
+                                <i class="ace-icon fa fa-home"></i> 平台首页
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo $PIKA_ROOT_DIR;?>intro.php" style="color:var(--text-primary); padding:8px 16px; font-weight:600;">
+                                <i class="ace-icon fa fa-map"></i> 漏洞图鉴
+                            </a>
+                        </li>
+                        <li class="divider" style="background:var(--border-subtle); margin:6px 0;"></li>
+                        <li>
+                            <a href="<?php echo $PIKA_ROOT_DIR;?>install.php" style="color:var(--danger); padding:8px 16px; font-weight:600;">
+                                <i class="ace-icon fa fa-refresh"></i> 初始化环境
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
