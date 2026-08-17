@@ -1,9 +1,6 @@
 <?php
-$ACTIVE = array_fill(0, 250, '');
-$ACTIVE[194] = 'active open';
-$ACTIVE['proto_214'] = 'active';
-$ACTIVE[194] = 'active open';
-$ACTIVE['proto_214'] = 'active';
+$ACTIVE = array_fill(0, 300, '');
+$ACTIVE[214] = 'active';
 
 $PIKA_ROOT_DIR = "../../";
 include_once $PIKA_ROOT_DIR . 'header.php';

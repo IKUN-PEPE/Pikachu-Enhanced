@@ -3,6 +3,8 @@
  * Pikachu-Enhanced v2.0 - 数字型 SQL 注入 (POST) 教学演练
  */
 $PIKA_ROOT_DIR = "../../";
+$ACTIVE = array_fill(0, 300, '');
+$ACTIVE[37] = 'active';
 include_once $PIKA_ROOT_DIR . 'header.php';
 include_once $PIKA_ROOT_DIR . 'inc/config.inc.php';
 include_once $PIKA_ROOT_DIR . 'inc/function.php';

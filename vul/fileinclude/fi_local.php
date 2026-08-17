@@ -3,6 +3,8 @@
  * Pikachu-Enhanced v2.0 - 本地文件包含 (LFI) 教学演练
  */
 $PIKA_ROOT_DIR = "../../";
+$ACTIVE = array_fill(0, 300, '');
+$ACTIVE[57] = 'active';
 include_once $PIKA_ROOT_DIR . 'header.php';
 
 $html = '';
