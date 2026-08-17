@@ -6,6 +6,8 @@ $PIKA_ROOT_DIR = "../../../";
 include_once $PIKA_ROOT_DIR . 'inc/config.inc.php';
 include_once $PIKA_ROOT_DIR . 'inc/mysql.inc.php';
 include_once $PIKA_ROOT_DIR . 'inc/function.php';
+$ACTIVE = array_fill(0, 300, '');
+$ACTIVE[13] = 'active';
 include_once $PIKA_ROOT_DIR . 'header.php';
 
 $link = connect();

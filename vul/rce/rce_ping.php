@@ -3,6 +3,8 @@
  * Pikachu-Enhanced v2.0 - 命令注入 (Exec "ping") 教学演练
  */
 $PIKA_ROOT_DIR = "../../";
+$ACTIVE = array_fill(0, 300, '');
+$ACTIVE[52] = 'active';
 include_once $PIKA_ROOT_DIR . 'header.php';
 
 $html = '';

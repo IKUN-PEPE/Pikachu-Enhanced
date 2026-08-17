@@ -3,6 +3,8 @@
  * Pikachu-Enhanced v2.0 - XSS 之过滤绕过教学演练
  */
 $PIKA_ROOT_DIR = "../../";
+$ACTIVE = array_fill(0, 300, '');
+$ACTIVE[14] = 'active';
 include_once $PIKA_ROOT_DIR . 'header.php';
 
 $html = '';
