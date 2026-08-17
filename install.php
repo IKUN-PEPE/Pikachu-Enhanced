@@ -118,20 +118,22 @@ if(isset($_POST['submit'])){
     }
 
 
-    //创建数据.创建表sqli里面http头注入的信息,httpinfo和数据
-    $creat_httpinfo=
-        "CREATE TABLE IF NOT EXISTS `httpinfo` (
+    //创建 target flag 存储表 flag_vault
+    $create_flag_vault =
+        "CREATE TABLE IF NOT EXISTS `flag_vault` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-    `userid` int(10) unsigned NOT NULL,
-    `ipaddress` varchar(255) NOT NULL,
-     `useragent` varchar(255) NOT NULL,
-     `httpaccept` varchar(255) NOT NULL,
-    `remoteport` varchar(255) NOT NULL,
+    `flag_name` varchar(66) NOT NULL,
+    `flag_val` varchar(255) NOT NULL,
     PRIMARY KEY (`id`)
-    ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=42";
-    if(!@mysqli_query($link,$creat_httpinfo)){
-        exit('创建httpinfo表失败，请仔细检查当前用户是否有操作权限');
+    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+    if(!@mysqli_query($link, $create_flag_vault)){
+        exit('创建flag_vault表失败');
     }
+    $insert_flag_vault = "INSERT INTO `flag_vault` (`id`, `flag_name`, `flag_val`) VALUES
+    (1, 'sqli_flag', 'flag{Pikachu_SQLi_Database_Vault_Extracted}'),
+    (2, 'xxe_flag', 'flag{Pikachu_XXE_Local_Entity_Disclosure}'),
+    (3, 'deser_flag', 'flag{Pikachu_Deserialization_POP_Chain_Executed}')";
+    @mysqli_query($link, $insert_flag_vault);
 
 
 

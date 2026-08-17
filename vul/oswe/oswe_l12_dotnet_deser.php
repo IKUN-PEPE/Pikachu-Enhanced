@@ -18,13 +18,13 @@ if (isset($_POST['check_flag'])) {
 ?>
 <style>
 .ctf-stage-header { background: var(--bg-card); border-radius: 14px; padding: 25px 30px; margin-bottom: 25px; border: 1px solid var(--border-color); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
-.step-box { background:var(--bg-card, #1e293b); border:1px solid var(--border-color, #334155); border-radius:12px; padding:24px; margin-bottom:22px; color: #cbd5e1; }
+.step-box { background:var(--bg-card, #1e293b); border:1px solid var(--border-color, #334155); border-radius:12px; padding:24px; margin-bottom:22px; color: var(--text-secondary); }
 .step-title { font-size:16px; font-weight:700; color:#06b6d4; margin-top:0; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
 .step-num { background:linear-gradient(135deg,#06b6d4,#0891b2); color:#fff; width:26px; height:26px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; }
 .cmd-box { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px 18px; font-family: monospace; font-size: 13px; color: var(--text-primary); margin: 12px 0; overflow-x: auto; line-height: 1.8; }
 .cmd-box .comment { color:#64748b; }
 .cmd-box .flag-text { color:#fbbf24; font-weight:bold; }
-.highlight-box { background:rgba(6,182,212,0.08); border:1px solid rgba(6,182,212,0.25); border-radius:8px; padding:14px 18px; margin:12px 0; font-size:13px; color:#94a3b8; line-height:1.7; }
+.highlight-box { background:rgba(6,182,212,0.08); border:1px solid rgba(6,182,212,0.25); border-radius:8px; padding:14px 18px; margin:12px 0; font-size:13px; color: var(--text-muted); line-height:1.7; }
 .flag-submit-area { background:var(--bg-card, #1e293b); border:2px dashed rgba(6,182,212,0.4); border-radius:12px; padding:24px; margin-top:25px; text-align:center; }
 </style>
 <div class="main-content"><div class="main-content-inner"><div class="page-content">

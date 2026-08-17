@@ -133,8 +133,9 @@ semgrep --config "p/java" .<br><br>
 
     <div class="flag-submit-area">
         <h4 style="font-weight: 800; color: var(--text-primary); margin-top: 0;">🚩 Flag 验证 — OSWE L1</h4>
-        <div class="cmd-box" style="display: inline-block; padding: 10px 24px; margin: 0 auto 16px;">
-            <span class="flag-text">flag{OSWE_L1_WhiteBox_DataFlow_Audit_Done}</span>
+        <div class="cmd-box" style="display: block; padding: 12px 20px; margin: 0 auto 16px; text-align: left;">
+            <span class="comment"># 白盒代码审计与目标系统 Flag 提取：</span><br>
+            <span class="cmd">type C:\Flags\oswe_l1.txt</span>
         </div>
         <form method="post" style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
             <input type="text" name="user_flag" class="form-control" placeholder="flag{...}" required style="max-width: 420px; border-radius: 8px; font-family: monospace;">

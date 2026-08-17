@@ -1,0 +1,24 @@
+{
+  "id": "docker-caps-escape",
+  "name": "Linux Capabilities 逃逸 (CAP_SYS_ADMIN)",
+  "category": "cloudnative",
+  "image": "ghcr.io/pikachu-lab/docker-caps-escape:latest",
+  "container_name": "pikachu-docker-caps",
+  "labels": {
+    "pikachu.lab": "true",
+    "pikachu.template": "docker-caps-escape"
+  },
+  "ports": [
+    {
+      "host_ip": "127.0.0.1",
+      "host_port": 15003,
+      "container_port": 80,
+      "protocol": "tcp"
+    }
+  ],
+  "env": [],
+  "cmd": [],
+  "entry_url": "http://127.0.0.1:8765/vul/dockerlab/docker_caps_escape.php",
+  "notes": "演示具备 CAP_SYS_ADMIN 细粒度特权能力时，装载 cgroups v1 并配置 release_agent 回调脚本实现宿主机 Root 命令盲执行。",
+  "enabled": true
+}

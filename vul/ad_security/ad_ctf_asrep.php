@@ -147,12 +147,12 @@ Password.........: winterishere
 
             <!-- Flag Section -->
             <div class="step-box flag-box">
-                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取点</h3>
+                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取指南</h3>
                 <p style="color: var(--text-secondary); font-size: 14px;">
-                    完成 AS-REP 提取与离线爆破，验证目标脆弱属性获得的 Flag：
+                    <strong>Flag 隐匿位置：</strong> 对 <code>brandon.stark</code> 或 <code>eddard.stark</code> 的 AS-REP 哈希经过 Hashcat 模式 <code>18200</code> 成功离线破解出的明文密码字符串中（格式为 <code>flag{...}</code>），或登录机器节点读取 <code>C:\Flags\flag2.txt</code>：
                 </p>
-                <div class="well" style="background: #ffffff; border: 1px dashed #10b981; padding: 12px; font-family: monospace; font-size: 15px; color: #059669; font-weight: bold;">
-                    flag{ASREP_Roasting_No_PreAuth_Found}
+                <div class="well" style="background: var(--bg-secondary); border: 1px dashed #10b981; padding: 14px; font-family: monospace; font-size: 13px; color: var(--text-primary);">
+                    🔒 [提示]：使用 <code>hashcat -m 18200 asrep.hashes passwords.txt</code> 成功碰撞解密后获取完整 Flag。
                 </div>
 
                 <form method="post" style="margin-top: 15px; max-width: 500px;">

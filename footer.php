@@ -1,72 +1,39 @@
 <?php
-///**
-// * Created by runner.han
-// * There is nothing new under the sun
-// */
-
 if (!isset($PIKA_ROOT_DIR)){
     $PIKA_ROOT_DIR = '';
 }
-//echo $PIKA_ROOT_DIR;
-
 ?>
 
-
-
-<div class="footer">
+<div class="footer" style="padding-top:20px; border-top:1px solid var(--border-subtle); background:transparent;">
     <div class="footer-inner">
-        <div class="footer-content">
-						<span class="bigger-120">
-							Pikachu PIKA~ PIKA~&copy; runner.han
-						</span>
-
+        <div class="footer-content" style="background:transparent; border:none; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span class="label label-info" style="font-size:11px; padding:3px 8px;"><i class="fa fa-shield"></i> Pikachu-Enhanced</span>
+                <span style="color:var(--text-muted); font-size:12.5px;">v2.0 Next-Gen Cyber-Range &copy; <?php echo date('Y'); ?></span>
+            </div>
+            <div style="color:var(--text-muted); font-size:12px; display:flex; gap:16px;">
+                <span><i class="fa fa-terminal" style="color:var(--primary);"></i> 封闭演练靶场</span>
+                <span><i class="fa fa-code-fork" style="color:var(--accent);"></i> 170+ 实战关卡</span>
+            </div>
         </div>
     </div>
 </div>
 
-<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-    <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse" style="border-radius:var(--radius-full); width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center;">
+    <i class="ace-icon fa fa-angle-double-up icon-only"></i>
 </a>
 </div><!-- /.main-container -->
 
 <!-- basic scripts -->
-
-<!--[if !IE]> -->
-
-<!-- <![endif]-->
-
-<!--[if IE]>
-<script src="<?php echo $PIKA_ROOT_DIR;?>assets/js/jquery-1.11.3.min.js"></script>
-<![endif]-->
-<script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='<?php echo $PIKA_ROOT_DIR;?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-</script>
-
-<!-- page specific plugin scripts -->
-
-<!--[if lte IE 8]>
-<script src="<?php echo $PIKA_ROOT_DIR;?>assets/js/excanvas.min.js"></script>
-<![endif]-->
 <script src="<?php echo $PIKA_ROOT_DIR;?>assets/js/jquery-ui.custom.min.js"></script>
-<script src="<?php echo $PIKA_ROOT_DIR;?>assets/js/jquery.ui.touch-punch.min.js"></script>
-<script src="<?php echo $PIKA_ROOT_DIR;?>assets/js/jquery.easypiechart.min.js"></script>
-<script src="<?php echo $PIKA_ROOT_DIR;?>assets/js/jquery.sparkline.index.min.js"></script>
-<script src="<?php echo $PIKA_ROOT_DIR;?>assets/js/jquery.flot.min.js"></script>
-<script src="<?php echo $PIKA_ROOT_DIR;?>assets/js/jquery.flot.pie.min.js"></script>
-<script src="<?php echo $PIKA_ROOT_DIR;?>assets/js/jquery.flot.resize.min.js"></script>
-
-<!-- ace scripts -->
 <script src="<?php echo $PIKA_ROOT_DIR;?>assets/js/ace-elements.min.js"></script>
 <script src="<?php echo $PIKA_ROOT_DIR;?>assets/js/ace.min.js"></script>
-
-<!-- inline scripts related to this page -->
 
 <script>
     $(function (){
         $("[data-toggle='popover']").popover();
     });
 </script>
-
 
 </body>
 </html>

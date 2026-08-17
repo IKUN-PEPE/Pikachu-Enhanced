@@ -1,0 +1,24 @@
+{
+  "id": "docker-privileged-escape",
+  "name": "Docker 特权模式逃逸 (--privileged)",
+  "category": "cloudnative",
+  "image": "ghcr.io/pikachu-lab/docker-privileged-escape:latest",
+  "container_name": "pikachu-docker-privileged",
+  "labels": {
+    "pikachu.lab": "true",
+    "pikachu.template": "docker-privileged-escape"
+  },
+  "ports": [
+    {
+      "host_ip": "127.0.0.1",
+      "host_port": 15001,
+      "container_port": 80,
+      "protocol": "tcp"
+    }
+  ],
+  "env": [],
+  "cmd": [],
+  "entry_url": "http://127.0.0.1:8765/vul/dockerlab/docker_privileged_escape.php",
+  "notes": "演示容器以 --privileged 特权模式启动时，通过挂载宿主机 /dev/vda1 物理磁盘进行 chroot 逃逸全过程。",
+  "enabled": true
+}

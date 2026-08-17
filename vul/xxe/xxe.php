@@ -5,8 +5,8 @@
 include_once '../../inc/config.inc.php';
 
 $ACTIVE = array_fill(0, 250, '');
-$ACTIVE[99] = 'active open';
-$ACTIVE[100] = 'active';
+$ACTIVE[95] = 'active open';
+$ACTIVE[96] = 'active';
 
 $PIKA_ROOT_DIR = "../../";
 include_once $PIKA_ROOT_DIR . 'header.php';

@@ -22,8 +22,8 @@ include_once $PIKA_ROOT_DIR."inc/mysql.inc.php";
 $link=connect();
 // 判断是否登录，没有登录不能访问
 if(!check_csrf_login($link)){
-//    echo "<script>alert('登录后才能进入会员中心哦')</script>";
-    header("location:csrf_get_login.php");
+    header("location:csrf_post_login.php");
+    exit();
 }
 
 if(isset($_GET['logout']) && $_GET['logout'] == 1){

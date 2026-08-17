@@ -21,7 +21,7 @@
     "MYSQL_DATABASE=pikachu_lab"
   ],
   "cmd": [],
-  "entry_url": "",
-  "notes": "演示 MySQL 弱口令场景，仅允许本地 127.0.0.1 访问。",
+  "entry_url": "http://127.0.0.1:8765/vul/sqli/sqli_iu/sqli_login.php",
+  "notes": "演示 MySQL 数据库弱口令爆破与 UDF 动态链接库提权场景，本地端口 13306 隔离防护。",
   "enabled": true
 }

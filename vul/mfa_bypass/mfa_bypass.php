@@ -6,10 +6,8 @@ include_once '../../inc/config.inc.php';
 
 $ACTIVE = array_fill(0, 250, '');
 // Auto-matched generic active indexes if missing
-$ACTIVE[90] = 'active open';
-$ACTIVE[220] = 'active';
-$ACTIVE[90] = 'active open';
-$ACTIVE[220] = 'active'; 
+$ACTIVE[200] = 'active open';
+$ACTIVE[201] = 'active'; 
 
 $PIKA_ROOT_DIR = "../../";
 include_once $PIKA_ROOT_DIR . 'header.php';
@@ -169,3 +167,4 @@ include_once $PIKA_ROOT_DIR . 'header.php';
 <?php
 include_once $PIKA_ROOT_DIR . 'footer.php';
 ?>
+

@@ -168,12 +168,12 @@ north\sql_svc
 
             <!-- Flag Section -->
             <div class="step-box flag-box">
-                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取点</h3>
+                <h3 class="step-title" style="color: #059669;"><i class="fa fa-flag"></i> 本关 Flag 提取指南</h3>
                 <p style="color: var(--text-secondary); font-size: 14px;">
-                    完成 MSSQL 模拟提权并成功通过 <code>xp_cmdshell</code> 执行命令后，提取本关 Flag：
+                    <strong>Flag 隐匿位置：</strong> 位于数据库表 <code>master.dbo.flag_vault</code> 或通过 <code>xp_cmdshell 'type C:\mssql_flag.txt'</code> 读取到的文件内容：
                 </p>
-                <div class="well" style="background: #ffffff; border: 1px dashed #10b981; padding: 12px; font-family: monospace; font-size: 15px; color: #059669; font-weight: bold;">
-                    flag{MSSQL_Execute_As_Sa_XP_Cmdshell}
+                <div class="well" style="background: var(--bg-secondary); border: 1px dashed #10b981; padding: 14px; font-family: monospace; font-size: 13px; color: var(--text-primary);">
+                    🔒 [提示]：使用 <code>SQL> xp_cmdshell "type C:\mssql_flag.txt"</code> 或 <code>SELECT * FROM master.dbo.flag_vault</code> 查询。
                 </div>
 
                 <form method="post" style="margin-top: 15px; max-width: 500px;">

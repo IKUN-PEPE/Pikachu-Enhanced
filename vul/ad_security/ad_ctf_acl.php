@@ -207,12 +207,12 @@ krbtgt:502:aad3b435b51404eeaad3b435b51404ee:e19e8841a01103ad215321f558291a11:::
 
             <!-- Flag Section -->
             <div class="step-box flag-box">
-                <h3 class="step-title" style="color: #059669;"><i class="fa fa-trophy"></i> 最终通关 Flag 提取点</h3>
+                <h3 class="step-title" style="color: #059669;"><i class="fa fa-trophy"></i> 最终通关 Flag 提取指南</h3>
                 <p style="color: var(--text-secondary); font-size: 14px;">
-                    成功跨越 7 级 ACL 提权跳板接管林根域控 <code>kingslanding$</code> 后，提取本关最终胜利 Flag：
+                    <strong>Flag 隐匿位置：</strong> 跨越 7 级 ACL 提权跳板 ➔ 成功对林根域控 <code>GOAD-DC01</code> 执行 DCSync 提取出的全域 Flag 密文，或读取域控桌面文件 <code>C:\Users\Administrator\flag10.txt</code>：
                 </p>
-                <div class="well" style="background: #ffffff; border: 1px dashed #10b981; padding: 12px; font-family: monospace; font-size: 15px; color: #059669; font-weight: bold;">
-                    flag{Forest_Root_DC_Kingslanding_Fully_Owned}
+                <div class="well" style="background: var(--bg-secondary); border: 1px dashed #10b981; padding: 14px; font-family: monospace; font-size: 13px; color: var(--text-primary);">
+                    🔒 [提示]：使用 <code>secretsdump.py</code> 执行 <code>-just-dc-user Administrator</code> 导出的 Hash / 密文中提取。
                 </div>
 
                 <form method="post" style="margin-top: 15px; max-width: 500px;">
