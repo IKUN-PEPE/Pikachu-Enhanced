@@ -590,7 +590,28 @@ if (!isset($ACTIVE)){
 
                 <li class="<?php echo $ACTIVE[53];?>" >
                     <a href="<?php echo $PIKA_ROOT_DIR;?>vul/rce/rce_eval.php">
-                        exec "evel"
+                        exec "eval"
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="<?php echo isset($ACTIVE[54]) ? $ACTIVE[54] : '';?>" >
+                    <a href="<?php echo $PIKA_ROOT_DIR;?>vul/rce/rce_bypass.php">
+                        命令过滤与 WAF 绕过
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="<?php echo isset($ACTIVE[227]) ? $ACTIVE[227] : '';?>" >
+                    <a href="<?php echo $PIKA_ROOT_DIR;?>vul/rce/rce_blind.php">
+                        无回显盲 RCE (OOB)
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="<?php echo isset($ACTIVE[228]) ? $ACTIVE[228] : '';?>" >
+                    <a href="<?php echo $PIKA_ROOT_DIR;?>vul/rce/rce_ssti.php">
+                        服务端模板注入 (SSTI)
                     </a>
                     <b class="arrow"></b>
                 </li>
@@ -854,7 +875,21 @@ if (!isset($ACTIVE)){
 
                     <li class="<?php echo isset($ACTIVE[220]) ? $ACTIVE[220] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/java_unserialize/java_unserialize.php">
-                            Java原生反序列化 (readObject)
+                            Java反序列化概述
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo isset($ACTIVE[225]) ? $ACTIVE[225] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/java_unserialize/fastjson_rce.php">
+                            Fastjson JNDI 注入
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo isset($ACTIVE[226]) ? $ACTIVE[226] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/java_unserialize/native_unser.php">
+                            Java原生 (readObject)
                         </a>
                         <b class="arrow"></b>
                     </li>
@@ -961,6 +996,13 @@ if (!isset($ACTIVE)){
                     <li class="<?php echo isset($ACTIVE[209]) ? $ACTIVE[209] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ssrf/ssrf_gopher_redis.php">
                             SSRF (Gopher 打击 Redis)
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo isset($ACTIVE[219]) ? $ACTIVE[219] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ssrf/ssrf_dns_rebinding.php">
+                            SSRF (DNS 重绑定与 IP 变形)
                         </a>
                         <b class="arrow"></b>
                     </li>
