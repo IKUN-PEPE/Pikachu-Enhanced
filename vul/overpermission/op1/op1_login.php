@@ -22,6 +22,7 @@ $link=connect();
 //判断是是否登录，如果已经登录，点击时，直接进入会员中心
 if(check_op_login($link)){
     header("location:op1_mem.php");
+exit;
 }
 
 
@@ -37,6 +38,7 @@ if(isset($_POST['submit'])){
             $_SESSION['op']['username']=$username;
             $_SESSION['op']['password']=sha1(md5($password));
             header("location:op1_mem.php");
+        exit;
         }else{
             $html.="<p>登录失败,请重新登录</p>";
         }

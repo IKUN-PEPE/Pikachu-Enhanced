@@ -24,6 +24,7 @@ $link=connect();
 if(!check_sqli_session($link)){
     echo "<script>alert('登录后才能进入会员中心哦')</script>";
     header("location:sqli_login.php");
+exit;
 }
 
 if(isset($_GET['logout']) && $_GET['logout'] == 1){
@@ -31,6 +32,7 @@ if(isset($_GET['logout']) && $_GET['logout'] == 1){
     session_destroy();
     setcookie(session_name(),'',time()-3600,'/');
     header("location:sqli_login.php");
+exit;
 }
 
 ?>
@@ -63,7 +65,7 @@ if(isset($_GET['logout']) && $_GET['logout'] == 1){
             $username=$_SESSION['sqli']['username'];
             $query="select * from member where username='$username'";
             $result=execute($link, $query);
-            $data=mysqli_fetch_array($result, MYSQL_ASSOC);
+            $data=mysqli_fetch_array($result, MYSQLI_ASSOC);
             $name=$data['username'];
             $sex=$data['sex'];
             $phonenum=$data['phonenum'];

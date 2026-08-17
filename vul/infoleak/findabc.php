@@ -36,6 +36,7 @@ if(isset($_GET['submit'])){
             setcookie('abc[pw]',md5($_GET['password']),time()+36000);
             //登录时，生成cookie,10个小时有效期，供其他页面判断
             header("location:abc.php");
+        exit;
         }else{
             $query_username = "select * from member where username='$username'";
             $res_user = execute($link,$query_username);

@@ -1,15 +1,16 @@
 <?php
-// Simple proxy to pass commands from PHP to the local Docker container 'pikachu-enhanced-web'
-\ = isset(\['cmd']) ? \['cmd'] : '';
-if (empty(\)) {
-    echo '';
+// Simple proxy to pass commands from PHP to the local Docker container
+header('Content-Type: text/plain; charset=utf-8');
+
+$cmd = isset($_POST['cmd']) ? $_POST['cmd'] : (isset($_GET['cmd']) ? $_GET['cmd'] : '');
+if (empty($cmd)) {
+    echo "No command provided.";
     exit;
 }
 
-// We execute the command inside the pikachu-enhanced-web container.
-// Warning: This is extremely dangerous and allows RCE on the host if Docker escapes are possible.
-\ = escapeshellarg(\);
-\ = "docker exec pikachu-enhanced-web /bin/bash -c " . \ . " 2>&1";
+$escaped_cmd = escapeshellarg($cmd);
+$full_cmd = "docker exec pikachu-web /bin/bash -c " . $escaped_cmd . " 2>&1";
 
-\ = shell_exec(\);
-echo \;
+$output = @shell_exec($full_cmd);
+echo $output ?: "Command executed (no output).";
+?>

@@ -35,12 +35,14 @@ if(isset($_POST['submit'])){
                 $_SESSION['op2']['password']=sha1(md5($password));
                 $_SESSION['op2']['level']=1;
                 header("location:op2_admin.php");
+            exit;
             }
             if($data['level']==2){//如果级别是2，进入user.php
                 $_SESSION['op2']['username']=$username;
                 $_SESSION['op2']['password']=sha1(md5($password));
                 $_SESSION['op2']['level']=2;
                 header("location:op2_user.php");
+            exit;
             }
 
         }else{

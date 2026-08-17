@@ -30,6 +30,7 @@ if(isset($_POST['submit'])){
         $result=execute($link, $query);
         if(mysqli_affected_rows($link)==1){//判断是否插入
             header("location:op2_admin.php");
+        exit;
         }else {
             $html.="<p>修改失败,请检查下数据库是不是还是活着的</p>";
 
@@ -43,6 +44,8 @@ if(isset($_GET['logout']) && $_GET['logout'] == 1){
     session_destroy();
     setcookie(session_name(),'',time()-3600,'/');
     header("location:op2_login.php");
+
+exit;
 
 }
 

