@@ -228,7 +228,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
 
                 <!-- Level Cards Section -->
                 <h4 style="margin:0 0 16px 0; color:var(--text-primary); font-weight:800; font-size:16px;">
-                    <i class="fa fa-gamepad" style="color:#6366f1;"></i> CSRF 实战演练核心关卡
+                    <i class="fa fa-gamepad" style="color:#6366f1;"></i> CSRF 实战演练核心与进阶关卡全景
                 </h4>
 
                 <div class="csrf-level-grid">
@@ -277,6 +277,86 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                         </div>
                         <a href="csrftoken/token_get_login.php" class="btn btn-block btn-success" style="border-radius:8px; font-weight:700; background:linear-gradient(135deg, #10b981, #059669); border:none;">
                             进入演练：CSRF Token <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Level 4: Referer Bypass -->
+                    <div class="csrf-level-card" style="border-top-color:#6366f1;">
+                        <div>
+                            <div class="csrf-level-title">
+                                <span>⚡ 关卡 4: Referer 来源校验绕过</span>
+                                <span class="badge badge-primary" style="font-size:11px;">200 PTS</span>
+                            </div>
+                            <p class="csrf-level-desc">
+                                依赖 Referer 请求头的防御存在空 Referer 放行与弱正则匹配漏洞。利用 <code>&lt;meta name="referrer" content="no-referrer"&gt;</code> 剥离来源头绕过防御。
+                            </p>
+                        </div>
+                        <a href="csrf_referer/csrf_referer.php" class="btn btn-block btn-primary" style="border-radius:8px; font-weight:700; background:linear-gradient(135deg, #6366f1, #4f46e5); border:none;">
+                            进入演练：Referer 绕过 <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Level 5: Token Pool Unbound -->
+                    <div class="csrf-level-card" style="border-top-color:#8b5cf6;">
+                        <div>
+                            <div class="csrf-level-title">
+                                <span>⚡ 关卡 5: Token 池未绑定会话</span>
+                                <span class="badge badge-purple" style="font-size:11px; background:#8b5cf6;">200 PTS</span>
+                            </div>
+                            <p class="csrf-level-desc">
+                                服务端维护了全局有效 Token 池，但在校验时未检查 Token 是否属于当前会话用户。攻击者用自己账号获取合法 Token 植入受害者表单实施篡改。
+                            </p>
+                        </div>
+                        <a href="csrf_token_pool/csrf_token_pool.php" class="btn btn-block btn-purple" style="border-radius:8px; font-weight:700; color:#fff; background:linear-gradient(135deg, #8b5cf6, #7c3aed); border:none;">
+                            进入演练：Token 池缺陷 <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Level 6: JSON Form CSRF -->
+                    <div class="csrf-level-card" style="border-top-color:#ec4899;">
+                        <div>
+                            <div class="csrf-level-title">
+                                <span>⚡ 关卡 6: JSON 表单编码混淆欺骗</span>
+                                <span class="badge badge-pink" style="font-size:11px; background:#ec4899;">250 PTS</span>
+                            </div>
+                            <p class="csrf-level-desc">
+                                针对接收 JSON 数据的 REST API，当服务端未强校验 Content-Type 时，利用 <code>&lt;form enctype="text/plain"&gt;</code> 构造合法 JSON 跨站伪造。
+                            </p>
+                        </div>
+                        <a href="csrf_json/csrf_json.php" class="btn btn-block btn-pink" style="border-radius:8px; font-weight:700; color:#fff; background:linear-gradient(135deg, #ec4899, #db2777); border:none;">
+                            进入演练：JSON 表单混淆 <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Level 7: Double Submit Cookie -->
+                    <div class="csrf-level-card" style="border-top-color:#0284c7;">
+                        <div>
+                            <div class="csrf-level-title">
+                                <span>⚡ 关卡 7: 双重 Cookie 校验绕过</span>
+                                <span class="badge badge-info" style="font-size:11px; background:#0284c7;">250 PTS</span>
+                            </div>
+                            <p class="csrf-level-desc">
+                                无状态双重 Cookie 仅比对 Cookie 与 POST 参数。攻击者利用子域名注入 Cookie（Cookie Tossing）为目标域写入已知 Token 击穿防护。
+                            </p>
+                        </div>
+                        <a href="csrf_double_cookie/csrf_double_cookie.php" class="btn btn-block btn-info" style="border-radius:8px; font-weight:700; background:linear-gradient(135deg, #0284c7, #0369a1); border:none;">
+                            进入演练：双重 Cookie 绕过 <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Level 8: SameSite Lax Bypass -->
+                    <div class="csrf-level-card" style="border-top-color:#ef4444;">
+                        <div>
+                            <div class="csrf-level-title">
+                                <span>⚡ 关卡 8: SameSite Lax 限制绕过</span>
+                                <span class="badge badge-danger" style="font-size:11px;">300 PTS</span>
+                            </div>
+                            <p class="csrf-level-desc">
+                                针对浏览器默认的 SameSite=Lax 策略，利用 <code>_method=POST</code> 请求方法覆盖与顶层 GET 导航携带 Cookie 的特性触发敏感情境。
+                            </p>
+                        </div>
+                        <a href="csrf_samesite/csrf_samesite.php" class="btn btn-block btn-danger" style="border-radius:8px; font-weight:700; background:linear-gradient(135deg, #ef4444, #dc2626); border:none;">
+                            进入演练：SameSite Lax 绕过 <i class="fa fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>

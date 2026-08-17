@@ -430,6 +430,41 @@ if (!isset($ACTIVE)){
                         <b class="arrow"></b>
                     </li>
 
+                    <li class="<?php echo $ACTIVE[30];?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/csrf/csrf_referer/csrf_referer.php">
+                            CSRF Referer 绕过
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo $ACTIVE[31];?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/csrf/csrf_token_pool/csrf_token_pool.php">
+                            CSRF Token池未绑定
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo $ACTIVE[32];?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/csrf/csrf_json/csrf_json.php">
+                            CSRF JSON 表单混淆
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo $ACTIVE[33];?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/csrf/csrf_double_cookie/csrf_double_cookie.php">
+                            CSRF 双重Cookie绕过
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo $ACTIVE[34];?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/csrf/csrf_samesite/csrf_samesite.php">
+                            CSRF SameSite Lax 绕过
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
                 </ul>
             </li>
 
