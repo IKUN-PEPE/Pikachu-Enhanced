@@ -1,237 +1,327 @@
 <?php
 /**
- * Pikachu-Enhanced Modern Overview Page
+ * Pikachu-Enhanced v2.0 - CSRF (跨站请求伪造) 概览与核心攻防大厅
  */
-include_once '../../inc/config.inc.php';
+$PIKA_ROOT_DIR = "../../";
+include_once $PIKA_ROOT_DIR . 'inc/config.inc.php';
 
 $ACTIVE = array_fill(0, 250, '');
 $ACTIVE[25] = 'active open';
 $ACTIVE[26] = 'active';
 
-$PIKA_ROOT_DIR = "../../";
 include_once $PIKA_ROOT_DIR . 'header.php';
 ?>
 
 <style>
-.overview-hero-card {
-    background: linear-gradient(135deg, #881337, #4c0519);
+.csrf-hero-banner {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
     border-radius: 16px;
-    padding: 35px;
+    padding: 32px 36px;
     color: #ffffff;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    margin-bottom: 30px;
-    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 30px rgba(49, 46, 129, 0.25);
+    margin-bottom: 26px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    position: relative;
+    overflow: hidden;
 }
-.overview-hero-card h1 {
-    font-size: 28px;
+.csrf-hero-banner::after {
+    content: '\f21b';
+    font-family: 'FontAwesome';
+    position: absolute;
+    right: 20px;
+    bottom: -20px;
+    font-size: 140px;
+    opacity: 0.08;
+    pointer-events: none;
+}
+.csrf-hero-title {
+    font-size: 26px;
     font-weight: 800;
-    margin-top: 0;
-    color: #f8fafc;
+    margin: 0 0 12px 0;
+    color: #ffffff !important;
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-wrap: wrap;
 }
-.overview-badge {
-    background: rgba(239, 68, 68, 0.2);
-    color: #f87171;
-    border: 1px solid #f87171;
-    padding: 4px 12px;
+.csrf-chip-badge {
+    background: rgba(99, 102, 241, 0.25);
+    color: #a5b4fc;
+    border: 1px solid #818cf8;
+    padding: 4px 14px;
     border-radius: 20px;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
 }
-.overview-hero-card p {
-    font-size: 15px;
-    color: #e2e8f0;
-    line-height: 1.7;
-    max-width: 950px;
-    margin-bottom: 0;
+.csrf-hero-desc {
+    font-size: 14px;
+    color: #e0e7ff;
+    line-height: 1.75;
+    max-width: 960px;
+    margin: 0;
 }
 
-.workflow-section {
-    background-color: var(--bg-card);
-    border-radius: 12px;
-    padding: 30px;
-    border: 1px solid var(--border-color);
-    margin-bottom: 30px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-}
-.workflow-grid {
+/* Attack Chain Flow */
+.csrf-flow-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
 }
-.workflow-step {
-    background-color: var(--bg-secondary);
+.csrf-flow-step {
+    background: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 20px;
-    transition: transform 0.2s ease;
+    border-radius: 12px;
+    padding: 18px 20px;
+    position: relative;
+    transition: all 0.25s ease;
 }
-.workflow-step:hover {
-    transform: translateY(-3px);
+.csrf-flow-step:hover {
+    border-color: #6366f1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.15);
 }
-.step-icon-badge {
-    width: 36px;
-    height: 36px;
-    background: #2563eb;
-    color: #ffffff;
+.flow-step-badge {
+    width: 32px;
+    height: 32px;
     border-radius: 8px;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+}
+.flow-step-title {
+    font-size: 14.5px;
     font-weight: 700;
-    font-size: 16px;
-    margin-bottom: 12px;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+.flow-step-desc {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
 }
 
-.detail-grid {
+/* Level Access Cards */
+.csrf-level-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 26px;
 }
-.detail-card {
-    background-color: var(--bg-card);
+.csrf-level-card {
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 25px;
-    border-top: 4px solid #2563eb;
+    border-radius: 14px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    transition: all 0.25s ease;
+    border-top: 4px solid #6366f1;
 }
-
-.lab-shortcuts {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 15px;
-    margin-top: 15px;
+.csrf-level-card:hover {
+    transform: translateY(-4px);
+    border-color: #6366f1;
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.15);
 }
-.shortcut-card {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 16px 20px;
-    text-decoration: none !important;
+.csrf-level-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 10px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: all 0.2s ease;
 }
-.shortcut-card:hover {
-    border-color: #2563eb;
-    transform: translateX(4px);
-}
-.shortcut-title {
-    font-weight: 700;
-    color: var(--text-primary);
-    font-size: 15px;
-}
-.shortcut-desc {
-    font-size: 12px;
+.csrf-level-desc {
+    font-size: 13px;
     color: var(--text-secondary);
-    margin-top: 2px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    flex-grow: 1;
+}
+
+/* Defense Matrix */
+.csrf-defense-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    font-size: 13px;
+}
+.csrf-defense-table th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-weight: 700;
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+.csrf-defense-table td {
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    line-height: 1.6;
 }
 </style>
 
 <div class="main-content">
     <div class="main-content-inner">
+        <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+            <ul class="breadcrumb">
+                <li><i class="ace-icon fa fa-home home-icon"></i><a href="<?php echo $PIKA_ROOT_DIR;?>index.php">首页</a></li>
+                <li class="active">CSRF 跨站请求伪造演练大厅</li>
+            </ul>
+        </div>
+
         <div class="page-content">
-            
-            <!-- Hero Header -->
-            <div class="overview-hero-card">
-                <h1>
-                    CSRF 跨站请求伪造 (Cross-Site Request Forgery)
-                    <span class="overview-badge">身份凭据冒用威胁</span>
-                </h1>
-                <p>CSRF (跨站请求伪造) 被称为'借刀杀人'式攻击。攻击者诱导受害者点击恶意链接，在受害者已登录目标网站且 Cookie 未过期的情况下，利用浏览器自动携带 Cookie 的特性，以受害者的身份隐蔽发起修改密码、转账或修改邮箱等敏感操作。</p>
-            </div>
-
-            <!-- Workflow Visual Section -->
-            <div class="workflow-section">
-                <h3 style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin-top: 0; margin-bottom: 25px;">
-                    <i class="fa fa-sitemap" style="color: #2563eb;"></i> 漏洞原理与攻击演进流程链
-                </h3>
+            <div class="cyber-stage-container">
                 
-                <div class="workflow-grid">
-                    
-        <div class="workflow-step">
-            <div class="step-icon-badge" style="background: #3b82f6;">1</div>
-            <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">1. 受害者登录目标站</div>
-            <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">受害者成功登录合法网站 A，并在浏览器本地生成有效的 Session Cookie 凭据。</div>
-        </div>
-        
-        <div class="workflow-step">
-            <div class="step-icon-badge" style="background: #f59e0b;">2</div>
-            <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">2. 访问攻击者钓鱼页面</div>
-            <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">攻击者诱导受害者访问恶意页面 B（如带有自动提交 `<form>` 的网页）。</div>
-        </div>
-        
-        <div class="workflow-step">
-            <div class="step-icon-badge" style="background: #ef4444;">3</div>
-            <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">3. 隐蔽跨站请求</div>
-            <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">页面 B 自动向网站 A 发起 POST/GET 请求，浏览器自动附带网站 A 的 Session Cookie。</div>
-        </div>
-        
-        <div class="workflow-step">
-            <div class="step-icon-badge" style="background: #10b981;">4</div>
-            <div style="font-weight:700; color:var(--text-primary); margin-bottom:8px;">4. 目标站误判执行</div>
-            <div style="font-size:13px; color:var(--text-secondary); line-height:1.6;">网站 A 验证 Cookie 合法，误以为是受害者本人操作，成功修改敏感数据或密码。</div>
-        </div>
-        
+                <!-- Hero Banner -->
+                <div class="csrf-hero-banner">
+                    <h1 class="csrf-hero-title">
+                        🛡️ CSRF (Cross-Site Request Forgery) 跨站请求伪造
+                        <span class="csrf-chip-badge">会话挟持 · 客户端欺骗 · 300 PTS</span>
+                    </h1>
+                    <p class="csrf-hero-desc">
+                        CSRF（跨站请求伪造）是一种挟持用户已认证会话向受信任站点发起恶意操作的客户端漏洞。攻击者并不直接窃取用户的 Cookie 凭据，而是诱导受害者在已登录状态下访问恶意第三方页面，利用浏览器<b>发起跨站请求时自动携带目标域 Cookie</b> 的机制，以受害者的名义执行转账、修改密码或个人信息等未授权业务。
+                    </p>
                 </div>
-            </div>
 
-            <!-- Detail Cards -->
-            <div class="detail-grid">
-                
-        <div class="detail-card" style="border-top-color: #2563eb;">
-            <h3 style="margin-top:0; font-size:18px; color:var(--text-primary);">📩 1. CSRF (GET 型)</h3>
-            <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:0;">目标敏感操作参数直接露在 GET 请求中。攻击者只需构造 `<img src='http://target/edit?email=hacker@com'>` 即可。</p>
-        </div>
-        
-        <div class="detail-card" style="border-top-color: #ef4444;">
-            <h3 style="margin-top:0; font-size:18px; color:var(--text-primary);">📝 2. CSRF (POST 型)</h3>
-            <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:0;">敏感操作使用 POST 提交。攻击者在恶意页面构建隐藏表单，页面加载完成后使用 JS `form.submit()` 自动提交。</p>
-        </div>
-        
-        <div class="detail-card" style="border-top-color: #10b981;">
-            <h3 style="margin-top:0; font-size:18px; color:var(--text-primary);">🛡️ 3. 核心防御：SameSite & Anti-CSRF Token</h3>
-            <p style="font-size:14px; color:var(--text-secondary); line-height:1.6; margin-bottom:0;">设置 Cookie `SameSite=Lax/Strict`；在表单中增加随机且不可预测的 Anti-CSRF Token；开启重要操作二次重辨（输入旧密码）。</p>
-        </div>
-        
-            </div>
+                <!-- Attack Flow Visualization Section -->
+                <div class="cyber-header-card" style="margin-bottom: 26px;">
+                    <h4 style="margin:0 0 8px 0; color:var(--text-primary); font-weight:800; font-size:16px;">
+                        <i class="fa fa-sitemap" style="color:#6366f1;"></i> CSRF 攻击核心生命周期链
+                    </h4>
+                    <p style="color:var(--text-secondary); font-size:13px; margin:0;">CSRF 漏洞的成功触发依赖于以下 4 个关键节点的协同运作：</p>
 
-            <!-- Interactive Lab Shortcuts -->
-            <div class="vul">
-                <h3 style="margin: 0 0 15px 0; font-size: 18px; font-weight: 700;">🎯 快速进入实战关卡演练</h3>
-                <div class="lab-shortcuts">
-                    
-        <a href="csrfget/csrf_get.php" class="shortcut-card">
-            <div>
-                <div class="shortcut-title">1. CSRF (GET 型) 演练</div>
-                <div class="shortcut-desc">测试通过 GET 链接修改个人信息</div>
-            </div>
-            <i class="fa fa-arrow-right" style="color: #2563eb;"></i>
-        </a>
-        
-        <a href="csrfpost/csrf_post.php" class="shortcut-card">
-            <div>
-                <div class="shortcut-title">2. CSRF (POST 型) 演练</div>
-                <div class="shortcut-desc">测试隐藏表单自动提交修改信息</div>
-            </div>
-            <i class="fa fa-arrow-right" style="color: #2563eb;"></i>
-        </a>
-        
-        <a href="csrftoken/token_get.php" class="shortcut-card">
-            <div>
-                <div class="shortcut-title">3. CSRF (Token 防御) 演练</div>
-                <div class="shortcut-desc">测试 Token 校验与绕过</div>
-            </div>
-            <i class="fa fa-arrow-right" style="color: #2563eb;"></i>
-        </a>
-        
+                    <div class="csrf-flow-grid">
+                        <div class="csrf-flow-step">
+                            <div class="flow-step-badge">1</div>
+                            <div class="flow-step-title">用户成功鉴权</div>
+                            <p class="flow-step-desc">受害者登录受信网站 A，并在浏览器中保留了有效的 Session ID 或身份 Cookie。</p>
+                        </div>
+                        <div class="csrf-flow-step">
+                            <div class="flow-step-badge">2</div>
+                            <div class="flow-step-title">访问恶意页面</div>
+                            <p class="flow-step-desc">受害者未注销网站 A 的情况下，在同一浏览器中访问了攻击者精心构造的网站 B。</p>
+                        </div>
+                        <div class="csrf-flow-step">
+                            <div class="flow-step-badge">3</div>
+                            <div class="flow-step-title">自动跨站提交</div>
+                            <p class="flow-step-desc">网站 B 包含指向网站 A 的请求（如 <code>&lt;img&gt;</code> 或自动提交的隐藏表单），浏览器自动附加 A 的凭据。</p>
+                        </div>
+                        <div class="csrf-flow-step">
+                            <div class="flow-step-badge">4</div>
+                            <div class="flow-step-title">目标服务端执行</div>
+                            <p class="flow-step-desc">网站 A 验证 Cookie 有效，误认为是受害者自主发起的正常请求并完成关键修改。</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
+                <!-- Level Cards Section -->
+                <h4 style="margin:0 0 16px 0; color:var(--text-primary); font-weight:800; font-size:16px;">
+                    <i class="fa fa-gamepad" style="color:#6366f1;"></i> CSRF 实战演练核心关卡
+                </h4>
+
+                <div class="csrf-level-grid">
+                    <!-- Level 1: GET -->
+                    <div class="csrf-level-card" style="border-top-color:#06b6d4;">
+                        <div>
+                            <div class="csrf-level-title">
+                                <span>⚡ 关卡 1: CSRF (GET 方式)</span>
+                                <span class="badge badge-info" style="font-size:11px;">100 PTS</span>
+                            </div>
+                            <p class="csrf-level-desc">
+                                业务操作直接通过 HTTP GET 参数传递并在服务端执行持久化修改。攻击者只需通过诱导访问一个图片链接（如 <code>&lt;img src="...edit.php?add=evil"&gt;</code>）即可零点击完成跨站篡改。
+                            </p>
+                        </div>
+                        <a href="csrfget/csrf_get_login.php" class="btn btn-block btn-info" style="border-radius:8px; font-weight:700; background:linear-gradient(135deg, #06b6d4, #0891b2); border:none;">
+                            进入演练：CSRF (GET) <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Level 2: POST -->
+                    <div class="csrf-level-card" style="border-top-color:#f59e0b;">
+                        <div>
+                            <div class="csrf-level-title">
+                                <span>⚡ 关卡 2: CSRF (POST 方式)</span>
+                                <span class="badge badge-warning" style="font-size:11px;">100 PTS</span>
+                            </div>
+                            <p class="csrf-level-desc">
+                                业务操作改为 POST 请求体传输。单纯将 GET 转为 POST 并不能防范 CSRF，攻击者可以通过构造第三方隐藏表单与 <code>document.forms[0].submit()</code> 脚本实现全自动跨站提交。
+                            </p>
+                        </div>
+                        <a href="csrfpost/csrf_post_login.php" class="btn btn-block btn-warning" style="border-radius:8px; font-weight:700; color:#ffffff; background:linear-gradient(135deg, #f59e0b, #d97706); border:none;">
+                            进入演练：CSRF (POST) <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <!-- Level 3: Token -->
+                    <div class="csrf-level-card" style="border-top-color:#10b981;">
+                        <div>
+                            <div class="csrf-level-title">
+                                <span>⚡ 关卡 3: CSRF Token 防御机制</span>
+                                <span class="badge badge-success" style="font-size:11px;">100 PTS</span>
+                            </div>
+                            <p class="csrf-level-desc">
+                                服务端在表单中植入不可预测的随机 Token。由于同源策略（SOP）限制第三方站点读取响应体内容，跨站发起的请求无法携带合法的 Token 参数，从而被服务端有效拦截。
+                            </p>
+                        </div>
+                        <a href="csrftoken/token_get_login.php" class="btn btn-block btn-success" style="border-radius:8px; font-weight:700; background:linear-gradient(135deg, #10b981, #059669); border:none;">
+                            进入演练：CSRF Token <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Defense Matrix Section -->
+                <div class="cyber-header-card">
+                    <h4 style="margin:0 0 10px 0; color:var(--text-primary); font-weight:800; font-size:16px;">
+                        <i class="fa fa-shield" style="color:#10b981;"></i> CSRF 主流防御技术方案矩阵
+                    </h4>
+                    <div style="overflow-x:auto;">
+                        <table class="csrf-defense-table">
+                            <thead>
+                                <tr>
+                                    <th style="width:22%;">防御机制</th>
+                                    <th style="width:18%;">防护等级</th>
+                                    <th>实现原理与防护效果</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>Anti-CSRF Token</b></td>
+                                    <td><span class="label label-success" style="border-radius:4px;">★★★★★ 工业级标准</span></td>
+                                    <td>服务端在表单和 Session 中生成不可预测的随机令牌并在提交时比对。第三方站点因同源策略无法读取 Token，是目前最稳健的防御手段。</td>
+                                </tr>
+                                <tr>
+                                    <td><b>SameSite Cookie 属性</b></td>
+                                    <td><span class="label label-success" style="border-radius:4px;">★★★★☆ 现代浏览器基线</span></td>
+                                    <td>配置 <code>SameSite=Strict</code> 或 <code>SameSite=Lax</code>。跨站请求（Cross-Site）时浏览器将拒绝自动附带 Cookie，从底层切断会话凭据。</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Referer / Origin 校验</b></td>
+                                    <td><span class="label label-warning" style="border-radius:4px;">★★★☆☆ 辅助防御</span></td>
+                                    <td>服务端检查 HTTP 头部中的来源域名是否属于受信任白名单。存在协议降级丢失、代理剥离或正则解析绕过风险，需作为辅助手段。</td>
+                                </tr>
+                                <tr>
+                                    <td><b>敏感操作二次验证</b></td>
+                                    <td><span class="label label-info" style="border-radius:4px;">★★★★★ 针对核心业务</span></td>
+                                    <td>在资金交易、密码修改等高危接口强制输入短信验证码、图形验证码或密码重新校验，彻底杜绝无感自动提交。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
