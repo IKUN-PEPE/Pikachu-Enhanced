@@ -13,7 +13,26 @@ if(isset($_POST['content'])){
 include_once $PIKA_ROOT_DIR . 'header.php';
 ?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+<script>
+// Local self-contained DOMPurify for offline execution
+window.DOMPurify = window.DOMPurify || {
+    sanitize: function(html) {
+        if (!html) return '';
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var dangerous = doc.querySelectorAll('script, iframe, object, embed, style');
+        dangerous.forEach(function(s) { s.remove(); });
+        var all = doc.body.querySelectorAll('*');
+        all.forEach(function(el) {
+            Array.from(el.attributes).forEach(function(attr) {
+                if (attr.name.toLowerCase().startsWith('on') || attr.value.toLowerCase().startsWith('javascript:')) {
+                    el.removeAttribute(attr.name);
+                }
+            });
+        });
+        return doc.body.innerHTML;
+    }
+};
+</script>
 
 <div class="main-content">
     <div class="main-content-inner">
