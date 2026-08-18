@@ -1,12 +1,18 @@
 <?php
 //db connect
 function connect($host=DBHOST,$username=DBUSER,$password=DBPW,$databasename=DBNAME,$port=DBPORT){
+	static $link_cache = array();
+	$cache_key = "{$host}_{$port}_{$databasename}_{$username}";
+	if (isset($link_cache[$cache_key]) && is_object($link_cache[$cache_key])) {
+		return $link_cache[$cache_key];
+	}
 	$link=@mysqli_connect($host, $username, $password, $databasename, $port);
 	if(mysqli_connect_errno()){
 // 		exit(mysqli_connect_error());
 	    exit('数据库连接失败，请检查config.inc.php配置文件');
 	}
 	mysqli_set_charset($link,'utf8');
+	$link_cache[$cache_key] = $link;
 	return $link;
 }
 
