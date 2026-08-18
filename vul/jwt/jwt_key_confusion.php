@@ -211,6 +211,39 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                             <?php } ?>
                         </div>
 
+                        <!-- Visual SVG Architecture Flowchart -->
+                        <div style="background:#020617; border:1px solid #1e293b; border-radius:10px; padding:12px; margin-top:14px; text-align:center;">
+                            <svg viewBox="0 0 600 160" style="width:100%; height:auto; display:inline-block;" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <marker id="kc-arr" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+                                        <polygon points="0 0, 7 2.5, 0 5" fill="#38bdf8"/>
+                                    </marker>
+                                </defs>
+                                <rect x="10" y="15" width="160" height="55" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+                                <text x="90" y="36" fill="#60a5fa" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">1. 抓取公开 RSA 公钥</text>
+                                <text x="90" y="54" fill="#94a3b8" font-size="9.5" text-anchor="middle" font-family="monospace">public_key.pem</text>
+
+                                <path d="M 170 42 L 210 42" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#kc-arr)"/>
+
+                                <rect x="220" y="15" width="180" height="55" rx="6" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+                                <text x="310" y="36" fill="#f87171" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">2. Header 改为 HS256</text>
+                                <text x="310" y="54" fill="#fca5a5" font-size="9.5" text-anchor="middle" font-family="monospace">以公钥 PEM 文本作为 HMAC 密钥</text>
+
+                                <path d="M 400 42 L 440 42" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#kc-arr)"/>
+
+                                <rect x="450" y="15" width="140" height="55" rx="6" fill="#022c22" stroke="#10b981" stroke-width="1.5"/>
+                                <text x="520" y="36" fill="#34d399" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">3. 网关算法混淆</text>
+                                <text x="520" y="54" fill="#fbbf24" font-size="9.5" text-anchor="middle" font-family="monospace">误用公钥当对称 Secret</text>
+
+                                <!-- Down and Left -->
+                                <path d="M 520 70 L 520 110 L 440 110" stroke="#10b981" stroke-width="1.5" marker-end="url(#kc-arr)"/>
+
+                                <rect x="10" y="90" width="420" height="55" rx="6" fill="#020617" stroke="#10b981" stroke-width="1.5"/>
+                                <text x="220" y="112" fill="#34d399" font-size="11.5" font-weight="bold" text-anchor="middle" font-family="sans-serif">4. 签名校验通过 &rarr; 获得超级管理员 Flag</text>
+                                <text x="220" y="132" fill="#fbbf24" font-size="10" font-weight="bold" text-anchor="middle" font-family="monospace">flag{JWT_Alg_C0nfus10n_RS256_T0_HS256_Ex1t}</text>
+                            </svg>
+                        </div>
+
                         <hr style="border-color:var(--border-subtle);">
 
                         <!-- Flag Submission Form -->
