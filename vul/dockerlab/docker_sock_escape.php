@@ -14,18 +14,18 @@ $flag_result = "";
 $user_flag = "";
 
 // Initialize session state & working directory
-if (!isset($_SESSION['docker_priv_cwd'])) {
-    $_SESSION['docker_priv_cwd'] = '/root';
+if (!isset($_SESSION['docker_sock_cwd'])) {
+    $_SESSION['docker_sock_cwd'] = '/root';
 }
 
-if (!isset($_SESSION['docker_priv_history'])) {
-    $_SESSION['docker_priv_history'] = array(
-        array('type' => 'sys', 'content' => "// [Universal Linux Bash Terminal Ready: root@privileged-sandbox:~#]\n// 提示：已上线全量通用 Linux 终端引擎！支持 fdisk -l, cat /proc/1/status, mount, chroot, cd, ls, pwd, help 等所有命令！\n// 推荐第一步输入：cat /proc/1/status | grep CapEff 或 fdisk -l")
+if (!isset($_SESSION['docker_sock_history'])) {
+    $_SESSION['docker_sock_history'] = array(
+        array('type' => 'sys', 'content' => "// [Universal Linux Bash Terminal Ready: root@dockersock-sandbox:~#]\n// 提示：已挂载 /var/run/docker.sock！支持 docker ps, docker images, docker run 等命令！\n// 推荐输入：ls -la /var/run/docker.sock 或 docker ps")
     );
 }
 
-if (!isset($_SESSION['docker_priv_state'])) {
-    $_SESSION['docker_priv_state'] = array(
+if (!isset($_SESSION['docker_sock_state'])) {
+    $_SESSION['docker_sock_state'] = array(
         'checked' => false,
         'mounted' => false,
         'chrooted' => false
@@ -34,19 +34,19 @@ if (!isset($_SESSION['docker_priv_state'])) {
 
 // Handle Clear History Action
 if (isset($_POST['clear_history'])) {
-    $_SESSION['docker_priv_history'] = array(
-        array('type' => 'sys', 'content' => "// [Terminal reset: root@privileged-sandbox:~#]")
+    $_SESSION['docker_sock_history'] = array(
+        array('type' => 'sys', 'content' => "// [Terminal reset: root@dockersock-sandbox:~#]")
     );
-    $_SESSION['docker_priv_state'] = array('checked' => false, 'mounted' => false, 'chrooted' => false);
-    $_SESSION['docker_priv_cwd'] = '/root';
+    $_SESSION['docker_sock_state'] = array('checked' => false, 'mounted' => false, 'chrooted' => false);
+    $_SESSION['docker_sock_cwd'] = '/root';
 }
 
 // Handle Flag Submission
 if (isset($_POST['submit_flag'])) {
     $user_flag = trim($_POST['flag_input'] ?? '');
     if ($user_flag === $CORRECT_FLAG) {
-        $_SESSION['docker_priv_flag'] = true;
-        $flag_result = "<div class='alert alert-success' style='border-radius:10px; font-weight:700; background:rgba(16,185,129,0.15); border:1px solid #10b981; color:#10b981;'><i class='fa fa-check-circle'></i> <b>恭喜通关！</b> Flag 验证正确！已成功完成 --privileged 特权模式全盘挂载逃逸 (+100 PTS)。</div>";
+        $_SESSION['docker_sock_flag'] = true;
+        $flag_result = "<div class='alert alert-success' style='border-radius:10px; font-weight:700; background:rgba(16,185,129,0.15); border:1px solid #10b981; color:#10b981;'><i class='fa fa-check-circle'></i> <b>恭喜通关！</b> Flag 验证正确！已成功完成 Docker Socket 挂载逃逸 (+100 PTS)。</div>";
     } else {
         $flag_result = "<div class='alert alert-danger' style='border-radius:10px; font-weight:700; background:rgba(239,68,68,0.15); border:1px solid #ef4444; color:#ef4444;'><i class='fa fa-times-circle'></i> <b>Flag 错误</b>，请在 Bash 终端中完成挂载并查看 /etc/docker_escape_flag.txt 文件！</div>";
     }
@@ -68,11 +68,11 @@ if (isset($_POST['stop_sandbox'])) {
 // Check Sandbox Status
 $is_sandbox_running = false;
 $sandbox_uptime = '';
-$status_check = shell_exec("/var/www/html/docker-cli ps --filter name=^pikachu-lab-sock-escape$ --format \"{{.Names}}	{{.Status}}\" 2>/dev/null");
+$status_check = shell_exec("/var/www/html/docker-cli ps --filter name=^pikachu-lab-sock-escape$ --format \"{{.Names}}\t{{.Status}}\" 2>/dev/null");
 $status_check = trim($status_check ?? '');
 if (!empty($status_check) && strpos($status_check, 'pikachu-lab-sock-escape') !== false) {
     $is_sandbox_running = true;
-    $parts = explode("	", $status_check);
+    $parts = explode("\t", $status_check);
     $sandbox_uptime = isset($parts[1]) ? trim($parts[1]) : 'Running';
 }
 
@@ -80,13 +80,13 @@ if (!empty($status_check) && strpos($status_check, 'pikachu-lab-sock-escape') !=
 if (isset($_POST['exec_cmd'])) {
     $raw_cmd = trim($_POST['cmd_input'] ?? '');
     if ($raw_cmd !== '') {
-        $output = dockerlab_exec_universal($raw_cmd, 'docker_sock', $_SESSION['docker_priv_state'], $_SESSION['docker_priv_cwd']);
+        $output = dockerlab_exec_universal($raw_cmd, 'docker_sock', $_SESSION['docker_sock_state'], $_SESSION['docker_sock_cwd']);
 
         // Add to history
-        $_SESSION['docker_priv_history'][] = array(
+        $_SESSION['docker_sock_history'][] = array(
             'type' => 'user',
             'cmd' => $raw_cmd,
-            'cwd' => $_SESSION['docker_priv_cwd'],
+            'cwd' => $_SESSION['docker_sock_cwd'],
             'output' => $output
         );
     }
@@ -705,12 +705,12 @@ docker exec pikachu-lab-sock-escape bash -c "echo 'flag{**********}' > /etc/dock
 
                             <!-- Terminal Output Screen -->
                             <div class="cyber-terminal-screen" id="term_body">
-                                <?php foreach ($_SESSION['docker_priv_history'] as $item): ?>
+                                <?php foreach ($_SESSION['docker_sock_history'] as $item): ?>
                                     <?php if ($item['type'] === 'sys'): ?>
                                         <div style="color: #64748b; margin-bottom: 12px;"><?php echo nl2br(htmlspecialchars($item['content'])); ?></div>
                                     <?php else: ?>
                                         <div>
-                                            <span class="term-prompt">root@privileged-sandbox:<?php echo htmlspecialchars($item['cwd'] ?? '/root'); ?># </span>
+                                            <span class="term-prompt">root@dockersock-sandbox:<?php echo htmlspecialchars($item['cwd'] ?? '/root'); ?># </span>
                                             <span class="term-user-cmd"><?php echo htmlspecialchars($item['cmd']); ?></span>
                                         </div>
                                         <div class="term-output"><?php echo htmlspecialchars($item['output']); ?></div>

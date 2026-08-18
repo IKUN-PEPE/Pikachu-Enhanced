@@ -1175,7 +1175,7 @@ if (!isset($ACTIVE)){
 
             <?php
             $is_cloud_active = false;
-            foreach (array_merge(range(140, 164), array(124, 207, 216, 217)) as $i) {
+            foreach (array_merge(range(140, 164), range(200, 220)) as $i) {
                 if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
                     $is_cloud_active = true;
                     break;
@@ -1202,28 +1202,91 @@ if (!isset($ACTIVE)){
 
                     <li class="<?php echo isset($ACTIVE[141]) ? $ACTIVE[141] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/dockerlab/dockerlab.php">
-                            概述
+                            概述与架构
                         </a>
                         <b class="arrow"></b>
                     </li>
 
                     <li class="<?php echo isset($ACTIVE[142]) ? $ACTIVE[142] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/dockerlab/dockerlab_check.php">
-                            环境检查
+                            环境检查与诊断
                         </a>
                         <b class="arrow"></b>
                     </li>
 
                     <li class="<?php echo isset($ACTIVE[143]) ? $ACTIVE[143] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/dockerlab/dockerlab_center.php">
-                            模板列表
+                            ⚡ 容器靶场控制中心
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo isset($ACTIVE[210]) ? $ACTIVE[210] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/dockerlab/docker_privileged_escape.php">
+                            🐳 1. Docker 特权模式逃逸
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo isset($ACTIVE[211]) ? $ACTIVE[211] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/dockerlab/docker_sock_escape.php">
+                            🐳 2. Docker Socket 挂载逃逸
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo isset($ACTIVE[212]) ? $ACTIVE[212] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/dockerlab/docker_caps_escape.php">
+                            🐳 3. Linux Capabilities 逃逸
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo isset($ACTIVE[213]) ? $ACTIVE[213] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/dockerlab/docker_cve_escape.php">
+                            🐳 4. runc 容器逃逸 (CVE)
                         </a>
                         <b class="arrow"></b>
                     </li>
 
                     <li class="<?php echo isset($ACTIVE[207]) ? $ACTIVE[207] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/dockerlab/k8s_token_escape.php">
-                            Kubernetes 越权逃逸
+                            ☸️ 5. Kubernetes Token 逃逸
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo isset($ACTIVE[214]) ? $ACTIVE[214] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/dockerlab/docker_redis_lab.php">
+                            🛢️ 6. Redis 7.0 未授权与提权
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo isset($ACTIVE[215]) ? $ACTIVE[215] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/dockerlab/docker_fastjson_lab.php">
+                            ☕ 7. Fastjson 反序列化 JNDI
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo isset($ACTIVE[216]) ? $ACTIVE[216] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/dockerlab/docker_log4j2_lab.php">
+                            🔥 8. Log4j2 JNDI 远程代码执行
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo isset($ACTIVE[217]) ? $ACTIVE[217] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/dockerlab/docker_flask_ssti_lab.php">
+                            🐍 9. Python Flask SSTI 模板注入
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo isset($ACTIVE[218]) ? $ACTIVE[218] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/dockerlab/docker_mysql_lab.php">
+                            🛢️ 10. MySQL 8.0 弱口令与 UDF
                         </a>
                         <b class="arrow"></b>
                     </li>

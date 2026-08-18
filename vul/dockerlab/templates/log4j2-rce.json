@@ -18,7 +18,7 @@
   ],
   "env": [],
   "cmd": [],
-  "entry_url": "http://127.0.0.1:8765/vul/rce/rce_log4j2.php",
+  "entry_url": "http://127.0.0.1:8765/vul/dockerlab/docker_log4j2_lab.php",
   "notes": "演示 Apache Log4j2 漏洞中由 JNDI 查找（${jndi:ldap://...}）触发的微服务远程代码执行演练。",
   "enabled": true
 }

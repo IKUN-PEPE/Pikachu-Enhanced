@@ -18,7 +18,7 @@
   ],
   "env": [],
   "cmd": [],
-  "entry_url": "http://127.0.0.1:8765/vul/rce/rce_fastjson.php",
+  "entry_url": "http://127.0.0.1:8765/vul/dockerlab/docker_fastjson_lab.php",
   "notes": "演示 Alibaba Fastjson 解析恶意 `@type` 字符串加载远程 Class 类实现 Java 反序列化提权 RCE 的实战路线。",
   "enabled": true
 }
