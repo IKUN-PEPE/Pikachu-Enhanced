@@ -279,6 +279,7 @@ html, body {
     background-color: var(--bg-app) !important;
     min-height: calc(100vh - 56px) !important;
     display: flex !important;
+    flex-wrap: wrap !important;
     position: relative !important;
 }
 
@@ -476,8 +477,9 @@ html, body {
    Main Content Layout & Perfect Spacing
    ========================================================================== */
 .main-content {
-    flex: 1 !important;
+    flex: 1 1 calc(100% - 250px) !important;
     min-width: 0 !important;
+    width: calc(100% - 250px) !important;
     margin-left: 0 !important;
     padding: 0 !important;
     background-color: var(--bg-app) !important;
@@ -841,6 +843,8 @@ html, body {
     position: relative !important;
     height: auto !important;
     width: 100% !important;
+    flex: 0 0 100% !important;
+    order: 99 !important;
     margin-top: 40px !important;
     padding-top: 0 !important;
     clear: both !important;
