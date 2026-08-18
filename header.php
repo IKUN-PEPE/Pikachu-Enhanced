@@ -42,8 +42,7 @@ if (!isset($ACTIVE)){
 
     <!-- page specific plugin styles -->
 
-    <!-- text fonts -->
-    <link rel="stylesheet" href="<?php echo $PIKA_ROOT_DIR;?>assets/css/fonts.googleapis.com.css" />
+    <!-- text fonts: system native font stack -->
 
     <!-- ace styles -->
     <link rel="stylesheet" href="<?php echo $PIKA_ROOT_DIR;?>assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
