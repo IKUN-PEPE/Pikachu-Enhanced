@@ -32,9 +32,12 @@ if (isset($_POST['check_flag'])) {
 if (isset($_GET['logout']) && $_GET['logout'] == '1') {
     jwt_logout();
     setcookie('jwt_token', '', time() - 3600, '/');
+    $_COOKIE['jwt_token'] = '';
     header('location:jwt_login.php');
     exit();
 }
+
+$current_token = $_COOKIE['jwt_token'] ?? '';
 
 // Handle Normal Login
 if (isset($_POST['login_submit'])) {
@@ -57,7 +60,8 @@ if (isset($_POST['login_submit'])) {
             $token = jwt_create_token($payload);
             setcookie('jwt_token', $token, time() + 3600, '/');
             $_COOKIE['jwt_token'] = $token;
-            $login_msg = "<div class='alert alert-success'><i class='fa fa-check'></i> 登录成功！服务端已下发当前用户 JWT 凭证至 Cookie。</div>";
+            $current_token = $token;
+            $login_msg = "<div class='alert alert-success'><i class='fa fa-check'></i> 登录成功！服务端已下发用户 JWT 凭证至 Cookie。</div>";
         } else {
             $login_msg = "<div class='alert alert-danger'><i class='fa fa-times'></i> 登录失败：用户名或密码错误。</div>";
         }
@@ -70,12 +74,12 @@ if (isset($_POST['tamper_submit'])) {
     if ($custom_token !== '') {
         setcookie('jwt_token', $custom_token, time() + 3600, '/');
         $_COOKIE['jwt_token'] = $custom_token;
-        $tamper_msg = "<div class='alert alert-info'><i class='fa fa-refresh'></i> 已将自定义篡改 Token 写入 Cookie 状态！</div>";
+        $current_token = $custom_token;
+        $tamper_msg = "<div class='alert alert-info'><i class='fa fa-refresh'></i> 已将自定义篡改 Token 写入并完成鉴权解析！</div>";
     }
 }
 
-// Parse Current Session Token (Vulnerable logic: weakly checks or decodes claim)
-$current_token = $_COOKIE['jwt_token'] ?? '';
+// Parse Current Session Token (Vulnerable logic: reads/decodes Base64 payload directly without enforcing server signature)
 $session_user = '未登录 (访客)';
 $session_role = 'guest';
 $session_level = 0;
@@ -87,10 +91,10 @@ if ($current_token !== '') {
         $p_raw = jwt_base64url_decode($parts[1]);
         $payload_parsed = json_decode($p_raw, true);
         if (is_array($payload_parsed)) {
-            $session_user = $payload_parsed['username'] ?? 'unknown';
-            $session_role = $payload_parsed['role'] ?? 'user';
+            $session_user = $payload_parsed['username'] ?? ($payload_parsed['user'] ?? 'unknown');
+            $session_role = strtolower($payload_parsed['role'] ?? 'user');
             $session_level = intval($payload_parsed['level'] ?? 0);
-            if ($session_role === 'admin' || $session_level === 1) {
+            if ($session_role === 'admin' || $session_role === 'root' || $session_role === 'superadmin' || $session_level === 1 || $session_user === 'admin') {
                 $is_admin = true;
             }
         }
@@ -138,12 +142,13 @@ include_once $PIKA_ROOT_DIR . 'header.php';
 }
 .admin-terminal {
     background: #020617;
-    border: 1px solid #1e293b;
+    border: 1px solid #10b981;
     border-radius: 12px;
     padding: 24px;
     color: #38bdf8;
     font-family: monospace;
     margin-top: 15px;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
 }
 </style>
 
@@ -155,7 +160,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                 <li class="active">Stage 01: JWT 客户端状态修改与认证绕过</li>
             </ul>
             <a href="#" style="float:right" data-container="body" data-toggle="popover" data-placement="bottom" title="解题提示"
-               data-content="使用 pikachu/000000 登录后获取 Token，在右侧工具箱中将 role 改为 admin 或 level 改为 1 并重新编码，提交即可伪造管理员身份！">
+               data-content="使用 pikachu/000000 登录后获取 Token，在右侧工具箱中将 role 改为 admin 或 level 改为 1，点击「写入 Cookie 重放请求」即可伪造管理员身份！">
                 <i class="fa fa-lightbulb-o text-warning"></i> 提示
             </a>
         </div>
@@ -180,7 +185,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                 <div class="col-md-5">
                     <div class="stage-card">
                         <h4 style="margin:0 0 16px 0; font-size:16px; font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:8px;">
-                            <i class="fa fa-sign-in" style="color:var(--primary);"></i> 会员身份登录入口
+                            <i class="fa fa-sign-in" style="color:var(--primary);"></i> 账号密码登录入口
                         </h4>
 
                         <?php echo $login_msg; ?>
@@ -238,19 +243,22 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                             <div class="col-sm-6" style="margin-bottom:12px;">
                                 <label style="font-size:12.5px; font-weight:600;">编辑 Payload JSON (Data Claims):</label>
                                 <textarea id="payload_json_editor" style="width:100%; height:130px; font-family:monospace; font-size:12px; background:var(--bg-app); border:1px solid var(--border-subtle); border-radius:6px; padding:10px; color:var(--text-primary);">{
-  "username": "admin",
+  "username": "pikachu",
   "level": 1,
   "role": "admin",
   "iat": <?php echo time(); ?>
 }</textarea>
                             </div>
                             <div class="col-sm-6" style="margin-bottom:12px;">
-                                <label style="font-size:12.5px; font-weight:600;">生成并提交的 Custom Token:</label>
+                                <label style="font-size:12.5px; font-weight:600;">生成或直接粘贴要提交的 Token:</label>
                                 <form method="POST">
-                                    <textarea id="tampered_token_output" name="custom_jwt" style="width:100%; height:85px; font-family:monospace; font-size:11px; background:var(--bg-app); border:1px solid var(--border-subtle); border-radius:6px; padding:8px; color:#a855f7; word-break:break-all;"></textarea>
-                                    <div style="margin-top:8px; display:flex; gap:8px;">
+                                    <textarea id="tampered_token_output" name="custom_jwt" style="width:100%; height:85px; font-family:monospace; font-size:11px; background:var(--bg-app); border:1px solid var(--border-subtle); border-radius:6px; padding:8px; color:#a855f7; word-break:break-all;" placeholder="在此粘贴你的 Token 或点击下方按钮编码生成"><?php echo htmlspecialchars($current_token); ?></textarea>
+                                    <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
                                         <button type="button" class="btn btn-warning btn-xs" onclick="generateTamperedToken()" style="border-radius:4px; font-weight:600;">
                                             <i class="fa fa-wrench"></i> 编码组装 Token
+                                        </button>
+                                        <button type="button" class="btn btn-info btn-xs" onclick="oneClickAdmin()" style="border-radius:4px; font-weight:600;">
+                                            <i class="fa fa-bolt"></i> 一键填入 Admin 载荷
                                         </button>
                                         <button type="submit" name="tamper_submit" class="btn btn-danger btn-xs" style="border-radius:4px; font-weight:600;">
                                             <i class="fa fa-paper-plane"></i> 写入 Cookie 重放请求
@@ -263,21 +271,24 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                         <!-- Admin Terminal Output Area -->
                         <?php if ($is_admin) { ?>
                             <div class="admin-terminal">
-                                <div style="color:#10b981; font-weight:700; font-size:15px; margin-bottom:12px;">
+                                <div style="color:#10b981; font-weight:700; font-size:16px; margin-bottom:12px;">
                                     <i class="fa fa-shield"></i> 🎯 成功进入系统高权管理中枢 (Admin Center Disclosed)
                                 </div>
-                                <div style="color:#e2e8f0; font-size:13px; line-height:1.7;">
-                                    [+] 身份鉴权通过: <b><?php echo htmlspecialchars($session_user); ?></b> (Role: <?php echo htmlspecialchars($session_role); ?>, Level: <?php echo $session_level; ?>)<br>
-                                    [+] 会话模式: Client-side Stateless JWT Bypass Verified<br>
-                                    [+] 核心机密中枢 Flag: <span style="color:#f59e0b; font-weight:bold; font-size:14px;">flag{JWT_Auth_Bypass_Client_Tamper_Success}</span><br>
-                                    [+] 管理系统数据检索完成，获得全库超级只读授权！
+                                <div style="color:#e2e8f0; font-size:13px; line-height:1.8;">
+                                    [+] 身份鉴权通过: <b><?php echo htmlspecialchars($session_user); ?></b> (Role: <span style="color:#ef4444; font-weight:bold;"><?php echo htmlspecialchars($session_role); ?></span>, Level: <span style="color:#ef4444; font-weight:bold;"><?php echo $session_level; ?></span>)<br>
+                                    [+] 鉴权漏洞: Client-side Stateless JWT Claim Tampering Bypass<br>
+                                    [+] 核心机密中枢 Flag: <br>
+                                    <div style="margin:8px 0; background:rgba(245,158,11,0.15); border:1px solid #f59e0b; padding:10px; border-radius:6px;">
+                                        <span style="color:#f59e0b; font-weight:bold; font-size:15px;">flag{JWT_Auth_Bypass_Client_Tamper_Success}</span>
+                                    </div>
+                                    [+] 复制上方 Flag 粘贴至下方输入框提交即可通关！
                                 </div>
                             </div>
                         <?php } else { ?>
                             <div style="background:var(--bg-secondary); border:1px dashed var(--border-subtle); border-radius:10px; padding:20px; text-align:center; color:var(--text-muted); font-size:13px; margin-top:15px;">
                                 <i class="fa fa-lock" style="font-size:24px; margin-bottom:8px; display:block; color:var(--text-muted);"></i>
-                                当前会话权限为普通用户 (Guest / User)，管理中心处于锁定状态。<br>
-                                请将 Payload 中的 <code>role</code> 修改为 <code>admin</code> 并提交伪造 Token！
+                                当前会话识别为普通用户，管理中心处于锁定状态。<br>
+                                请在上方文本框中粘贴你的 Token（或点击「一键填入 Admin 载荷」），然后点击红色的 <b>「写入 Cookie 重放请求」</b> 提交！
                             </div>
                         <?php } ?>
 
@@ -285,7 +296,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
 
                         <!-- Flag Submission Area -->
                         <form method="POST" style="display:flex; gap:10px; align-items:center;">
-                            <input type="text" name="flag_input" class="form-control" placeholder="输入获取到的 flag{...}" style="border-radius:6px;" required>
+                            <input type="text" name="flag_input" class="form-control" placeholder="输入获取到的 flag{...}" style="border-radius:6px;" value="<?php echo $is_admin ? 'flag{JWT_Auth_Bypass_Client_Tamper_Success}' : ''; ?>" required>
                             <button type="submit" name="check_flag" class="btn btn-success" style="border-radius:6px; font-weight:700; white-space:nowrap;">
                                 <i class="fa fa-check"></i> 提交 Flag
                             </button>
@@ -321,7 +332,6 @@ function generateTamperedToken() {
         var payloadObj = JSON.parse(payloadStr);
         var hEnc = b64url_encode(JSON.stringify(header));
         var pEnc = b64url_encode(JSON.stringify(payloadObj));
-        // Mock signature for client tamper demo
         var fakeSig = "tampered_signature_payload_insecure";
         document.getElementById('tampered_token_output').value = hEnc + '.' + pEnc + '.' + fakeSig;
     } catch(e) {
@@ -329,10 +339,15 @@ function generateTamperedToken() {
     }
 }
 
-// Auto generate on page load
-window.addEventListener('DOMContentLoaded', function() {
+function oneClickAdmin() {
+    document.getElementById('payload_json_editor').value = JSON.stringify({
+        "username": "pikachu",
+        "level": 1,
+        "role": "admin",
+        "iat": Math.floor(Date.now() / 1000)
+    }, null, 2);
     generateTamperedToken();
-});
+}
 </script>
 
 <?php include_once $PIKA_ROOT_DIR . 'footer.php'; ?>
