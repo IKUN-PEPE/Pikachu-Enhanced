@@ -313,40 +313,101 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                             <i class="fa fa-sitemap" style="color:var(--primary);"></i> 漏洞机理架构与攻击时序流程图
                         </h4>
 
-                        <!-- Flowchart Diagram -->
+                        <!-- Visual SVG Architecture Flowchart -->
+                        <div style="background:#020617; border:1px solid #1e293b; border-radius:12px; padding:16px; margin-bottom:16px; text-align:center;">
+                            <svg viewBox="0 0 760 210" style="width:100%; max-width:720px; height:auto; display:inline-block;" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Background grid -->
+                                <defs>
+                                    <linearGradient id="gradBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2"/>
+                                        <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.05"/>
+                                    </linearGradient>
+                                    <linearGradient id="gradRed" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#ef4444" stop-opacity="0.25"/>
+                                        <stop offset="100%" stop-color="#991b1b" stop-opacity="0.05"/>
+                                    </linearGradient>
+                                    <linearGradient id="gradGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+                                        <stop offset="100%" stop-color="#065f46" stop-opacity="0.05"/>
+                                    </linearGradient>
+                                    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                                        <polygon points="0 0, 8 3, 0 6" fill="#38bdf8"/>
+                                    </marker>
+                                    <marker id="arrowhead-red" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                                        <polygon points="0 0, 8 3, 0 6" fill="#ef4444"/>
+                                    </marker>
+                                </defs>
+
+                                <!-- Step 1 Box: Client Login -->
+                                <rect x="15" y="25" width="200" height="70" rx="8" fill="url(#gradBlue)" stroke="#3b82f6" stroke-width="1.5"/>
+                                <text x="115" y="48" fill="#60a5fa" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">1. 客户端正常登录</text>
+                                <text x="115" y="68" fill="#94a3b8" font-size="10.5" text-anchor="middle" font-family="monospace">POST username=pikachu</text>
+                                <text x="115" y="82" fill="#94a3b8" font-size="10" text-anchor="middle" font-family="sans-serif">获得初始 Token (role: user)</text>
+
+                                <!-- Arrow 1 -> Server -->
+                                <path d="M 215 60 L 275 60" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+                                <!-- Step 2 Box: Server Issue -->
+                                <rect x="285" y="25" width="190" height="70" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+                                <text x="380" y="48" fill="#f8fafc" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">2. 服务端签发 Token</text>
+                                <text x="380" y="68" fill="#cbd5e1" font-size="10.5" text-anchor="middle" font-family="monospace">Set-Cookie: jwt_token</text>
+                                <text x="380" y="82" fill="#64748b" font-size="10" text-anchor="middle" font-family="sans-serif">Base64(Header.Payload.Sig)</text>
+
+                                <!-- Step 3 Box: Attacker Tamper (Bottom Left) -->
+                                <rect x="15" y="125" width="200" height="70" rx="8" fill="url(#gradRed)" stroke="#ef4444" stroke-width="1.5"/>
+                                <text x="115" y="148" fill="#f87171" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">3. 客户端 Base64 篡改</text>
+                                <text x="115" y="168" fill="#fca5a5" font-size="10.5" text-anchor="middle" font-family="monospace">"role": "admin", "level": 1</text>
+                                <text x="115" y="182" fill="#cbd5e1" font-size="10" text-anchor="middle" font-family="sans-serif">拼接任意假签名写入 Cookie</text>
+
+                                <!-- Arrow 3 -> 4 -->
+                                <path d="M 215 160 L 275 160" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowhead-red)"/>
+
+                                <!-- Step 4 Box: Flawed Verification -->
+                                <rect x="285" y="125" width="190" height="70" rx="8" fill="url(#gradRed)" stroke="#ef4444" stroke-width="1.5"/>
+                                <text x="380" y="148" fill="#f87171" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">4. 缺陷验签逻辑 (漏洞点)</text>
+                                <text x="380" y="168" fill="#fca5a5" font-size="10.5" text-anchor="middle" font-family="monospace">json_decode(base64)</text>
+                                <text x="380" y="182" fill="#ef4444" font-size="10" font-weight="bold" text-anchor="middle" font-family="sans-serif">❌ 缺失 verify_signature() !</text>
+
+                                <!-- Arrow 4 -> 5 -->
+                                <path d="M 475 160 L 535 160" stroke="#10b981" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+
+                                <!-- Step 5 Box: Admin Flag Disclosure -->
+                                <rect x="545" y="65" width="200" height="95" rx="8" fill="url(#gradGreen)" stroke="#10b981" stroke-width="2"/>
+                                <text x="645" y="93" fill="#34d399" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">5. 权限提升 &amp; 获取 Flag</text>
+                                <text x="645" y="115" fill="#f8fafc" font-size="11" text-anchor="middle" font-family="sans-serif">服务端识别为超级管理员</text>
+                                <text x="645" y="133" fill="#fbbf24" font-size="11" font-weight="bold" text-anchor="middle" font-family="monospace">flag{JWT_Auth_Bypass...}</text>
+                                <text x="645" y="149" fill="#a7f3d0" font-size="10" text-anchor="middle" font-family="sans-serif">✅ 获得全库最高权限</text>
+                            </svg>
+                        </div>
+
+                        <!-- Step Details List -->
                         <div class="flow-container">
                             <div class="flow-step">
                                 <div class="flow-num">1</div>
                                 <div class="flow-content">
                                     <h5>正常登录获取初始低权 Token</h5>
-                                    <p>用户使用普通账号 <code>pikachu/000000</code> 登录，服务端下发合法 JWT (Payload 包含 <code>"role": "user", "level": 2</code>)。</p>
+                                    <p>用户使用普通账号 <code>pikachu/000000</code> 登录，服务端下发包含 <code>"role": "user", "level": 2</code> 的合法 JWT 存储在 Cookie 中。</p>
                                 </div>
                             </div>
-                            <div class="flow-arrow"><i class="fa fa-arrow-down"></i></div>
-
                             <div class="flow-step">
                                 <div class="flow-num" style="background:#ef4444;">2</div>
                                 <div class="flow-content">
-                                    <h5 style="color:#ef4444;">客户端抓包截获并 Base64 解码篡改</h5>
-                                    <p>JWT 由 <code>Header.Payload.Signature</code> 三段组成。攻击者取出中间的 Payload 做 Base64 解码，将权限字段篡改为 <code>"role": "admin", "level": 1</code>。</p>
+                                    <h5 style="color:#ef4444;">客户端截获并解码篡改 Payload</h5>
+                                    <p>JWT 由 <code>Header.Payload.Signature</code> 三部分组成。攻击者取出中间的 Payload 并在本地进行 Base64 解码，将权限字段篡改为 <code>"role": "admin", "level": 1</code>。</p>
                                 </div>
                             </div>
-                            <div class="flow-arrow"><i class="fa fa-arrow-down"></i></div>
-
                             <div class="flow-step">
                                 <div class="flow-num" style="background:#f59e0b;">3</div>
                                 <div class="flow-content">
-                                    <h5 style="color:#f59e0b;">组装篡改后的 Token 并重新写入 Cookie</h5>
-                                    <p>重新对 Payload 进行 Base64URL 编码，拼接任意签名段（如 <code>Header.NewPayload.AnySignature</code>），写入浏览器的 <code>Cookie: jwt_token</code>。</p>
+                                    <h5 style="color:#f59e0b;">重新组装并写入浏览器 Cookie</h5>
+                                    <p>重新对 Payload 做 Base64URL 编码，拼接任意签名（例如 <code>Header.NewPayload.AnyFakeSig</code>），通过浏览器 F12 修改 <code>Cookie: jwt_token</code> 并刷新。</p>
                                 </div>
                             </div>
-                            <div class="flow-arrow"><i class="fa fa-arrow-down"></i></div>
-
                             <div class="flow-step">
                                 <div class="flow-num" style="background:#10b981;">4</div>
                                 <div class="flow-content">
-                                    <h5 style="color:#10b981;">服务端「只解码、不验签」导致直接越权</h5>
-                                    <p>有缺陷的服务端直接调用 <code>json_decode(base64_decode())</code> 信任了 Payload 中的角色属性，判定为管理员并返回高权数据与 Flag！</p>
+                                    <h5 style="color:#10b981;">服务端「只解码、未验签」导致直接越权</h5>
+                                    <p>服务端仅调用 <code>json_decode(base64_decode())</code> 读取了 Payload 中的角色声明，缺少签名合法性校验，直接放行并下发 Flag！</p>
                                 </div>
                             </div>
                         </div>
