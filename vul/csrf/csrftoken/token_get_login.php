@@ -341,8 +341,8 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                     <a href="../csrfpost/csrf_post_login.php" class="btn btn-warning" style="border-radius:8px; font-weight:700; color:#fff;">
                         <i class="fa fa-arrow-left"></i> 上一关：CSRF (POST 方式)
                     </a>
-                    <a href="../csrf.php" class="btn btn-primary" style="border-radius:8px; font-weight:700;">
-                        返回 CSRF 演练大厅 <i class="fa fa-th-large"></i>
+                    <a href="../csrf_referer/csrf_referer.php" class="btn btn-primary" style="border-radius:8px; font-weight:700;">
+                        下一关：CSRF Referer 绕过 <i class="fa fa-arrow-right"></i>
                     </a>
                 </div>
 
