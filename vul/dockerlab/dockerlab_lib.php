@@ -180,19 +180,20 @@ function dockerlab_find_docker_binary(){
 
     $candidates = array(
         '/var/www/html/docker-cli',
-        'docker',
-        'docker.exe',
         '/usr/bin/docker',
         '/usr/local/bin/docker',
-        '/mnt/c/Program Files/Docker/Docker/resources/bin/docker.exe',
-        '/mnt/c/Program Files/Docker/Docker/resources/bin/docker',
-        'C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe'
+        'docker'
     );
 
     foreach ($candidates as $cand) {
-        $cmd = escapeshellcmd($cand) . ' version 2>&1';
+        if (strpos($cand, '/') !== false || strpos($cand, '\\') !== false) {
+            if (!file_exists($cand)) {
+                continue;
+            }
+        }
+        $cmd = escapeshellcmd($cand) . ' --version 2>&1';
         $output = @shell_exec($cmd);
-        if ($output !== null && (strpos($output, 'Client:') !== false || strpos($output, 'Docker version') !== false || strpos($output, 'Server:') !== false)) {
+        if ($output !== null && (strpos($output, 'Docker version') !== false || strpos($output, 'Docker') !== false || strpos($output, 'Client:') !== false)) {
             $resolved_path = $cand;
             return $resolved_path;
         }
@@ -268,7 +269,7 @@ function dockerlab_run_command($args, $timeout = 10){
             proc_terminate($process);
             break;
         }
-        usleep(100000);
+        usleep(10000);
     }while(true);
 
     $stdout .= stream_get_contents($pipes[1]);
@@ -290,7 +291,12 @@ function dockerlab_run_command($args, $timeout = 10){
     );
 }
 
-function dockerlab_check_environment(){
+function dockerlab_check_environment($force_refresh = false){
+    static $cached_env = null;
+    if ($cached_env !== null && !$force_refresh) {
+        return $cached_env;
+    }
+
     $in_container = file_exists('/.dockerenv') || (file_exists('/proc/1/cgroup') && strpos(@file_get_contents('/proc/1/cgroup'), 'docker') !== false);
 
     $result = array(
@@ -306,13 +312,14 @@ function dockerlab_check_environment(){
         'message' => ''
     );
 
-    $version = dockerlab_run_command(array('docker', '--version'), 10);
+    $version = dockerlab_run_command(array('docker', '--version'), 2);
     if(!$version['ok']){
         if ($in_container) {
             $result['message'] = '当前 Pikachu 靶场运行在 Docker 容器环境 (pikachu-enhanced-web) 内，未在容器内打通 Docker-in-Docker 套接字。4 大逃逸关卡已内置完整模拟器，100% 支持实战演练！';
         } else {
             $result['message'] = $version['stderr'] !== '' ? $version['stderr'] : '未检测到可用的 Docker CLI';
         }
+        $cached_env = $result;
         return $result;
     }
 
@@ -320,31 +327,39 @@ function dockerlab_check_environment(){
     $result['docker_version_ok'] = true;
     $result['docker_version'] = $version['stdout'];
 
-    $info = dockerlab_run_command(array('docker', 'info', '--format', '{{.OperatingSystem}} | {{.OSType}} | {{.Architecture}}'), 10);
+    $info = dockerlab_run_command(array('docker', 'info', '--format', '{{.OperatingSystem}} | {{.OSType}} | {{.Architecture}}'), 2);
     if(!$info['ok']){
         if ($in_container) {
             $result['message'] = '当前靶场运行于 Docker 容器隔离环境。容器内未直接挂载宿主机 docker.sock，这完全属于正常安全隔离机制，不影响逃逸关卡演练。';
         } else {
             $result['message'] = $info['stderr'] !== '' ? $info['stderr'] : 'Docker daemon 不可达';
         }
+        $cached_env = $result;
         return $result;
     }
 
     $result['daemon_reachable'] = true;
     $result['docker_info'] = $info['stdout'];
     $result['message'] = 'Docker 环境可用（只读检测）';
+    $cached_env = $result;
     return $result;
 }
 
-function dockerlab_list_lab_containers(){
+function dockerlab_list_lab_containers($force_refresh = false){
+    static $cached_containers = null;
+    if ($cached_containers !== null && !$force_refresh) {
+        return $cached_containers;
+    }
+
     $result = dockerlab_run_command(array(
         'docker', 'ps', '-a',
         '--filter', 'label=pikachu.lab=true',
         '--format', '{{.Names}}|{{.Status}}|{{.Ports}}|{{.Labels}}'
-    ), 10);
+    ), 2);
 
     if(!$result['ok']){
-        return array();
+        $cached_containers = array();
+        return $cached_containers;
     }
 
     $items = array();
@@ -362,6 +377,7 @@ function dockerlab_list_lab_containers(){
             'labels' => isset($parts[3]) ? $parts[3] : ''
         );
     }
+    $cached_containers = $items;
     return $items;
 }
 
