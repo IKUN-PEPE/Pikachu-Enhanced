@@ -82,13 +82,17 @@ $session_level = 0;
 $is_admin = false;
 
 if ($current_token !== '') {
-    $payload_parsed = jwt_decode_insecure($current_token);
-    if (is_array($payload_parsed)) {
-        $session_user = $payload_parsed['username'] ?? 'unknown';
-        $session_role = $payload_parsed['role'] ?? 'user';
-        $session_level = intval($payload_parsed['level'] ?? 0);
-        if ($session_role === 'admin' || $session_level === 1) {
-            $is_admin = true;
+    $parts = explode('.', $current_token);
+    if (count($parts) >= 2) {
+        $p_raw = jwt_base64url_decode($parts[1]);
+        $payload_parsed = json_decode($p_raw, true);
+        if (is_array($payload_parsed)) {
+            $session_user = $payload_parsed['username'] ?? 'unknown';
+            $session_role = $payload_parsed['role'] ?? 'user';
+            $session_level = intval($payload_parsed['level'] ?? 0);
+            if ($session_role === 'admin' || $session_level === 1) {
+                $is_admin = true;
+            }
         }
     }
 }
