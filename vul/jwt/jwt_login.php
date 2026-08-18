@@ -14,7 +14,6 @@ $ACTIVE[124] = 'active';
 
 $link = connect();
 $login_msg = '';
-$tamper_msg = '';
 $flag_msg = '';
 
 // Check Flag submission
@@ -61,21 +60,10 @@ if (isset($_POST['login_submit'])) {
             setcookie('jwt_token', $token, time() + 3600, '/');
             $_COOKIE['jwt_token'] = $token;
             $current_token = $token;
-            $login_msg = "<div class='alert alert-success'><i class='fa fa-check'></i> 登录成功！服务端已下发用户 JWT 凭证至 Cookie。</div>";
+            $login_msg = "<div class='alert alert-success'><i class='fa fa-check'></i> 登录成功！服务端已下发用户 JWT 凭证至 Cookie (jwt_token)。</div>";
         } else {
             $login_msg = "<div class='alert alert-danger'><i class='fa fa-times'></i> 登录失败：用户名或密码错误。</div>";
         }
-    }
-}
-
-// Handle Tampered Token Direct Submit
-if (isset($_POST['tamper_submit'])) {
-    $custom_token = trim($_POST['custom_jwt'] ?? '');
-    if ($custom_token !== '') {
-        setcookie('jwt_token', $custom_token, time() + 3600, '/');
-        $_COOKIE['jwt_token'] = $custom_token;
-        $current_token = $custom_token;
-        $tamper_msg = "<div class='alert alert-info'><i class='fa fa-refresh'></i> 已将自定义篡改 Token 写入并完成鉴权解析！</div>";
     }
 }
 
@@ -114,14 +102,6 @@ include_once $PIKA_ROOT_DIR . 'header.php';
     margin-bottom: 24px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
-.stage-title {
-    font-size: 22px;
-    font-weight: 800;
-    margin: 0 0 10px 0;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
 .stage-card {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
@@ -136,7 +116,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
     border-radius: 8px;
     padding: 12px;
     font-family: monospace;
-    font-size: 12.5px;
+    font-size: 12px;
     word-break: break-all;
     color: var(--text-primary);
 }
@@ -144,11 +124,73 @@ include_once $PIKA_ROOT_DIR . 'header.php';
     background: #020617;
     border: 1px solid #10b981;
     border-radius: 12px;
-    padding: 24px;
+    padding: 22px;
     color: #38bdf8;
     font-family: monospace;
     margin-top: 15px;
     box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+}
+
+/* Vulnerability Flowchart Styles */
+.flow-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+}
+.flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 14px 16px;
+}
+.flow-num {
+    width: 28px;
+    height: 28px;
+    background: #2563eb;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+.flow-content h5 {
+    margin: 0 0 4px 0;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+.flow-content p {
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+.flow-arrow {
+    text-align: center;
+    color: var(--primary);
+    font-size: 14px;
+    margin: -4px 0;
+}
+
+/* Manual Tab Box */
+.code-tab-box {
+    background: #020617;
+    border: 1px solid #1e293b;
+    border-radius: 10px;
+    padding: 16px;
+    color: #f8fafc;
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-x: auto;
+    margin: 10px 0;
 }
 </style>
 
@@ -160,7 +202,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                 <li class="active">Stage 01: JWT 客户端状态修改与认证绕过</li>
             </ul>
             <a href="#" style="float:right" data-container="body" data-toggle="popover" data-placement="bottom" title="解题提示"
-               data-content="使用 pikachu/000000 登录后获取 Token，在右侧工具箱中将 role 改为 admin 或 level 改为 1，点击「写入 Cookie 重放请求」即可伪造管理员身份！">
+               data-content="登录拿到普通用户 Token 后，在本地使用 Python 或 Base64 工具把 Payload 中的 role 改为 admin（或 level 改为 1），再在浏览器 F12 Application -> Cookies 中修改 jwt_token 并刷新即可！">
                 <i class="fa fa-lightbulb-o text-warning"></i> 提示
             </a>
         </div>
@@ -169,19 +211,19 @@ include_once $PIKA_ROOT_DIR . 'header.php';
             
             <!-- Stage Hero -->
             <div class="stage-hero">
-                <div class="stage-title">
+                <div style="font-size:22px; font-weight:800; margin:0 0 10px 0; display:flex; align-items:center; gap:12px;">
                     <i class="fa fa-unlock-alt" style="color:#818cf8;"></i> Stage 01: JWT 客户端状态修改与越权认证
                     <span class="label label-info" style="border-radius:12px; font-size:11px; padding:3px 10px;">100 PTS</span>
                 </div>
                 <p style="margin:0; font-size:14px; color:#cbd5e1; line-height:1.6;">
-                    <b>漏洞场景：</b>当服务端将会话状态（如用户角色 <code>role</code>、权限等级 <code>level</code>）完全存放在客户端 JWT Payload 中，且在处理鉴权时<b>未对 Token 进行严谨的签名校验</b>（或前端直读 Base64 自行放行），攻击者只需对 Payload 进行 Base64 解码并篡改字段，即可实现任意身份水平/垂直越权！
+                    <b>漏洞场景：</b>当服务端将会话状态（如用户角色 <code>role</code>、权限等级 <code>level</code>）完全存放在客户端 JWT Payload 中，且在处理鉴权时<b>未对 Token 进行严谨的签名校验</b>（或仅由前端 Base64 解码自行放行），攻击者只需对 Payload 进行 Base64 解码并篡改字段，即可实现任意身份水平/垂直越权！
                 </p>
             </div>
 
             <?php echo $flag_msg; ?>
 
             <div class="row">
-                <!-- Left: Normal Login & Session Viewer -->
+                <!-- Left: Login Form & Current Session State -->
                 <div class="col-md-5">
                     <div class="stage-card">
                         <h4 style="margin:0 0 16px 0; font-size:16px; font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:8px;">
@@ -209,7 +251,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                             </div>
                         </form>
 
-                        <div class="alert alert-info" style="border-radius:8px; font-size:12.5px; margin:0;">
+                        <div class="alert alert-info" style="border-radius:8px; font-size:12px; margin:0;">
                             <b>演示测试账号：</b><br>
                             &bull; 普通员工：<code>pikachu / 000000</code> (level: 2, role: user)<br>
                             &bull; 超级管理：<code>admin / 123456</code> (level: 1, role: admin)
@@ -227,68 +269,28 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                         <div class="token-box">
                             <?php echo !empty($current_token) ? htmlspecialchars($current_token) : '<span style="color:var(--text-muted);">[暂未登录，无 Cookie Token]</span>'; ?>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Right: Interactive Tampering Lab & Exploit Console -->
-                <div class="col-md-7">
-                    <div class="stage-card">
-                        <h4 style="margin:0 0 16px 0; font-size:16px; font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:8px;">
-                            <i class="fa fa-magic" style="color:var(--primary);"></i> 交互式 Token 篡改与越权提交工具箱
-                        </h4>
-
-                        <?php echo $tamper_msg; ?>
-
-                        <div class="row">
-                            <div class="col-sm-6" style="margin-bottom:12px;">
-                                <label style="font-size:12.5px; font-weight:600;">编辑 Payload JSON (Data Claims):</label>
-                                <textarea id="payload_json_editor" style="width:100%; height:130px; font-family:monospace; font-size:12px; background:var(--bg-app); border:1px solid var(--border-subtle); border-radius:6px; padding:10px; color:var(--text-primary);">{
-  "username": "pikachu",
-  "level": 1,
-  "role": "admin",
-  "iat": <?php echo time(); ?>
-}</textarea>
-                            </div>
-                            <div class="col-sm-6" style="margin-bottom:12px;">
-                                <label style="font-size:12.5px; font-weight:600;">生成或直接粘贴要提交的 Token:</label>
-                                <form method="POST">
-                                    <textarea id="tampered_token_output" name="custom_jwt" style="width:100%; height:85px; font-family:monospace; font-size:11px; background:var(--bg-app); border:1px solid var(--border-subtle); border-radius:6px; padding:8px; color:#a855f7; word-break:break-all;" placeholder="在此粘贴你的 Token 或点击下方按钮编码生成"><?php echo htmlspecialchars($current_token); ?></textarea>
-                                    <div style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;">
-                                        <button type="button" class="btn btn-warning btn-xs" onclick="generateTamperedToken()" style="border-radius:4px; font-weight:600;">
-                                            <i class="fa fa-wrench"></i> 编码组装 Token
-                                        </button>
-                                        <button type="button" class="btn btn-info btn-xs" onclick="oneClickAdmin()" style="border-radius:4px; font-weight:600;">
-                                            <i class="fa fa-bolt"></i> 一键填入 Admin 载荷
-                                        </button>
-                                        <button type="submit" name="tamper_submit" class="btn btn-danger btn-xs" style="border-radius:4px; font-weight:600;">
-                                            <i class="fa fa-paper-plane"></i> 写入 Cookie 重放请求
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!-- Admin Terminal Output Area -->
+                        <!-- Admin Central Output Area (Triggered when user becomes admin) -->
                         <?php if ($is_admin) { ?>
                             <div class="admin-terminal">
-                                <div style="color:#10b981; font-weight:700; font-size:16px; margin-bottom:12px;">
+                                <div style="color:#10b981; font-weight:700; font-size:15px; margin-bottom:10px;">
                                     <i class="fa fa-shield"></i> 🎯 成功进入系统高权管理中枢 (Admin Center Disclosed)
                                 </div>
-                                <div style="color:#e2e8f0; font-size:13px; line-height:1.8;">
+                                <div style="color:#e2e8f0; font-size:12.5px; line-height:1.7;">
                                     [+] 身份鉴权通过: <b><?php echo htmlspecialchars($session_user); ?></b> (Role: <span style="color:#ef4444; font-weight:bold;"><?php echo htmlspecialchars($session_role); ?></span>, Level: <span style="color:#ef4444; font-weight:bold;"><?php echo $session_level; ?></span>)<br>
                                     [+] 鉴权漏洞: Client-side Stateless JWT Claim Tampering Bypass<br>
                                     [+] 核心机密中枢 Flag: <br>
-                                    <div style="margin:8px 0; background:rgba(245,158,11,0.15); border:1px solid #f59e0b; padding:10px; border-radius:6px;">
-                                        <span style="color:#f59e0b; font-weight:bold; font-size:15px;">flag{JWT_Auth_Bypass_Client_Tamper_Success}</span>
+                                    <div style="margin:6px 0; background:rgba(245,158,11,0.15); border:1px solid #f59e0b; padding:8px 10px; border-radius:6px;">
+                                        <span style="color:#f59e0b; font-weight:bold; font-size:14px;">flag{JWT_Auth_Bypass_Client_Tamper_Success}</span>
                                     </div>
                                     [+] 复制上方 Flag 粘贴至下方输入框提交即可通关！
                                 </div>
                             </div>
                         <?php } else { ?>
-                            <div style="background:var(--bg-secondary); border:1px dashed var(--border-subtle); border-radius:10px; padding:20px; text-align:center; color:var(--text-muted); font-size:13px; margin-top:15px;">
-                                <i class="fa fa-lock" style="font-size:24px; margin-bottom:8px; display:block; color:var(--text-muted);"></i>
-                                当前会话识别为普通用户，管理中心处于锁定状态。<br>
-                                请在上方文本框中粘贴你的 Token（或点击「一键填入 Admin 载荷」），然后点击红色的 <b>「写入 Cookie 重放请求」</b> 提交！
+                            <div style="background:var(--bg-secondary); border:1px dashed var(--border-subtle); border-radius:10px; padding:16px; text-align:center; color:var(--text-muted); font-size:12.5px; margin-top:15px;">
+                                <i class="fa fa-lock" style="font-size:20px; margin-bottom:6px; display:block; color:var(--text-muted);"></i>
+                                当前识别为普通用户，管理中心处于锁定状态。<br>
+                                请参考右侧指南手动修改 Cookie 中的 <code>jwt_token</code> 提升为管理员！
                             </div>
                         <?php } ?>
 
@@ -301,6 +303,107 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                                 <i class="fa fa-check"></i> 提交 Flag
                             </button>
                         </form>
+                    </div>
+                </div>
+
+                <!-- Right: Vulnerability Architecture Flowchart & Manual Operations Guide -->
+                <div class="col-md-7">
+                    <div class="stage-card">
+                        <h4 style="margin:0 0 14px 0; font-size:16px; font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:8px;">
+                            <i class="fa fa-sitemap" style="color:var(--primary);"></i> 漏洞机理架构与攻击时序流程图
+                        </h4>
+
+                        <!-- Flowchart Diagram -->
+                        <div class="flow-container">
+                            <div class="flow-step">
+                                <div class="flow-num">1</div>
+                                <div class="flow-content">
+                                    <h5>正常登录获取初始低权 Token</h5>
+                                    <p>用户使用普通账号 <code>pikachu/000000</code> 登录，服务端下发合法 JWT (Payload 包含 <code>"role": "user", "level": 2</code>)。</p>
+                                </div>
+                            </div>
+                            <div class="flow-arrow"><i class="fa fa-arrow-down"></i></div>
+
+                            <div class="flow-step">
+                                <div class="flow-num" style="background:#ef4444;">2</div>
+                                <div class="flow-content">
+                                    <h5 style="color:#ef4444;">客户端抓包截获并 Base64 解码篡改</h5>
+                                    <p>JWT 由 <code>Header.Payload.Signature</code> 三段组成。攻击者取出中间的 Payload 做 Base64 解码，将权限字段篡改为 <code>"role": "admin", "level": 1</code>。</p>
+                                </div>
+                            </div>
+                            <div class="flow-arrow"><i class="fa fa-arrow-down"></i></div>
+
+                            <div class="flow-step">
+                                <div class="flow-num" style="background:#f59e0b;">3</div>
+                                <div class="flow-content">
+                                    <h5 style="color:#f59e0b;">组装篡改后的 Token 并重新写入 Cookie</h5>
+                                    <p>重新对 Payload 进行 Base64URL 编码，拼接任意签名段（如 <code>Header.NewPayload.AnySignature</code>），写入浏览器的 <code>Cookie: jwt_token</code>。</p>
+                                </div>
+                            </div>
+                            <div class="flow-arrow"><i class="fa fa-arrow-down"></i></div>
+
+                            <div class="flow-step">
+                                <div class="flow-num" style="background:#10b981;">4</div>
+                                <div class="flow-content">
+                                    <h5 style="color:#10b981;">服务端「只解码、不验签」导致直接越权</h5>
+                                    <p>有缺陷的服务端直接调用 <code>json_decode(base64_decode())</code> 信任了 Payload 中的角色属性，判定为管理员并返回高权数据与 Flag！</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr style="border-color:var(--border-subtle);">
+
+                        <!-- Manual Operation Tutorials -->
+                        <h4 style="margin:0 0 12px 0; font-size:16px; font-weight:700; color:var(--text-primary); display:flex; align-items:center; gap:8px;">
+                            <i class="fa fa-terminal" style="color:var(--primary);"></i> 手动操作实战指南 (任选一种方法)
+                        </h4>
+
+                        <!-- Method 1: Python Script -->
+                        <div style="margin-bottom:16px;">
+                            <div style="font-size:13px; font-weight:700; color:var(--primary);">
+                                <i class="fa fa-code"></i> 方法一：使用 Python 脚本生成伪造 Token
+                            </div>
+                            <p style="font-size:12px; color:var(--text-muted); margin:4px 0;">在本地终端打开 Python 交互环境（<code>python</code>），执行以下代码生成你的管理员 Token：</p>
+                            <div class="code-tab-box">
+<span style="color:#60a5fa;">import</span> jwt
+
+<span style="color:#94a3b8;"># 构造包含管理员角色的 Payload</span>
+admin_payload = {
+    <span style="color:#a5b4fc;">"username"</span>: <span style="color:#34d399;">"pikachu"</span>,
+    <span style="color:#a5b4fc;">"level"</span>: <span style="color:#f59e0b;">1</span>,
+    <span style="color:#a5b4fc;">"role"</span>: <span style="color:#34d399;">"admin"</span>,
+    <span style="color:#a5b4fc;">"iat"</span>: <span style="color:#f59e0b;">1787035367</span>
+}
+
+<span style="color:#94a3b8;"># 使用任意自定义密钥签名生成 Token</span>
+token = jwt.encode(admin_payload, <span style="color:#34d399;">"my_secret_key"</span>, algorithm=<span style="color:#34d399;">"HS256"</span>)
+<span style="color:#60a5fa;">print</span>(token)
+</div>
+                        </div>
+
+                        <!-- Method 2: Browser F12 Manual Cookie Edit -->
+                        <div style="margin-bottom:16px;">
+                            <div style="font-size:13px; font-weight:700; color:#10b981;">
+                                <i class="fa fa-mouse-pointer"></i> 方法二：通过浏览器 F12 修改 Cookie 提交
+                            </div>
+                            <div style="font-size:12.5px; color:var(--text-secondary); line-height:1.6; margin-top:4px;">
+                                1. 按键盘 <b>F12</b> 打开开发者工具，切换到 <b>Application (应用)</b> 或 <b>Storage (存储)</b> 标签页。<br>
+                                2. 在左侧展开 <b>Cookies &rarr; http://127.0.0.1:8765</b>。<br>
+                                3. 找到名为 <b><code>jwt_token</code></b> 的条目，双击 <b>Value</b> 字段，粘贴你生成的管理员 Token。<br>
+                                4. 按 <b>F5 刷新当前网页</b>，页面就会立即识别为超级管理员并展示 Flag！
+                            </div>
+                        </div>
+
+                        <!-- Method 3: curl command -->
+                        <div>
+                            <div style="font-size:13px; font-weight:700; color:#f59e0b;">
+                                <i class="fa fa-globe"></i> 方法三：使用 curl 命令行直接验证
+                            </div>
+                            <div class="code-tab-box" style="white-space:pre-wrap; word-break:break-all;">
+curl.exe -s -b <span style="color:#34d399;">"jwt_token=你的管理员Token"</span> http://127.0.0.1:8765/vul/jwt/jwt_login.php | findstr <span style="color:#34d399;">"flag{"</span>
+</div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -318,36 +421,5 @@ include_once $PIKA_ROOT_DIR . 'header.php';
         </div>
     </div>
 </div>
-
-<script>
-function b64url_encode(str) {
-    var b64 = window.btoa(unescape(encodeURIComponent(str)));
-    return b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-}
-
-function generateTamperedToken() {
-    var header = { "alg": "HS256", "typ": "JWT" };
-    var payloadStr = document.getElementById('payload_json_editor').value.trim();
-    try {
-        var payloadObj = JSON.parse(payloadStr);
-        var hEnc = b64url_encode(JSON.stringify(header));
-        var pEnc = b64url_encode(JSON.stringify(payloadObj));
-        var fakeSig = "tampered_signature_payload_insecure";
-        document.getElementById('tampered_token_output').value = hEnc + '.' + pEnc + '.' + fakeSig;
-    } catch(e) {
-        alert("Payload 不是合法的 JSON 格式，请检查语法！");
-    }
-}
-
-function oneClickAdmin() {
-    document.getElementById('payload_json_editor').value = JSON.stringify({
-        "username": "pikachu",
-        "level": 1,
-        "role": "admin",
-        "iat": Math.floor(Date.now() / 1000)
-    }, null, 2);
-    generateTamperedToken();
-}
-</script>
 
 <?php include_once $PIKA_ROOT_DIR . 'footer.php'; ?>
