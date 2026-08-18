@@ -1,6 +1,6 @@
 {
   "id": "redis-unauth",
-  "name": "Redis 未授权访问",
+  "name": "Redis 7.0 未授权访问与提权",
   "category": "database",
   "image": "redis:7-alpine",
   "container_name": "pikachu-redis-unauth",
@@ -22,7 +22,7 @@
     "--protected-mode",
     "no"
   ],
-  "entry_url": "http://127.0.0.1:8765/vul/rce/rce_eval.php",
+  "entry_url": "http://127.0.0.1:8765/vul/dockerlab/docker_redis_lab.php",
   "notes": "演示 Redis 未授权访问与写 Webshell / SSH 公钥提权场景，本地端口 16379 隔离防护。",
   "enabled": true
 }

@@ -9,46 +9,46 @@ $PIKA_ROOT_DIR = "../../";
 include_once $PIKA_ROOT_DIR . 'header.php';
 include_once 'dockerlab_terminal_engine.php';
 
-$CORRECT_FLAG = "flag{k8s_token_Mode_Host_Mount_Escape_Done}";
+$CORRECT_FLAG = "flag{K8s_ServiceAccount_Token_ApiServer_Escape_Done}";
 $flag_result = "";
 $user_flag = "";
 
 // Initialize session state & working directory
-if (!isset($_SESSION['docker_priv_cwd'])) {
-    $_SESSION['docker_priv_cwd'] = '/root';
+if (!isset($_SESSION['k8s_token_cwd'])) {
+    $_SESSION['k8s_token_cwd'] = '/var/run/secrets/kubernetes.io/serviceaccount';
 }
 
-if (!isset($_SESSION['docker_priv_history'])) {
-    $_SESSION['docker_priv_history'] = array(
-        array('type' => 'sys', 'content' => "// [Universal Linux Bash Terminal Ready: root@privileged-sandbox:~#]\n// 提示：已上线全量通用 Linux 终端引擎！支持 fdisk -l, cat /proc/1/status, mount, chroot, cd, ls, pwd, help 等所有命令！\n// 推荐第一步输入：cat /proc/1/status | grep CapEff 或 fdisk -l")
+if (!isset($_SESSION['k8s_token_history'])) {
+    $_SESSION['k8s_token_history'] = array(
+        array('type' => 'sys', 'content' => "// [Universal Linux Bash Terminal Ready: root@k8s-pod-sandbox:/var/run/secrets/kubernetes.io/serviceaccount#]\n// 提示：Pod 挂载了 ServiceAccount Token！支持 ls, cat token, curl API-Server 等！\n// 推荐第一步输入：ls -la 或 cat token")
     );
 }
 
-if (!isset($_SESSION['docker_priv_state'])) {
-    $_SESSION['docker_priv_state'] = array(
+if (!isset($_SESSION['k8s_token_state'])) {
+    $_SESSION['k8s_token_state'] = array(
         'checked' => false,
-        'mounted' => false,
-        'chrooted' => false
+        'token_read' => false,
+        'api_queried' => false
     );
 }
 
 // Handle Clear History Action
 if (isset($_POST['clear_history'])) {
-    $_SESSION['docker_priv_history'] = array(
-        array('type' => 'sys', 'content' => "// [Terminal reset: root@privileged-sandbox:~#]")
+    $_SESSION['k8s_token_history'] = array(
+        array('type' => 'sys', 'content' => "// [Terminal reset: root@k8s-pod-sandbox:~#]")
     );
-    $_SESSION['docker_priv_state'] = array('checked' => false, 'mounted' => false, 'chrooted' => false);
-    $_SESSION['docker_priv_cwd'] = '/root';
+    $_SESSION['k8s_token_state'] = array('checked' => false, 'token_read' => false, 'api_queried' => false);
+    $_SESSION['k8s_token_cwd'] = '/var/run/secrets/kubernetes.io/serviceaccount';
 }
 
 // Handle Flag Submission
 if (isset($_POST['submit_flag'])) {
     $user_flag = trim($_POST['flag_input'] ?? '');
     if ($user_flag === $CORRECT_FLAG) {
-        $_SESSION['docker_priv_flag'] = true;
-        $flag_result = "<div class='alert alert-success' style='border-radius:10px; font-weight:700; background:rgba(16,185,129,0.15); border:1px solid #10b981; color:#10b981;'><i class='fa fa-check-circle'></i> <b>恭喜通关！</b> Flag 验证正确！已成功完成 --privileged 特权模式全盘挂载逃逸 (+100 PTS)。</div>";
+        $_SESSION['k8s_token_flag'] = true;
+        $flag_result = "<div class='alert alert-success' style='border-radius:10px; font-weight:700; background:rgba(16,185,129,0.15); border:1px solid #10b981; color:#10b981;'><i class='fa fa-check-circle'></i> <b>恭喜通关！</b> Flag 验证正确！已成功完成 Kubernetes ServiceAccount Token 越权逃逸 (+150 PTS)。</div>";
     } else {
-        $flag_result = "<div class='alert alert-danger' style='border-radius:10px; font-weight:700; background:rgba(239,68,68,0.15); border:1px solid #ef4444; color:#ef4444;'><i class='fa fa-times-circle'></i> <b>Flag 错误</b>，请在 Bash 终端中完成挂载并查看 /tmp/k8s_escape_flag.txt 文件！</div>";
+        $flag_result = "<div class='alert alert-danger' style='border-radius:10px; font-weight:700; background:rgba(239,68,68,0.15); border:1px solid #ef4444; color:#ef4444;'><i class='fa fa-times-circle'></i> <b>Flag 错误</b>，请在 Bash 终端中读取 token 并查询 API Server 获取 Flag！</div>";
     }
 }
 
@@ -56,9 +56,9 @@ if (isset($_POST['submit_flag'])) {
 $sandbox_msg = '';
 if (isset($_POST['start_sandbox'])) {
     shell_exec("/var/www/html/docker-cli rm -f pikachu-lab-k8s-escape 2>&1");
-    $out = shell_exec("mkdir -p /tmp/k8s_secrets && echo 'ey...dummy.token...' > /tmp/k8s_secrets/token");
+    $out = shell_exec("mkdir -p /tmp/k8s_secrets && echo 'eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlZmF1bHQtdG9rZW4teHh4eCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmFkbWluLXNhIn0.EXAMPLE' > /tmp/k8s_secrets/token");
     shell_exec("/var/www/html/docker-cli run -d --name pikachu-lab-k8s-escape -v /tmp/k8s_secrets:/var/run/secrets/kubernetes.io/serviceaccount docker.m.daocloud.io/library/ubuntu:22.04 sleep infinity 2>&1");
-    shell_exec("/var/www/html/docker-cli exec pikachu-lab-k8s-escape bash -c 'echo \"flag{k8s_token_Mode_Host_Mount_Escape_Done}\" > /tmp/k8s_escape_flag.txt' 2>&1");
+    shell_exec("/var/www/html/docker-cli exec pikachu-lab-k8s-escape bash -c 'echo \"flag{K8s_ServiceAccount_Token_ApiServer_Escape_Done}\" > /tmp/k8s_escape_flag.txt' 2>&1");
     $sandbox_msg = "<div class='alert alert-success' style='border-radius:10px; font-weight:700;'><i class='fa fa-check'></i> 真实靶场容器 [pikachu-lab-k8s-escape] 已部署并在后台运行！</div>";
 }
 if (isset($_POST['stop_sandbox'])) {
@@ -69,11 +69,11 @@ if (isset($_POST['stop_sandbox'])) {
 // Check Sandbox Status
 $is_sandbox_running = false;
 $sandbox_uptime = '';
-$status_check = shell_exec("/var/www/html/docker-cli ps --filter name=^pikachu-lab-k8s-escape$ --format \"{{.Names}}	{{.Status}}\" 2>/dev/null");
+$status_check = shell_exec("/var/www/html/docker-cli ps --filter name=^pikachu-lab-k8s-escape$ --format \"{{.Names}}\t{{.Status}}\" 2>/dev/null");
 $status_check = trim($status_check ?? '');
 if (!empty($status_check) && strpos($status_check, 'pikachu-lab-k8s-escape') !== false) {
     $is_sandbox_running = true;
-    $parts = explode("	", $status_check);
+    $parts = explode("\t", $status_check);
     $sandbox_uptime = isset($parts[1]) ? trim($parts[1]) : 'Running';
 }
 
@@ -81,13 +81,13 @@ if (!empty($status_check) && strpos($status_check, 'pikachu-lab-k8s-escape') !==
 if (isset($_POST['exec_cmd'])) {
     $raw_cmd = trim($_POST['cmd_input'] ?? '');
     if ($raw_cmd !== '') {
-        $output = dockerlab_exec_universal($raw_cmd, 'k8s_token', $_SESSION['docker_priv_state'], $_SESSION['docker_priv_cwd']);
+        $output = dockerlab_exec_universal($raw_cmd, 'k8s_token', $_SESSION['k8s_token_state'], $_SESSION['k8s_token_cwd']);
 
         // Add to history
-        $_SESSION['docker_priv_history'][] = array(
+        $_SESSION['k8s_token_history'][] = array(
             'type' => 'user',
             'cmd' => $raw_cmd,
-            'cwd' => $_SESSION['docker_priv_cwd'],
+            'cwd' => $_SESSION['k8s_token_cwd'],
             'output' => $output
         );
     }
@@ -691,12 +691,12 @@ docker exec pikachu-lab-k8s-escape bash -c "echo 'flag{**********}' > /var/run/s
 
                             <!-- Terminal Output Screen -->
                             <div class="cyber-terminal-screen" id="term_body">
-                                <?php foreach ($_SESSION['docker_priv_history'] as $item): ?>
+                                <?php foreach ($_SESSION['k8s_token_history'] as $item): ?>
                                     <?php if ($item['type'] === 'sys'): ?>
                                         <div style="color: #64748b; margin-bottom: 12px;"><?php echo nl2br(htmlspecialchars($item['content'])); ?></div>
                                     <?php else: ?>
                                         <div>
-                                            <span class="term-prompt">root@privileged-sandbox:<?php echo htmlspecialchars($item['cwd'] ?? '/root'); ?># </span>
+                                            <span class="term-prompt">root@k8s-pod:<?php echo htmlspecialchars($item['cwd'] ?? '/root'); ?># </span>
                                             <span class="term-user-cmd"><?php echo htmlspecialchars($item['cmd']); ?></span>
                                         </div>
                                         <div class="term-output"><?php echo htmlspecialchars($item['output']); ?></div>
@@ -706,8 +706,8 @@ docker exec pikachu-lab-k8s-escape bash -c "echo 'flag{**********}' > /var/run/s
 
                             <!-- Terminal Command Input Bar -->
                             <form method="POST" class="cyber-terminal-input-bar">
-                                <span style="color:#10b981; font-weight:700; font-family:monospace; font-size:13px;">root@sandbox:<?php echo htmlspecialchars($_SESSION['docker_priv_cwd']); ?>#</span>
-                                <input type="text" id="cmd_input" name="cmd_input" placeholder="支持所有 Linux 命令（如 fdisk -l / help / ls / cd / cat / uname / env ...）" autocomplete="off" required>
+                                <span style="color:#10b981; font-weight:700; font-family:monospace; font-size:13px;">root@k8s-pod:<?php echo htmlspecialchars($_SESSION['k8s_token_cwd']); ?>#</span>
+                                <input type="text" id="cmd_input" name="cmd_input" placeholder="支持所有 Linux / K8s 命令（如 ls / cat token / curl API Server ...）" autocomplete="off" required>
                                 <button type="submit" name="exec_cmd" class="btn btn-sm btn-info" style="border-radius:6px; background:linear-gradient(135deg, #06b6d4, #2563eb); border:none; padding:8px 18px; font-weight:700;">
                                     <i class="fa fa-terminal"></i> 执行
                                 </button>

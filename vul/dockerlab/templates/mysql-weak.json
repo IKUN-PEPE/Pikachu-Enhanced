@@ -1,6 +1,6 @@
 {
   "id": "mysql-weak",
-  "name": "MySQL 弱口令",
+  "name": "MySQL 8.0 弱口令与 UDF 提权",
   "category": "database",
   "image": "mysql:8.0",
   "container_name": "pikachu-mysql-weak",
@@ -21,7 +21,7 @@
     "MYSQL_DATABASE=pikachu_lab"
   ],
   "cmd": [],
-  "entry_url": "http://127.0.0.1:8765/vul/sqli/sqli_iu/sqli_login.php",
+  "entry_url": "http://127.0.0.1:8765/vul/dockerlab/docker_mysql_lab.php",
   "notes": "演示 MySQL 数据库弱口令爆破与 UDF 动态链接库提权场景，本地端口 13306 隔离防护。",
   "enabled": true
 }

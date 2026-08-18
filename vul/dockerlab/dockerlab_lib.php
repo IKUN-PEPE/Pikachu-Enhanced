@@ -369,11 +369,49 @@ function dockerlab_toggle_container_state($id, $action){
     if(!isset($_SESSION['dockerlab_container_state'])){
         $_SESSION['dockerlab_container_state'] = array();
     }
+
+    $tmpl = dockerlab_get_template($id);
+    $cname = (is_array($tmpl) && isset($tmpl['container_name'])) ? $tmpl['container_name'] : '';
+
     if($action === 'start' || $action === 'restart'){
         $_SESSION['dockerlab_container_state'][$id] = 'running';
+        if ($cname !== '') {
+            @shell_exec("/var/www/html/docker-cli rm -f " . escapeshellarg($cname) . " 2>&1");
+            if ($id === 'redis-unauth') {
+                @shell_exec("/var/www/html/docker-cli run -d --name pikachu-redis-unauth -p 127.0.0.1:16379:6379 redis:7-alpine redis-server --protected-mode no 2>&1");
+                @shell_exec("/var/www/html/docker-cli exec pikachu-redis-unauth redis-cli set flag_key \"flag{Redis_Unauth_Access_Crontab_Webshell_RCE_Done}\" 2>&1");
+            } elseif ($id === 'mysql-weak') {
+                @shell_exec("/var/www/html/docker-cli run -d --name pikachu-mysql-weak -p 127.0.0.1:13306:3306 -e MYSQL_ROOT_PASSWORD=root mysql:8.0 2>&1");
+            } elseif ($id === 'docker-privileged-escape') {
+                @shell_exec("/var/www/html/docker-cli run -d --name pikachu-lab-priv-escape --privileged -v /:/host_root docker.m.daocloud.io/library/ubuntu:22.04 sleep infinity 2>&1");
+                @shell_exec("/var/www/html/docker-cli exec pikachu-lab-priv-escape bash -c 'echo \"flag{Docker_Privileged_Mode_Host_Mount_Escape_Done}\" > /host_root/flag_host.txt' 2>&1");
+            } elseif ($id === 'docker-sock-escape') {
+                @shell_exec("/var/www/html/docker-cli run -d --name pikachu-lab-sock-escape -v /var/run/docker.sock:/var/run/docker.sock docker.m.daocloud.io/library/ubuntu:22.04 sleep infinity 2>&1");
+                @shell_exec("/var/www/html/docker-cli exec pikachu-lab-sock-escape bash -c 'echo \"flag{docker_sock_Mode_Host_Mount_Escape_Done}\" > /etc/docker_escape_flag.txt' 2>&1");
+            } elseif ($id === 'docker-caps-escape') {
+                @shell_exec("/var/www/html/docker-cli run -d --name pikachu-lab-caps-escape --cap-add=SYS_ADMIN docker.m.daocloud.io/library/ubuntu:22.04 sleep infinity 2>&1");
+                @shell_exec("/var/www/html/docker-cli exec pikachu-lab-caps-escape bash -c 'echo \"flag{docker_caps_Mode_Host_Mount_Escape_Done}\" > /tmp/caps_escape_flag.txt' 2>&1");
+            } elseif ($id === 'docker-cve-escape') {
+                @shell_exec("/var/www/html/docker-cli run -d --name pikachu-lab-cve-escape docker.m.daocloud.io/library/ubuntu:22.04 sleep infinity 2>&1");
+                @shell_exec("/var/www/html/docker-cli exec pikachu-lab-cve-escape bash -c 'echo \"flag{CVE_2019_5736_Runc_Container_Escape_Done}\" > /tmp/cve_2019_5736_flag.txt' 2>&1");
+            } elseif ($id === 'k8s-token-escape') {
+                @shell_exec("mkdir -p /tmp/k8s_secrets && echo 'eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlZmF1bHQtdG9rZW4teHh4eCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmFkbWluLXNhIn0.EXAMPLE' > /tmp/k8s_secrets/token");
+                @shell_exec("/var/www/html/docker-cli run -d --name pikachu-lab-k8s-escape -v /tmp/k8s_secrets:/var/run/secrets/kubernetes.io/serviceaccount docker.m.daocloud.io/library/ubuntu:22.04 sleep infinity 2>&1");
+                @shell_exec("/var/www/html/docker-cli exec pikachu-lab-k8s-escape bash -c 'echo \"flag{K8s_ServiceAccount_Token_ApiServer_Escape_Done}\" > /tmp/k8s_escape_flag.txt' 2>&1");
+            } elseif ($id === 'fastjson-rce') {
+                @shell_exec("/var/www/html/docker-cli run -d --name pikachu-fastjson-rce -p 127.0.0.1:15007:8090 ghcr.io/pikachu-lab/fastjson-rce:latest 2>&1");
+            } elseif ($id === 'log4j2-rce') {
+                @shell_exec("/var/www/html/docker-cli run -d --name pikachu-log4j2-rce -p 127.0.0.1:15006:8080 ghcr.io/pikachu-lab/log4j2-rce:latest 2>&1");
+            } elseif ($id === 'flask-ssti') {
+                @shell_exec("/var/www/html/docker-cli run -d --name pikachu-flask-ssti -p 127.0.0.1:15000:5000 ghcr.io/pikachu-lab/flask-ssti:latest 2>&1");
+            }
+        }
         return true;
     }elseif($action === 'stop'){
         $_SESSION['dockerlab_container_state'][$id] = 'stopped';
+        if ($cname !== '') {
+            @shell_exec("/var/www/html/docker-cli rm -f " . escapeshellarg($cname) . " 2>&1");
+        }
         return true;
     }
     return false;

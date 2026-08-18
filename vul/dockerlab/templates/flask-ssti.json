@@ -1,6 +1,6 @@
 {
   "id": "flask-ssti",
-  "name": "Flask SSTI",
+  "name": "Python Flask SSTI 模板注入",
   "category": "web",
   "image": "ghcr.io/pikachu-lab/flask-ssti:latest",
   "container_name": "pikachu-flask-ssti",
@@ -18,7 +18,7 @@
   ],
   "env": [],
   "cmd": [],
-  "entry_url": "http://127.0.0.1:8765/vul/rce/rce_ssti.php",
+  "entry_url": "http://127.0.0.1:8765/vul/dockerlab/docker_flask_ssti_lab.php",
   "notes": "演示 Python Flask / Jinja2 服务器端模板注入 (SSTI)，支持通过 {{7*7}} 表达式与类继承链突破沙箱 RCE。",
   "enabled": true
 }
