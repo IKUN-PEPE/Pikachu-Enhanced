@@ -178,9 +178,42 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                         </div>
 
                         <div style="margin-top:14px; background:var(--bg-secondary); border:1px solid var(--border-subtle); border-radius:8px; padding:12px; font-size:12px;">
-                            <b>💻 真实终端命令参考：</b><br>
+                            <b>💻 真实终端爆破实战命令：</b><br>
                             <code>hashcat -m 16500 target_jwt.txt /usr/share/wordlists/rockyou.txt</code><br>
                             <code>jwt_tool -C -d rockyou.txt target_jwt_token_here</code>
+                        </div>
+
+                        <!-- Visual SVG Architecture Flowchart -->
+                        <div style="background:#020617; border:1px solid #1e293b; border-radius:10px; padding:12px; margin-top:14px; text-align:center;">
+                            <svg viewBox="0 0 540 160" style="width:100%; height:auto; display:inline-block;" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <marker id="ws-arr" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+                                        <polygon points="0 0, 7 2.5, 0 5" fill="#38bdf8"/>
+                                    </marker>
+                                </defs>
+                                <rect x="10" y="15" width="150" height="55" rx="6" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+                                <text x="85" y="36" fill="#60a5fa" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">1. 抓取低权 Token</text>
+                                <text x="85" y="54" fill="#94a3b8" font-size="9.5" text-anchor="middle" font-family="monospace">role: guest, HS256</text>
+
+                                <path d="M 160 42 L 200 42" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#ws-arr)"/>
+
+                                <rect x="210" y="15" width="160" height="55" rx="6" fill="#1e293b" stroke="#ef4444" stroke-width="1.5"/>
+                                <text x="290" y="36" fill="#f87171" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">2. 离线 GPU 字典碰撞</text>
+                                <text x="290" y="54" fill="#fca5a5" font-size="9.5" text-anchor="middle" font-family="monospace">hashcat -m 16500</text>
+
+                                <path d="M 370 42 L 410 42" stroke="#38bdf8" stroke-width="1.5" marker-end="url(#ws-arr)"/>
+
+                                <rect x="420" y="15" width="110" height="55" rx="6" fill="#022c22" stroke="#10b981" stroke-width="1.5"/>
+                                <text x="475" y="36" fill="#34d399" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">3. 还原 Secret</text>
+                                <text x="475" y="54" fill="#fbbf24" font-size="11" font-weight="bold" text-anchor="middle" font-family="monospace">"123456"</text>
+
+                                <!-- Down and Left -->
+                                <path d="M 475 70 L 475 110 L 375 110" stroke="#10b981" stroke-width="1.5" marker-end="url(#ws-arr)"/>
+
+                                <rect x="10" y="90" width="355" height="55" rx="6" fill="#020617" stroke="#10b981" stroke-width="1.5"/>
+                                <text x="187" y="112" fill="#34d399" font-size="11.5" font-weight="bold" text-anchor="middle" font-family="sans-serif">4. 重签 role=admin 提交鉴权网关 &rarr; 获得 Flag</text>
+                                <text x="187" y="132" fill="#fbbf24" font-size="10" font-weight="bold" text-anchor="middle" font-family="monospace">flag{JWT_HMAC_W34k_S3cr3t_Cr4ck3d_2026}</text>
+                            </svg>
                         </div>
                     </div>
                 </div>
