@@ -193,8 +193,9 @@ function triggerNoRefererAttack() {
         iframe.style.display = 'none';
         document.body.appendChild(iframe);
         const doc = iframe.contentWindow.document;
+        const pocHtml = <?php echo json_encode($poc_strip_referer, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>;
         doc.open();
-        doc.write(`<?php echo addslashes($poc_strip_referer); ?>`);
+        doc.write(pocHtml);
         doc.close();
         setTimeout(() => { location.reload(); }, 800);
     }
