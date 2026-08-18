@@ -390,7 +390,7 @@ if (!isset($ACTIVE)){
                 </ul>
             </li>
 
-            <li class="<?php echo $ACTIVE[25];?>">
+            <li class="<?php echo isset($ACTIVE[25]) ? $ACTIVE[25] : '';?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -401,7 +401,7 @@ if (!isset($ACTIVE)){
                 <b class="arrow"></b>
                 <ul class="submenu">
 
-                    <li class="<?php echo $ACTIVE[26];?>" >
+                    <li class="<?php echo isset($ACTIVE[26]) ? $ACTIVE[26] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/csrf/csrf.php">
                             概述
                         </a>
@@ -409,56 +409,56 @@ if (!isset($ACTIVE)){
                     </li>
 
 
-                    <li class="<?php echo $ACTIVE[27];?>" >
+                    <li class="<?php echo isset($ACTIVE[27]) ? $ACTIVE[27] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/csrf/csrfget/csrf_get_login.php">
                             CSRF(get)
                         </a>
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="<?php echo $ACTIVE[28];?>" >
+                    <li class="<?php echo isset($ACTIVE[28]) ? $ACTIVE[28] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/csrf/csrfpost/csrf_post_login.php">
                             CSRF(post)
                         </a>
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="<?php echo $ACTIVE[29];?>" >
+                    <li class="<?php echo isset($ACTIVE[29]) ? $ACTIVE[29] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/csrf/csrftoken/token_get_login.php">
                             CSRF Token
                         </a>
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="<?php echo $ACTIVE[30];?>" >
+                    <li class="<?php echo isset($ACTIVE[30]) ? $ACTIVE[30] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/csrf/csrf_referer/csrf_referer.php">
                             CSRF Referer 绕过
                         </a>
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="<?php echo $ACTIVE[31];?>" >
+                    <li class="<?php echo isset($ACTIVE[31]) ? $ACTIVE[31] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/csrf/csrf_token_pool/csrf_token_pool.php">
                             CSRF Token池未绑定
                         </a>
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="<?php echo $ACTIVE[32];?>" >
+                    <li class="<?php echo isset($ACTIVE[32]) ? $ACTIVE[32] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/csrf/csrf_json/csrf_json.php">
                             CSRF JSON 表单混淆
                         </a>
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="<?php echo $ACTIVE[33];?>" >
+                    <li class="<?php echo isset($ACTIVE[33]) ? $ACTIVE[33] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/csrf/csrf_double_cookie/csrf_double_cookie.php">
                             CSRF 双重Cookie绕过
                         </a>
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="<?php echo $ACTIVE[34];?>" >
+                    <li class="<?php echo isset($ACTIVE[34]) ? $ACTIVE[34] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/csrf/csrf_samesite/csrf_samesite.php">
                             CSRF SameSite Lax 绕过
                         </a>
