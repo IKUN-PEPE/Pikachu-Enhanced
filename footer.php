@@ -4,11 +4,11 @@ if (!isset($PIKA_ROOT_DIR)){
 }
 ?>
 
-<div class="footer" style="padding-top:20px; border-top:1px solid var(--border-subtle); background:transparent;">
-    <div class="footer-inner">
-        <div class="footer-content" style="background:transparent; border:none; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+<div class="footer" style="position:relative !important; clear:both !important; height:auto !important; width:100% !important; margin-top:50px !important; padding:0 !important; background:transparent !important;">
+    <div class="footer-inner" style="position:relative !important; left:auto !important; right:auto !important; bottom:auto !important; width:100% !important; margin:0 !important;">
+        <div class="footer-content" style="position:relative !important; left:auto !important; right:auto !important; bottom:auto !important; width:100% !important; background:transparent !important; border-top:1px solid var(--border-subtle) !important; padding:18px 24px !important; display:flex !important; justify-content:space-between !important; align-items:center !important; flex-wrap:wrap !important; gap:12px !important;">
             <div style="display:flex; align-items:center; gap:8px;">
-                <span class="label label-info" style="font-size:11px; padding:3px 8px;"><i class="fa fa-shield"></i> Pikachu-Enhanced</span>
+                <span class="label label-info" style="font-size:11px; padding:3px 8px; border-radius:4px;"><i class="fa fa-shield"></i> Pikachu-Enhanced</span>
                 <span style="color:var(--text-muted); font-size:12.5px;">v2.0 Next-Gen Cyber-Range &copy; <?php echo date('Y'); ?></span>
             </div>
             <div style="color:var(--text-muted); font-size:12px; display:flex; gap:16px;">

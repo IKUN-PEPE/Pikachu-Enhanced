@@ -833,3 +833,50 @@ html, body {
     background: var(--bg-primary);
     border-top: 1px solid var(--border-subtle);
 }
+
+/* ==========================================================================
+   Global Footer Overlap & Layout Fix (Kill Ace Admin Absolute Positioning)
+   ========================================================================== */
+.footer {
+    position: relative !important;
+    height: auto !important;
+    width: 100% !important;
+    margin-top: 40px !important;
+    padding-top: 0 !important;
+    clear: both !important;
+    display: block !important;
+}
+
+.footer .footer-inner {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    margin: 0 !important;
+    text-align: left !important;
+}
+
+.footer .footer-inner .footer-content {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    border-top: 1px solid var(--border-subtle) !important;
+    background: transparent !important;
+    padding: 18px 24px !important;
+    line-height: 1.5 !important;
+    box-sizing: border-box !important;
+}
+
+.page-content {
+    padding-bottom: 40px !important;
+}
+
+.btn-scroll-up {
+    position: fixed !important;
+    right: 20px !important;
+    bottom: 20px !important;
+    z-index: 1050 !important;
+}
