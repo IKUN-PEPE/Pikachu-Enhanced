@@ -20,6 +20,13 @@ $ext_curl = extension_loaded('curl');
 $ext_json = extension_loaded('json');
 $ext_mbstring = extension_loaded('mbstring');
 $ext_gd = extension_loaded('gd');
+$ext_zip = extension_loaded('zip');
+$ext_sockets = extension_loaded('sockets');
+$ext_bcmath = extension_loaded('bcmath');
+
+$cmd_ping = !empty(shell_exec('which ping 2>/dev/null'));
+$cmd_curl = !empty(shell_exec('which curl 2>/dev/null'));
+$cmd_nc   = !empty(shell_exec('which nc 2>/dev/null'));
 
 $uploads_writable = is_writable(__DIR__ . '/uploads') || @is_writable('/tmp');
 
@@ -359,6 +366,27 @@ if (isset($_POST['submit_install'])) {
                                 <span style="font-size:13px; color:var(--text-secondary);">GD 图像库 (验证码/图片马测试)：</span>
                                 <span class="badge-check <?php echo $ext_gd ? 'badge-check-ok' : 'badge-check-fail'; ?>">
                                     <i class="fa <?php echo $ext_gd ? 'fa-check' : 'fa-times'; ?>"></i> <?php echo $ext_gd ? '已加载' : '缺失'; ?>
+                                </span>
+                            </div>
+
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-size:13px; color:var(--text-secondary);">ZipArchive 扩展 (ZipSlip/解压安全)：</span>
+                                <span class="badge-check <?php echo $ext_zip ? 'badge-check-ok' : 'badge-check-fail'; ?>">
+                                    <i class="fa <?php echo $ext_zip ? 'fa-check' : 'fa-times'; ?>"></i> <?php echo $ext_zip ? '已加载' : '缺失'; ?>
+                                </span>
+                            </div>
+
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-size:13px; color:var(--text-secondary);">Sockets 扩展 (反弹 Shell / Socket 演练)：</span>
+                                <span class="badge-check <?php echo $ext_sockets ? 'badge-check-ok' : 'badge-check-fail'; ?>">
+                                    <i class="fa <?php echo $ext_sockets ? 'fa-check' : 'fa-times'; ?>"></i> <?php echo $ext_sockets ? '已加载' : '缺失'; ?>
+                                </span>
+                            </div>
+
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-size:13px; color:var(--text-secondary);">系统网络工具 (ping / ifconfig / nc)：</span>
+                                <span class="badge-check <?php echo $cmd_ping ? 'badge-check-ok' : 'badge-check-fail'; ?>">
+                                    <i class="fa <?php echo $cmd_ping ? 'fa-check' : 'fa-times'; ?>"></i> <?php echo $cmd_ping ? '环境完备' : '缺失'; ?>
                                 </span>
                             </div>
 
