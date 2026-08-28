@@ -3,7 +3,7 @@
  * Pikachu-Enhanced v2.0 Docker Lab Environment Diagnostic Page
  */
 
-$ACTIVE = array_fill(0, 250, '');
+$ACTIVE = array_fill(0, 400, '');
 $ACTIVE[140] = 'active open';
 $ACTIVE[142] = 'active';
 

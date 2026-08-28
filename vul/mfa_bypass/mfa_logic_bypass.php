@@ -1,7 +1,7 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) { session_start(); }
-$ACTIVE = array_fill(0, 300, '');
-$ACTIVE[215] = 'active';
+$ACTIVE = array_fill(0, 400, '');
+$ACTIVE[315] = 'active';
 
 $PIKA_ROOT_DIR = "../../";
 include_once $PIKA_ROOT_DIR . 'header.php';

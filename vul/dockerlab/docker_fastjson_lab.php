@@ -4,7 +4,7 @@
  */
 include_once '../../inc/config.inc.php';
 
-$ACTIVE = array_fill(0, 250, '');
+$ACTIVE = array_fill(0, 400, '');
 $ACTIVE[140] = 'active open';
 $ACTIVE[215] = 'active';
 

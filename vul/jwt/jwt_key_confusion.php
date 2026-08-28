@@ -7,9 +7,9 @@ $PIKA_ROOT_DIR = "../../";
 include_once $PIKA_ROOT_DIR . 'inc/config.inc.php';
 include_once $PIKA_ROOT_DIR . 'inc/function.php';
 
-$ACTIVE = array_fill(0, 300, '');
+$ACTIVE = array_fill(0, 400, '');
 $ACTIVE[157] = 'active open';
-$ACTIVE[217] = 'active';
+$ACTIVE[317] = 'active';
 
 $flag_msg = '';
 

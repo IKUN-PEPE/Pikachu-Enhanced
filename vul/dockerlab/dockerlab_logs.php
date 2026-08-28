@@ -3,7 +3,7 @@
  * Docker Lab read-only logs page.
  */
 
-$ACTIVE = array_fill(0, 170, '');
+$ACTIVE = array_fill(0, 400, '');
 $ACTIVE[140] = 'active open';
 $ACTIVE[143] = 'active';
 
