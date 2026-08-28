@@ -3,7 +3,8 @@
  * Pikachu-Enhanced v2.0 Global Microservices & Container Range Console
  */
 
-$ACTIVE = array_fill(0, 250, '');
+$ACTIVE = array_fill(0, 400, '');
+$ACTIVE[140] = 'active open';
 $ACTIVE[143] = 'active';
 
 $PIKA_ROOT_DIR = "../../";

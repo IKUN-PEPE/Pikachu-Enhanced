@@ -1174,7 +1174,7 @@ if (!isset($ACTIVE)){
 
             <?php
             $is_cloud_active = false;
-            foreach (array_merge(range(140, 164), range(200, 220)) as $i) {
+            foreach (array_merge(range(140, 220), range(310, 355)) as $i) {
                 if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
                     $is_cloud_active = true;
                     break;
@@ -1461,6 +1461,12 @@ if (!isset($ACTIVE)){
                     <li class="<?php echo isset($ACTIVE[164]) ? $ACTIVE[164] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/nosql/mongo_bypass.php">
                             MongoDB 认证绕过
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[350]) ? $ACTIVE[350] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/nosql/mongo_operator.php">
+                            🔴 MongoDB 操作符注入
                         </a>
                         <b class="arrow"></b>
                     </li>

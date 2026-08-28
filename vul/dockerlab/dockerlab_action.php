@@ -4,7 +4,7 @@
  * Phase 1 intentionally refuses all state-changing actions.
  */
 
-$ACTIVE = array_fill(0, 170, '');
+$ACTIVE = array_fill(0, 400, '');
 $ACTIVE[140] = 'active open';
 $ACTIVE[143] = 'active';
 
