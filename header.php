@@ -1829,6 +1829,12 @@ if (!isset($ACTIVE)){
                         </a>
                         <b class="arrow"></b>
                     </li>
+<li class="<?php echo pika_is_active('vul/ad_security/ad_knowledge.php', 235); ?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_knowledge.php">
+                            📖 内网渗透与域安全知识全景
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
 <li class="<?php echo isset($ACTIVE[237]) ? $ACTIVE[237] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_env_check.php">
                             🔍 GOAD 依赖智能识别中心
@@ -1843,7 +1849,7 @@ if (!isset($ACTIVE)){
                     </li>
 <li class="<?php echo isset($ACTIVE[238]) ? $ACTIVE[238] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_hub.php" style="color: #4f46e5 !important; font-weight: bold;">
-                            🏆 GOAD 域渗透 CTF 夺旗大厅 (2500 PTS)
+                            🏆 GOAD 域渗透 CTF 夺旗大厅 (4600 PTS)
                         </a>
                         <b class="arrow"></b>
                     </li>
@@ -1904,6 +1910,36 @@ if (!isset($ACTIVE)){
 <li class="<?php echo isset($ACTIVE[248]) ? $ACTIVE[248] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_acl.php">
                             🚩 [关卡 10] ACL 链式滥用与林根接管
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+<li class="<?php echo pika_is_active('vul/ad_security/ad_ctf_coerce.php', 249); ?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_coerce.php">
+                            🚩 [关卡 11] 强制认证与 NTLM Relay
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+<li class="<?php echo pika_is_active('vul/ad_security/ad_ctf_nopac.php', 232); ?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_nopac.php">
+                            🚩 [关卡 12] noPac 欺骗与高级 Kerberos
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+<li class="<?php echo pika_is_active('vul/ad_security/ad_ctf_domain_trust.php', 233); ?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_domain_trust.php">
+                            🚩 [关卡 13] 父子域信任与 SID History
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+<li class="<?php echo pika_is_active('vul/ad_security/ad_ctf_forest_trust.php', 234); ?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_forest_trust.php">
+                            🚩 [关卡 14] 跨林攻击与外域组/数据库信任
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+<li class="<?php echo pika_is_active('vul/ad_security/ad_ctf_gpo.php', 235); ?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_gpo.php">
+                            🚩 [关卡 15] GPO 组策略滥用与横向提权 [终章]
                         </a>
                         <b class="arrow"></b>
                     </li>
