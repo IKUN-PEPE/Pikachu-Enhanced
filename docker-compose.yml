@@ -4,7 +4,7 @@ services:
     image: pikachu-web
     container_name: pikachu-web
     ports:
-      - "127.0.0.1:8765:80"
+      - "8765:80"
     volumes:
       - ./:/var/www/html
       - //var/run/docker.sock:/var/run/docker.sock
@@ -30,7 +30,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: pikachu
     ports:
-      - "127.0.0.1:13306:3306"
+      - "13306:3306"
     volumes:
       - pikachu_mysql_data:/var/lib/mysql
     healthcheck:
@@ -45,7 +45,7 @@ services:
     image: pikachu-java
     container_name: pikachu-java
     ports:
-      - "127.0.0.1:8088:8088"
+      - "8088:8088"
     networks:
       - pikachu-net
 

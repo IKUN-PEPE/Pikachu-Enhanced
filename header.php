@@ -8,10 +8,12 @@
 ob_start();
 
 $PIKA_ROOT_DIR = isset($PIKA_ROOT_DIR) ? $PIKA_ROOT_DIR : '';
-$ACTIVE = array_pad((array)@$ACTIVE, 200, '');
+$ACTIVE = (array)@$ACTIVE;
 include_once __DIR__ . '/inc/nav.inc.php';
-$CAT_ACTIVE = [];
-pika_resolve_navigation($ACTIVE, $CAT_ACTIVE, $PIKA_ROOT_DIR);
+$CAT_CLASS = [];
+$MOD_CLASS = [];
+$LEAF_CLASS = [];
+pika_resolve_navigation($ACTIVE, $CAT_CLASS, $MOD_CLASS, $LEAF_CLASS);
 
 
 //$ACTIVE = array("active open","active","","","");
@@ -175,6 +177,15 @@ if (!isset($ACTIVE)){
 
 
     <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+        <!-- Pikachu Enhanced v2.0 - 侧边栏实时过滤与搜索框 -->
+        <div class="sidebar-search-container" style="padding: 10px 12px 6px 12px; background: transparent; border-bottom: 1px solid rgba(255,255,255,0.06);">
+            <div style="position: relative; display: flex; align-items: center;">
+                <i class="fa fa-search" style="position: absolute; left: 10px; color: var(--text-muted); font-size: 12px; pointer-events: none;"></i>
+                <input type="text" id="pika-sidebar-filter" placeholder="快速检索靶场关卡..." autocomplete="off" style="width: 100%; height: 32px; padding: 4px 28px 4px 28px; font-size: 12px; border-radius: 6px; background: var(--bg-card); border: 1px solid var(--border-subtle); color: var(--text-main); outline: none; transition: all 0.2s ease;">
+                <i id="pika-sidebar-filter-clear" class="fa fa-times-circle" style="position: absolute; right: 10px; color: var(--text-muted); font-size: 13px; cursor: pointer; display: none;"></i>
+            </div>
+        </div>
+
         <script type="text/javascript">
             try{ace.settings.loadState('sidebar')}catch(e){}
         </script>
@@ -187,7 +198,7 @@ if (!isset($ACTIVE)){
                 <b class="arrow"></b>
             </li>
 
-            <li class="<?php echo isset($ACTIVE[219]) ? $ACTIVE[219] : '';?>">
+            <li class="<?php echo isset($ACTIVE[330]) ? $ACTIVE[330] : (isset($ACTIVE[219]) ? $ACTIVE[219] : '');?>">
                 <a href="<?php echo $PIKA_ROOT_DIR;?>intro.php" class="cat-sidebar-intro" style="background: linear-gradient(90deg, #f1f5f9 0%, #f8fafc 100%) !important; border-left: 4px solid #475569 !important; color: #1e293b !important;">
                     <span class="menu-text" style="font-weight: bold;"> 📊 全局漏洞图鉴 (v2.0) </span>
                 </a>
@@ -195,16 +206,7 @@ if (!isset($ACTIVE)){
             </li>
 
 
-            <?php
-            $is_classic_active = false;
-            foreach (array_merge(range(1, 139), array(208, 209)) as $i) {
-                if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
-                    $is_classic_active = true;
-                    break;
-                }
-            }
-            ?>
-            <li class="<?php echo $is_classic_active ? 'active open' : ''; ?>">
+            <li class="<?php echo !empty($CAT_CLASS['classic']) ? $CAT_CLASS['classic'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-classic" style="background: linear-gradient(90deg, #fef3c7 0%, #fffbeb 100%) !important; border-left: 4px solid #f59e0b !important; color: #92400e !important;">
                     <span class="menu-text" style="font-weight: bold;"> 🏛️ 经典 Web 攻防演练 </span><b class="arrow fa fa-angle-down" style="color: #f59e0b !important;"></b>
                 </a>
@@ -264,28 +266,7 @@ if (!isset($ACTIVE)){
                     </li>
 
 
-<!--                    <li class="--><?php //echo $ACTIVE[7];?><!--">-->
-<!--                        <a href="#" class="dropdown-toggle">-->
-<!---->
-<!---->
-<!--                            test-->
-<!--                            <b class="arrow fa fa-angle-down"></b>-->
-<!--                        </a>-->
-<!---->
-<!--                        <b class="arrow"></b>-->
-<!---->
-<!--                        <ul class="submenu">-->
-<!--                            <li class="--><?php //echo $ACTIVE[7];?><!--">-->
-<!--                                <a href="top-menu.html">-->
-<!---->
-<!--                                    test sun 01-->
-<!--                                </a>-->
-<!---->
-<!--                                <b class="arrow"></b>-->
-<!--                            </li>-->
-<!---->
-<!--                        </ul>-->
-<!--                    </li>-->
+
 
 
 
@@ -879,14 +860,14 @@ if (!isset($ACTIVE)){
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="<?php echo isset($ACTIVE[225]) ? $ACTIVE[225] : '';?>" >
+                    <li class="<?php echo isset($ACTIVE[94]) ? $ACTIVE[94] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/java_unserialize/fastjson_rce.php">
                             Fastjson JNDI 注入
                         </a>
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="<?php echo isset($ACTIVE[226]) ? $ACTIVE[226] : '';?>" >
+                    <li class="<?php echo isset($ACTIVE[98]) ? $ACTIVE[98] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/java_unserialize/native_unser.php">
                             Java原生 (readObject)
                         </a>
@@ -1172,16 +1153,7 @@ if (!isset($ACTIVE)){
                 </ul>
             </li>
 
-            <?php
-            $is_cloud_active = false;
-            foreach (array_merge(range(140, 220), range(310, 355)) as $i) {
-                if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
-                    $is_cloud_active = true;
-                    break;
-                }
-            }
-            ?>
-            <li class="<?php echo $is_cloud_active ? 'active open' : ''; ?>">
+            <li class="<?php echo !empty($CAT_CLASS['cloud']) ? $CAT_CLASS['cloud'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-cloud" style="background: linear-gradient(90deg, #cffafe 0%, #ecfeff 100%) !important; border-left: 4px solid #06b6d4 !important; color: #155e75 !important;">
                     <span class="menu-text" style="font-weight: bold;"> ☁️ 云原生与微服务架构 </span><b class="arrow fa fa-angle-down" style="color: #06b6d4 !important;"></b>
                 </a>
@@ -1408,13 +1380,13 @@ if (!isset($ACTIVE)){
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[216]) ? $ACTIVE[216] : '';?>" >
+                    <li class="<?php echo isset($ACTIVE[316]) ? $ACTIVE[316] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/jwt/jwt_weak_secret.php">
                             JWT 弱密钥爆破
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[217]) ? $ACTIVE[217] : '';?>" >
+                    <li class="<?php echo isset($ACTIVE[317]) ? $ACTIVE[317] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/jwt/jwt_key_confusion.php">
                             JWT 算法混淆 (RS-to-HS)
                         </a>
@@ -1464,7 +1436,7 @@ if (!isset($ACTIVE)){
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[350]) ? $ACTIVE[350] : '';?>" >
+                    <li class="<?php echo isset($ACTIVE[319]) ? $ACTIVE[319] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/nosql/mongo_operator.php">
                             🔴 MongoDB 操作符注入
                         </a>
@@ -1477,16 +1449,7 @@ if (!isset($ACTIVE)){
                 </ul>
             </li>
 
-            <?php
-            $is_ai_active = false;
-            foreach (array_merge(range(165, 182), range(202, 206)) as $i) {
-                if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
-                    $is_ai_active = true;
-                    break;
-                }
-            }
-            ?>
-            <li class="<?php echo $is_ai_active ? 'active open' : ''; ?>">
+            <li class="<?php echo !empty($CAT_CLASS['ai']) ? $CAT_CLASS['ai'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-ai" style="background: linear-gradient(90deg, #f3e8ff 0%, #faf5ff 100%) !important; border-left: 4px solid #a855f7 !important; color: #6b21a8 !important;">
                     <span class="menu-text" style="font-weight: bold;"> 🤖 AI 与大模型应用安全 </span><b class="arrow fa fa-angle-down" style="color: #a855f7 !important;"></b>
                 </a>
@@ -1677,16 +1640,7 @@ if (!isset($ACTIVE)){
                 </ul>
             </li>
 
-            <?php
-            $is_proto_active = false;
-            foreach (array_merge(range(183, 201), range(210, 215), array(218)) as $i) {
-                if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
-                    $is_proto_active = true;
-                    break;
-                }
-            }
-            ?>
-            <li class="<?php echo $is_proto_active ? 'active open' : ''; ?>">
+            <li class="<?php echo !empty($CAT_CLASS['proto']) ? $CAT_CLASS['proto'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-proto" style="background: linear-gradient(90deg, #dbeafe 0%, #eff6ff 100%) !important; border-left: 4px solid #3b82f6 !important; color: #1e40af !important;">
                     <span class="menu-text" style="font-weight: bold;"> 🌐 前沿协议与数据安全 </span><b class="arrow fa fa-angle-down" style="color: #3b82f6 !important;"></b>
                 </a>
@@ -1734,7 +1688,7 @@ if (!isset($ACTIVE)){
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[210]) ? $ACTIVE[210] : '';?>" >
+                    <li class="<?php echo isset($ACTIVE[310]) ? $ACTIVE[310] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/sso_saml/saml_xsw.php">
                             SAML 签名包装 (XSW)
                         </a>
@@ -1759,7 +1713,7 @@ if (!isset($ACTIVE)){
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[211]) ? $ACTIVE[211] : '';?>" >
+                    <li class="<?php echo isset($ACTIVE[311]) ? $ACTIVE[311] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/cloud_storage/oss_bucket_unauth.php">
                             Bucket 越权读写与覆盖
                         </a>
@@ -1784,7 +1738,7 @@ if (!isset($ACTIVE)){
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[212]) ? $ACTIVE[212] : '';?>" >
+                    <li class="<?php echo isset($ACTIVE[312]) ? $ACTIVE[312] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/serverless/lambda_env_leak.php">
                             环境变量凭证窃取
                         </a>
@@ -1809,7 +1763,7 @@ if (!isset($ACTIVE)){
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[213]) ? $ACTIVE[213] : '';?>" >
+                    <li class="<?php echo isset($ACTIVE[313]) ? $ACTIVE[313] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/grpc/grpc_auth_bypass.php">
                             gRPC 越权与参数篡改
                         </a>
@@ -1834,7 +1788,7 @@ if (!isset($ACTIVE)){
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[214]) ? $ACTIVE[214] : '';?>" >
+                    <li class="<?php echo isset($ACTIVE[314]) ? $ACTIVE[314] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/webhook/webhook_ssrf.php">
                             回调盲 SSRF & 内网探测
                         </a>
@@ -1871,7 +1825,7 @@ if (!isset($ACTIVE)){
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[218]) ? $ACTIVE[218] : '';?>" >
+                    <li class="<?php echo isset($ACTIVE[318]) ? $ACTIVE[318] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/misconfig/swagger_unauth.php">
                             Swagger UI 在线调试调试
                         </a>
@@ -1896,7 +1850,7 @@ if (!isset($ACTIVE)){
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[215]) ? $ACTIVE[215] : '';?>" >
+                    <li class="<?php echo isset($ACTIVE[315]) ? $ACTIVE[315] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/mfa_bypass/mfa_logic_bypass.php">
                             2FA 逻辑绕过与轰炸
                         </a>
@@ -1909,16 +1863,7 @@ if (!isset($ACTIVE)){
                 </ul>
             </li>
 
-            <?php
-            $is_defense_active = false;
-            foreach (range(220, 229) as $i) {
-                if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
-                    $is_defense_active = true;
-                    break;
-                }
-            }
-            ?>
-            <li class="<?php echo $is_defense_active ? 'active open' : ''; ?>">
+            <li class="<?php echo !empty($CAT_CLASS['defense']) ? $CAT_CLASS['defense'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-defense" style="background: linear-gradient(90deg, #dcfce7 0%, #f0fdf4 100%) !important; border-left: 4px solid #22c55e !important; color: #15803d !important;">
                     <span class="menu-text" style="font-weight: bold;"> 🛡️ 蓝队防守与实战防御 </span><b class="arrow fa fa-angle-down" style="color: #22c55e !important;"></b>
                 </a>
@@ -1963,16 +1908,7 @@ if (!isset($ACTIVE)){
                 </ul>
             </li>
         
-            <?php
-            $is_ad_active = false;
-            foreach (range(230, 248) as $i) {
-                if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
-                    $is_ad_active = true;
-                    break;
-                }
-            }
-            ?>
-            <li class="<?php echo $is_ad_active ? 'active open' : ''; ?>">
+            <li class="<?php echo !empty($CAT_CLASS['ad']) ? $CAT_CLASS['ad'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-ad" style="background: linear-gradient(90deg, #e0e7ff 0%, #eef2ff 100%) !important; border-left: 4px solid #6366f1 !important; color: #3730a3 !important;">
                     <span class="menu-text" style="font-weight: bold;"> 🌐 内网与 AD 域安全 </span><b class="arrow fa fa-angle-down" style="color: #6366f1 !important;"></b>
                 </a>
@@ -2066,17 +2002,7 @@ if (!isset($ACTIVE)){
             </li>
 
             <!-- ===== OSCE³ 三大方向 ===== -->
-            <?php
-            $is_osep_active = false;
-            $osep_indices = array_merge(range(250, 258), range(280, 289), array(299));
-            foreach ($osep_indices as $i) {
-                if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
-                    $is_osep_active = true;
-                    break;
-                }
-            }
-            ?>
-            <li class="<?php echo $is_osep_active ? 'active open' : ''; ?>">
+            <li class="<?php echo !empty($CAT_CLASS['osep']) ? $CAT_CLASS['osep'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-osep" style="background: linear-gradient(90deg, #ede9fe 0%, #f5f3ff 100%) !important; border-left: 4px solid #8b5cf6 !important; color: #5b21b6 !important;">
                     <span class="menu-text" style="font-weight: bold;"> 🎯 OSEP 内网穿透 </span><b class="arrow fa fa-angle-down" style="color: #8b5cf6 !important;"></b>
                 </a>
@@ -2199,17 +2125,7 @@ if (!isset($ACTIVE)){
                 </ul>
             </li>
 
-            <?php
-            $is_oswe_active = false;
-            $oswe_indices = array_merge(range(260, 268), range(290, 296));
-            foreach ($oswe_indices as $i) {
-                if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
-                    $is_oswe_active = true;
-                    break;
-                }
-            }
-            ?>
-            <li class="<?php echo $is_oswe_active ? 'active open' : ''; ?>">
+            <li class="<?php echo !empty($CAT_CLASS['oswe']) ? $CAT_CLASS['oswe'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-oswe" style="background: linear-gradient(90deg, #cffaff 0%, #e0f2fe 100%) !important; border-left: 4px solid #06b6d4 !important; color: #08596b !important;">
                     <span class="menu-text" style="font-weight: bold;"> 🔍 OSWE 白盒审计 </span><b class="arrow fa fa-angle-down" style="color: #06b6d4 !important;"></b>
                 </a>
@@ -2308,17 +2224,7 @@ if (!isset($ACTIVE)){
                 </ul>
             </li>
 
-            <?php
-            $is_osed_active = false;
-            $osed_indices = array_merge(range(270, 279), range(301, 302));
-            foreach ($osed_indices as $i) {
-                if (!empty($ACTIVE[$i]) && strpos($ACTIVE[$i], "active") !== false) {
-                    $is_osed_active = true;
-                    break;
-                }
-            }
-            ?>
-            <li class="<?php echo $is_osed_active ? 'active open' : ''; ?>">
+            <li class="<?php echo !empty($CAT_CLASS['osed']) ? $CAT_CLASS['osed'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-osed" style="background: linear-gradient(90deg, #ffedd5 0%, #fff7ed 100%) !important; border-left: 4px solid #f97316 !important; color: #9a3412 !important;">
                     <span class="menu-text" style="font-weight: bold;"> 🔬 OSED 漏洞开发 </span><b class="arrow fa fa-angle-down" style="color: #f97316 !important;"></b>
                 </a>
