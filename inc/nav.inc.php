@@ -260,6 +260,116 @@ function pika_get_all_routes() {
  * @param array &$MOD_CLASS 各二级模块 active open 状态数组
  * @param array &$LEAF_CLASS 各叶子关卡 active 状态数组
  */
+
+/**
+ * 智能目录回退推断引擎
+ * 当新增关卡尚未在静态路由表中登记时，自动根据其所在目录结构推断 Category 与 Module
+ * 保证即便开发者或 AI 忘记注册路由，也绝不会发生侧边栏错位或跨大类误展开！
+ */
+function pika_infer_route($rel_path) {
+    $dir = dirname($rel_path);
+    if ($dir === '.' || $dir === '') {
+        return null;
+    }
+    
+    // 一级与二级目录智能特征库
+    static $dir_map = [
+        // 核心实战大类 (无二级折叠)
+        'vul/osep'        => ['cat' => 'osep',    'mod' => null],
+        'vul/oswe'        => ['cat' => 'oswe',    'mod' => null],
+        'vul/osed'        => ['cat' => 'osed',    'mod' => null],
+        'vul/ad_security' => ['cat' => 'ad',      'mod' => null],
+        'vul/defense'     => ['cat' => 'defense', 'mod' => null],
+        
+        // 经典 Web 大类
+        'vul/burteforce'     => ['cat' => 'classic', 'mod' => 'burteforce'],
+        'vul/xss'            => ['cat' => 'classic', 'mod' => 'xss'],
+        'vul/csrf'           => ['cat' => 'classic', 'mod' => 'csrf'],
+        'vul/sqli'           => ['cat' => 'classic', 'mod' => 'sqli'],
+        'vul/rce'            => ['cat' => 'classic', 'mod' => 'rce'],
+        'vul/fileinclude'    => ['cat' => 'classic', 'mod' => 'fileinclude'],
+        'vul/unsafedownload' => ['cat' => 'classic', 'mod' => 'unsafedownload'],
+        'vul/unsafeupload'   => ['cat' => 'classic', 'mod' => 'unsafeupload'],
+        'vul/overpermission' => ['cat' => 'classic', 'mod' => 'overpermission'],
+        'vul/dir'            => ['cat' => 'classic', 'mod' => 'dir'],
+        'vul/infoleak'       => ['cat' => 'classic', 'mod' => 'infoleak'],
+        'vul/unserilization' => ['cat' => 'classic', 'mod' => 'unserilization'],
+        'vul/java_unserialize' => ['cat' => 'classic', 'mod' => 'unserilization'],
+        'vul/xxe'            => ['cat' => 'classic', 'mod' => 'xxe'],
+        'vul/urlredirect'    => ['cat' => 'classic', 'mod' => 'urlredirect'],
+        'vul/ssrf'           => ['cat' => 'classic', 'mod' => 'ssrf'],
+        'pkxss'              => ['cat' => 'classic', 'mod' => 'pkxss'],
+        'vul/hostheader'     => ['cat' => 'classic', 'mod' => 'hostheader'],
+        'vul/sessionfixation'=> ['cat' => 'classic', 'mod' => 'sessionfixation'],
+        'vul/cors'           => ['cat' => 'classic', 'mod' => 'cors'],
+        'vul/clickjacking'   => ['cat' => 'classic', 'mod' => 'clickjacking'],
+        
+        // 云原生与现代架构
+        'vul/dockerlab'      => ['cat' => 'cloud', 'mod' => 'dockerlab'],
+        'vul/api_security'   => ['cat' => 'cloud', 'mod' => 'api_security'],
+        'vul/logic'          => ['cat' => 'cloud', 'mod' => 'logic'],
+        'vul/frontend'       => ['cat' => 'cloud', 'mod' => 'frontend'],
+        'vul/jwt'            => ['cat' => 'cloud', 'mod' => 'jwt'],
+        'vul/graphql'        => ['cat' => 'cloud', 'mod' => 'graphql'],
+        'vul/nosql'          => ['cat' => 'cloud', 'mod' => 'nosql'],
+        
+        // AI 与前沿应用
+        'vul/ai_security'    => ['cat' => 'ai', 'mod' => 'ai_security'],
+        'vul/oauth'          => ['cat' => 'ai', 'mod' => 'oauth'],
+        'vul/race_condition' => ['cat' => 'ai', 'mod' => 'race_condition'],
+        'vul/web_cache'      => ['cat' => 'ai', 'mod' => 'web_cache'],
+        'vul/websocket'      => ['cat' => 'ai', 'mod' => 'websocket'],
+        'vul/phar'           => ['cat' => 'ai', 'mod' => 'phar'],
+        
+        // 前沿协议与数据安全
+        'vul/http_smuggling' => ['cat' => 'proto', 'mod' => 'http_smuggling'],
+        'vul/sso_saml'       => ['cat' => 'proto', 'mod' => 'sso_saml'],
+        'vul/cloud_storage'  => ['cat' => 'proto', 'mod' => 'cloud_storage'],
+        'vul/serverless'     => ['cat' => 'proto', 'mod' => 'serverless'],
+        'vul/grpc'           => ['cat' => 'proto', 'mod' => 'grpc'],
+        'vul/webhook'        => ['cat' => 'proto', 'mod' => 'webhook'],
+        'vul/misconfig'      => ['cat' => 'proto', 'mod' => 'misconfig'],
+        'vul/mfa_bypass'     => ['cat' => 'proto', 'mod' => 'mfa_bypass'],
+    ];
+    
+    // 支持逐级向上寻找匹配前缀（例如嵌套的子目录 vul/xss/xsspost/ -> 匹配 vul/xss）
+    $check_dir = $dir;
+    while ($check_dir !== '.' && $check_dir !== '') {
+        if (isset($dir_map[$check_dir])) {
+            return array_merge($dir_map[$check_dir], ['leaf' => null, 'parent' => null]);
+        }
+        $parent_dir = dirname($check_dir);
+        if ($parent_dir === $check_dir) break;
+        $check_dir = $parent_dir;
+    }
+    
+    return null;
+}
+
+/**
+ * 链接活跃度极速判定辅助函数 (无需关心任何数字索引!)
+ * 在页面模板或 header.php 中可直接调用：
+ * class="<?php echo pika_is_active('vul/dockerlab/docker_sock_escape.php', 211); ?>"
+ */
+function pika_is_active($target_rel, $fallback_idx = null) {
+    global $ACTIVE, $LEAF_CLASS;
+    $current = pika_get_current_route();
+    
+    // 1. URL 直接对比 (精确无碰撞)
+    if ($current === $target_rel) {
+        return 'active';
+    }
+    // 2. LEAF_CLASS 数组查找
+    if (!empty($LEAF_CLASS[$target_rel])) {
+        return 'active';
+    }
+    // 3. 兼容性数字索引判定
+    if ($fallback_idx !== null && !empty($ACTIVE[$fallback_idx]) && strpos($ACTIVE[$fallback_idx], 'active') !== false) {
+        return 'active';
+    }
+    return '';
+}
+
 function pika_resolve_navigation(&$ACTIVE, &$CAT_CLASS, &$MOD_CLASS = null, &$LEAF_CLASS = null) {
     $current_rel = pika_get_current_route();
     
@@ -299,20 +409,29 @@ function pika_resolve_navigation(&$ACTIVE, &$CAT_CLASS, &$MOD_CLASS = null, &$LE
     $matched_route = null;
     $matched_key = null;
     
-    // 1. 精准路径匹配
+    // 1. 精准路径匹配 (已注册的 221+ 关卡)
     if (isset($routes[$current_rel])) {
         $matched_route = $routes[$current_rel];
         $matched_key = $current_rel;
     } else {
-        // 2. 目录模糊匹配（针对子目录或嵌套文件）
+        // 2. 目录模糊匹配 (已注册目录下的同名/相关关卡)
         $current_dir = dirname($current_rel);
         if ($current_dir !== '.' && $current_dir !== '') {
             foreach ($routes as $path => $r) {
                 if (dirname($path) === $current_dir) {
                     $matched_route = $r;
-                    $matched_key = $path;
+                    $matched_key = $current_rel; // 使用实际请求路径作为叶子激活标识
                     break;
                 }
+            }
+        }
+        
+        // 3. 全局智能特征库推断 (针对未来任何新增但未手动登记的全新关卡)
+        if ($matched_route === null) {
+            $inferred = pika_infer_route($current_rel);
+            if ($inferred !== null) {
+                $matched_route = $inferred;
+                $matched_key = $current_rel;
             }
         }
     }
