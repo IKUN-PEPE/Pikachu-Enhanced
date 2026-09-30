@@ -192,23 +192,21 @@ if (!isset($ACTIVE)){
 
         <ul class="nav nav-list">
             <li class="<?php echo $ACTIVE[0];?>">
-                <a href="<?php echo $PIKA_ROOT_DIR;?>index.php" class="cat-sidebar-intro" style="background: linear-gradient(90deg, #f1f5f9 0%, #f8fafc 100%) !important; border-left: 4px solid #64748b !important; color: #334155 !important;">
-                    <span class="menu-text" style="font-weight: bold;"> 📖 系统介绍与说明 </span>
+                <a href="<?php echo $PIKA_ROOT_DIR;?>index.php">
+                    <span class="menu-text">📖 系统介绍与说明</span>
                 </a>
-                <b class="arrow"></b>
             </li>
 
             <li class="<?php echo isset($ACTIVE[330]) ? $ACTIVE[330] : (isset($ACTIVE[219]) ? $ACTIVE[219] : '');?>">
-                <a href="<?php echo $PIKA_ROOT_DIR;?>intro.php" class="cat-sidebar-intro" style="background: linear-gradient(90deg, #f1f5f9 0%, #f8fafc 100%) !important; border-left: 4px solid #475569 !important; color: #1e293b !important;">
-                    <span class="menu-text" style="font-weight: bold;"> 📊 全局漏洞图鉴 (v2.0) </span>
+                <a href="<?php echo $PIKA_ROOT_DIR;?>intro.php">
+                    <span class="menu-text">📊 全局漏洞图鉴 (v2.0)</span>
                 </a>
-                <b class="arrow"></b>
             </li>
 
 
                         <li class="<?php echo !empty($CAT_CLASS['classic']) ? $CAT_CLASS['classic'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-classic">
-                    <span class="menu-text" style="font-weight: bold;"> 🏛️ 经典 Web 攻防演练 </span><b class="arrow fa fa-angle-down" style="color: #f59e0b !important;"></b>
+                    <span class="menu-text" style="font-weight: bold;"> 🏛️ 经典 Web 攻防演练 </span><b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -219,7 +217,7 @@ if (!isset($ACTIVE)){
 								暴力破解
 							</span>
 
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
 
                 <b class="arrow"></b>
@@ -278,7 +276,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
 								Cross-Site Scripting
 							</span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -372,7 +370,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
 								CSRF
 							</span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -449,7 +447,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
 								SQL-Inject
 							</span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -540,7 +538,7 @@ if (!isset($ACTIVE)){
                 <span class="menu-text">
                         RCE
                     </span>
-                <b class="arrow fa fa-angle-down"></b>
+                <b class="arrow fa fa-angle-right"></b>
             </a>
             <b class="arrow"></b>
             <ul class="submenu">
@@ -595,7 +593,7 @@ if (!isset($ACTIVE)){
                 <span class="menu-text">
                     File Inclusion
                 </span>
-                <b class="arrow fa fa-angle-down"></b>
+                <b class="arrow fa fa-angle-right"></b>
             </a>
             <b class="arrow"></b>
             <ul class="submenu">
@@ -629,7 +627,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 Unsafe Filedownload
             </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -656,7 +654,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 Unsafe Fileupload
             </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -705,7 +703,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 Over Permission
             </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -760,7 +758,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 ../../
             </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -785,7 +783,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
 								敏感信息与配置泄露
 							</span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -826,7 +824,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
 								序列化与反序列化漏洞
 							</span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -874,7 +872,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 XXE
             </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -901,7 +899,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 URL重定向
             </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -928,7 +926,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 SSRF
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -983,7 +981,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 管理工具
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1005,7 +1003,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 Host Header
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1032,7 +1030,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 CORS Misconfiguration
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1066,7 +1064,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 Clickjacking
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1099,7 +1097,7 @@ if (!isset($ACTIVE)){
 
             <li class="<?php echo !empty($CAT_CLASS['auth']) ? $CAT_CLASS['auth'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-auth">
-                    <span class="menu-text" style="font-weight: bold;"> 🔑 现代身份认证与访问控制 </span><b class="arrow fa fa-angle-down" style="color: #8b5cf6 !important;"></b>
+                    <span class="menu-text" style="font-weight: bold;"> 🔑 现代身份认证与访问控制 </span><b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1109,7 +1107,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 现代身份认证安全
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1151,7 +1149,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 高级认证体系安全
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1175,7 +1173,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 单点登录 SSO/SAML
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1199,7 +1197,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 多因素认证 (MFA Bypass)
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1223,7 +1221,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 Session Fixation
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1256,7 +1254,7 @@ if (!isset($ACTIVE)){
 
             <li class="<?php echo !empty($CAT_CLASS['business']) ? $CAT_CLASS['business'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-business">
-                    <span class="menu-text" style="font-weight: bold;"> ⚡ 业务逻辑与并发安全 </span><b class="arrow fa fa-angle-down" style="color: #f43f5e !important;"></b>
+                    <span class="menu-text" style="font-weight: bold;"> ⚡ 业务逻辑与并发安全 </span><b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1266,7 +1264,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 业务逻辑安全
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1290,7 +1288,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 业务并发安全
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1314,7 +1312,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 现代 Web 缓存安全
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1337,7 +1335,7 @@ if (!isset($ACTIVE)){
 
             <li class="<?php echo !empty($CAT_CLASS['cloud']) ? $CAT_CLASS['cloud'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-cloud">
-                    <span class="menu-text" style="font-weight: bold;"> ☁️ 云原生与云基础设施安全 </span><b class="arrow fa fa-angle-down" style="color: #06b6d4 !important;"></b>
+                    <span class="menu-text" style="font-weight: bold;"> ☁️ 云原生与云基础设施安全 </span><b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1347,7 +1345,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 Docker Lab
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1451,7 +1449,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 对象存储 Cloud Storage
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1475,7 +1473,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 Serverless 函数计算
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1499,7 +1497,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 现代 API 安全
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1528,7 +1526,7 @@ if (!isset($ACTIVE)){
 
             <li class="<?php echo !empty($CAT_CLASS['proto']) ? $CAT_CLASS['proto'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-proto">
-                    <span class="menu-text" style="font-weight: bold;"> 🌐 现代网络协议与新型数据接口 </span><b class="arrow fa fa-angle-down" style="color: #3b82f6 !important;"></b>
+                    <span class="menu-text" style="font-weight: bold;"> 🌐 现代网络协议与新型数据接口 </span><b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1538,7 +1536,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 HTTP 请求走私
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1562,7 +1560,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 微服务 gRPC 接口
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1586,7 +1584,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 底层协议利用
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1622,7 +1620,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 Webhook 异步回调
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1646,7 +1644,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 前沿接口协议
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1664,7 +1662,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 新型数据库安全
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1694,7 +1692,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 前端前沿安全
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1723,7 +1721,7 @@ if (!isset($ACTIVE)){
 
             <li class="<?php echo !empty($CAT_CLASS['ai']) ? $CAT_CLASS['ai'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-ai">
-                    <span class="menu-text" style="font-weight: bold;"> 🤖 AI 与大模型应用安全 </span><b class="arrow fa fa-angle-down" style="color: #a855f7 !important;"></b>
+                    <span class="menu-text" style="font-weight: bold;"> 🤖 AI 与大模型应用安全 </span><b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1733,7 +1731,7 @@ if (!isset($ACTIVE)){
                     <span class="menu-text">
                 AI / LLM 应用安全
                     </span>
-                    <b class="arrow fa fa-angle-down"></b>
+                    <b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1774,7 +1772,7 @@ if (!isset($ACTIVE)){
 
             <li class="<?php echo !empty($CAT_CLASS['defense']) ? $CAT_CLASS['defense'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-defense">
-                    <span class="menu-text" style="font-weight: bold;"> 🛡️ 蓝队防守与实战防御 </span><b class="arrow fa fa-angle-down" style="color: #22c55e !important;"></b>
+                    <span class="menu-text" style="font-weight: bold;"> 🛡️ 蓝队防守与实战防御 </span><b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1819,7 +1817,7 @@ if (!isset($ACTIVE)){
 
             <li class="<?php echo !empty($CAT_CLASS['ad']) ? $CAT_CLASS['ad'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-ad">
-                    <span class="menu-text" style="font-weight: bold;"> 🌐 内网与 Active Directory 域安全 </span><b class="arrow fa fa-angle-down" style="color: #6366f1 !important;"></b>
+                    <span class="menu-text" style="font-weight: bold;"> 🌐 内网与 Active Directory 域安全 </span><b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -1948,7 +1946,7 @@ if (!isset($ACTIVE)){
 
             <li class="<?php echo !empty($CAT_CLASS['osep']) ? $CAT_CLASS['osep'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-osep">
-                    <span class="menu-text" style="font-weight: bold;"> 🎯 OSEP 内网穿透与红队评估 </span><b class="arrow fa fa-angle-down" style="color: #8b5cf6 !important;"></b>
+                    <span class="menu-text" style="font-weight: bold;"> 🎯 OSEP 内网穿透与红队评估 </span><b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -2071,7 +2069,7 @@ if (!isset($ACTIVE)){
 
             <li class="<?php echo !empty($CAT_CLASS['oswe']) ? $CAT_CLASS['oswe'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-oswe">
-                    <span class="menu-text" style="font-weight: bold;"> 🔍 OSWE 高级代码审计与白盒利用 </span><b class="arrow fa fa-angle-down" style="color: #06b6d4 !important;"></b>
+                    <span class="menu-text" style="font-weight: bold;"> 🔍 OSWE 高级代码审计与白盒利用 </span><b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
@@ -2170,7 +2168,7 @@ if (!isset($ACTIVE)){
 
             <li class="<?php echo !empty($CAT_CLASS['osed']) ? $CAT_CLASS['osed'] : ''; ?>">
                 <a href="#" class="dropdown-toggle cat-sidebar-osed">
-                    <span class="menu-text" style="font-weight: bold;"> 🔬 OSED 二进制漏洞利用与逆向 </span><b class="arrow fa fa-angle-down" style="color: #f97316 !important;"></b>
+                    <span class="menu-text" style="font-weight: bold;"> 🔬 OSED 二进制漏洞利用与逆向 </span><b class="arrow fa fa-angle-right"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
