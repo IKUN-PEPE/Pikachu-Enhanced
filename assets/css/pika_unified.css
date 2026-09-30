@@ -884,3 +884,34 @@ html, body {
     bottom: 20px !important;
     z-index: 1050 !important;
 }
+
+
+/* ==========================================================================
+   Sidebar Category Visual Palette & Dark Mode Support (11 Domains)
+   ========================================================================== */
+.cat-sidebar-intro { background: linear-gradient(90deg, #f1f5f9 0%, #f8fafc 100%) !important; border-left: 4px solid #64748b !important; color: #334155 !important; }
+.cat-sidebar-classic { background: linear-gradient(90deg, #fef3c7 0%, #fffbeb 100%) !important; border-left: 4px solid #f59e0b !important; color: #92400e !important; }
+.cat-sidebar-auth { background: linear-gradient(90deg, #ede9fe 0%, #f5f3ff 100%) !important; border-left: 4px solid #8b5cf6 !important; color: #5b21b6 !important; }
+.cat-sidebar-business { background: linear-gradient(90deg, #ffe4e6 0%, #fff1f2 100%) !important; border-left: 4px solid #f43f5e !important; color: #9f1239 !important; }
+.cat-sidebar-cloud { background: linear-gradient(90deg, #cffafe 0%, #ecfeff 100%) !important; border-left: 4px solid #06b6d4 !important; color: #155e75 !important; }
+.cat-sidebar-proto { background: linear-gradient(90deg, #dbeafe 0%, #eff6ff 100%) !important; border-left: 4px solid #3b82f6 !important; color: #1e40af !important; }
+.cat-sidebar-ai { background: linear-gradient(90deg, #f3e8ff 0%, #faf5ff 100%) !important; border-left: 4px solid #a855f7 !important; color: #6b21a8 !important; }
+.cat-sidebar-defense { background: linear-gradient(90deg, #dcfce7 0%, #f0fdf4 100%) !important; border-left: 4px solid #22c55e !important; color: #15803d !important; }
+.cat-sidebar-ad { background: linear-gradient(90deg, #e0e7ff 0%, #eef2ff 100%) !important; border-left: 4px solid #6366f1 !important; color: #3730a3 !important; }
+.cat-sidebar-osep { background: linear-gradient(90deg, #ede9fe 0%, #f5f3ff 100%) !important; border-left: 4px solid #8b5cf6 !important; color: #5b21b6 !important; }
+.cat-sidebar-oswe { background: linear-gradient(90deg, #cffaff 0%, #e0f2fe 100%) !important; border-left: 4px solid #06b6d4 !important; color: #08596b !important; }
+.cat-sidebar-osed { background: linear-gradient(90deg, #ffedd5 0%, #fff7ed 100%) !important; border-left: 4px solid #f97316 !important; color: #9a3412 !important; }
+
+/* Dark mode theme overrides */
+[data-theme="dark"] .cat-sidebar-intro { background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%) !important; border-left: 4px solid #64748b !important; color: #cbd5e1 !important; }
+[data-theme="dark"] .cat-sidebar-classic { background: linear-gradient(90deg, #451a03 0%, #1e1b4b 100%) !important; border-left: 4px solid #f59e0b !important; color: #fde68a !important; }
+[data-theme="dark"] .cat-sidebar-auth { background: linear-gradient(90deg, #2e1065 0%, #1e1b4b 100%) !important; border-left: 4px solid #a855f7 !important; color: #e9d5ff !important; }
+[data-theme="dark"] .cat-sidebar-business { background: linear-gradient(90deg, #4c0519 0%, #1e1b4b 100%) !important; border-left: 4px solid #fb7185 !important; color: #fecdd3 !important; }
+[data-theme="dark"] .cat-sidebar-cloud { background: linear-gradient(90deg, #083344 0%, #0f172a 100%) !important; border-left: 4px solid #06b6d4 !important; color: #a5f3fc !important; }
+[data-theme="dark"] .cat-sidebar-proto { background: linear-gradient(90deg, #172554 0%, #0f172a 100%) !important; border-left: 4px solid #3b82f6 !important; color: #bfdbfe !important; }
+[data-theme="dark"] .cat-sidebar-ai { background: linear-gradient(90deg, #3b0764 0%, #0f172a 100%) !important; border-left: 4px solid #c084fc !important; color: #f3e8ff !important; }
+[data-theme="dark"] .cat-sidebar-defense { background: linear-gradient(90deg, #052e16 0%, #0f172a 100%) !important; border-left: 4px solid #22c55e !important; color: #bbf7d0 !important; }
+[data-theme="dark"] .cat-sidebar-ad { background: linear-gradient(90deg, #1e1b4b 0%, #0f172a 100%) !important; border-left: 4px solid #818cf8 !important; color: #c7d2fe !important; }
+[data-theme="dark"] .cat-sidebar-osep { background: linear-gradient(90deg, #2e1065 0%, #0f172a 100%) !important; border-left: 4px solid #a78bfa !important; color: #ddd6fe !important; }
+[data-theme="dark"] .cat-sidebar-oswe { background: linear-gradient(90deg, #083344 0%, #0f172a 100%) !important; border-left: 4px solid #22d3ee !important; color: #a5f3fc !important; }
+[data-theme="dark"] .cat-sidebar-osed { background: linear-gradient(90deg, #431407 0%, #0f172a 100%) !important; border-left: 4px solid #fb923c !important; color: #fed7aa !important; }
