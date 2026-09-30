@@ -284,88 +284,179 @@ html, body {
 }
 
 #sidebar.sidebar {
-    width: 250px !important;
-    min-width: 250px !important;
-    max-width: 250px !important;
+    width: 272px !important;
+    min-width: 272px !important;
+    max-width: 272px !important;
     flex-shrink: 0 !important;
     background-color: var(--bg-sidebar) !important;
     border: none !important;
     border-right: 1px solid var(--border-subtle) !important;
-    padding: 14px 8px 50px 8px !important;
+    padding: 10px 8px 50px 8px !important;
     margin: 0 !important;
     float: none !important;
     position: sticky !important;
     top: 56px !important;
     height: calc(100vh - 56px) !important;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
     z-index: 100 !important;
     box-shadow: var(--shadow-sm) !important;
+}
+
+/* Custom Sleek Scrollbar */
+#sidebar.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+#sidebar.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+#sidebar.sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-subtle);
+    border-radius: 10px;
+}
+#sidebar.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
 }
 
 .sidebar-toggle, #sidebar-collapse {
     display: none !important;
 }
 
+/* ==========================================================================
+   Eradicate All Ace Admin Pseudo-element Visual Glitches (Brackets, Borders)
+   ========================================================================== */
+.sidebar .nav-list > li::before,
+.sidebar .nav-list > li::after,
+.sidebar .nav-list > li.active::before,
+.sidebar .nav-list > li.active::after,
+.sidebar .nav-list > li > a::before,
+.sidebar .nav-list > li > a::after,
+.sidebar .nav-list > li.active > a::before,
+.sidebar .nav-list > li.active > a::after,
+.sidebar .nav-list > li > .arrow::before,
+.sidebar .nav-list > li > .arrow::after,
+.sidebar .nav-list > li.open > a::after,
+.sidebar .nav-list > li.active.open > a::after,
+.nav-list > li::before,
+.nav-list > li::after,
+.nav-list > li.active::before,
+.nav-list > li.active::after,
+.no-skin .nav-list > li.active:before {
+    display: none !important;
+    content: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+/* ==========================================================================
+   Unified Top-Level Navigation Items (Level 1)
+   ========================================================================== */
 .sidebar .nav-list {
     border: none !important;
     padding: 0 !important;
     margin: 0 !important;
+    list-style: none !important;
 }
 
 .sidebar .nav-list > li {
     border: none !important;
-    margin-bottom: 3px !important;
+    margin: 3px 0 !important;
+    padding: 0 !important;
     position: relative !important;
 }
 
 .sidebar .nav-list > li > a {
-    color: var(--text-primary) !important;
+    color: var(--text-secondary) !important;
     background: transparent !important;
-    border: none !important;
-    border-radius: var(--radius-md) !important;
-    padding: 9px 12px !important;
-    font-size: 13.5px !important;
-    font-weight: 700 !important;
-    height: auto !important;
+    border: 1px solid transparent !important;
+    border-left: 3px solid transparent !important;
+    border-radius: 8px !important;
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    height: 38px !important;
     line-height: 1.4 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-    transition: all 0.2s ease !important;
+    transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    text-decoration: none !important;
+    box-sizing: border-box !important;
 }
 
+/* Hover state */
 .sidebar .nav-list > li > a:hover {
-    color: var(--primary) !important;
+    color: var(--text-primary) !important;
     background: var(--bg-sidebar-hover) !important;
+    border-color: var(--border-subtle) !important;
+    border-left-color: var(--border-subtle) !important;
+    transform: translateX(2px) !important;
 }
 
-.sidebar .nav-list > li > a > .menu-icon {
-    width: 20px !important;
-    font-size: 14px !important;
-    color: var(--text-muted) !important;
-    margin-right: 8px !important;
-    text-align: center !important;
-    transition: color 0.2s ease !important;
-}
-
-.sidebar .nav-list > li:hover > a > .menu-icon,
-.sidebar .nav-list > li.active > a > .menu-icon {
-    color: var(--primary) !important;
-}
-
-.sidebar .nav-list > li > a > .menu-text {
-    flex: 1 !important;
-    font-size: 13.5px !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.01em !important;
-}
-
-.sidebar .nav-list > li.active.open > a,
-.sidebar .nav-list > li.active > a {
+/* Active and Open states (Unified Pill Highlight) */
+.sidebar .nav-list > li.active > a,
+.sidebar .nav-list > li.open > a,
+.sidebar .nav-list > li.active.open > a {
     background: var(--primary-light) !important;
     color: var(--primary) !important;
+    border: 1px solid rgba(37, 99, 235, 0.18) !important;
     border-left: 3px solid var(--primary) !important;
-    font-weight: 800 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 1px 3px rgba(37, 99, 235, 0.08) !important;
+}
+
+[data-theme="dark"] .sidebar .nav-list > li.active > a,
+[data-theme="dark"] .sidebar .nav-list > li.open > a,
+[data-theme="dark"] .sidebar .nav-list > li.active.open > a {
+    background: rgba(56, 189, 248, 0.12) !important;
+    color: #38bdf8 !important;
+    border: 1px solid rgba(56, 189, 248, 0.25) !important;
+    border-left: 3px solid #38bdf8 !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Typography on Top-Level Items (Strict Single-Line No Wrapping) */
+.sidebar .nav-list > li > a > .menu-text {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    font-size: 13px !important;
+    font-weight: inherit !important;
+    letter-spacing: -0.01em !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: inline-block !important;
+}
+
+/* Unified Chevron Arrow Icons */
+.sidebar .nav-list > li > a > .arrow,
+.sidebar .nav-list > li > a > .arrow.fa {
+    width: 14px !important;
+    height: 14px !important;
+    font-size: 11.5px !important;
+    line-height: 14px !important;
+    color: var(--text-muted) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-left: 6px !important;
+    flex-shrink: 0 !important;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.18s ease !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+.sidebar .nav-list > li.open > a > .arrow,
+.sidebar .nav-list > li.active.open > a > .arrow {
+    transform: rotate(90deg) !important;
+    color: var(--primary) !important;
+}
+
+[data-theme="dark"] .sidebar .nav-list > li.open > a > .arrow,
+[data-theme="dark"] .sidebar .nav-list > li.active.open > a > .arrow {
+    color: #38bdf8 !important;
 }
 
 /* Category Badge Chip */
@@ -383,21 +474,25 @@ html, body {
 .sidebar-cat-badge-docker { background: rgba(6, 182, 212, 0.12) !important; color: #06b6d4 !important; border: 1px solid rgba(6, 182, 212, 0.25) !important; }
 .sidebar-cat-badge-offsec { background: rgba(245, 158, 11, 0.12) !important; color: #f59e0b !important; border: 1px solid rgba(245, 158, 11, 0.25) !important; }
 
-/* Submenus Level 2 & 3 */
+/* ==========================================================================
+   Unified Submenus (Level 2 Modules)
+   ========================================================================== */
 .sidebar .nav-list > li > .submenu {
     background: transparent !important;
     border: none !important;
-    padding: 4px 0 6px 12px !important;
+    padding: 3px 0 5px 10px !important;
     margin: 0 !important;
     position: relative !important;
+    list-style: none !important;
 }
 
+/* Left branch guide line */
 .sidebar .nav-list > li > .submenu::before {
     content: '';
     position: absolute;
-    left: 14px;
-    top: 4px;
-    bottom: 4px;
+    left: 16px;
+    top: 6px;
+    bottom: 6px;
     width: 2px;
     background: var(--border-subtle);
     border-radius: var(--radius-full);
@@ -406,22 +501,26 @@ html, body {
 .sidebar .nav-list > li > .submenu > li {
     border: none !important;
     margin-bottom: 2px !important;
-    padding-left: 12px !important;
+    padding-left: 14px !important;
 }
 
 .sidebar .nav-list > li > .submenu > li > a {
     color: var(--text-secondary) !important;
     background: transparent !important;
-    border-radius: var(--radius-sm) !important;
-    padding: 7px 10px !important;
-    font-size: 13px !important;
+    border-radius: 6px !important;
+    padding: 6px 10px !important;
+    font-size: 12.5px !important;
     font-weight: 600 !important;
     height: auto !important;
     line-height: 1.4 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-    transition: all 0.2s ease !important;
+    transition: all 0.15s ease !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
 
 .sidebar .nav-list > li > .submenu > li > a:hover {
@@ -429,17 +528,42 @@ html, body {
     background: var(--bg-sidebar-hover) !important;
 }
 
-.sidebar .nav-list > li > .submenu > li.active.open > a {
+.sidebar .nav-list > li > .submenu > li.active.open > a,
+.sidebar .nav-list > li > .submenu > li.open > a {
     color: var(--primary) !important;
     font-weight: 700 !important;
 }
 
-/* Submenu Level 3 (Leaf Vulnerabilities) */
+.sidebar .nav-list > li > .submenu > li > a > .arrow,
+.sidebar .nav-list > li > .submenu > li > a > .arrow.fa {
+    font-size: 10px !important;
+    color: var(--text-muted) !important;
+    transition: transform 0.2s ease !important;
+}
+
+.sidebar .nav-list > li > .submenu > li.open > a > .arrow {
+    transform: rotate(90deg) !important;
+    color: var(--primary) !important;
+}
+
+/* Direct leaf items in Level 2 (such as OSEP/OSWE/OSED levels) */
+.sidebar .nav-list > li > .submenu > li.active > a {
+    background: var(--primary-light) !important;
+    color: var(--primary) !important;
+    font-weight: 700 !important;
+    border-left: 3px solid var(--primary) !important;
+    padding-left: 8px !important;
+}
+
+/* ==========================================================================
+   Unified Submenu Level 3 (Leaf Vulnerabilities)
+   ========================================================================== */
 .sidebar .nav-list > li > .submenu > li > .submenu {
     background: transparent !important;
     border: none !important;
-    padding: 2px 0 4px 8px !important;
+    padding: 2px 0 4px 6px !important;
     margin: 0 !important;
+    list-style: none !important;
 }
 
 .sidebar .nav-list > li > .submenu > li > .submenu > li {
@@ -450,12 +574,16 @@ html, body {
 .sidebar .nav-list > li > .submenu > li > .submenu > li > a {
     color: var(--text-muted) !important;
     background: transparent !important;
-    border-radius: var(--radius-sm) !important;
-    padding: 6px 10px !important;
-    font-size: 12.5px !important;
+    border-radius: 5px !important;
+    padding: 5px 10px !important;
+    font-size: 12px !important;
     font-weight: 500 !important;
     display: block !important;
     transition: all 0.15s ease !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
 
 .sidebar .nav-list > li > .submenu > li > .submenu > li > a:hover {
@@ -463,23 +591,29 @@ html, body {
     background: var(--bg-sidebar-hover) !important;
 }
 
-/* Active Leaf Highlight */
-.sidebar .nav-list > li > .submenu > li > .submenu > li.active > a,
-.sidebar .nav-list > li > .submenu > li.active > a {
+/* Active Leaf Highlight in Level 3 */
+.sidebar .nav-list > li > .submenu > li > .submenu > li.active > a {
     background: var(--primary-light) !important;
     color: var(--primary) !important;
     font-weight: 700 !important;
     border-left: 3px solid var(--primary) !important;
-    padding-left: 10px !important;
+    padding-left: 8px !important;
+}
+
+[data-theme="dark"] .sidebar .nav-list > li > .submenu > li > .submenu > li.active > a,
+[data-theme="dark"] .sidebar .nav-list > li > .submenu > li.active > a {
+    background: rgba(56, 189, 248, 0.12) !important;
+    color: #38bdf8 !important;
+    border-left-color: #38bdf8 !important;
 }
 
 /* ==========================================================================
-   Main Content Layout & Perfect Spacing
+   Main Content Layout & Perfect Spacing (Aligned with 272px Sidebar)
    ========================================================================== */
 .main-content {
-    flex: 1 1 calc(100% - 250px) !important;
+    flex: 1 1 calc(100% - 272px) !important;
     min-width: 0 !important;
-    width: calc(100% - 250px) !important;
+    width: calc(100% - 272px) !important;
     margin-left: 0 !important;
     padding: 0 !important;
     background-color: var(--bg-app) !important;
@@ -884,34 +1018,3 @@ html, body {
     bottom: 20px !important;
     z-index: 1050 !important;
 }
-
-
-/* ==========================================================================
-   Sidebar Category Visual Palette & Dark Mode Support (11 Domains)
-   ========================================================================== */
-.cat-sidebar-intro { background: linear-gradient(90deg, #f1f5f9 0%, #f8fafc 100%) !important; border-left: 4px solid #64748b !important; color: #334155 !important; }
-.cat-sidebar-classic { background: linear-gradient(90deg, #fef3c7 0%, #fffbeb 100%) !important; border-left: 4px solid #f59e0b !important; color: #92400e !important; }
-.cat-sidebar-auth { background: linear-gradient(90deg, #ede9fe 0%, #f5f3ff 100%) !important; border-left: 4px solid #8b5cf6 !important; color: #5b21b6 !important; }
-.cat-sidebar-business { background: linear-gradient(90deg, #ffe4e6 0%, #fff1f2 100%) !important; border-left: 4px solid #f43f5e !important; color: #9f1239 !important; }
-.cat-sidebar-cloud { background: linear-gradient(90deg, #cffafe 0%, #ecfeff 100%) !important; border-left: 4px solid #06b6d4 !important; color: #155e75 !important; }
-.cat-sidebar-proto { background: linear-gradient(90deg, #dbeafe 0%, #eff6ff 100%) !important; border-left: 4px solid #3b82f6 !important; color: #1e40af !important; }
-.cat-sidebar-ai { background: linear-gradient(90deg, #f3e8ff 0%, #faf5ff 100%) !important; border-left: 4px solid #a855f7 !important; color: #6b21a8 !important; }
-.cat-sidebar-defense { background: linear-gradient(90deg, #dcfce7 0%, #f0fdf4 100%) !important; border-left: 4px solid #22c55e !important; color: #15803d !important; }
-.cat-sidebar-ad { background: linear-gradient(90deg, #e0e7ff 0%, #eef2ff 100%) !important; border-left: 4px solid #6366f1 !important; color: #3730a3 !important; }
-.cat-sidebar-osep { background: linear-gradient(90deg, #ede9fe 0%, #f5f3ff 100%) !important; border-left: 4px solid #8b5cf6 !important; color: #5b21b6 !important; }
-.cat-sidebar-oswe { background: linear-gradient(90deg, #cffaff 0%, #e0f2fe 100%) !important; border-left: 4px solid #06b6d4 !important; color: #08596b !important; }
-.cat-sidebar-osed { background: linear-gradient(90deg, #ffedd5 0%, #fff7ed 100%) !important; border-left: 4px solid #f97316 !important; color: #9a3412 !important; }
-
-/* Dark mode theme overrides */
-[data-theme="dark"] .cat-sidebar-intro { background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%) !important; border-left: 4px solid #64748b !important; color: #cbd5e1 !important; }
-[data-theme="dark"] .cat-sidebar-classic { background: linear-gradient(90deg, #451a03 0%, #1e1b4b 100%) !important; border-left: 4px solid #f59e0b !important; color: #fde68a !important; }
-[data-theme="dark"] .cat-sidebar-auth { background: linear-gradient(90deg, #2e1065 0%, #1e1b4b 100%) !important; border-left: 4px solid #a855f7 !important; color: #e9d5ff !important; }
-[data-theme="dark"] .cat-sidebar-business { background: linear-gradient(90deg, #4c0519 0%, #1e1b4b 100%) !important; border-left: 4px solid #fb7185 !important; color: #fecdd3 !important; }
-[data-theme="dark"] .cat-sidebar-cloud { background: linear-gradient(90deg, #083344 0%, #0f172a 100%) !important; border-left: 4px solid #06b6d4 !important; color: #a5f3fc !important; }
-[data-theme="dark"] .cat-sidebar-proto { background: linear-gradient(90deg, #172554 0%, #0f172a 100%) !important; border-left: 4px solid #3b82f6 !important; color: #bfdbfe !important; }
-[data-theme="dark"] .cat-sidebar-ai { background: linear-gradient(90deg, #3b0764 0%, #0f172a 100%) !important; border-left: 4px solid #c084fc !important; color: #f3e8ff !important; }
-[data-theme="dark"] .cat-sidebar-defense { background: linear-gradient(90deg, #052e16 0%, #0f172a 100%) !important; border-left: 4px solid #22c55e !important; color: #bbf7d0 !important; }
-[data-theme="dark"] .cat-sidebar-ad { background: linear-gradient(90deg, #1e1b4b 0%, #0f172a 100%) !important; border-left: 4px solid #818cf8 !important; color: #c7d2fe !important; }
-[data-theme="dark"] .cat-sidebar-osep { background: linear-gradient(90deg, #2e1065 0%, #0f172a 100%) !important; border-left: 4px solid #a78bfa !important; color: #ddd6fe !important; }
-[data-theme="dark"] .cat-sidebar-oswe { background: linear-gradient(90deg, #083344 0%, #0f172a 100%) !important; border-left: 4px solid #22d3ee !important; color: #a5f3fc !important; }
-[data-theme="dark"] .cat-sidebar-osed { background: linear-gradient(90deg, #431407 0%, #0f172a 100%) !important; border-left: 4px solid #fb923c !important; color: #fed7aa !important; }
