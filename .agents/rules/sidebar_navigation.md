@@ -19,8 +19,8 @@ description: Pikachu-Enhanced 侧边栏导航规范与新增关卡长期记忆�
 ### 当前重构后的统一自动化机制
 - **单一事实源**：`inc/nav.inc.php` 作为全站导航解析中枢，核心根据 `$_SERVER['SCRIPT_NAME']`（当前实际访问脚本）毫秒级计算活跃项。
 - **状态完全解耦**：
-  - `$CAT_CLASS['classic' | 'cloud' | 'ai' | 'proto' | 'defense' | 'ad' | 'osep' | 'oswe' | 'osed']`：控制 9 大主分类展开。
-  - `$MOD_CLASS['burteforce' | 'dockerlab' | ...]`：控制二级折叠菜单展开。
+  - `$CAT_CLASS['classic' | 'auth' | 'business' | 'cloud' | 'proto' | 'ai' | 'defense' | 'ad' | 'osep' | 'oswe' | 'osed']`：控制 11 大主分类展开。
+  - `$MOD_CLASS['burteforce' | 'jwt' | 'logic' | 'dockerlab' | ...]`：控制二级折叠菜单展开。
   - `pika_is_active('vul/xxx/yyy.php')`：基于相对路径精确高亮叶子节点。
 - **智能目录推断兜底 (Zero-Maintenance Fallback)**：`pika_infer_route()` 能够根据文件所在目录自动归类。即使新增关卡时**完全忘记**在路由表中注册，系统也会自动展开正确的分类并高亮，绝对不会跨类误展开！
 
@@ -74,7 +74,7 @@ include_once $PIKA_ROOT_DIR . 'footer.php';
 ```php
 'vul/your_dir/your_file.php' => ['cat' => 'cloud', 'mod' => 'dockerlab', 'leaf' => null, 'parent' => 140],
 ```
-- `cat`：对应 9 大分类 ID 之一 (`classic` / `cloud` / `ai` / `proto` / `defense` / `ad` / `osep` / `oswe` / `osed`)
+- `cat`：对应 11 大分类 ID 之一 (`classic` / `auth` / `business` / `cloud` / `proto` / `ai` / `defense` / `ad` / `osep` / `oswe` / `osed`)
 - `mod`：二级模块别名（如 `dockerlab`、`jwt`、`sqli`；若属于 OSEP/OSWE 等单层大类，则填 `null`）
 - `leaf`：填 `null` 即可（使用路径精确匹配）
 - `parent`：对应模块父级 ID（如 140）

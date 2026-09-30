@@ -86,12 +86,23 @@ def run_validation():
         errors += 1
     else:
         print("  [OK]   pika_is_active 链接活跃判定函数正常就绪")
+        
+    # 校验 11 大分类状态机完备性
+    expected_cats = ['classic', 'auth', 'business', 'cloud', 'proto', 'ai', 'defense', 'ad', 'osep', 'oswe', 'osed']
+    missing_cats = [c for c in expected_cats if f"'{c}'" not in nav_content]
+    if missing_cats:
+        print(f"  [FAIL] nav.inc.php 缺少分类状态: {missing_cats}")
+        errors += len(missing_cats)
+    else:
+        print(f"  [OK]   11 大顶级核心分类状态机架构完备就绪！")
 
     # 5. 校验实时服务渲染 (如 Docker 容器运行中)
     print("\n[5/5] 验证线上容器真实渲染表现...")
     test_urls = [
         '/index.php',
         '/intro.php',
+        '/vul/jwt/jwt_login.php',
+        '/vul/logic/price_tamper.php',
         '/vul/dockerlab/docker_privileged_escape.php',
         '/vul/sso_saml/saml_xsw.php',
         '/vul/osep/osep_l1_enum.php',

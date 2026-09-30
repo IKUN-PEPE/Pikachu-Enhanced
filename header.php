@@ -206,14 +206,13 @@ if (!isset($ACTIVE)){
             </li>
 
 
-            <li class="<?php echo !empty($CAT_CLASS['classic']) ? $CAT_CLASS['classic'] : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-classic" style="background: linear-gradient(90deg, #fef3c7 0%, #fffbeb 100%) !important; border-left: 4px solid #f59e0b !important; color: #92400e !important;">
+                        <li class="<?php echo !empty($CAT_CLASS['classic']) ? $CAT_CLASS['classic'] : ''; ?>">
+                <a href="#" class="dropdown-toggle cat-sidebar-classic">
                     <span class="menu-text" style="font-weight: bold;"> 🏛️ 经典 Web 攻防演练 </span><b class="arrow fa fa-angle-down" style="color: #f59e0b !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-
-            <li class="<?php echo $ACTIVE[1];?>">
+<li class="<?php echo $ACTIVE[1];?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -273,9 +272,7 @@ if (!isset($ACTIVE)){
 
                 </ul>
             </li>
-
-
-            <li class="<?php echo $ACTIVE[7];?>">
+<li class="<?php echo $ACTIVE[7];?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -369,8 +366,7 @@ if (!isset($ACTIVE)){
                     </li>
                 </ul>
             </li>
-
-            <li class="<?php echo isset($ACTIVE[25]) ? $ACTIVE[25] : '';?>">
+<li class="<?php echo isset($ACTIVE[25]) ? $ACTIVE[25] : '';?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -447,9 +443,7 @@ if (!isset($ACTIVE)){
 
                 </ul>
             </li>
-
-
-            <li class="<?php echo $ACTIVE[35];?>">
+<li class="<?php echo $ACTIVE[35];?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -540,10 +534,7 @@ if (!isset($ACTIVE)){
                     </li>
             </ul>
         </li>
-
-
-
-        <li class="<?php echo $ACTIVE[50];?>">
+<li class="<?php echo $ACTIVE[50];?>">
             <a href="#" class="dropdown-toggle">
                 
                 <span class="menu-text">
@@ -598,8 +589,7 @@ if (!isset($ACTIVE)){
 
             </ul>
         </li>
-
-        <li class="<?php echo $ACTIVE[55];?>">
+<li class="<?php echo $ACTIVE[55];?>">
             <a href="#" class="dropdown-toggle">
                 
                 <span class="menu-text">
@@ -633,9 +623,7 @@ if (!isset($ACTIVE)){
 
             </ul>
         </li>
-
-
-        <li class="<?php echo $ACTIVE[60];?>">
+<li class="<?php echo $ACTIVE[60];?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -662,8 +650,7 @@ if (!isset($ACTIVE)){
 
                 </ul>
             </li>
-
-            <li class="<?php echo $ACTIVE[65];?>">
+<li class="<?php echo $ACTIVE[65];?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -712,8 +699,7 @@ if (!isset($ACTIVE)){
 
                 </ul>
             </li>
-
-            <li class="<?php echo $ACTIVE[73];?>">
+<li class="<?php echo $ACTIVE[73];?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -768,9 +754,7 @@ if (!isset($ACTIVE)){
 
                 </ul>
             </li>
-
-
-            <li class="<?php echo $ACTIVE[80];?>">
+<li class="<?php echo $ACTIVE[80];?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -796,89 +780,95 @@ if (!isset($ACTIVE)){
                     </li>
                 </ul>
             </li>
-
-
-            <li class="<?php echo $ACTIVE[85];?>">
+            <li class="<?php echo isset($ACTIVE[85]) ? $ACTIVE[85] : (isset($ACTIVE[196]) ? $ACTIVE[196] : '');?>">
                 <a href="#" class="dropdown-toggle">
-                    
                     <span class="menu-text">
-                敏感信息泄露
-            </span>
+								敏感信息与配置泄露
+							</span>
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-
-                    <li class="<?php echo $ACTIVE[86];?>" >
+                    <li class="<?php echo $ACTIVE[86];?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/infoleak/infoleak.php">
                             概述
                         </a>
                         <b class="arrow"></b>
                     </li>
-
-
-                    <li class="<?php echo $ACTIVE[87];?>" >
+                    <li class="<?php echo $ACTIVE[87];?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/infoleak/findabc.php">
-                            IcanseeyourABC
+                            I can see your ABC (敏感信息泄露)
                         </a>
                         <b class="arrow"></b>
                     </li>
-
-
+                    <li class="<?php echo $ACTIVE[198];?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/misconfig/env_leak.php">
+                            .env 敏感配置泄露
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo $ACTIVE[199];?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/misconfig/git_leak.php">
+                            .git 源码泄露利用
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo $ACTIVE[318];?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/misconfig/swagger_unauth.php">
+                            Swagger UI 接口未授权泄露
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
                 </ul>
             </li>
-
-            <li class="<?php echo $ACTIVE[90];?>">
+            <li class="<?php echo isset($ACTIVE[90]) ? $ACTIVE[90] : (isset($ACTIVE[180]) ? $ACTIVE[180] : '');?>">
                 <a href="#" class="dropdown-toggle">
-                    
                     <span class="menu-text">
-                        PHP反序列化
-                    </span>
+								序列化与反序列化漏洞
+							</span>
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-
-                    <li class="<?php echo $ACTIVE[91];?>" >
+                    <li class="<?php echo $ACTIVE[91];?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/unserilization/unserilization.php">
                             概述
                         </a>
                         <b class="arrow"></b>
                     </li>
-
-                    <li class="<?php echo $ACTIVE[92];?>" >
+                    <li class="<?php echo $ACTIVE[92];?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/unserilization/unser.php">
-                            PHP反序列化漏洞
+                            PHP 原生反序列化利用
                         </a>
                         <b class="arrow"></b>
                     </li>
-
-                    <li class="<?php echo isset($ACTIVE[220]) ? $ACTIVE[220] : '';?>" >
+                    <li class="<?php echo $ACTIVE[182];?>">
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/phar/phar_unserialize.php">
+                            Phar 归档反序列化实战利用
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo $ACTIVE[220];?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/java_unserialize/java_unserialize.php">
-                            Java反序列化概述
+                            Java 反序列化基础与 fastjson 探测
                         </a>
                         <b class="arrow"></b>
                     </li>
-
-                    <li class="<?php echo isset($ACTIVE[94]) ? $ACTIVE[94] : '';?>" >
+                    <li class="<?php echo $ACTIVE[94];?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/java_unserialize/fastjson_rce.php">
-                            Fastjson JNDI 注入
+                            Fastjson 远程代码执行 (1.2.24/1.2.47)
                         </a>
                         <b class="arrow"></b>
                     </li>
-
-                    <li class="<?php echo isset($ACTIVE[98]) ? $ACTIVE[98] : '';?>" >
+                    <li class="<?php echo $ACTIVE[98];?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/java_unserialize/native_unser.php">
-                            Java原生 (readObject)
+                            Java 原生反序列化利用 (Commons Collections)
                         </a>
                         <b class="arrow"></b>
                     </li>
-
                 </ul>
             </li>
-
-
-            <li class="<?php echo $ACTIVE[95];?>">
+<li class="<?php echo $ACTIVE[95];?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -905,8 +895,7 @@ if (!isset($ACTIVE)){
 
                 </ul>
             </li>
-
-            <li class="<?php echo $ACTIVE[100];?>">
+<li class="<?php echo $ACTIVE[100];?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -933,8 +922,7 @@ if (!isset($ACTIVE)){
 
                 </ul>
             </li>
-
-            <li class="<?php echo $ACTIVE[105];?>">
+<li class="<?php echo $ACTIVE[105];?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -989,11 +977,7 @@ if (!isset($ACTIVE)){
 
                 </ul>
             </li>
-
-
-
-
-            <li class="<?php echo $ACTIVE[120];?>">
+<li class="<?php echo $ACTIVE[120];?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -1015,8 +999,7 @@ if (!isset($ACTIVE)){
 
                 </ul>
             </li>
-
-            <li class="<?php echo isset($ACTIVE[125]) ? $ACTIVE[125] : '';?>">
+<li class="<?php echo isset($ACTIVE[125]) ? $ACTIVE[125] : '';?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -1043,43 +1026,7 @@ if (!isset($ACTIVE)){
 
                 </ul>
             </li>
-
-            <li class="<?php echo isset($ACTIVE[128]) ? $ACTIVE[128] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                Session Fixation
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-
-                    <li class="<?php echo isset($ACTIVE[129]) ? $ACTIVE[129] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/sessionfixation/sessionfixation.php">
-                            概述
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="<?php echo isset($ACTIVE[130]) ? $ACTIVE[130] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/sessionfixation/fixation_login.php">
-                            漏洞登录页
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="<?php echo isset($ACTIVE[131]) ? $ACTIVE[131] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/sessionfixation/fixation_profile.php">
-                            登录后信息页
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="<?php echo isset($ACTIVE[132]) ? $ACTIVE[132] : '';?>">
+<li class="<?php echo isset($ACTIVE[132]) ? $ACTIVE[132] : '';?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -1113,8 +1060,7 @@ if (!isset($ACTIVE)){
 
                 </ul>
             </li>
-
-            <li class="<?php echo isset($ACTIVE[136]) ? $ACTIVE[136] : '';?>">
+<li class="<?php echo isset($ACTIVE[136]) ? $ACTIVE[136] : '';?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -1148,19 +1094,254 @@ if (!isset($ACTIVE)){
 
                 </ul>
             </li>
-
-
                 </ul>
             </li>
 
-            <li class="<?php echo !empty($CAT_CLASS['cloud']) ? $CAT_CLASS['cloud'] : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-cloud" style="background: linear-gradient(90deg, #cffafe 0%, #ecfeff 100%) !important; border-left: 4px solid #06b6d4 !important; color: #155e75 !important;">
-                    <span class="menu-text" style="font-weight: bold;"> ☁️ 云原生与微服务架构 </span><b class="arrow fa fa-angle-down" style="color: #06b6d4 !important;"></b>
+            <li class="<?php echo !empty($CAT_CLASS['auth']) ? $CAT_CLASS['auth'] : ''; ?>">
+                <a href="#" class="dropdown-toggle cat-sidebar-auth">
+                    <span class="menu-text" style="font-weight: bold;"> 🔑 现代身份认证与访问控制 </span><b class="arrow fa fa-angle-down" style="color: #8b5cf6 !important;"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+<li class="<?php echo isset($ACTIVE[157]) ? $ACTIVE[157] : '';?>">
+                <a href="#" class="dropdown-toggle">
+                    
+                    <span class="menu-text">
+                现代身份认证安全
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[158]) ? $ACTIVE[158] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/jwt/jwt.php">
+                            概述
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[124]) ? $ACTIVE[124] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/jwt/jwt_login.php">
+                            JWT认证绕过
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[159]) ? $ACTIVE[159] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/jwt/jwt_none.php">
+                            JWT None 算法绕过
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[316]) ? $ACTIVE[316] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/jwt/jwt_weak_secret.php">
+                            JWT 弱密钥爆破
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[317]) ? $ACTIVE[317] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/jwt/jwt_key_confusion.php">
+                            JWT 算法混淆 (RS-to-HS)
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+<li class="<?php echo isset($ACTIVE[168]) ? $ACTIVE[168] : '';?>">
+                <a href="#" class="dropdown-toggle">
+                    
+                    <span class="menu-text">
+                高级认证体系安全
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[169]) ? $ACTIVE[169] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oauth/oauth.php">
+                            概述
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[170]) ? $ACTIVE[170] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oauth/state_bypass.php">
+                            OAuth State 劫持
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+<li class="<?php echo isset($ACTIVE[186]) ? $ACTIVE[186] : '';?>">
+                <a href="#" class="dropdown-toggle">
+                    
+                    <span class="menu-text">
+                单点登录 SSO/SAML
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[187]) ? $ACTIVE[187] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/sso_saml/sso_saml.php">
+                            概述
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[310]) ? $ACTIVE[310] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/sso_saml/saml_xsw.php">
+                            SAML 签名包装 (XSW)
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+<li class="<?php echo isset($ACTIVE[200]) ? $ACTIVE[200] : '';?>">
+                <a href="#" class="dropdown-toggle">
+                    
+                    <span class="menu-text">
+                多因素认证 (MFA Bypass)
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[201]) ? $ACTIVE[201] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/mfa_bypass/mfa_bypass.php">
+                            概述
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[315]) ? $ACTIVE[315] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/mfa_bypass/mfa_logic_bypass.php">
+                            2FA 逻辑绕过与轰炸
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+<li class="<?php echo isset($ACTIVE[128]) ? $ACTIVE[128] : '';?>">
+                <a href="#" class="dropdown-toggle">
+                    
+                    <span class="menu-text">
+                Session Fixation
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
 
-            <li class="<?php echo isset($ACTIVE[140]) ? $ACTIVE[140] : '';?>">
+                    <li class="<?php echo isset($ACTIVE[129]) ? $ACTIVE[129] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/sessionfixation/sessionfixation.php">
+                            概述
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo isset($ACTIVE[130]) ? $ACTIVE[130] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/sessionfixation/fixation_login.php">
+                            漏洞登录页
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?php echo isset($ACTIVE[131]) ? $ACTIVE[131] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/sessionfixation/fixation_profile.php">
+                            登录后信息页
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                </ul>
+            </li>
+                </ul>
+            </li>
+
+            <li class="<?php echo !empty($CAT_CLASS['business']) ? $CAT_CLASS['business'] : ''; ?>">
+                <a href="#" class="dropdown-toggle cat-sidebar-business">
+                    <span class="menu-text" style="font-weight: bold;"> ⚡ 业务逻辑与并发安全 </span><b class="arrow fa fa-angle-down" style="color: #f43f5e !important;"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+<li class="<?php echo isset($ACTIVE[148]) ? $ACTIVE[148] : '';?>">
+                <a href="#" class="dropdown-toggle">
+                    
+                    <span class="menu-text">
+                业务逻辑安全
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[149]) ? $ACTIVE[149] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/logic/logic.php">
+                            概述
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[150]) ? $ACTIVE[150] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/logic/price_tamper.php">
+                            价格篡改
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+<li class="<?php echo isset($ACTIVE[171]) ? $ACTIVE[171] : '';?>">
+                <a href="#" class="dropdown-toggle">
+                    
+                    <span class="menu-text">
+                业务并发安全
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[172]) ? $ACTIVE[172] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/race_condition/race_condition.php">
+                            概述
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[173]) ? $ACTIVE[173] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/race_condition/gift_card.php">
+                            并发竞争兑换 (Race Condition)
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+<li class="<?php echo isset($ACTIVE[174]) ? $ACTIVE[174] : '';?>">
+                <a href="#" class="dropdown-toggle">
+                    
+                    <span class="menu-text">
+                现代 Web 缓存安全
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[175]) ? $ACTIVE[175] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/web_cache/web_cache.php">
+                            概述
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[176]) ? $ACTIVE[176] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/web_cache/cache_deception.php">
+                            Web 缓存欺骗 (WCD)
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+                </ul>
+            </li>
+
+            <li class="<?php echo !empty($CAT_CLASS['cloud']) ? $CAT_CLASS['cloud'] : ''; ?>">
+                <a href="#" class="dropdown-toggle cat-sidebar-cloud">
+                    <span class="menu-text" style="font-weight: bold;"> ☁️ 云原生与云基础设施安全 </span><b class="arrow fa fa-angle-down" style="color: #06b6d4 !important;"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+<li class="<?php echo isset($ACTIVE[140]) ? $ACTIVE[140] : '';?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -1264,8 +1445,55 @@ if (!isset($ACTIVE)){
 
                 </ul>
             </li>
-
-            <li class="<?php echo isset($ACTIVE[144]) ? $ACTIVE[144] : '';?>">
+<li class="<?php echo isset($ACTIVE[188]) ? $ACTIVE[188] : '';?>">
+                <a href="#" class="dropdown-toggle">
+                    
+                    <span class="menu-text">
+                对象存储 Cloud Storage
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[189]) ? $ACTIVE[189] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/cloud_storage/cloud_storage.php">
+                            概述
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[311]) ? $ACTIVE[311] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/cloud_storage/oss_bucket_unauth.php">
+                            Bucket 越权读写与覆盖
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+<li class="<?php echo isset($ACTIVE[190]) ? $ACTIVE[190] : '';?>">
+                <a href="#" class="dropdown-toggle">
+                    
+                    <span class="menu-text">
+                Serverless 函数计算
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[191]) ? $ACTIVE[191] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/serverless/serverless.php">
+                            概述
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[312]) ? $ACTIVE[312] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/serverless/lambda_env_leak.php">
+                            环境变量凭证窃取
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+<li class="<?php echo isset($ACTIVE[144]) ? $ACTIVE[144] : '';?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -1295,107 +1523,124 @@ if (!isset($ACTIVE)){
                     </li>
                 </ul>
             </li>
+                </ul>
+            </li>
 
-            <li class="<?php echo isset($ACTIVE[148]) ? $ACTIVE[148] : '';?>">
+            <li class="<?php echo !empty($CAT_CLASS['proto']) ? $CAT_CLASS['proto'] : ''; ?>">
+                <a href="#" class="dropdown-toggle cat-sidebar-proto">
+                    <span class="menu-text" style="font-weight: bold;"> 🌐 现代网络协议与新型数据接口 </span><b class="arrow fa fa-angle-down" style="color: #3b82f6 !important;"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+<li class="<?php echo isset($ACTIVE[183]) ? $ACTIVE[183] : '';?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
-                业务逻辑安全
+                HTTP 请求走私
                     </span>
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[149]) ? $ACTIVE[149] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/logic/logic.php">
+                    <li class="<?php echo isset($ACTIVE[184]) ? $ACTIVE[184] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/http_smuggling/http_smuggling.php">
                             概述
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[150]) ? $ACTIVE[150] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/logic/price_tamper.php">
-                            价格篡改
+                    <li class="<?php echo isset($ACTIVE[185]) ? $ACTIVE[185] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/http_smuggling/cl_te.php">
+                            CL.TE 走私与鉴权绕过
                         </a>
                         <b class="arrow"></b>
                     </li>
                 </ul>
             </li>
-
-            <li class="<?php echo isset($ACTIVE[151]) ? $ACTIVE[151] : '';?>">
+<li class="<?php echo isset($ACTIVE[192]) ? $ACTIVE[192] : '';?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
-                前端前沿安全
+                微服务 gRPC 接口
                     </span>
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[152]) ? $ACTIVE[152] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/frontend/frontend.php">
+                    <li class="<?php echo isset($ACTIVE[193]) ? $ACTIVE[193] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/grpc/grpc.php">
                             概述
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[153]) ? $ACTIVE[153] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/frontend/dom_clobbering.php">
-                            DOM Clobbering
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[156]) ? $ACTIVE[156] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/frontend/prototype_pollution.php">
-                            Prototype Pollution
+                    <li class="<?php echo isset($ACTIVE[313]) ? $ACTIVE[313] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/grpc/grpc_auth_bypass.php">
+                            gRPC 越权与参数篡改
                         </a>
                         <b class="arrow"></b>
                     </li>
                 </ul>
             </li>
-
-            <li class="<?php echo isset($ACTIVE[157]) ? $ACTIVE[157] : '';?>">
+<li class="<?php echo isset($ACTIVE[177]) ? $ACTIVE[177] : '';?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
-                现代身份认证安全
+                底层协议利用
                     </span>
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[158]) ? $ACTIVE[158] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/jwt/jwt.php">
+                    <li class="<?php echo isset($ACTIVE[178]) ? $ACTIVE[178] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/websocket/websocket.php">
                             概述
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[124]) ? $ACTIVE[124] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/jwt/jwt_login.php">
-                            JWT认证绕过
+                    <li class="<?php echo isset($ACTIVE[179]) ? $ACTIVE[179] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/websocket/cswsh.php">
+                            跨站 WebSocket 劫持
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[159]) ? $ACTIVE[159] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/jwt/jwt_none.php">
-                            JWT None 算法绕过
+                    <li class="<?php echo isset($ACTIVE[205]) ? $ACTIVE[205] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/websocket/ws_sqli.php">
+                            WS 数据帧 SQL 注入
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[316]) ? $ACTIVE[316] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/jwt/jwt_weak_secret.php">
-                            JWT 弱密钥爆破
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[317]) ? $ACTIVE[317] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/jwt/jwt_key_confusion.php">
-                            JWT 算法混淆 (RS-to-HS)
+                    <li class="<?php echo isset($ACTIVE[206]) ? $ACTIVE[206] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/websocket/ws_unauth_stream.php">
+                            WS 未授权敏感流订阅
                         </a>
                         <b class="arrow"></b>
                     </li>
                 </ul>
             </li>
-
-            <li class="<?php echo isset($ACTIVE[160]) ? $ACTIVE[160] : '';?>">
+<li class="<?php echo isset($ACTIVE[194]) ? $ACTIVE[194] : '';?>">
+                <a href="#" class="dropdown-toggle">
+                    
+                    <span class="menu-text">
+                Webhook 异步回调
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[195]) ? $ACTIVE[195] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/webhook/webhook.php">
+                            概述
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[314]) ? $ACTIVE[314] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/webhook/webhook_ssrf.php">
+                            回调盲 SSRF & 内网探测
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+<li class="<?php echo isset($ACTIVE[160]) ? $ACTIVE[160] : '';?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -1413,8 +1658,7 @@ if (!isset($ACTIVE)){
                     </li>
                 </ul>
             </li>
-
-            <li class="<?php echo isset($ACTIVE[162]) ? $ACTIVE[162] : '';?>">
+<li class="<?php echo isset($ACTIVE[162]) ? $ACTIVE[162] : '';?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -1444,19 +1688,46 @@ if (!isset($ACTIVE)){
                     </li>
                 </ul>
             </li>
-
-
+<li class="<?php echo isset($ACTIVE[151]) ? $ACTIVE[151] : '';?>">
+                <a href="#" class="dropdown-toggle">
+                    
+                    <span class="menu-text">
+                前端前沿安全
+                    </span>
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[152]) ? $ACTIVE[152] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/frontend/frontend.php">
+                            概述
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[153]) ? $ACTIVE[153] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/frontend/dom_clobbering.php">
+                            DOM Clobbering
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[156]) ? $ACTIVE[156] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/frontend/prototype_pollution.php">
+                            Prototype Pollution
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
                 </ul>
             </li>
 
             <li class="<?php echo !empty($CAT_CLASS['ai']) ? $CAT_CLASS['ai'] : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-ai" style="background: linear-gradient(90deg, #f3e8ff 0%, #faf5ff 100%) !important; border-left: 4px solid #a855f7 !important; color: #6b21a8 !important;">
+                <a href="#" class="dropdown-toggle cat-sidebar-ai">
                     <span class="menu-text" style="font-weight: bold;"> 🤖 AI 与大模型应用安全 </span><b class="arrow fa fa-angle-down" style="color: #a855f7 !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-
-            <li class="<?php echo isset($ACTIVE[165]) ? $ACTIVE[165] : '';?>">
+<li class="<?php echo isset($ACTIVE[165]) ? $ACTIVE[165] : '';?>">
                 <a href="#" class="dropdown-toggle">
                     
                     <span class="menu-text">
@@ -1498,408 +1769,46 @@ if (!isset($ACTIVE)){
                     </li>
                 </ul>
             </li>
-
-            <li class="<?php echo isset($ACTIVE[168]) ? $ACTIVE[168] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                高级认证体系安全
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[169]) ? $ACTIVE[169] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oauth/oauth.php">
-                            概述
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[170]) ? $ACTIVE[170] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oauth/state_bypass.php">
-                            OAuth State 劫持
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="<?php echo isset($ACTIVE[171]) ? $ACTIVE[171] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                业务并发安全
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[172]) ? $ACTIVE[172] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/race_condition/race_condition.php">
-                            概述
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[173]) ? $ACTIVE[173] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/race_condition/gift_card.php">
-                            并发竞争兑换 (Race Condition)
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="<?php echo isset($ACTIVE[174]) ? $ACTIVE[174] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                现代 Web 缓存安全
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[175]) ? $ACTIVE[175] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/web_cache/web_cache.php">
-                            概述
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[176]) ? $ACTIVE[176] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/web_cache/cache_deception.php">
-                            Web 缓存欺骗 (WCD)
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="<?php echo isset($ACTIVE[177]) ? $ACTIVE[177] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                底层协议利用
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[178]) ? $ACTIVE[178] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/websocket/websocket.php">
-                            概述
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[179]) ? $ACTIVE[179] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/websocket/cswsh.php">
-                            跨站 WebSocket 劫持
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[205]) ? $ACTIVE[205] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/websocket/ws_sqli.php">
-                            WS 数据帧 SQL 注入
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[206]) ? $ACTIVE[206] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/websocket/ws_unauth_stream.php">
-                            WS 未授权敏感流订阅
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="<?php echo isset($ACTIVE[180]) ? $ACTIVE[180] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                高阶 PHP 反序列化
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[181]) ? $ACTIVE[181] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/phar/phar.php">
-                            概述
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[182]) ? $ACTIVE[182] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/phar/phar_unserialize.php">
-                            Phar 伪协议触发
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-
-                </ul>
-            </li>
-
-            <li class="<?php echo !empty($CAT_CLASS['proto']) ? $CAT_CLASS['proto'] : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-proto" style="background: linear-gradient(90deg, #dbeafe 0%, #eff6ff 100%) !important; border-left: 4px solid #3b82f6 !important; color: #1e40af !important;">
-                    <span class="menu-text" style="font-weight: bold;"> 🌐 前沿协议与数据安全 </span><b class="arrow fa fa-angle-down" style="color: #3b82f6 !important;"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-
-            <li class="<?php echo isset($ACTIVE[183]) ? $ACTIVE[183] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                HTTP 请求走私
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[184]) ? $ACTIVE[184] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/http_smuggling/http_smuggling.php">
-                            概述
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[185]) ? $ACTIVE[185] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/http_smuggling/cl_te.php">
-                            CL.TE 走私与鉴权绕过
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="<?php echo isset($ACTIVE[186]) ? $ACTIVE[186] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                单点登录 SSO/SAML
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[187]) ? $ACTIVE[187] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/sso_saml/sso_saml.php">
-                            概述
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[310]) ? $ACTIVE[310] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/sso_saml/saml_xsw.php">
-                            SAML 签名包装 (XSW)
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="<?php echo isset($ACTIVE[188]) ? $ACTIVE[188] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                对象存储 Cloud Storage
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[189]) ? $ACTIVE[189] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/cloud_storage/cloud_storage.php">
-                            概述
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[311]) ? $ACTIVE[311] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/cloud_storage/oss_bucket_unauth.php">
-                            Bucket 越权读写与覆盖
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="<?php echo isset($ACTIVE[190]) ? $ACTIVE[190] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                Serverless 函数计算
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[191]) ? $ACTIVE[191] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/serverless/serverless.php">
-                            概述
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[312]) ? $ACTIVE[312] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/serverless/lambda_env_leak.php">
-                            环境变量凭证窃取
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="<?php echo isset($ACTIVE[192]) ? $ACTIVE[192] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                微服务 gRPC 接口
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[193]) ? $ACTIVE[193] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/grpc/grpc.php">
-                            概述
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[313]) ? $ACTIVE[313] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/grpc/grpc_auth_bypass.php">
-                            gRPC 越权与参数篡改
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="<?php echo isset($ACTIVE[194]) ? $ACTIVE[194] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                Webhook 异步回调
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[195]) ? $ACTIVE[195] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/webhook/webhook.php">
-                            概述
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[314]) ? $ACTIVE[314] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/webhook/webhook_ssrf.php">
-                            回调盲 SSRF & 内网探测
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="<?php echo isset($ACTIVE[196]) ? $ACTIVE[196] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                敏感运维与配置泄露
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[197]) ? $ACTIVE[197] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/misconfig/misconfig.php">
-                            概述
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[198]) ? $ACTIVE[198] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/misconfig/env_leak.php">
-                            .env 数据库账密泄漏
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[199]) ? $ACTIVE[199] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/misconfig/git_leak.php">
-                            .git 源码仓库遍历
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[318]) ? $ACTIVE[318] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/misconfig/swagger_unauth.php">
-                            Swagger UI 在线调试调试
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="<?php echo isset($ACTIVE[200]) ? $ACTIVE[200] : '';?>">
-                <a href="#" class="dropdown-toggle">
-                    
-                    <span class="menu-text">
-                多因素认证 (MFA Bypass)
-                    </span>
-                    <b class="arrow fa fa-angle-down"></b>
-                </a>
-                <b class="arrow"></b>
-                <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[201]) ? $ACTIVE[201] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/mfa_bypass/mfa_bypass.php">
-                            概述
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                    <li class="<?php echo isset($ACTIVE[315]) ? $ACTIVE[315] : '';?>" >
-                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/mfa_bypass/mfa_logic_bypass.php">
-                            2FA 逻辑绕过与轰炸
-                        </a>
-                        <b class="arrow"></b>
-                    </li>
-                </ul>
-            </li>
-
-
                 </ul>
             </li>
 
             <li class="<?php echo !empty($CAT_CLASS['defense']) ? $CAT_CLASS['defense'] : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-defense" style="background: linear-gradient(90deg, #dcfce7 0%, #f0fdf4 100%) !important; border-left: 4px solid #22c55e !important; color: #15803d !important;">
+                <a href="#" class="dropdown-toggle cat-sidebar-defense">
                     <span class="menu-text" style="font-weight: bold;"> 🛡️ 蓝队防守与实战防御 </span><b class="arrow fa fa-angle-down" style="color: #22c55e !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[221]) ? $ACTIVE[221] : '';?>">
+<li class="<?php echo isset($ACTIVE[221]) ? $ACTIVE[221] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/defense/defense.php" style="color: #059669 !important; font-weight: bold;">
                             📌 蓝队防守实战总控大厅
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[222]) ? $ACTIVE[222] : '';?>">
+<li class="<?php echo isset($ACTIVE[222]) ? $ACTIVE[222] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/defense/defense_waf.php">
                             🛡️ [关卡 1] WAF 流量拦截与规则检测
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[223]) ? $ACTIVE[223] : '';?>">
+<li class="<?php echo isset($ACTIVE[223]) ? $ACTIVE[223] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/defense/defense_rasp.php">
                             ⚡ [关卡 2] RASP 运行时 Hook 监控
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[224]) ? $ACTIVE[224] : '';?>">
+<li class="<?php echo isset($ACTIVE[224]) ? $ACTIVE[224] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/defense/defense_log_forensics.php">
                             🔍 [关卡 3] Web 入侵日志取证排查
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[225]) ? $ACTIVE[225] : '';?>">
+<li class="<?php echo isset($ACTIVE[225]) ? $ACTIVE[225] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/defense/defense_honeypot.php">
                             🍯 [关卡 4] 蜜罐欺骗与 Canary 蜜标
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[226]) ? $ACTIVE[226] : '';?>">
+<li class="<?php echo isset($ACTIVE[226]) ? $ACTIVE[226] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/defense/defense_siem.php">
                             📊 [关卡 5] SIEM & Sysmon Sigma 规则
                         </a>
@@ -1907,92 +1816,92 @@ if (!isset($ACTIVE)){
                     </li>
                 </ul>
             </li>
-        
+
             <li class="<?php echo !empty($CAT_CLASS['ad']) ? $CAT_CLASS['ad'] : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-ad" style="background: linear-gradient(90deg, #e0e7ff 0%, #eef2ff 100%) !important; border-left: 4px solid #6366f1 !important; color: #3730a3 !important;">
-                    <span class="menu-text" style="font-weight: bold;"> 🌐 内网与 AD 域安全 </span><b class="arrow fa fa-angle-down" style="color: #6366f1 !important;"></b>
+                <a href="#" class="dropdown-toggle cat-sidebar-ad">
+                    <span class="menu-text" style="font-weight: bold;"> 🌐 内网与 Active Directory 域安全 </span><b class="arrow fa fa-angle-down" style="color: #6366f1 !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[231]) ? $ACTIVE[231] : '';?>" >
+<li class="<?php echo isset($ACTIVE[231]) ? $ACTIVE[231] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_security.php">
                             📌 概览与总纲大厅
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[237]) ? $ACTIVE[237] : '';?>" >
+<li class="<?php echo isset($ACTIVE[237]) ? $ACTIVE[237] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_env_check.php">
                             🔍 GOAD 依赖智能识别中心
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[236]) ? $ACTIVE[236] : '';?>" >
+<li class="<?php echo isset($ACTIVE[236]) ? $ACTIVE[236] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_lab_setup.php">
                             📐 3台/5台 GOAD 拓扑与部署蓝图
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[238]) ? $ACTIVE[238] : '';?>" >
+<li class="<?php echo isset($ACTIVE[238]) ? $ACTIVE[238] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_hub.php" style="color: #4f46e5 !important; font-weight: bold;">
                             🏆 GOAD 域渗透 CTF 夺旗大厅 (2500 PTS)
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[239]) ? $ACTIVE[239] : '';?>" >
+<li class="<?php echo isset($ACTIVE[239]) ? $ACTIVE[239] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_recon.php">
                             🚩 [关卡 1] 侦察与 BloodHound 测绘
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[240]) ? $ACTIVE[240] : '';?>" >
+<li class="<?php echo isset($ACTIVE[240]) ? $ACTIVE[240] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_asrep.php">
                             🚩 [关卡 2] AS-REP Roasting 预认证爆破
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[241]) ? $ACTIVE[241] : '';?>" >
+<li class="<?php echo isset($ACTIVE[241]) ? $ACTIVE[241] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_kerberoast.php">
                             🚩 [关卡 3] Kerberoasting 票据离线破解
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[242]) ? $ACTIVE[242] : '';?>" >
+<li class="<?php echo isset($ACTIVE[242]) ? $ACTIVE[242] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_mssql.php">
                             🚩 [关卡 4] MSSQL 模拟特权与 xp_cmdshell
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[243]) ? $ACTIVE[243] : '';?>" >
+<li class="<?php echo isset($ACTIVE[243]) ? $ACTIVE[243] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_adcs.php">
                             🚩 [关卡 5] AD CS 证书 ESC1 模板滥用
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[244]) ? $ACTIVE[244] : '';?>" >
+<li class="<?php echo isset($ACTIVE[244]) ? $ACTIVE[244] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_delegation.php">
                             🚩 [关卡 6] 约束性委派 S4U2Proxy 提权
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[245]) ? $ACTIVE[245] : '';?>" >
+<li class="<?php echo isset($ACTIVE[245]) ? $ACTIVE[245] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_rbcd.php">
                             🚩 [关卡 7] 基于资源的约束委派 (RBCD)
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[246]) ? $ACTIVE[246] : '';?>" >
+<li class="<?php echo isset($ACTIVE[246]) ? $ACTIVE[246] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_esc8.php">
                             🚩 [关卡 8] AD CS ESC8 NTLM HTTP 中继
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[247]) ? $ACTIVE[247] : '';?>" >
+<li class="<?php echo isset($ACTIVE[247]) ? $ACTIVE[247] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_shadow_cred.php">
                             🚩 [关卡 9] 影子凭据 (Shadow Credentials)
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[248]) ? $ACTIVE[248] : '';?>" >
+<li class="<?php echo isset($ACTIVE[248]) ? $ACTIVE[248] : '';?>" >
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/ad_security/ad_ctf_acl.php">
                             🚩 [关卡 10] ACL 链式滥用与林根接管
                         </a>
@@ -2001,122 +1910,121 @@ if (!isset($ACTIVE)){
                 </ul>
             </li>
 
-            <!-- ===== OSCE³ 三大方向 ===== -->
             <li class="<?php echo !empty($CAT_CLASS['osep']) ? $CAT_CLASS['osep'] : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-osep" style="background: linear-gradient(90deg, #ede9fe 0%, #f5f3ff 100%) !important; border-left: 4px solid #8b5cf6 !important; color: #5b21b6 !important;">
-                    <span class="menu-text" style="font-weight: bold;"> 🎯 OSEP 内网穿透 </span><b class="arrow fa fa-angle-down" style="color: #8b5cf6 !important;"></b>
+                <a href="#" class="dropdown-toggle cat-sidebar-osep">
+                    <span class="menu-text" style="font-weight: bold;"> 🎯 OSEP 内网穿透与红队评估 </span><b class="arrow fa fa-angle-down" style="color: #8b5cf6 !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[250]) ? $ACTIVE[250] : '';?>">
+<li class="<?php echo isset($ACTIVE[250]) ? $ACTIVE[250] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_hub.php" style="color: #4f46e5 !important; font-weight: bold;">
                             📌 概览与夺旗大厅 (4750 PTS)
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[252]) ? $ACTIVE[252] : '';?>">
+<li class="<?php echo isset($ACTIVE[252]) ? $ACTIVE[252] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l1_enum.php">
                             🚩 [关卡 1] 主机侦察与信息收集
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[253]) ? $ACTIVE[253] : '';?>">
+<li class="<?php echo isset($ACTIVE[253]) ? $ACTIVE[253] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l2_phishing.php">
                             🚩 [关卡 2] 鱼叉钓鱼与载荷投递
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[254]) ? $ACTIVE[254] : '';?>">
+<li class="<?php echo isset($ACTIVE[254]) ? $ACTIVE[254] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l3_lateral.php">
                             🚩 [关卡 3] 横向移动 WMI/Remoting
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[255]) ? $ACTIVE[255] : '';?>">
+<li class="<?php echo isset($ACTIVE[255]) ? $ACTIVE[255] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l4_pivot.php">
                             🚩 [关卡 4] 内网穿透 SOCKS5 隧道
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[256]) ? $ACTIVE[256] : '';?>">
+<li class="<?php echo isset($ACTIVE[256]) ? $ACTIVE[256] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l5_av_evasion.php">
                             🚩 [关卡 5] 杀软检测架构与防御
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[257]) ? $ACTIVE[257] : '';?>">
+<li class="<?php echo isset($ACTIVE[257]) ? $ACTIVE[257] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l6_persistence.php">
                             🚩 [关卡 6] 系统持久化机制研究
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[258]) ? $ACTIVE[258] : '';?>">
+<li class="<?php echo isset($ACTIVE[258]) ? $ACTIVE[258] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l7_exfil.php">
                             🚩 [关卡 7] 隐蔽数据外渗通道分析
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[280]) ? $ACTIVE[280] : '';?>">
+<li class="<?php echo isset($ACTIVE[280]) ? $ACTIVE[280] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l8_win_api.php">
                             🚩 [关卡 8] Win32 API·WOW64·注册表
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[281]) ? $ACTIVE[281] : '';?>">
+<li class="<?php echo isset($ACTIVE[281]) ? $ACTIVE[281] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l9_office_macro.php">
                             🚩 [关卡 9] Office 宏武器与 VBA 免杀
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[282]) ? $ACTIVE[282] : '';?>">
+<li class="<?php echo isset($ACTIVE[282]) ? $ACTIVE[282] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l10_process_inject.php">
                             🚩 [关卡 10] 进程注入与 Process Hollow
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[283]) ? $ACTIVE[283] : '';?>">
+<li class="<?php echo isset($ACTIVE[283]) ? $ACTIVE[283] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l11_amsi_bypass.php">
                             🚩 [关卡 11] AMSI 深入绕过与 UAC 提权
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[284]) ? $ACTIVE[284] : '';?>">
+<li class="<?php echo isset($ACTIVE[284]) ? $ACTIVE[284] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l12_applocker.php">
                             🚩 [关卡 12] AppLocker 与 LOLBIN 绕过
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[285]) ? $ACTIVE[285] : '';?>">
+<li class="<?php echo isset($ACTIVE[285]) ? $ACTIVE[285] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l13_net_evasion.php">
                             🚩 [关卡 13] 网络过滤·DNS隧道·域前置
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[286]) ? $ACTIVE[286] : '';?>">
+<li class="<?php echo isset($ACTIVE[286]) ? $ACTIVE[286] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l14_cred_attack.php">
                             🚩 [关卡 14] 凭据攻击·Token操纵·Kerberos
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[287]) ? $ACTIVE[287] : '';?>">
+<li class="<?php echo isset($ACTIVE[287]) ? $ACTIVE[287] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l15_mssql.php">
                             🚩 [关卡 15] AD 环境下 MSSQL 深度利用
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[288]) ? $ACTIVE[288] : '';?>">
+<li class="<?php echo isset($ACTIVE[288]) ? $ACTIVE[288] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l16_kiosk_escape.php">
                             🚩 [关卡 16] Kiosk 受限桌面逃逸技术
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[289]) ? $ACTIVE[289] : '';?>">
+<li class="<?php echo isset($ACTIVE[289]) ? $ACTIVE[289] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l17_linux_postex.php">
                             🚩 [关卡 17] Linux 后渗透·共享库·DevOps
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[299]) ? $ACTIVE[299] : '';?>">
+<li class="<?php echo isset($ACTIVE[299]) ? $ACTIVE[299] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osep/osep_l18_ad_deep.php">
                             🚩 [关卡 18] AD 深度·ACL·委派·跨林
                         </a>
@@ -2126,96 +2034,96 @@ if (!isset($ACTIVE)){
             </li>
 
             <li class="<?php echo !empty($CAT_CLASS['oswe']) ? $CAT_CLASS['oswe'] : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-oswe" style="background: linear-gradient(90deg, #cffaff 0%, #e0f2fe 100%) !important; border-left: 4px solid #06b6d4 !important; color: #08596b !important;">
-                    <span class="menu-text" style="font-weight: bold;"> 🔍 OSWE 白盒审计 </span><b class="arrow fa fa-angle-down" style="color: #06b6d4 !important;"></b>
+                <a href="#" class="dropdown-toggle cat-sidebar-oswe">
+                    <span class="menu-text" style="font-weight: bold;"> 🔍 OSWE 高级代码审计与白盒利用 </span><b class="arrow fa fa-angle-down" style="color: #06b6d4 !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[261]) ? $ACTIVE[261] : '';?>">
+<li class="<?php echo isset($ACTIVE[261]) ? $ACTIVE[261] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_hub.php" style="color: #0891b2 !important; font-weight: bold;">
                             📌 概览与夺旗大厅 (3450 PTS)
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[262]) ? $ACTIVE[262] : '';?>">
+<li class="<?php echo isset($ACTIVE[262]) ? $ACTIVE[262] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l1_whitebox.php">
                             🚩 [关卡 1] 白盒代码审计方法论
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[263]) ? $ACTIVE[263] : '';?>">
+<li class="<?php echo isset($ACTIVE[263]) ? $ACTIVE[263] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l2_auth_bypass.php">
                             🚩 [关卡 2] 认证绕过与逻辑漏洞链
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[264]) ? $ACTIVE[264] : '';?>">
+<li class="<?php echo isset($ACTIVE[264]) ? $ACTIVE[264] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l3_sqli_auth.php">
                             🚩 [关卡 3] SQL 注入认证绕过与 RCE
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[265]) ? $ACTIVE[265] : '';?>">
+<li class="<?php echo isset($ACTIVE[265]) ? $ACTIVE[265] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l4_deser.php">
                             🚩 [关卡 4] PHP / Java 反序列化 POP 链
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[266]) ? $ACTIVE[266] : '';?>">
+<li class="<?php echo isset($ACTIVE[266]) ? $ACTIVE[266] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l5_ssti.php">
                             🚩 [关卡 5] SSTI 服务端模板注入 RCE
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[267]) ? $ACTIVE[267] : '';?>">
+<li class="<?php echo isset($ACTIVE[267]) ? $ACTIVE[267] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l6_xxe_oob.php">
                             🚩 [关卡 6] XXE 盲注与 SSRF 带外提取
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[268]) ? $ACTIVE[268] : '';?>">
+<li class="<?php echo isset($ACTIVE[268]) ? $ACTIVE[268] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l7_rce_chain.php">
                             🚩 [关卡 7] 多漏洞组合深度 RCE 利用链
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[290]) ? $ACTIVE[290] : '';?>">
+<li class="<?php echo isset($ACTIVE[290]) ? $ACTIVE[290] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l8_sqli_blind.php">
                             🚩 [关卡 8] 盲注自动化 Python 脚本
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[291]) ? $ACTIVE[291] : '';?>">
+<li class="<?php echo isset($ACTIVE[291]) ? $ACTIVE[291] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l9_type_juggling.php">
                             🚩 [关卡 9] PHP 类型混淆与 0e 哈希
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[292]) ? $ACTIVE[292] : '';?>">
+<li class="<?php echo isset($ACTIVE[292]) ? $ACTIVE[292] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l10_java_rce.php">
                             🚩 [关卡 10] Java 反序列化·JDWP·UDF
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[293]) ? $ACTIVE[293] : '';?>">
+<li class="<?php echo isset($ACTIVE[293]) ? $ACTIVE[293] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l11_proto_pollution.php">
                             🚩 [关卡 11] JavaScript 原型链污染
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[294]) ? $ACTIVE[294] : '';?>">
+<li class="<?php echo isset($ACTIVE[294]) ? $ACTIVE[294] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l12_dotnet_deser.php">
                             🚩 [关卡 12] .NET ViewState 反序列化
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[295]) ? $ACTIVE[295] : '';?>">
+<li class="<?php echo isset($ACTIVE[295]) ? $ACTIVE[295] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l13_ssrf_rce.php">
                             🚩 [关卡 13] SSRF → 微服务内网 RCE 链
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[296]) ? $ACTIVE[296] : '';?>">
+<li class="<?php echo isset($ACTIVE[296]) ? $ACTIVE[296] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/oswe/oswe_l14_csrf_cors.php">
                             🚩 [关卡 14] CSRF + CORS 认证绕过
                         </a>
@@ -2225,72 +2133,72 @@ if (!isset($ACTIVE)){
             </li>
 
             <li class="<?php echo !empty($CAT_CLASS['osed']) ? $CAT_CLASS['osed'] : ''; ?>">
-                <a href="#" class="dropdown-toggle cat-sidebar-osed" style="background: linear-gradient(90deg, #ffedd5 0%, #fff7ed 100%) !important; border-left: 4px solid #f97316 !important; color: #9a3412 !important;">
-                    <span class="menu-text" style="font-weight: bold;"> 🔬 OSED 漏洞开发 </span><b class="arrow fa fa-angle-down" style="color: #f97316 !important;"></b>
+                <a href="#" class="dropdown-toggle cat-sidebar-osed">
+                    <span class="menu-text" style="font-weight: bold;"> 🔬 OSED 二进制漏洞利用与逆向 </span><b class="arrow fa fa-angle-down" style="color: #f97316 !important;"></b>
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li class="<?php echo isset($ACTIVE[271]) ? $ACTIVE[271] : '';?>">
+<li class="<?php echo isset($ACTIVE[271]) ? $ACTIVE[271] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_hub.php" style="color: #ea580c !important; font-weight: bold;">
                             📌 概览与夺旗大厅 (2850 PTS)
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[272]) ? $ACTIVE[272] : '';?>">
+<li class="<?php echo isset($ACTIVE[272]) ? $ACTIVE[272] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l1_fuzzing.php">
                             🚩 [关卡 1] 模糊测试 Fuzzing 与崩溃分析
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[273]) ? $ACTIVE[273] : '';?>">
+<li class="<?php echo isset($ACTIVE[273]) ? $ACTIVE[273] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l2_seh.php">
                             🚩 [关卡 2] SEH 异常处理覆盖机制
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[274]) ? $ACTIVE[274] : '';?>">
+<li class="<?php echo isset($ACTIVE[274]) ? $ACTIVE[274] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l3_dep_bypass.php">
                             🚩 [关卡 3] DEP / NX 防御与 ROP 链原理
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[275]) ? $ACTIVE[275] : '';?>">
+<li class="<?php echo isset($ACTIVE[275]) ? $ACTIVE[275] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l4_aslr.php">
                             🚩 [关卡 4] ASLR 随机化与信息泄露利用
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[276]) ? $ACTIVE[276] : '';?>">
+<li class="<?php echo isset($ACTIVE[276]) ? $ACTIVE[276] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l5_egghunter.php">
                             🚩 [关卡 5] Egghunter 技术与内存检索
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[277]) ? $ACTIVE[277] : '';?>">
+<li class="<?php echo isset($ACTIVE[277]) ? $ACTIVE[277] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l6_rop.php">
                             🚩 [关卡 6] ROP 链精炼与 CFG/CET 防御
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[278]) ? $ACTIVE[278] : '';?>">
+<li class="<?php echo isset($ACTIVE[278]) ? $ACTIVE[278] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l7_asm_shellcode.php">
                             🚩 [关卡 7] x86 汇编与 NULL-Free Shellcode
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[279]) ? $ACTIVE[279] : '';?>">
+<li class="<?php echo isset($ACTIVE[279]) ? $ACTIVE[279] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l8_format_string.php">
                             🚩 [关卡 8] 格式化字符串漏洞读写原语
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[301]) ? $ACTIVE[301] : '';?>">
+<li class="<?php echo isset($ACTIVE[301]) ? $ACTIVE[301] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l9_proto_reverse.php">
                             🚩 [关卡 9] 复杂应用协议逆向与漏洞挖掘
                         </a>
                         <b class="arrow"></b>
                     </li>
-                    <li class="<?php echo isset($ACTIVE[302]) ? $ACTIVE[302] : '';?>">
+<li class="<?php echo isset($ACTIVE[302]) ? $ACTIVE[302] : '';?>">
                         <a href="<?php echo $PIKA_ROOT_DIR;?>vul/osed/osed_l10_wpm_bypass.php">
                             🚩 [关卡 10] WPM DEP+ASLR 联合绕过
                         </a>
