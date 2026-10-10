@@ -1,10 +1,15 @@
 name: pikachu
+
 services:
   web:
     image: pikachu-web
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: pikachu-web
+    restart: unless-stopped
     ports:
-      - "8765:80"
+      - "${PIKACHU_WEB_PORT:-8765}:80"
     volumes:
       - ./:/var/www/html
       - //var/run/docker.sock:/var/run/docker.sock
@@ -14,38 +19,55 @@ services:
       java:
         condition: service_started
     environment:
-      PIKACHU_DB_HOST: db
-      PIKACHU_DB_PORT: 3306
-      PIKACHU_DB_NAME: pikachu
-      PIKACHU_DB_USER: root
-      PIKACHU_DB_PASSWORD: root
+      APP_NAME: "${APP_NAME:-Pikachu-Enhanced}"
+      APP_ENV: "${APP_ENV:-production}"
+      APP_DEBUG: "${APP_DEBUG:-false}"
+      APP_SECRET: "${APP_SECRET:-pikachu-super-secret-salt-key-2026}"
+      PIKACHU_DB_HOST: "${PIKACHU_DB_HOST:-db}"
+      PIKACHU_DB_PORT: "${PIKACHU_DB_PORT:-3306}"
+      PIKACHU_DB_NAME: "${PIKACHU_DB_NAME:-pikachu}"
+      PIKACHU_DB_USER: "${PIKACHU_DB_USER:-root}"
+      PIKACHU_DB_PASSWORD: "${PIKACHU_DB_PASSWORD:-root}"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/index.php"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
     networks:
       - pikachu-net
 
   db:
     image: mysql:8.0
     container_name: pikachu-db
-    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: pikachu
+      MYSQL_ROOT_PASSWORD: "${PIKACHU_DB_PASSWORD:-root}"
+      MYSQL_DATABASE: "${PIKACHU_DB_NAME:-pikachu}"
     ports:
-      - "13306:3306"
+      - "${PIKACHU_MYSQL_EXTERNAL_PORT:-13306}:3306"
     volumes:
       - pikachu_mysql_data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${PIKACHU_DB_PASSWORD:-root}"]
       interval: 10s
       timeout: 5s
       retries: 10
+      start_period: 15s
     networks:
       - pikachu-net
 
   java:
     image: pikachu-java
+    build:
+      context: ./docker/java
+      dockerfile: Dockerfile
     container_name: pikachu-java
+    restart: unless-stopped
     ports:
-      - "8088:8088"
+      - "${PIKACHU_JAVA_PORT:-8088}:8088"
     networks:
       - pikachu-net
 
@@ -55,6 +77,4 @@ networks:
 
 volumes:
   pikachu_mysql_data:
-
-
-
+    driver: local
