@@ -1,150 +1,148 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/Web%20Security-v2.0%20Enhanced-blue" alt="Web Security Lab" />
-  <img src="https://img.shields.io/badge/PHP-7.4%2B%20%7C%208.0%2B-777BB4" alt="PHP" />
-  <img src="https://img.shields.io/badge/MySQL-required-orange" alt="MySQL" />
-  <img src="https://img.shields.io/badge/Docker%20%26%20K8s-Lab%20v2-cyan" alt="Docker Lab" />
-  <img src="https://img.shields.io/badge/AD%20Security-Intranet-purple" alt="AD Security" />
-  <img src="https://img.shields.io/badge/Use-Local%20Only-red" alt="Local Only" />
+  <img src="https://img.shields.io/badge/Release-v3.0.0%20Enterprise-blue.svg?style=flat-square" alt="Version 3.0" />
+  <img src="https://img.shields.io/badge/PHP-8.2%2B%20%7C%20PSR--4%20%7C%20PSR--12-777BB4.svg?style=flat-square" alt="PHP 8.2+" />
+  <img src="https://img.shields.io/badge/Architecture-Dual--Engine%20OOP-success.svg?style=flat-square" alt="Dual-Engine" />
+  <img src="https://img.shields.io/badge/Coverage-226%2B%20Labs%20%7C%2047%20Categories-orange.svg?style=flat-square" alt="Labs Coverage" />
+  <img src="https://img.shields.io/badge/OffSec-OSEP%20%7C%20OSWE%20%7C%20OSED-red.svg?style=flat-square" alt="OffSec Tracks" />
+  <img src="https://img.shields.io/badge/Docker-Zero--Touch%20Orchestration-cyan.svg?style=flat-square" alt="Docker" />
+  <img src="https://img.shields.io/badge/License-GPL--3.0-blueviolet.svg?style=flat-square" alt="License" />
 </p>
 
-<h1 align="center">⚡ Pikachu Enhanced v2.0</h1>
+<h1 align="center">⚡ Pikachu-Enhanced v3.0 (Enterprise Cyber Range)</h1>
 
 <p align="center">
-  面向现代 Web 安全、云原生/容器逃逸、AI 大模型安全、内网 AD 域安全与主动防御演练的综合性综合漏洞靶场平台。
+  <b>全技术栈·现代化·综合型网络安全与红蓝对抗靶标实战演练平台</b><br>
+  涵盖 OWASP Top 10、云原生微服务、现代身份认证、新型协议利用、AI 大模型安全、内网域控渗透以及 OffSec (OSEP / OSWE / OSED) 认证进阶演练。
 </p>
 
-> “如果你想搞懂一个漏洞，比较好的方法是：先自己制造出这个漏洞，再利用它，最后再修复它。”
+> “如果你想搞懂一个漏洞，最好的方法是：先自己制造出这个漏洞，再利用它，最后再防御它。”
 
 ---
 
-## 📌 项目简介
+## 🌟 v3.0 现代化架构核心亮点 (What's New in v3.0)
 
-`Pikachu Enhanced v2.0` 是基于经典 Pikachu 演练平台深度增强改造的综合型靶场。原版 Pikachu 侧重基础 `PHP + MySQL` 经典 Web 漏洞，本 2.0 增强版在此基础上重构了 **全局现代化 230px 宽版 UI** 与 **黑夜/白天双主题引擎**，并将全站 30+ 漏洞大类升格为带有 **4 步可视化工作流演进图谱** 的交互大厅。
+Pikachu-Enhanced v3.0 进行了彻底的现代化工程治理重构，全面落地**双引擎架构 (Dual-Engine Architecture)**：
 
-此外，v2.0 拓展了涵盖 **云原生与 Docker/K8s 逃逸**、**AI 大模型与 Prompt 越狱**、**OWASP API 安全**、**JWT 算法混淆**、**蓝队 WAF/RASP 主动防御** 以及 **内网与 Active Directory 域安全体系大纲** 的前沿关卡。
-
----
-
-## 🧭 目录
-
-- [项目简介](#-项目简介)
-- [安全声明](#️-安全声明)
-- [v2.0 核心亮点与增强特性](#-v20-核心亮点与增强特性)
-- [漏洞模块全景目录](#-漏洞模块全景目录)
-- [🌐 内网与 Active Directory 域安全](#-内网与-active-directory-域安全)
-- [云原生 Docker Lab & K8s 逃逸](#-云原生-docker-lab--k8s-逃逸)
-- [干净整洁的 8 大核心目录结构](#-干净整洁的-8-大核心目录结构)
-- [部署与使用指南](#-部署与使用指南)
+* 🚀 **现代面向对象核心 (`src/`)**：基于 **PSR-4** 命名空间标准（`Pikachu\`），配备零依赖原生回退装载器，与 Composer 无缝融合；
+* ⚙️ **12-Factor 配置系统**：完全解耦硬编码，全面支持 `.env` 环境变量驱动，实现应用、数据源与网络端口的灵活编排；
+* 🗄️ **双轨数据库数据访问层 (DAL)**：现代化 PDO 预编译引擎保障平台自身安全，配套传统 mysqli 桥梁 100% 保持脆弱 SQL 实验场景的真实度；
+* 📜 **挑战契约与集中注册表 (Challenge Contract)**：通过 `ChallengeInterface` 与 `ChallengeRegistry` 规范靶标元数据、难度、分值与解法；
+* 🔐 **密码学动态 Flag 引擎 (FlagEngine)**：基于 HMAC-SHA256 动态生成用户专属 Flag，防止抄袭，支持 CTF 竞技模式；
+* 🐳 **零接触自动化容器编排 (Zero-Touch Boot)**：内置 `docker/mysql/init.sql`，容器启动即就绪，告别手动安装流程；
+* 🎨 **设计系统深度统一**：侧边栏扩展至 272px 黄金排版宽度，消灭长标题单字折行与 Ace 祖传伪元素噪点，全站 226+ 路由 0 死链保证；
+* 🧪 **企业级测试与 CI/CD**：配套 PHP 原生测试、跨平台宿主机审计器（`test_runner.py`）以及完整的 GitHub Actions 持续集成流水线。
 
 ---
 
-## ⚠️ 安全声明
+## 🏛️ 系统架构全景图 (Architecture Overview)
 
-> 本项目包含大量**故意设计的漏洞与攻击载荷演示**，请务必只在本地、授权、隔离环境中使用。
+```mermaid
+flowchart TD
+    Client["Client / Penetration Tester / Scanner"] --> Gateway["Core Gateway (inc/bootstrap.php)"]
+    
+    subgraph ModernCore ["Modern OOP Core (src/)"]
+        Kernel["App Kernel & Service Container"]
+        Config["Config (12-Factor & .env)"]
+        DAL["DatabaseManager (PDO & mysqli)"]
+        Registry["ChallengeRegistry & Metadata"]
+        FlagEng["FlagEngine (HMAC Crypto)"]
+    end
+    
+    subgraph LabFarm ["Vulnerability Lab Farm (vul/) - 226+ Challenges"]
+        Classic["1. 经典 Web 攻防演练 (OWASP Top 10)"]
+        Cloud["2. 现代云原生与微服务安全 (Docker/K8s/S3)"]
+        Auth["3. 现代身份认证与访问控制 (OAuth/JWT/SAML)"]
+        Proto["4. 现代网络协议与数据接口 (CL-TE/gRPC/Webhook)"]
+        AI["5. AI 与大模型应用安全 (Prompt Injection/Agent RCE)"]
+        Defense["6. 蓝队防守与实战防御 (WAF/蜜罐/日志取证)"]
+        AD["7. 内网与 Active Directory 域安全 (Kerberos/ACL)"]
+        OffSec["8. OffSec 认证靶场 (OSEP 18关 / OSWE 14关 / OSED 10关)"]
+    end
 
-- ✅ 仅限本地学习、授权测试、安全研究和教学演示
-- ❌ 严禁部署到公网或生产环境
-- ❌ 严禁将任何演练端口或 Docker/K8s 入口暴露给不可信网络
-- ⚠️ 任何在非授权环境中的非法使用风险由使用者自行承担
-
----
-
-## ✨ v2.0 核心亮点与增强特性
-
-1. **🎨 230px 现代化侧边栏与 CSS 变量双主题引擎**：
-   - 全局支持 `data-theme="light"` 与 `data-theme="dark"` 实时平滑切换。
-   - 彻底优化侧边栏展开逻辑与三层导航路由高亮数组 (`$ACTIVE[0..250]`)。
-   - 修复右上角悬浮提示按钮，渲染为现代化的 **💡 小灯泡胶囊 Tips 按钮**。
-
-2. **📊 全站 30+ 漏洞大类 4 步可视化工作流 Hub**：
-   - 每一个漏洞分类主页均包含 **Hero 渐变横幅**、**4 步骤攻击演进流程图**（探测 ➔ 构造 ➔ 触发 ➔ 控制）、**高危函数卡片** 以及 **快捷关卡直达入口**。
-
-3. **🤖 2026 前沿 AI 大模型与智能体安全关卡**：
-   - 包含 Prompt 注入越狱 (`prompt_injection.php`)、LLM XSS 渲染 (`llm_xss.php`)、AI Agent 工具 RCE 劫持 (`llm_plugin_rce.php`) 以及系统提示词与密钥提取 (`llm_data_leakage.php`)。
-
-4. **🌐 独立大类：内网与 Active Directory 域安全体系**：
-   - 包含 6 大知识体系全景图 (`ad_knowledge.php`) 与 5 阶段 AD 靶场搭建实战蓝图 (`ad_lab_setup.php`)，并提供 WinRM 探测、Kerberos 票据攻击及 Pass-the-Hash 演练。
-
----
-
-## 🗺️ 漏洞模块全景目录
-
-### 一、 经典 Web 攻防演练 (Classic Web)
-- 🔐 **Brute Force (暴力破解)**：表单爆破、服务端验证码未销毁绕过、前端 JS 校验绕过、Anti-Token 爆破。
-- 🧨 **XSS (跨站脚本)**：反射型 (GET/POST)、存储型、DOM 型 (DOM-x)、百打/过滤/href/js 输出绕过。
-- 🔁 **CSRF (跨站伪造)**：GET 型、POST 型、Anti-CSRF Token 防御与绕过。
-- 🧬 **SQL Injection (SQL 注入)**：数字/字符型、搜索/XX型、报错注入、盲注 (布尔/时间)、Wide-Byte 宽字节、Http Header 注入。
-- 💻 **RCE (远程代码/命令执行)**：exec/eval 注入、WAF 规则绕过 (`rce_bypass.php`)、SSTI 模板注入 (`rce_ssti.php`)、无回显盲注 (`rce_blind.php`)。
-- 📂 **File Inclusion (文件包含)**：本地文件包含 (LFI)、远程文件包含 (RFI)、PHP 伪协议 (`php://filter`, `data://`)。
-- 📥 **Unsafe File Download (文件下载)**：任意文件读取与目录跨越下载。
-- 📤 **Unsafe File Upload (文件上传)**：前端检查绕过、MIME 校验伪造、getimagesize() 图片马、Zip Slip 压缩包解压穿透 (`zip_slip.php`)。
-- 🧱 **Over Permission (越权)**：水平越权、垂直越权、现代 RESTful BOLA 越权。
-- 🗂️ **Directory Traversal (目录遍历)**：路径穿越与目录索引。
-- 🕵️ **Information Leakage (敏感信息泄露)**：报错信息泄露、前端硬编码与泄露。
-- 🧪 **PHP Unserialize (PHP 反序列化)**：魔术方法与 POP 链演练。
-
-### 二、 云原生与容器安全 (Cloud Native)
-- 🐳 **Docker Container Security**：容器逃逸、Docker Socket 敏感挂载、Privileged 特权模式逃逸。
-- ☸️ **Kubernetes Security**：K8s Service Account Token 提取与集群接管 (`k8s_token_escape.php`)。
-- ☁️ **Cloud Storage Security**：阿里云 OSS / AWS S3 Bucket 未授权访问与盲取 (`cloud_storage.php`)。
-
-### 三、 现代认证、API 与协议安全 (Modern Auth & Protocols)
-- 🔑 **OWASP API Security**：BOLA 对象级越权 (`bola.php`)、Mass Assignment 批量赋值 (`mass_assignment.php`)。
-- 🎟️ **JWT Security**：弱密钥离线爆破 (`jwt_weak_secret.php`)、Alg None 签名剥离 (`jwt_none.php`)、RS256➔HS256 公钥算法混淆 (`jwt_key_confusion.php`)。
-- 🌐 **Modern Frontend**：PostMessage 消息劫持 (`postmessage.php`)、CORS 跨域反射读取 (`cors_demo.php`)、原型链污染 (`prototype_pollution.php`)、DOM Clobbering。
-- ⚡ **Advanced Protocols**：GraphQL 全量 Schema 检索与未授权、gRPC 接口测试 (`grpc_auth_bypass.php`)、HTTP 请求走私 CL.TE (`cl_te.php`)、NoSQL 盲注、OAuth State 缺失绕过 (`state_bypass.php`)、Phar 伪协议反序列化 (`phar_unserialize.php`)、Serverless Lambda 环境变量泄露 (`lambda_env_leak.php`)、Web Cache Deception 缓存投毒 (`cache_deception.php`)、Webhook SSRF (`webhook_ssrf.php`)、WebSocket CSWSH / SQLi (`cswsh.php`)。
-
-### 四、 蓝队主动防御与日志审计 (Blue Team Defense)
-- 🛡️ **Active Defense (defense.php)**：WAF 规则特征拦截分析、RASP 运行时字节码插桩原理与 HTTP 审计日志取证还原。
-
----
-
-## 🌐 内网与 Active Directory 域安全
-
-在 `vul/ad_security/` 目录下上线了全新的知识体系与实战蓝图展示大厅：
-
-1. **内网 6 大知识体系全景 (`ad_knowledge.php`)**：
-   - 基础侦察 ➔ 域认证机制 (NTLM / Kerberos) ➔ 高危攻击 (黄金/白银票据、委派、Kerberoasting、DCSync、ZeroLogon) ➔ 横向移动 (WMI/WinRM/PtH) ➔ 权限维持 ➔ 蓝队 EDR/SIEM 审计。
-2. **3 台与 5 台 GOAD 拓扑与部署蓝图 (`ad_lab_setup.php`)**：
-   - 包含 3 台精简版 (GOAD-Light) 与 5 台完整版 (Full GOAD) 的网络拓扑、IP 布局表、域信任矩阵与 Vagrant/Ansible 部署干货。
-3. **10 大实战 CTF 夺旗关卡中心 (`ad_ctf_hub.php`)**：
-   - 包含侦察测绘、AS-REP Roasting、Kerberoasting、MSSQL 模拟特权、AD CS ESC1、约束性委派 (S4U2proxy)、RBCD 委派、AD CS ESC8 NTLM 中继、Shadow Credentials 影子凭据与 7 级 ACL 复合跃迁接管域控 (总分 2500 PTS)。
-
----
-
-## 📁 干净整洁的 8 大核心目录结构
-
-```text
-Pikachu-Enhanced/
-├── assets/         # CSS 主题引擎 (pika_unified.css)、字体与 JS 库
-├── docker/         # Docker Lab 与 Java 容器镜像构建文件
-├── docs/           # 系统设计与实施级施工文档
-├── inc/            # 后端配置 (config.inc.php)、数据库连接与上传函数库
-├── pkxss/          # XSS 接收后台与 Payload 管理平台
-├── test/           # 文件包含与上传使用的合法测试 Payload (phpinfo.txt)
-├── vul/            # 全站 30+ 漏洞大类与演练关卡
-├── wiki/           # 架构图示与项目维基
-├── docker-compose.yml
-├── Dockerfile
-├── header.php / footer.php / index.php / intro.php
-├── install.php
-└── README.md
+    Gateway --> Kernel
+    Kernel --> Config
+    Kernel --> DAL
+    Kernel --> Registry
+    Kernel --> FlagEng
+    Gateway --> LabFarm
 ```
 
 ---
 
-## 🚀 部署与使用指南
+## 🗺️ 漏洞演练靶标矩阵 (226+ Challenges / 47 Categories)
 
-### 方式一：经典 PHP + MySQL 环境部署 (如 XAMPP / PhpStudy)
-1. 将项目源码克隆或复制到 Web 根目录（如 `www` 或 `htdocs`）。
-2. 在浏览器中访问 `http://127.0.0.1/Pikachu-Enhanced/install.php`。
-3. 点击 **“安装/初始化数据库”**，系统将自动创建数据库与所有演练数据。
+| 核心领域 | 重点靶标分类与利用链 | 关卡数量 |
+| :--- | :--- | :--- |
+| **🏛️ 经典 Web 攻防** | SQL 注入 (报错/盲注/宽字节/堆叠)、XSS (反射/存储/DOM/盲打)、CSRF、文件上传 (MIME/图片马/ZipSlip)、文件包含 (LFI/RFI/伪协议)、RCE 命令执行、水平/垂直越权 (BOLA)、任意文件下载、目录遍历、敏感信息泄露 | 80+ |
+| **☁️ 云原生微服务** | Docker Socket 逃逸、Privileged 特权模式逃逸、K8s ServiceAccount 令牌接管、S3/OSS 存储桶未授权盲取、Serverless 环境变量泄露 | 15+ |
+| **🔑 现代身份认证** | OAuth 2.0 隐式授权与 State 伪造、SAML 2.0 签名包装攻击 (XSW)、JWT 弱口令/None 算法/RS256 混淆、MFA 多因素竞争条件绕过 | 20+ |
+| **🌐 新型数据协议** | HTTP 请求走私 (CL-TE / TE-CL)、gRPC 反射与未授权调用、Webhook SSRF 内网穿透、WebSocket 跨站劫持 (CSWSH)、NoSQL 盲注、GraphQL Schema 递归爆破 | 25+ |
+| **🤖 AI 与大模型安全** | Prompt Injection 提示词注入越狱、大模型 XSS 渲染攻击、AI Agent 外部工具执行 RCE、系统提示词与模型权重数据提取 | 10+ |
+| **🛡️ 蓝队主动防御** | 动态 WAF 规则绕过分析、运行时 RASP 字节码防护对抗、动态高仿真蜜罐指纹识别、全流量告警取证研判 | 10+ |
+| **🌐 内网与 AD 域安全** | Kerberos AS-REP Roasting、Kerberoasting、黄金/白银票据伪造、Pass-the-Hash / Overpass-the-Hash、AD ACL 委派攻击链 | 15+ |
+| **🎯 OSEP 红队评估** | Win32 API 内存免杀、Office VBA 宏武器化、进程注入与进程镂空、AMSI/UAC 绕过、AppLocker 逃逸、DNS 隐蔽隧道、MSSQL 链接服务器提权、Linux 后渗透 | 18 关 |
+| **🔍 OSWE 白盒审计** | 数据流污点分析、认证绕过逻辑链、Java/PHP 反序列化 POP 链、Jinja2 SSTI 沙箱逃逸、XXE OOB 带外提取、布尔盲注自动化脚本、JS 原型链污染、.NET ViewState 利用 | 14 关 |
+| **🔬 OSED 漏洞逆向** | x86 汇编自定义 PIC Shellcode 编写、PEB 动态定位 kernel32、格式化字符串读写原语、应用协议逆向 Fuzzing、WriteProcessMemory DEP+ASLR 联合绕过 | 10 关 |
 
-### 方式二：Docker Compose 一键启动
+---
+
+## ⚡ 极速启动与部署指南 (Quick Start)
+
+### 选项 A：Docker Compose 容器化一键启动 (推荐)
+
 ```bash
-# 启动 Web 与 MySQL 数据库容器
-docker-compose up -d
+# 1. 克隆代码仓库
+git clone https://github.com/IKUN-PEPE/Pikachu-Enhanced.git
+cd Pikachu-Enhanced
 
-# 浏览器访问地址:
-http://localhost:8000
+# 2. 从模板复制环境变量配置
+cp .env.example .env
+
+# 3. 启动全套微服务编排
+docker compose up -d
+
+# 4. 访问靶场
+浏览器打开: http://localhost:8765
 ```
+*数据库已通过 `docker/mysql/init.sql` 自动初始化完毕，开箱即可演练！*
+
+### 选项 B：原生环境部署 (PHP + MySQL)
+1. 确保安装了 PHP 8.0+（开启 `mysqli`, `pdo_mysql`, `curl`, `mbstring`, `gd` 扩展）；
+2. 复制 `.env.example` 为 `.env`，修改其中的数据库连接信息；
+3. 将项目目录挂载至 Web 服务器（如 Nginx 或 Apache）；
+4. 访问 `http://localhost/install.php` 执行一键数据库就绪诊断。
+
+---
+
+## 🧪 现代化研发质量保证 (Developer QA & Testing)
+
+开发过程中可随时运行内置的企业级质量门禁：
+
+```bash
+# 1. 运行跨平台综合质量审计套件 (支持任意环境)
+python test_runner.py
+
+# 2. 运行 PHP 原生测试套件
+php tests/run_tests.php
+
+# 3. 执行 PSR-12 代码风格检查
+composer phpcs
+
+# 4. 执行 PHPStan 静态分析
+composer phpstan
+```
+
+---
+
+## 📖 深入文档与规范 (Documentation)
+
+* 📐 [**系统架构设计规范 (ARCHITECTURE.md)**](file:///C:/Users/Administrator/VScode/Pikachu-Enhanced/ARCHITECTURE.md)：双引擎设计哲学、组件交互及安全模型；
+* 🤝 [**开发者贡献指南 (CONTRIBUTING.md)**](file:///C:/Users/Administrator/VScode/Pikachu-Enhanced/CONTRIBUTING.md)：5 分钟新增关卡、PSR-12 规范、PR 审查标准；
+* 📝 [**版本更新日志 (CHANGELOG.md)**](file:///C:/Users/Administrator/VScode/Pikachu-Enhanced/CHANGELOG.md)：v3.0.0 完整重构里程碑。
+
+---
+
+## ⚠️ 免责声明 (Disclaimer)
+
+本项目仅供网络安全技术爱好者、企事业单位信息安全技术人员、高校网络空间安全专业师生进行**合法、合规的技术教学与实战防御研究**。  
+使用者不得将本平台包含的漏洞原理、利用技术或演示载荷用于任何未经书面授权的真实生产系统或网络攻击行为。因擅自违规使用本工具而导致的任何直接或间接法律责任均由使用者自行承担，与本项目作者及贡献者无关。

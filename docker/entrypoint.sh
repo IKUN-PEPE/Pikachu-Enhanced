@@ -9,16 +9,15 @@ set -eu
 
 cat > /var/www/html/inc/config.inc.php <<PHP
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    ini_set('session.lazy_write', '1');
+    session_start();
+}
 date_default_timezone_set('Asia/Shanghai');
 header('Content-type:text/html;charset=utf-8');
 
-define('DBHOST', '${PIKACHU_DB_HOST}');
-define('DBUSER', '${PIKACHU_DB_USER}');
-define('DBPW', '${PIKACHU_DB_PASSWORD}');
-define('DBNAME', '${PIKACHU_DB_NAME}');
-define('DBPORT', '${PIKACHU_DB_PORT}');
-?>
+// Load Modern PSR-4 Core & Application Kernel
+require_once __DIR__ . '/bootstrap.php';
 PHP
 
 cat > /var/www/html/pkxss/inc/config.inc.php <<PHP
