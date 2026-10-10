@@ -25,43 +25,80 @@ function vcode($width=120,$height=40,$fontSize=30,$countElement=5,$countPixel=10
 	return $string;
 }
 
-//之前的验证码有点问题，重新从网上搜了一个简单的验证码函数，是的，从网上搜的。
+// 验证码生成函数（支持 GD 库自动降级至原生 SVG 矢量图片，100% 杜绝缺失扩展报错）
 function vcodex(){
-	
-	$string = "abcdefghijklmnopqrstuvwxyz0123456789";
-    	$str = "";
-    	for($i=0;$i<6;$i++){
-        	$pos = rand(0,35);
-        	$str .= $string[$pos];
-    	}
-    //session_start();
-    //$_SESSION['img_number'] = $str;
-	
-	$img_handle = Imagecreate(80, 20);  //图片大小80X20
-    	$back_color = ImageColorAllocate($img_handle, 255, 255, 255); //背景颜色（白色）
-    	$txt_color = ImageColorAllocate($img_handle, 0,0, 0);  //文本颜色（黑色）
-    
-    //加入干扰线
-    	for($i=0;$i<3;$i++)
-    	{
-        	$line = ImageColorAllocate($img_handle,rand(0,255),rand(0,255),rand(0,255));
-        	Imageline($img_handle, rand(0,15), rand(0,15), rand(100,150),rand(10,50), $line);
-    	}
-    //加入干扰象素
-    	for($i=0;$i<200;$i++) 
-    	{
-        	$randcolor = ImageColorallocate($img_handle,rand(0,255),rand(0,255),rand(0,255));
-        	Imagesetpixel($img_handle, rand()%100 , rand()%50 , $randcolor);
-    	}
-	
-	Imagefill($img_handle, 0, 0, $back_color);             //填充图片背景色
-    	ImageString($img_handle, 28, 10, 0, $str, $txt_color);//水平填充一行字符串
-	
-	ob_clean();   // ob_clean()清空输出缓存区    
-    	header("Content-type: image/png"); //生成验证码图片    
-    	Imagepng($img_handle);//显示图片
-	return $str;
-	
+    $charset = "23456789abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ";
+    $str = "";
+    for($i = 0; $i < 4; $i++){
+        $pos = rand(0, strlen($charset) - 1);
+        $str .= $charset[$pos];
+    }
+
+    if (extension_loaded('gd') && function_exists('imagecreate')) {
+        $width = 90;
+        $height = 30;
+        $img_handle = @imagecreate($width, $height);
+        if ($img_handle) {
+            $back_color = imagecolorallocate($img_handle, 245, 247, 250);
+            $txt_color = imagecolorallocate($img_handle, 30, 41, 59);
+            for ($i = 0; $i < 3; $i++) {
+                $line = imagecolorallocate($img_handle, rand(160, 220), rand(160, 220), rand(160, 220));
+                imageline($img_handle, rand(0, 20), rand(0, $height), rand($width - 30, $width), rand(0, $height), $line);
+            }
+            for ($i = 0; $i < 40; $i++) {
+                $randcolor = imagecolorallocate($img_handle, rand(120, 200), rand(120, 200), rand(120, 200));
+                imagesetpixel($img_handle, rand(0, $width), rand(0, $height), $randcolor);
+            }
+            imagestring($img_handle, 5, 22, 7, $str, $txt_color);
+            if (ob_get_level() > 0) {
+                @ob_clean();
+            }
+            header("Content-type: image/png");
+            header("Cache-Control: no-cache, no-store, must-revalidate");
+            imagepng($img_handle);
+            imagedestroy($img_handle);
+            return $str;
+        }
+    }
+
+    // GD 未加载时回退到纯原生 SVG 渲染（任何平台 100% 可用）
+    if (ob_get_level() > 0) {
+        @ob_clean();
+    }
+    header("Content-type: image/svg+xml; charset=utf-8");
+    header("Cache-Control: no-cache, no-store, must-revalidate");
+    echo render_svg_captcha($str);
+    return $str;
+}
+
+function render_svg_captcha($code) {
+    $width = 96;
+    $height = 32;
+    $chars = str_split($code);
+    $svg = '<svg xmlns="http://www.w3.org/2000/svg" width="'.$width.'" height="'.$height.'" viewBox="0 0 '.$width.' '.$height.'">';
+    $svg .= '<rect width="100%" height="100%" fill="#f1f5f9" rx="6" stroke="#cbd5e1" stroke-width="1"/>';
+    for ($i = 0; $i < 3; $i++) {
+        $x1 = rand(0, $width); $y1 = rand(0, $height);
+        $x2 = rand(0, $width); $y2 = rand(0, $height);
+        $c = sprintf('#%02x%02x%02x', rand(160, 210), rand(160, 210), rand(160, 210));
+        $svg .= '<line x1="'.$x1.'" y1="'.$y1.'" x2="'.$x2.'" y2="'.$y2.'" stroke="'.$c.'" stroke-width="1.5"/>';
+    }
+    for ($i = 0; $i < 20; $i++) {
+        $cx = rand(5, $width - 5); $cy = rand(5, $height - 5);
+        $c = sprintf('#%02x%02x%02x', rand(140, 200), rand(140, 200), rand(140, 200));
+        $svg .= '<circle cx="'.$cx.'" cy="'.$cy.'" r="1.5" fill="'.$c.'"/>';
+    }
+    $step = ($width - 16) / max(1, count($chars));
+    $colors = ['#1e293b', '#2563eb', '#0f766e', '#7c3aed', '#b91c1c'];
+    foreach ($chars as $idx => $char) {
+        $x = 10 + $idx * $step;
+        $y = rand(22, 25);
+        $rot = rand(-10, 10);
+        $fill = $colors[$idx % count($colors)];
+        $svg .= '<text x="'.$x.'" y="'.$y.'" font-family="Consolas, Monaco, monospace" font-size="20" font-weight="bold" fill="'.$fill.'" transform="rotate('.$rot.' '.$x.' '.$y.')">'.$char.'</text>';
+    }
+    $svg .= '</svg>';
+    return $svg;
 }
 
 
