@@ -102,6 +102,15 @@ function pika_get_all_routes() {
         'vul/dockerlab/dockerlab_center.php' => ['cat' => 'cloud', 'mod' => 'dockerlab', 'leaf' => 143, 'parent' => 140],
         'vul/dockerlab/dockerlab_check.php' => ['cat' => 'cloud', 'mod' => 'dockerlab', 'leaf' => 142, 'parent' => 140],
         'vul/dockerlab/k8s_token_escape.php' => ['cat' => 'cloud', 'mod' => 'dockerlab', 'leaf' => 207, 'parent' => 140],
+        'vul/encrypt/aes.php' => ['cat' => 'auth', 'mod' => 'encrypt', 'leaf' => 342, 'parent' => 340],
+        'vul/encrypt/aesrsa.php' => ['cat' => 'auth', 'mod' => 'encrypt', 'leaf' => 345, 'parent' => 340],
+        'vul/encrypt/aesserver.php' => ['cat' => 'auth', 'mod' => 'encrypt', 'leaf' => 343, 'parent' => 340],
+        'vul/encrypt/des.php' => ['cat' => 'auth', 'mod' => 'encrypt', 'leaf' => 346, 'parent' => 340],
+        'vul/encrypt/encrypt.php' => ['cat' => 'auth', 'mod' => 'encrypt', 'leaf' => 341, 'parent' => 340],
+        'vul/encrypt/norepeater.php' => ['cat' => 'auth', 'mod' => 'encrypt', 'leaf' => 349, 'parent' => 340],
+        'vul/encrypt/rsa.php' => ['cat' => 'auth', 'mod' => 'encrypt', 'leaf' => 344, 'parent' => 340],
+        'vul/encrypt/signdata.php' => ['cat' => 'auth', 'mod' => 'encrypt', 'leaf' => 347, 'parent' => 340],
+        'vul/encrypt/signdataserver.php' => ['cat' => 'auth', 'mod' => 'encrypt', 'leaf' => 348, 'parent' => 340],
         'vul/fileinclude/fi_local.php' => ['cat' => 'classic', 'mod' => 'fileinclude', 'leaf' => 57, 'parent' => 55],
         'vul/fileinclude/fi_remote.php' => ['cat' => 'classic', 'mod' => 'fileinclude', 'leaf' => 58, 'parent' => 55],
         'vul/fileinclude/fileinclude.php' => ['cat' => 'classic', 'mod' => 'fileinclude', 'leaf' => 56, 'parent' => 55],
@@ -317,6 +326,7 @@ function pika_infer_route($rel_path) {
         'vul/sso_saml'         => ['cat' => 'auth', 'mod' => 'sso_saml'],
         'vul/mfa_bypass'       => ['cat' => 'auth', 'mod' => 'mfa_bypass'],
         'vul/sessionfixation'  => ['cat' => 'auth', 'mod' => 'sessionfixation'],
+        'vul/encrypt'          => ['cat' => 'auth', 'mod' => 'encrypt'],
         
         // 业务逻辑与并发安全大类
         'vul/logic'            => ['cat' => 'business', 'mod' => 'logic'],

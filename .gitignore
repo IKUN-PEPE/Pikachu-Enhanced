@@ -13,4 +13,6 @@ docker-cli.exe
 vendor/
 Pikachu-Enhanced-Release/
 Pikachu-Enhanced-Release*
+vul/unsafeupload/uploads/*
+!vul/unsafeupload/uploads/.gitkeep
 

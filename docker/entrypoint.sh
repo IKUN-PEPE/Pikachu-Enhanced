@@ -38,6 +38,13 @@ PHP
 echo "flag{Pikachu_Web_Container_Root_Flag_2026}" > /flag.txt
 echo "flag{Pikachu_System_Include_Flag_2026}" > /etc/flag.txt
 
+# Enable OpenSSL legacy provider for DES / legacy ciphers in PHP 8.2+
+if [ -f /etc/ssl/openssl.cnf ] && ! grep -q "legacy_sect" /etc/ssl/openssl.cnf; then
+    sed -i 's/# activate = 1/activate = 1/' /etc/ssl/openssl.cnf || true
+    sed -i '/default = default_sect/a legacy = legacy_sect' /etc/ssl/openssl.cnf || true
+    sed -i '/\[default_sect\]/i [legacy_sect]\nactivate = 1\n' /etc/ssl/openssl.cnf || true
+fi
+
 # Ensure docker.sock is accessible by www-data web user if mounted
 if [ -e /var/run/docker.sock ]; then
     chmod 666 /var/run/docker.sock || true
@@ -61,6 +68,7 @@ fi
                     mysqli_query(\$link, \"INSERT IGNORE INTO member (id,username,pw,sex,phonenum,address,email) VALUES (1,'vince',md5('123456'),'boy','18626545453','chain','vince@pikachu.com'),(2,'allen',md5('123456'),'boy','13676767767','nba 76','allen@pikachu.com'),(3,'kobe',md5('123456'),'boy','15988767673','nba lakes','kobe@pikachu.com'),(4,'grady',md5('123456'),'boy','13676765545','nba hs','grady@pikachu.com'),(5,'kevin',md5('123456'),'boy','13677676754','Oklahoma City Thunder','kevin@pikachu.com'),(6,'lucy',md5('123456'),'girl','12345678922','usa','lucy@pikachu.com'),(7,'lili',md5('123456'),'girl','18656565545','usa','lili@pikachu.com')\");
                     mysqli_query(\$link, 'CREATE TABLE IF NOT EXISTS flag_vault (id int(10) unsigned NOT NULL AUTO_INCREMENT, flag_name varchar(66) NOT NULL, flag_val varchar(255) NOT NULL, PRIMARY KEY (id)) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1');
                     mysqli_query(\$link, \"INSERT IGNORE INTO flag_vault (id,flag_name,flag_val) VALUES (1,'sqli_flag','flag{Pikachu_SQLi_Database_Vault_Extracted}'),(2,'xxe_flag','flag{Pikachu_XXE_Local_Entity_Disclosure}'),(3,'deser_flag','flag{Pikachu_Deserialization_POP_Chain_Executed}')\");
+                    mysqli_query(\$link, 'CREATE TABLE IF NOT EXISTS requests (id int(11) NOT NULL AUTO_INCREMENT, requestID varchar(255) NOT NULL UNIQUE, timestamp timestamp NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1');
                     
                     // Init pkxss
                     mysqli_query(\$link, 'CREATE DATABASE IF NOT EXISTS pkxss');

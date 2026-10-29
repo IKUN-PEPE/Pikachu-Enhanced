@@ -187,14 +187,29 @@ if (isset($_POST['submit_install'])) {
                     (4, 'idor_flag', 'flag{Pikachu_IDOR_Privilege_Escalation_Master}'),
                     (5, 'jwt_flag', 'flag{Pikachu_JWT_Modern_Auth_Token_Bypassed}')";
                 @mysqli_query($link, $insert_flag_vault);
-                $install_logs[] = ['type' => 'success', 'msg' => "[+] [6/6] 成功创建 `flag_vault` 全局 CTF 靶标机密金库并装载 5 条专属 Flag！"];
+                $install_logs[] = ['type' => 'success', 'msg' => "[+] [6/7] 成功创建 `flag_vault` 全局 CTF 靶标机密金库并装载 5 条专属 Flag！"];
             } else {
                 $install_logs[] = ['type' => 'error', 'msg' => "[-] 创建 `flag_vault` 表失败: " . mysqli_error($link)];
             }
 
+            // 9. Create requests table (Frontend Encryption & Anti-Replay Lab)
+            $sql_requests = "CREATE TABLE IF NOT EXISTS `requests` (
+                `id` int(11) NOT NULL AUTO_INCREMENT,
+                `requestID` varchar(255) NOT NULL,
+                `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (`id`),
+                UNIQUE KEY `requestID` (`requestID`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1";
+
+            if (@mysqli_query($link, $sql_requests)) {
+                $install_logs[] = ['type' => 'success', 'msg' => "[+] [7/7] 成功创建 `requests` 前端加密防重放请求追踪表！"];
+            } else {
+                $install_logs[] = ['type' => 'error', 'msg' => "[-] 创建 `requests` 表失败: " . mysqli_error($link)];
+            }
+
             if (!$install_error) {
                 $install_success = true;
-                $install_logs[] = ['type' => 'success', 'msg' => "[+] 🎉 全部 6 个核心数据表及靶标数据集初始化完成！数据库状态处于就绪 (READY)。"];
+                $install_logs[] = ['type' => 'success', 'msg' => "[+] 🎉 全部 7 个核心数据表及靶标数据集初始化完成！数据库状态处于就绪 (READY)。"];
             }
         }
         mysqli_close($link);
