@@ -1,6 +1,7 @@
 <?php
 /**
- * Pikachu-Enhanced v2.0 System Introduction & Guide
+ * Pikachu-Enhanced Modern Cyber Range Portal & Architecture Guide
+ * Refactored strictly per landing-page-design & redesign-existing-projects
  */
 include_once 'inc/config.inc.php';
 $ACTIVE = array_fill(0, 250, '');
@@ -10,247 +11,321 @@ include 'header.php';
 $html = '';
 $link = @mysqli_connect(DBHOST, DBUSER, DBPW, DBNAME, DBPORT);
 if(!$link){
-    $html .= "<div class='alert alert-danger' style='margin-bottom: 20px;'><i class='fa fa-exclamation-triangle'></i> <strong>提示：</strong>系统尚未初始化，<a href='install.php' style='text-decoration:underline; font-weight:bold; color:inherit;'>请点击此处进行安装和初始化</a>。</div>";
+    $html .= "<div class='alert alert-danger' style='margin-bottom: var(--spacing-300); border-radius: var(--radius-lg); background: var(--danger-light); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); padding: var(--spacing-200); font-weight: 500;'><i class='ph-bold ph-warning' style='font-size:16px; vertical-align:middle; margin-right:6px;'></i> <strong>提示：</strong>数据库尚未初始化，<a href='install.php' style='text-decoration:underline; font-weight:700; color:inherit;'>请点击此处进行快速初始化与环境安装</a>。</div>";
 }else{
     @mysqli_set_charset($link, 'utf8');
     @mysqli_close($link);
 }
 ?>
+
 <style>
-/* Modern Home Index Page Styles */
-.intro-container {
-    max-width: 100%;
+/* ==========================================================================
+   Modern Index Portal Styles
+   Strict adherence to landing-page-design & redesign-existing-projects
+   ========================================================================== */
+
+.portal-container {
+    max-width: 1360px;
     margin: 0 auto;
-    padding: 10px 0 40px 0;
+    padding: var(--spacing-200) var(--spacing-200) var(--spacing-900) var(--spacing-200);
 }
 
-.intro-banner {
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.95), rgba(6, 182, 212, 0.95));
-    border-radius: var(--radius-xl);
-    padding: 40px;
-    color: #ffffff;
-    box-shadow: var(--shadow-lg);
-    margin-bottom: 30px;
+/* 1. Flat Modern Hero Card (No Background Gradients) */
+.portal-hero-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-600) var(--spacing-600);
+    margin-bottom: var(--spacing-500);
     position: relative;
-    overflow: hidden;
 }
 
-[data-theme="dark"] .intro-banner {
-    background: linear-gradient(135deg, #1e3a8a, #0e7490);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.intro-banner::after {
-    content: "\f132";
-    font-family: FontAwesome;
-    font-size: 170px;
-    position: absolute;
-    right: 40px;
-    top: -25px;
-    opacity: 0.12;
-    transform: rotate(15deg);
-    pointer-events: none;
-}
-
-.intro-banner h1 {
-    font-size: 32px;
-    font-weight: 800;
-    margin-top: 0;
-    margin-bottom: 12px;
-    color: #ffffff;
-    letter-spacing: -0.02em;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.15);
-}
-
-.intro-banner p {
-    font-size: 15.5px;
-    line-height: 1.7;
-    max-width: 850px;
-    opacity: 0.95;
-    color: #f1f5f9;
-    margin-bottom: 24px;
-}
-
-.intro-banner-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.intro-banner-btn {
-    background: #ffffff;
+.portal-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-75);
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
     color: var(--primary);
-    border: none;
-    padding: 9px 20px;
-    border-radius: var(--radius-md);
-    font-size: 13.5px;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-200);
+}
+
+.portal-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--success);
+    display: inline-block;
+}
+
+.portal-headline {
+    font-size: 36px;
+    line-height: 40px;
     font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: var(--shadow-md);
-    transition: all 0.2s ease;
-}
-.intro-banner-btn:hover {
-    background: #f8fafc;
-    color: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    letter-spacing: -0.02em;
+    max-width: 680px;
+    margin: 0 0 var(--spacing-100) 0;
+    text-wrap: balance;
 }
 
-.intro-banner-btn-secondary {
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    color: #ffffff;
-    padding: 9px 20px;
-    border-radius: var(--radius-md);
-    font-size: 13.5px;
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.2s ease;
-}
-.intro-banner-btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.28);
-    color: #ffffff;
-    transform: translateY(-2px);
+.portal-subheadline {
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin: 0 0 var(--spacing-400) 0;
+    text-wrap: pretty;
 }
 
-.intro-section {
-    background-color: var(--bg-primary);
-    border-radius: var(--radius-lg);
-    padding: 28px 32px;
-    margin-bottom: 28px;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border-subtle);
-}
-
-.intro-section-title {
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-top: 0;
-    margin-bottom: 22px;
+.portal-actions-row {
     display: flex;
     align-items: center;
-    gap: 10px;
-    border-bottom: 2px solid var(--border-subtle);
-    padding-bottom: 14px;
+    gap: var(--spacing-100);
+    flex-wrap: wrap;
 }
 
-.module-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+.portal-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-75);
+    padding: 8px 14px;
+    border-radius: var(--radius-lg);
+    background: var(--primary);
+    color: #ffffff !important;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: transform var(--duration-movement) var(--ease-base), background-color var(--duration-color) var(--ease-base);
+    border: none;
+    cursor: pointer;
+}
+.portal-btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+.portal-btn-primary:active {
+    transform: scale(0.98);
 }
 
-.module-card {
-    background-color: var(--bg-secondary);
-    border-radius: var(--radius-md);
-    padding: 24px;
+.portal-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-75);
+    padding: 8px 14px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
     border: 1px solid var(--border-subtle);
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease;
+    color: var(--text-primary) !important;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: transform var(--duration-movement) var(--ease-base), background-color var(--duration-color) var(--ease-base), border-color var(--duration-color) var(--ease-base);
+    cursor: pointer;
+}
+.portal-btn-secondary:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border-strong);
+    transform: translateY(-1px);
+}
+.portal-btn-secondary:active {
+    transform: scale(0.98);
+}
+
+/* 2. Architecture Domains Grid */
+.section-block {
+    margin-bottom: var(--spacing-600);
+}
+
+.section-label {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: var(--spacing-75);
+}
+
+.section-title {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin: 0 0 var(--spacing-400) 0;
+    text-wrap: balance;
+}
+
+.domain-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: var(--spacing-200);
+}
+
+.domain-overview-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-300);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: transform var(--duration-movement) var(--ease-base), border-color var(--duration-color) var(--ease-base), box-shadow var(--duration-color) var(--ease-base);
 }
-
-.module-card:hover {
-    transform: translateY(-4px);
+.domain-overview-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
     box-shadow: var(--shadow-md);
-    border-color: var(--primary);
-    background-color: var(--bg-primary);
 }
 
-.module-icon {
-    font-size: 2.2rem;
-    margin-bottom: 12px;
-}
-
-.module-card h3 {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-top: 0;
-    margin-bottom: 8px;
-}
-
-.module-card p {
-    color: var(--text-secondary);
-    font-size: 13.5px;
-    line-height: 1.6;
-    margin-bottom: 16px;
-}
-
-.guide-step {
-    display: flex;
-    margin-bottom: 22px;
-    gap: 18px;
-}
-
-.step-number {
-    width: 36px;
-    height: 36px;
-    background-color: var(--primary-light);
+.domain-card-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
     color: var(--primary);
-    border: 1px solid rgba(37, 99, 235, 0.3);
-    border-radius: var(--radius-full);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
-    font-weight: 800;
-    flex-shrink: 0;
+    font-size: 22px;
+    margin-bottom: var(--spacing-200);
 }
 
-.step-content h4 {
-    margin-top: 0;
+.domain-card-title {
     font-size: 16px;
+    line-height: 24px;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 6px;
+    margin: 0 0 var(--spacing-75) 0;
 }
 
-.step-content p {
-    color: var(--text-secondary);
+.domain-card-desc {
     font-size: 13.5px;
-    line-height: 1.6;
-    margin-bottom: 0;
+    line-height: 20px;
+    color: var(--text-secondary);
+    margin: 0 0 var(--spacing-300) 0;
+    text-wrap: pretty;
 }
 
-.step-content code {
-    background-color: var(--bg-tertiary);
-    color: var(--primary);
-    border: 1px solid var(--border-subtle);
-    padding: 2px 6px;
-    border-radius: var(--radius-sm);
-    font-size: 13px;
-}
-
-.disclaimer-box {
-    background-color: var(--danger-light);
-    border-left: 4px solid var(--danger);
-    padding: 20px 24px;
-    border-radius: var(--radius-md);
-    color: var(--text-primary);
-}
-
-.disclaimer-box h4 {
-    color: var(--danger);
-    margin-top: 0;
-    margin-bottom: 8px;
-    font-weight: 700;
-    font-size: 15px;
+.domain-card-meta {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: space-between;
+    padding-top: var(--spacing-100);
+    border-top: 1px solid var(--border-subtle);
+    font-size: 12px;
+    color: var(--text-muted);
 }
-.disclaimer-box p {
-    font-size: 13px;
-    line-height: 1.6;
+
+.domain-card-meta a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s ease;
+}
+.domain-card-meta a:hover {
+    color: var(--primary-hover);
+}
+
+/* 3. Quickstart Guide Steps */
+.quickstart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-200);
+}
+
+.quickstart-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-300);
+}
+
+.quickstart-step-num {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    background: var(--primary-light);
+    border: 1px solid rgba(2, 132, 199, 0.2);
+    padding: 3px 8px;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-100);
+}
+
+.quickstart-card h4 {
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 var(--spacing-50) 0;
+}
+
+.quickstart-card p {
+    font-size: 13.5px;
+    line-height: 20px;
     color: var(--text-secondary);
+    margin: 0;
+    text-wrap: pretty;
+}
+
+/* 4. Specifications Table */
+.specs-table-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+}
+
+.specs-table th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-weight: 700;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border-subtle);
+    text-align: left;
+}
+
+.specs-table td {
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.specs-table tr:last-child td {
+    border-bottom: none;
+}
+
+.spec-chip {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    font-family: 'Geist Mono', monospace;
+    font-size: 12px;
+    color: var(--text-primary);
 }
 </style>
 
@@ -259,124 +334,186 @@ if(!$link){
         <div class="breadcrumbs ace-save-state" id="breadcrumbs">
             <ul class="breadcrumb">
                 <li>
-                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <i class="ph-bold ph-house" style="font-size:14px; vertical-align:middle;"></i>
                     <a href="index.php">主页</a>
                 </li>
-                <li class="active">平台系统说明</li>
+                <li class="active">平台架构体系与演练指引</li>
             </ul>
         </div>
 
         <div class="page-content">
-            <?php echo $html; ?>
+            <div class="portal-container">
+                <?php echo $html; ?>
 
-            <div class="intro-container">
-                
-                <!-- Hero Banner -->
-                <div class="intro-banner">
-                    <h1>⚡ Pikachu-Enhanced v2.0</h1>
-                    <p>
-                        欢迎来到 <strong>Pikachu-Enhanced</strong>，专为现代 Web 安全和高级渗透测试设计的综合实战演练平台。基于经典 Pikachu 进行架构重构与深度拓展，涵盖 <strong>5 大攻防维度、41 大类场景、170+ 实战关卡</strong>，深度融合云原生、AI 大模型安全与微服务前沿协议。
+                <!-- 1. Hero Overview -->
+                <section class="portal-hero-card scroll-reveal">
+                    <div class="portal-status-badge">
+                        <span class="portal-status-dot"></span>
+                        ENTERPRISE EDITION · v3.0 ROADMAP
+                    </div>
+                    
+                    <h1 class="portal-headline hero-text-gradient">
+                        全技术栈网络安全攻防实战演练中枢
+                    </h1>
+                    
+                    <p class="portal-subheadline">
+                        Pikachu-Enhanced 面向高阶安全研究员、渗透测试工程师与安全审计人员。深度集成 11 大核心技术域、47 个漏洞矩阵与 226 个物理靶标关卡，支持从经典 Web 漏洞到内核级二进制逆向的系统化实践。
                     </p>
-                    <div class="intro-banner-actions">
-                        <a href="intro.php" class="intro-banner-btn">
-                            <i class="fa fa-map-signs"></i> 浏览全站漏洞学习路线图
+
+                    <div class="portal-actions-row">
+                        <a href="intro.php" class="portal-btn-primary">
+                            <i class="ph-bold ph-map-trifold" style="font-size:18px;"></i> 查看全局战术图鉴
                         </a>
-                        <a href="vul/dockerlab/dockerlab_center.php" class="intro-banner-btn-secondary">
-                            <i class="fa fa-cubes"></i> 容器与微服务控制台
-                        </a>
-                        <a href="vul/xss/xss.php" class="intro-banner-btn-secondary">
-                            <i class="fa fa-shield"></i> 经典 Web 攻防演练
+                        <a href="install.php" class="portal-btn-secondary">
+                            <i class="ph-bold ph-arrows-clockwise" style="font-size:18px;"></i> 初始化环境数据库
                         </a>
                     </div>
-                </div>
+                </section>
 
-                <!-- Core Modules Section -->
-                <div class="intro-section">
-                    <h2 class="intro-section-title">
-                        <i class="fa fa-cubes" style="color:var(--primary);"></i> 五大核心实战维度
-                    </h2>
-                    
-                    <div class="module-grid">
-                        <div class="module-card" style="border-top: 3px solid var(--cat-classic);">
-                            <div class="module-icon">🏛️</div>
-                            <h3>经典 Web 攻防演练</h3>
-                            <p>全面覆盖 OWASP Top 10 核心漏洞，包含 SQL 注入、XSS、CSRF、RCE、文件上传/包含、越权等基础漏洞的深度挖掘与利用，筑牢 Web 安全底座。</p>
-                            <a href="vul/burteforce/burteforce.php" class="btn btn-xs btn-default"><i class="fa fa-arrow-right"></i> 进入演练</a>
+                <!-- 2. Core Four Pillars -->
+                <section class="section-block scroll-reveal">
+                    <div class="section-label">CURRICULUM ARCHITECTURE</div>
+                    <h2 class="section-title">四大核心靶标体系，构建全维攻防矩阵</h2>
+
+                    <div class="domain-cards-grid">
+                        <div class="domain-overview-card">
+                            <div>
+                                <div class="domain-card-icon-wrap"><i class="ph-bold ph-fire"></i></div>
+                                <h3 class="domain-card-title">经典 Web 攻防演练</h3>
+                                <p class="domain-card-desc">涵盖 SQL 注入、跨站脚本 XSS、远程命令执行 RCE、高阶文件上传绕过、SSRF 探测、XXE 实体注入与反序列化利用等 17 个细分靶标矩阵。</p>
+                            </div>
+                            <div class="domain-card-meta">
+                                <span>17 个核心矩阵 · 70+ 关卡</span>
+                                <a href="intro.php#domain-classic">直达矩阵 <i class="ph-bold ph-arrow-right"></i></a>
+                            </div>
                         </div>
-                        
-                        <div class="module-card" style="border-top: 3px solid var(--cat-cloud);">
-                            <div class="module-icon">☁️</div>
-                            <h3>云原生与微服务架构安全</h3>
-                            <p>深入现代云基础设施，演练 Docker 容器特权逃逸、Socket 逃逸、K8s RBAC 权限滥用、Serverless 无服务器攻击及云元数据 SSRF 深度利用。</p>
-                            <a href="vul/dockerlab/dockerlab_center.php" class="btn btn-xs btn-default"><i class="fa fa-arrow-right"></i> 进入演练</a>
+
+                        <div class="domain-overview-card">
+                            <div>
+                                <div class="domain-card-icon-wrap"><i class="ph-bold ph-key"></i></div>
+                                <h3 class="domain-card-title">现代身份认证与协议</h3>
+                                <p class="domain-card-desc">探索 JWT 签名算法混淆、OAuth2 授权劫持、SAML 伪造、HTTP/2 请求走私、GraphQL 批量内省与 WebSocket 跨站劫持等 23 个现代 API 威胁。</p>
+                            </div>
+                            <div class="domain-card-meta">
+                                <span>23 个高阶矩阵 · 50+ 关卡</span>
+                                <a href="intro.php#domain-auth">直达矩阵 <i class="ph-bold ph-arrow-right"></i></a>
+                            </div>
                         </div>
-                        
-                        <div class="module-card" style="border-top: 3px solid var(--cat-ai);">
-                            <div class="module-icon">🤖</div>
-                            <h3>AI 与大模型应用安全</h3>
-                            <p>应对生成式人工智能的安全挑战，包括 Prompt 注入绕过、模型数据投毒、RAG 检索增强生成欺骗，以及 AI 智能体 (Agent) 沙箱越权与数据逃逸。</p>
-                            <a href="vul/ai_security/prompt_injection.php" class="btn btn-xs btn-default"><i class="fa fa-arrow-right"></i> 进入演练</a>
+
+                        <div class="domain-overview-card">
+                            <div>
+                                <div class="domain-card-icon-wrap"><i class="ph-bold ph-cloud"></i></div>
+                                <h3 class="domain-card-title">云原生与前沿安全</h3>
+                                <p class="domain-card-desc">包含 Kubernetes API 越权、Docker Socket 逃逸、中间件未授权访问、AI 大模型 Prompt 注入以及蓝队主动防御欺骗蜜罐等新一代攻防技术。</p>
+                            </div>
+                            <div class="domain-card-meta">
+                                <span>15 个前沿矩阵 · 40+ 关卡</span>
+                                <a href="intro.php#domain-cloud">直达矩阵 <i class="ph-bold ph-arrow-right"></i></a>
+                            </div>
                         </div>
-                        
-                        <div class="module-card" style="border-top: 3px solid var(--cat-proto);">
-                            <div class="module-icon">🌐</div>
-                            <h3>前沿协议与身份安全</h3>
-                            <p>聚焦现代通讯协议与身份认证，涵盖 HTTP/2 请求走私、gRPC 协议攻击、WebSocket 劫持，以及 JWT / SAML / OAuth 高级 SSO 单点登录伪造与绕过。</p>
-                            <a href="vul/http_smuggling/cl_te.php" class="btn btn-xs btn-default"><i class="fa fa-arrow-right"></i> 进入演练</a>
-                        </div>
-                        
-                        <div class="module-card" style="border-top: 3px solid var(--success);">
-                            <div class="module-icon">🛡️</div>
-                            <h3>蓝队防守与实战防御</h3>
-                            <p>以攻促防，提供完整的防御机制研究，包括 WAF 规则绕过分析、RASP 运行时自我保护原理剖析，以及安全日志取证与应急响应训练。</p>
-                            <a href="vul/ad_security/ad_ctf_kerberoast.php" class="btn btn-xs btn-default"><i class="fa fa-arrow-right"></i> 进入演练</a>
+
+                        <div class="domain-overview-card">
+                            <div>
+                                <div class="domain-card-icon-wrap"><i class="ph-bold ph-crosshair"></i></div>
+                                <h3 class="domain-card-title">OffSec 认证通关实战</h3>
+                                <p class="domain-card-desc">严格对标 OSEP 红队免杀评估、OSWE 白盒代码审计与 OSED 漏洞利用逆向三大 Offensive Security 国际顶尖认证，配备 42 个加密动态 Flag 校验关卡。</p>
+                            </div>
+                            <div class="domain-card-meta">
+                                <span>3 大认证体系 · 42 认证 Flag</span>
+                                <a href="intro.php#domain-osep">直达矩阵 <i class="ph-bold ph-arrow-right"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <!-- Usage Guide Section -->
-                <div class="intro-section">
-                    <h2 class="intro-section-title">
-                        <i class="fa fa-book" style="color:var(--primary);"></i> 平台使用与通关指南
-                    </h2>
-                    
-                    <div class="guide-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h4>系统初始化部署</h4>
-                            <p>平台推荐使用 Docker 环境部署。进入项目根目录执行 <code>docker compose up -d</code> 即可一键启动包含 PHP、MySQL、Nginx 和各种微服务的完整靶场群。首次访问请点击页面顶部的初始化链接完成底层数据库架构配置。</p>
+                <!-- 3. Quickstart Workflow -->
+                <section class="section-block scroll-reveal">
+                    <div class="section-label">QUICKSTART GUIDE</div>
+                    <h2 class="section-title">快速上手指南，快速开启第一门演练</h2>
+
+                    <div class="quickstart-grid">
+                        <div class="quickstart-card">
+                            <div class="quickstart-step-num">STEP 01</div>
+                            <h4>环境状态检查</h4>
+                            <p>确认平台各组件运行正常。如初次部署或测试后数据被破坏，可随时访问 install.php 页面一键完成表结构与测试数据的重置。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <div class="quickstart-step-num">STEP 02</div>
+                            <h4>通过侧边栏或图鉴导航</h4>
+                            <p>利用左侧树状折叠侧边栏检索目标关卡，或在“全局漏洞图鉴”页面通过关键词与安全域标签进行快速定位直达。</p>
+                        </div>
+                        <div class="quickstart-card">
+                            <div class="quickstart-step-num">STEP 03</div>
+                            <h4>阅读原理与实操验证</h4>
+                            <p>关卡页面内置详细的数据流走向与攻防解密提示。建议先独立分析漏洞逻辑，再使用抓包工具构造 Payload 验证修复。</p>
                         </div>
                     </div>
-                    
-                    <div class="guide-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h4>配置代理与抓包工具</h4>
-                            <p>许多高级漏洞（如协议走私、JWT 伪造、多步骤认证绕过）无法仅通过浏览器界面完成。强烈建议配置 <strong>Burp Suite</strong> 代理，拦截并修改底层 HTTP/1.1、HTTP/2 请求头及载荷。</p>
-                        </div>
-                    </div>
-                    
-                    <div class="guide-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h4>白盒代码审计与调试</h4>
-                            <p>Pikachu-Enhanced 所有漏洞都附带了存在缺陷的后端源码与教学模式。遇到瓶颈时，可以直接进入项目对应的 <code>vul/</code> 目录审查 PHP 逻辑，知其然更知其所以然。</p>
-                        </div>
-                    </div>
-                </div>
+                </section>
 
-                <!-- Disclaimer -->
-                <div class="disclaimer-box">
-                    <h4><i class="fa fa-warning"></i> 法律免责与安全合规声明</h4>
-                    <p style="margin-bottom: 0;">
-                        本系统（Pikachu-Enhanced）是一款专为网络安全技术研究、防御技术测试、以及合法授权教学所设计的封闭式模拟演练平台。<strong>平台内置了大量高危且极易被利用的代码缺陷。</strong>严禁将其部署在任何对外开放的公网环境或生产网络中。
-                    </p>
-                </div>
+                <!-- 4. Environment Specifications -->
+                <section class="section-block scroll-reveal">
+                    <div class="section-label">RUNTIME SPECIFICATIONS</div>
+                    <h2 class="section-title">运行环境与核心架构标准</h2>
 
-            </div>
-        </div>
+                    <div class="specs-table-card">
+                        <table class="specs-table">
+                            <thead>
+                                <tr>
+                                    <th>组件项目</th>
+                                    <th>技术标准 / 运行时版本</th>
+                                    <th>设计规范与说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>服务端核心语言</strong></td>
+                                    <td><span class="spec-chip">PHP 8.2 (Apache)</span></td>
+                                    <td>符合 PSR-4 与 PSR-12 标准，配备自适应 SVG 矢量防混淆验证码引擎</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>数据库引擎</strong></td>
+                                    <td><span class="spec-chip">MariaDB 10.6 / MySQL 8.0</span></td>
+                                    <td>采用 UTF-8 编码，包含预置企业业务数据表及注入演练专有上下文</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>前端交互设计体系</strong></td>
+                                    <td><span class="spec-chip">Geist Typography · Phosphor Icons</span></td>
+                                    <td>严格遵循 landing-page-design 规范，平铺式高阶表面与无死角状态响应</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>认证 Flag 引擎</strong></td>
+                                    <td><span class="spec-chip">Pikachu\FlagEngine</span></td>
+                                    <td>会话签名级动态 Flag 生成，涵盖 OSEP/OSWE/OSED 42 个认证关卡</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </div> <!-- /.portal-container -->
+        </div><!-- /.page-content -->
     </div>
-</div>
+</div><!-- /.main-content -->
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    // Scroll reveal observers
+    if ('IntersectionObserver' in window) {
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+        document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('revealed'));
+    }
+});
+</script>
 
 <?php
 include 'footer.php';

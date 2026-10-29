@@ -38,13 +38,18 @@ if (!isset($ACTIVE)){
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-    <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="<?php echo $PIKA_ROOT_DIR;?>assets/css/bootstrap.min.css" / >
+    <!-- Google Fonts: Geist & Geist Mono (Modern Craftsmanship) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons (High Quality Clean Vector Icons) -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css"/>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css"/>
+
+    <!-- bootstrap & fontawesome fallback -->
+    <link rel="stylesheet" href="<?php echo $PIKA_ROOT_DIR;?>assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo $PIKA_ROOT_DIR;?>assets/font-awesome/4.5.0/css/font-awesome.min.css" />
-
-    <!-- page specific plugin styles -->
-
-    <!-- text fonts: system native font stack -->
 
     <!-- ace styles -->
     <link rel="stylesheet" href="<?php echo $PIKA_ROOT_DIR;?>assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
@@ -98,10 +103,10 @@ if (!isset($ACTIVE)){
     <div class="navbar-container ace-save-state" id="navbar-container">
 
         <div class="navbar-header pull-left">
-            <a href="<?php echo $PIKA_ROOT_DIR;?>index.php" class="navbar-brand">
-                <span class="brand-logo-badge"><i class="fa fa-bolt"></i></span>
-                <span class="brand-title">Pikachu-Enhanced</span>
-                <span class="brand-badge">v2.0 NEXT-GEN</span>
+            <a href="<?php echo $PIKA_ROOT_DIR;?>index.php" class="navbar-brand" style="text-decoration:none;">
+                <span class="brand-logo-badge" style="background:#0284c7; color:#fff; border-radius:6px;"><i class="ph-bold ph-shield-check" style="font-size:18px;"></i></span>
+                <span class="brand-title" style="letter-spacing:-0.02em;">Pikachu-Enhanced</span>
+                <span class="brand-badge" style="font-weight:600; letter-spacing:0.04em;">v3.0 ENTERPRISE</span>
             </a>
         </div>
 
@@ -112,9 +117,9 @@ if (!isset($ACTIVE)){
                 
                 function updateIcon(theme) {
                     if (theme === 'dark') {
-                        icon.className = 'fa fa-sun-o';
+                        icon.className = 'ph-bold ph-sun';
                     } else {
-                        icon.className = 'fa fa-moon-o';
+                        icon.className = 'ph-bold ph-moon';
                     }
                 }
                 
@@ -135,7 +140,7 @@ if (!isset($ACTIVE)){
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <button id="theme-toggle-btn" class="theme-toggle-btn" title="切换深色/浅色模式">
-                <i class="fa fa-sun-o" id="theme-icon"></i>
+                <i class="ph-bold ph-sun" id="theme-icon" style="font-size:16px;"></i>
             </button>
             <ul class="nav ace-nav" style="display:flex; align-items:center; background:transparent;">
                 <li class="dropdown-modal">
@@ -149,18 +154,18 @@ if (!isset($ACTIVE)){
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close" style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-md); box-shadow:var(--shadow-lg); padding:8px 0;">
                         <li>
                             <a href="<?php echo $PIKA_ROOT_DIR;?>index.php" style="color:var(--text-primary); padding:8px 16px; font-weight:600;">
-                                <i class="ace-icon fa fa-home"></i> 平台首页
+                                <i class="ph-bold ph-house" style="margin-right:6px; font-size:15px; vertical-align:middle;"></i> 平台首页
                             </a>
                         </li>
                         <li>
                             <a href="<?php echo $PIKA_ROOT_DIR;?>intro.php" style="color:var(--text-primary); padding:8px 16px; font-weight:600;">
-                                <i class="ace-icon fa fa-map"></i> 漏洞图鉴
+                                <i class="ph-bold ph-map-trifold" style="margin-right:6px; font-size:15px; vertical-align:middle;"></i> 漏洞图鉴
                             </a>
                         </li>
                         <li class="divider" style="background:var(--border-subtle); margin:6px 0;"></li>
                         <li>
                             <a href="<?php echo $PIKA_ROOT_DIR;?>install.php" style="color:var(--danger); padding:8px 16px; font-weight:600;">
-                                <i class="ace-icon fa fa-refresh"></i> 初始化环境
+                                <i class="ph-bold ph-arrows-clockwise" style="margin-right:6px; font-size:15px; vertical-align:middle;"></i> 初始化环境
                             </a>
                         </li>
                     </ul>
@@ -180,7 +185,7 @@ if (!isset($ACTIVE)){
         <!-- Pikachu Enhanced v2.0 - 侧边栏实时过滤与搜索框 -->
         <div class="sidebar-search-container" style="padding: 10px 12px 6px 12px; background: transparent; border-bottom: 1px solid rgba(255,255,255,0.06);">
             <div style="position: relative; display: flex; align-items: center;">
-                <i class="fa fa-search" style="position: absolute; left: 10px; color: var(--text-muted); font-size: 12px; pointer-events: none;"></i>
+                <i class="ph-bold ph-magnifying-glass" style="position: absolute; left: 10px; color: var(--text-muted); font-size: 14px; pointer-events: none;"></i>
                 <input type="text" id="pika-sidebar-filter" placeholder="快速检索靶场关卡..." autocomplete="off" style="width: 100%; height: 32px; padding: 4px 28px 4px 28px; font-size: 12px; border-radius: 6px; background: var(--bg-card); border: 1px solid var(--border-subtle); color: var(--text-main); outline: none; transition: all 0.2s ease;">
                 <i id="pika-sidebar-filter-clear" class="fa fa-times-circle" style="position: absolute; right: 10px; color: var(--text-muted); font-size: 13px; cursor: pointer; display: none;"></i>
             </div>

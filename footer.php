@@ -4,23 +4,29 @@ if (!isset($PIKA_ROOT_DIR)){
 }
 ?>
 
-<div class="footer" style="position:relative !important; clear:both !important; height:auto !important; width:100% !important; margin-top:50px !important; padding:0 !important; background:transparent !important;">
+<footer class="footer" style="position:relative !important; clear:both !important; height:auto !important; width:100% !important; margin-top:var(--spacing-700) !important; padding:0 !important; background:transparent !important;">
     <div class="footer-inner" style="position:relative !important; left:auto !important; right:auto !important; bottom:auto !important; width:100% !important; margin:0 !important;">
-        <div class="footer-content" style="position:relative !important; left:auto !important; right:auto !important; bottom:auto !important; width:100% !important; background:transparent !important; border-top:1px solid var(--border-subtle) !important; padding:18px 24px !important; display:flex !important; justify-content:space-between !important; align-items:center !important; flex-wrap:wrap !important; gap:12px !important;">
-            <div style="display:flex; align-items:center; gap:8px;">
-                <span class="label label-info" style="font-size:11px; padding:3px 8px; border-radius:4px;"><i class="fa fa-shield"></i> Pikachu-Enhanced</span>
-                <span style="color:var(--text-muted); font-size:12.5px;">v2.0 Next-Gen Cyber-Range &copy; <?php echo date('Y'); ?></span>
+        <div class="footer-content" style="position:relative !important; left:auto !important; right:auto !important; bottom:auto !important; width:100% !important; background:transparent !important; border-top:1px solid var(--border-subtle) !important; padding:var(--spacing-300) var(--spacing-400) !important; display:flex !important; justify-content:space-between !important; align-items:center !important; flex-wrap:wrap !important; gap:var(--spacing-200) !important;">
+            <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+                <span style="display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; padding:4px 10px; border-radius:var(--radius-md); background:var(--bg-secondary); border:1px solid var(--border-subtle); color:var(--text-primary);">
+                    <i class="ph-bold ph-shield-check" style="color:var(--primary); font-size:14px;"></i> Pikachu-Enhanced
+                </span>
+                <span style="color:var(--text-muted); font-size:13px;">Enterprise Cyber Range &copy; <?php echo date('Y'); ?> · MIT License</span>
             </div>
-            <div style="color:var(--text-muted); font-size:12px; display:flex; gap:16px;">
-                <span><i class="fa fa-terminal" style="color:var(--primary);"></i> 封闭演练靶场</span>
-                <span><i class="fa fa-code-fork" style="color:var(--accent);"></i> 170+ 实战关卡</span>
+            <div style="color:var(--text-muted); font-size:13px; display:flex; align-items:center; gap:var(--spacing-300); flex-wrap:wrap;">
+                <a href="<?php echo $PIKA_ROOT_DIR;?>index.php" style="color:var(--text-secondary); text-decoration:none; font-weight:500; transition:color 0.2s;"><i class="ph ph-terminal-window"></i> 靶场概览</a>
+                <a href="<?php echo $PIKA_ROOT_DIR;?>intro.php" style="color:var(--text-secondary); text-decoration:none; font-weight:500; transition:color 0.2s;"><i class="ph ph-map-trifold"></i> 战术图鉴</a>
+                <span style="display:inline-flex; align-items:center; gap:6px;"><i class="ph-bold ph-git-fork" style="color:var(--accent);"></i> 226+ 实战关卡</span>
+                <span style="color:var(--text-muted);">|</span>
+                <span style="font-size:12px; color:var(--text-muted);">本地离线沙箱 · 零数据外发</span>
             </div>
         </div>
     </div>
+</footer>
 </div>
 
 <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse" style="border-radius:var(--radius-full); width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center;">
-    <i class="ace-icon fa fa-angle-double-up icon-only"></i>
+    <i class="ph-bold ph-arrow-up" style="font-size:16px;"></i>
 </a>
 </div><!-- /.main-container -->
 
