@@ -99,4 +99,14 @@ INSERT INTO `flag_vault` (`id`, `flag_name`, `flag_val`) VALUES
 (4, 'idor_flag', 'flag{Pikachu_IDOR_Privilege_Escalation_Master}'),
 (5, 'jwt_flag', 'flag{Pikachu_JWT_Modern_Auth_Token_Bypassed}');
 
+-- 7. Anti-replay request logs table (Frontend Encryption Lab)
+DROP TABLE IF EXISTS `requests`;
+CREATE TABLE `requests` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `requestID` varchar(255) NOT NULL,
+  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `requestID` (`requestID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
+
 SET FOREIGN_KEY_CHECKS = 1;

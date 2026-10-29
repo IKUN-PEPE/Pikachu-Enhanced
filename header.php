@@ -1254,6 +1254,71 @@ if (!isset($ACTIVE)){
 
                 </ul>
             </li>
+<li class="<?php echo isset($ACTIVE[340]) ? $ACTIVE[340] : '';?>">
+                <a href="#" class="dropdown-toggle">
+                    <span class="menu-text">
+                前端加解密对抗 (Crypto)
+                    </span>
+                    <b class="arrow fa fa-angle-right"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="<?php echo isset($ACTIVE[341]) ? $ACTIVE[341] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/encrypt/encrypt.php">
+                            概述
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[342]) ? $ACTIVE[342] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/encrypt/aes.php">
+                            AES 固定 Key
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[343]) ? $ACTIVE[343] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/encrypt/aesserver.php">
+                            AES 服务端获取 Key
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[344]) ? $ACTIVE[344] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/encrypt/rsa.php">
+                            RSA 非对称加密
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[345]) ? $ACTIVE[345] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/encrypt/aesrsa.php">
+                            AES + RSA 混合加密
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[346]) ? $ACTIVE[346] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/encrypt/des.php">
+                            DES 规律 Key
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[347]) ? $ACTIVE[347] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/encrypt/signdata.php">
+                            明文加签防篡改
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[348]) ? $ACTIVE[348] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/encrypt/signdataserver.php">
+                            服务端动态加签
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="<?php echo isset($ACTIVE[349]) ? $ACTIVE[349] : '';?>" >
+                        <a href="<?php echo $PIKA_ROOT_DIR;?>vul/encrypt/norepeater.php">
+                            防止重放测试
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
                 </ul>
             </li>
 

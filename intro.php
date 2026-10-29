@@ -1259,7 +1259,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                         <h2 class="domain-section-title">
                             🔑 现代身份认证与访问控制 (Modern Auth & Identity Security)
                         </h2>
-                        <span class="domain-section-badge">11 大攻防场景</span>
+                        <span class="domain-section-badge">13 大攻防场景</span>
                     </div>
                     <div class="matrix-grid">
                         <div class="matrix-card" data-domain="auth">
@@ -1373,6 +1373,45 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                             </div>
                             <div class="card-footer-row">
                                 <a href="vul/api_security/mass_assignment.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="matrix-card" data-domain="auth">
+                            <div>
+                                <div class="card-header-row">
+                                    <span class="card-cat-badge cat-badge-auth">前端密码学</span>
+                                    <span class="card-rating-pill">★★★★☆ <span class="pts">260 PTS</span></span>
+                                </div>
+                                <h3 class="card-vuln-title">前端加解密对抗 (AES / RSA 混合数字信封)</h3>
+                                <p class="card-vuln-desc">深度集成 encrypt-labs 体系：AES 固定/动态密钥、RSA-1024 非对称加密与数字信封逆向分析，掌握 Burp 自动化发包与 JSRpc 穿透。</p>
+                                <div class="card-tags-row">
+                                    <span class="tech-tag">AES-128-CBC</span>
+                                    <span class="tech-tag">RSA-1024</span>
+                                    <span class="tech-tag">Digital Envelope</span>
+                                    <span class="tech-tag">JSRpc</span>
+                                </div>
+                            </div>
+                            <div class="card-footer-row">
+                                <a href="vul/encrypt/encrypt.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="matrix-card" data-domain="auth">
+                            <div>
+                                <div class="card-header-row">
+                                    <span class="card-cat-badge cat-badge-auth">防篡改与重放</span>
+                                    <span class="card-rating-pill">★★★★☆ <span class="pts">240 PTS</span></span>
+                                </div>
+                                <h3 class="card-vuln-title">HMAC-SHA256 数据防篡改与防重放对抗</h3>
+                                <p class="card-vuln-desc">涵盖前端明文加签、服务端动态加签预言机漏洞、以及毫秒级 RSA 时间戳 Nonce 与数据库 requestID 唯一消费校验对抗。</p>
+                                <div class="card-tags-row">
+                                    <span class="tech-tag">HMAC-SHA256</span>
+                                    <span class="tech-tag">Signing Oracle</span>
+                                    <span class="tech-tag">Anti-Replay</span>
+                                </div>
+                            </div>
+                            <div class="card-footer-row">
+                                <a href="vul/encrypt/signdata.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
                     </div>
