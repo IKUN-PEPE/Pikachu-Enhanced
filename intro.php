@@ -1,7 +1,8 @@
 <?php
 /**
- * Pikachu-Enhanced v3.0 Enterprise Cyber Range
+ * Pikachu-Enhanced Modern Enterprise Cyber Range
  * Global Threat Matrix & Interactive Vulnerability Roadmap
+ * Refactored strictly per landing-page-design & redesign-existing-projects
  */
 
 include_once 'inc/config.inc.php';
@@ -20,405 +21,552 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
 
 <style>
 /* ==========================================================================
-   Cyber Range Command Center & Threat Matrix Styles (v3.0 High-End)
+   Modern Threat Matrix & Enterprise Portal Styles
+   Strict adherence to landing-page-design & redesign-existing-projects
    ========================================================================== */
-:root {
-    --cyber-glow-blue: rgba(56, 189, 248, 0.35);
-    --cyber-glow-purple: rgba(168, 85, 247, 0.35);
-    --cyber-glow-green: rgba(34, 197, 94, 0.35);
-    --cyber-glow-amber: rgba(245, 158, 11, 0.35);
-}
 
-.threat-matrix-wrapper {
-    max-width: 100%;
+.threat-matrix-container {
+    max-width: 1360px;
     margin: 0 auto;
-    padding: 6px 0 50px 0;
+    padding: var(--spacing-200) var(--spacing-200) var(--spacing-900) var(--spacing-200);
 }
 
-/* Futuristic Command Center Hero */
-.command-hero {
+/* 1. Flat Modern Command Hero (No Background Gradients) */
+.command-hero-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-600) var(--spacing-600);
+    margin-bottom: var(--spacing-500);
     position: relative;
-    border-radius: 16px;
-    padding: 36px 40px;
-    margin-bottom: 26px;
-    color: #ffffff;
-    overflow: hidden;
-    background: linear-gradient(135deg, #090d16 0%, #0f172a 45%, #1e1b4b 100%);
-    border: 1px solid rgba(56, 189, 248, 0.25);
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.command-hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: 
-        linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
-    background-size: 32px 32px;
-    pointer-events: none;
-    opacity: 0.8;
-}
-
-.command-hero::after {
-    content: '';
-    position: absolute;
-    top: -80px;
-    right: -80px;
-    width: 320px;
-    height: 320px;
-    background: radial-gradient(circle, rgba(14, 165, 233, 0.25) 0%, rgba(99, 102, 241, 0.15) 50%, transparent 70%);
-    border-radius: 50%;
-    filter: blur(40px);
-    pointer-events: none;
-}
-
-.hero-status-pill {
+.hero-status-badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 5px 14px;
-    border-radius: 9999px;
-    background: rgba(15, 23, 42, 0.7);
-    border: 1px solid rgba(56, 189, 248, 0.4);
-    font-size: 11.5px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    color: #38bdf8;
+    gap: var(--spacing-75);
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--primary);
     text-transform: uppercase;
-    margin-bottom: 16px;
-    backdrop-filter: blur(8px);
+    margin-bottom: var(--spacing-200);
 }
 
-.radar-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #22c55e;
-    box-shadow: 0 0 10px #22c55e;
-    animation: radarPulse 2s infinite ease-in-out;
+.hero-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: var(--success);
+    display: inline-block;
 }
 
-@keyframes radarPulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.85); }
-}
-
-.command-title {
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin: 0 0 10px 0;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-}
-
-.command-title span.version-badge {
-    font-size: 13px;
+.hero-headline {
+    font-size: 36px;
+    line-height: 40px;
     font-weight: 700;
-    padding: 3px 10px;
-    background: linear-gradient(135deg, #2563eb, #06b6d4);
-    border-radius: 6px;
-    color: #fff;
-    vertical-align: middle;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.02em;
+    max-width: 680px;
+    margin: 0 0 var(--spacing-100) 0;
+    text-wrap: balance;
 }
 
-.command-subtitle {
-    font-size: 14.5px;
-    line-height: 1.7;
-    color: #94a3b8;
-    max-width: 960px;
-    margin-bottom: 24px;
+.hero-subheadline {
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin: 0 0 var(--spacing-400) 0;
+    text-wrap: pretty;
 }
 
-/* Tactical Telemetry Metrics Row */
-.telemetry-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 14px;
-    margin-top: 18px;
-}
-
-.telemetry-card {
-    background: rgba(15, 23, 42, 0.65);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 14px 18px;
-    backdrop-filter: blur(10px);
-    transition: all 0.2s ease;
+.hero-actions-group {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: var(--spacing-100);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-600);
 }
 
-.telemetry-card:hover {
-    border-color: rgba(56, 189, 248, 0.4);
+.hero-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-75);
+    padding: 8px 14px;
+    border-radius: var(--radius-lg);
+    background: var(--primary);
+    color: #ffffff !important;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: transform var(--duration-movement) var(--ease-base), background-color var(--duration-color) var(--ease-base);
+    border: none;
+    cursor: pointer;
+}
+.hero-btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+.hero-btn-primary:active {
+    transform: scale(0.98);
+}
+
+.hero-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-75);
+    padding: 8px 14px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary) !important;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: transform var(--duration-movement) var(--ease-base), background-color var(--duration-color) var(--ease-base), border-color var(--duration-color) var(--ease-base);
+    cursor: pointer;
+}
+.hero-btn-secondary:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border-strong);
+    transform: translateY(-1px);
+}
+.hero-btn-secondary:active {
+    transform: scale(0.98);
+}
+
+/* Telemetry Metrics Row */
+.telemetry-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-200);
+    padding-top: var(--spacing-400);
+    border-top: 1px solid var(--border-subtle);
+}
+
+.telemetry-item-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-200) var(--spacing-300);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-200);
+    transition: transform var(--duration-movement) var(--ease-base), border-color var(--duration-color) var(--ease-base);
+}
+.telemetry-item-card:hover {
+    border-color: var(--border-strong);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
-.telemetry-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
+.telemetry-icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--primary);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 20px;
     flex-shrink: 0;
 }
-.icon-blue { background: rgba(37, 99, 235, 0.18); color: #38bdf8; border: 1px solid rgba(37, 99, 235, 0.3); }
-.icon-emerald { background: rgba(16, 185, 129, 0.18); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-.icon-purple { background: rgba(168, 85, 247, 0.18); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
-.icon-amber { background: rgba(245, 158, 11, 0.18); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
 
-.telemetry-num {
-    font-size: 22px;
-    font-weight: 800;
-    color: #f8fafc;
-    line-height: 1.2;
+.telemetry-metric-val {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Geist Mono', monospace;
+    font-variant-numeric: tabular-nums;
 }
 
-.telemetry-label {
+.telemetry-metric-lbl {
     font-size: 12px;
-    color: #94a3b8;
+    line-height: 16px;
+    color: var(--text-muted);
     font-weight: 500;
 }
 
-/* Interactive Control Console */
-.control-console {
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: 14px;
-    padding: 18px 22px;
-    margin-bottom: 26px;
-    box-shadow: var(--shadow-sm);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+/* 2. Mandatory B11 Tagline Reveal Section */
+.tagline-container {
+    padding: var(--spacing-800) var(--spacing-300);
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: left;
 }
 
-.search-input-wrap {
+.tagline-lead {
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    text-wrap: balance;
+}
+@media (min-width: 768px) {
+    .tagline-lead {
+        font-size: 36px;
+        line-height: 40px;
+    }
+}
+
+.tagline-word {
+    display: inline-block;
+    opacity: 0.28;
+    transition: opacity 500ms var(--ease-base), color 500ms var(--ease-base);
+    margin-right: 0.22em;
+}
+.tagline-word.active {
+    opacity: 1 !important;
+    color: var(--text-primary) !important;
+}
+
+/* 3. Three-Step Methodology Section */
+.workflow-section {
+    margin-bottom: var(--spacing-600);
+}
+
+.section-eyebrow {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: var(--spacing-75);
+}
+
+.section-heading {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin: 0 0 var(--spacing-400) 0;
+    text-wrap: balance;
+}
+
+.workflow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-200);
+}
+
+.workflow-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-300);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.workflow-step-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary);
+    background: var(--primary-light);
+    border: 1px solid rgba(2, 132, 199, 0.2);
+    padding: 3px 8px;
+    border-radius: var(--radius-md);
+    width: fit-content;
+    margin-bottom: var(--spacing-200);
+}
+
+.workflow-card-title {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 var(--spacing-75) 0;
+}
+
+.workflow-card-body {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--text-secondary);
+    margin: 0;
+    text-wrap: pretty;
+}
+
+/* 4. Outcomes and Benefits Section (4 Bullets) */
+.benefits-section {
+    margin-bottom: var(--spacing-600);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-200);
+}
+
+.benefit-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-300);
+}
+
+.benefit-item h4 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 var(--spacing-50) 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.benefit-item h4 i {
+    color: var(--primary);
+}
+
+.benefit-item p {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--text-secondary);
+    margin: 0;
+    text-wrap: pretty;
+}
+
+/* 5. Threat Intel Control Console */
+.control-console-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-300);
+    margin-bottom: var(--spacing-400);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-200);
+}
+
+.search-field-wrap {
     position: relative;
     width: 100%;
 }
-
-.search-input-wrap i.search-icon {
+.search-field-wrap i.search-field-icon {
     position: absolute;
-    left: 16px;
+    left: 14px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
-    font-size: 15px;
+    font-size: 16px;
+    pointer-events: none;
 }
-
-.search-input-wrap input {
+.search-field-wrap input {
     width: 100%;
-    height: 46px;
-    padding: 0 46px 0 44px;
-    border-radius: 10px;
+    height: 44px;
+    padding: 0 40px 0 40px;
+    border-radius: var(--radius-lg);
     border: 1px solid var(--border-subtle);
-    background: var(--bg-app);
+    background: var(--bg-secondary);
     color: var(--text-primary);
     font-size: 14px;
     font-weight: 500;
-    transition: all 0.2s ease;
+    transition: border-color var(--duration-color) var(--ease-base), background-color var(--duration-color) var(--ease-base);
     box-sizing: border-box;
 }
-
-.search-input-wrap input:focus {
+.search-field-wrap input:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
     background: var(--bg-card);
+    box-shadow: 0 0 0 2px var(--primary-light);
 }
 
-.filter-categories-scroll {
+.filter-pills-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: var(--spacing-75);
     align-items: center;
 }
 
-.domain-pill {
-    padding: 7px 14px;
-    border-radius: 8px;
+.domain-pill-btn {
+    padding: 6px 12px;
+    border-radius: var(--radius-md);
     border: 1px solid var(--border-subtle);
-    background: var(--bg-app);
+    background: var(--bg-secondary);
     color: var(--text-secondary);
-    font-size: 12.5px;
+    font-size: 13px;
+    line-height: 20px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform var(--duration-movement) var(--ease-base), background-color var(--duration-color) var(--ease-base), border-color var(--duration-color) var(--ease-base), color var(--duration-color) var(--ease-base);
     display: inline-flex;
     align-items: center;
     gap: 6px;
     user-select: none;
 }
-
-.domain-pill:hover {
-    color: var(--primary);
-    border-color: var(--primary);
-    background: var(--primary-light);
+.domain-pill-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+    background: var(--bg-tertiary);
     transform: translateY(-1px);
 }
-
-.domain-pill.active {
+.domain-pill-btn:active {
+    transform: scale(0.98);
+}
+.domain-pill-btn.active {
     background: var(--primary);
     color: #ffffff;
     border-color: var(--primary);
-    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
 }
-
-.domain-pill .pill-badge {
-    font-size: 10.5px;
+.domain-pill-btn .pill-counter {
+    font-size: 11px;
     padding: 1px 6px;
-    border-radius: 12px;
-    background: rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius-sm);
+    background: rgba(0, 0, 0, 0.12);
+    font-family: 'Geist Mono', monospace;
 }
-.domain-pill.active .pill-badge {
+.domain-pill-btn.active .pill-counter {
     background: rgba(255, 255, 255, 0.25);
-    color: #fff;
+    color: #ffffff;
 }
 
-/* Category Sections */
+/* 6. Target Matrix Cards (Preserving all targets) */
 .domain-section {
-    margin-bottom: 34px;
+    margin-bottom: var(--spacing-500);
 }
 
 .domain-section-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 16px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--border-subtle);
+    margin-bottom: var(--spacing-200);
+    padding-bottom: var(--spacing-100);
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .domain-section-title {
     font-size: 18px;
+    line-height: 28px;
     font-weight: 700;
     color: var(--text-primary);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     margin: 0;
 }
 
 .domain-section-badge {
-    font-size: 11.5px;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 6px;
-    background: var(--bg-sidebar-hover);
-    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    color: var(--text-muted);
     border: 1px solid var(--border-subtle);
 }
 
-/* Matrix Card Grid */
 .matrix-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-    gap: 16px;
+    gap: var(--spacing-200);
 }
 
 .matrix-card {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-radius: 12px;
-    padding: 18px 20px;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-300);
+    transition: transform var(--duration-movement) var(--ease-base), border-color var(--duration-color) var(--ease-base), box-shadow var(--duration-color) var(--ease-base);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
     overflow: hidden;
 }
-
 .matrix-card:hover {
-    border-color: var(--primary);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md), 0 0 16px rgba(37, 99, 235, 0.12);
+    border-color: var(--border-strong);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .card-header-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing-100);
 }
 
 .card-cat-badge {
     font-size: 11px;
-    font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 6px;
+    line-height: 16px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: var(--radius-sm);
     text-transform: uppercase;
     letter-spacing: 0.03em;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-secondary);
+    color: var(--primary);
 }
-.cat-badge-web { background: rgba(37, 99, 235, 0.1); color: #2563eb; border: 1px solid rgba(37, 99, 235, 0.2); }
-.cat-badge-cloud { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2); }
-.cat-badge-auth { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; border: 1px solid rgba(139, 92, 246, 0.2); }
-.cat-badge-proto { background: rgba(6, 182, 212, 0.1); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.2); }
-.cat-badge-ai { background: rgba(236, 72, 153, 0.1); color: #ec4899; border: 1px solid rgba(236, 72, 153, 0.2); }
-.cat-badge-defense { background: rgba(34, 197, 94, 0.1); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.2); }
-.cat-badge-ad { background: rgba(99, 102, 241, 0.1); color: #6366f1; border: 1px solid rgba(99, 102, 241, 0.2); }
-.cat-badge-osep { background: rgba(168, 85, 247, 0.1); color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.2); }
-.cat-badge-oswe { background: rgba(14, 165, 233, 0.1); color: #0ea5e9; border: 1px solid rgba(14, 165, 233, 0.2); }
-.cat-badge-osed { background: rgba(249, 115, 22, 0.1); color: #f97316; border: 1px solid rgba(249, 115, 22, 0.2); }
 
 .card-rating-pill {
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-muted);
+    font-family: 'Geist Mono', monospace;
 }
 .card-rating-pill span.pts {
-    color: #eab308;
+    color: var(--warning);
     margin-left: 4px;
 }
 
 .card-vuln-title {
     font-size: 15px;
+    line-height: 22px;
     font-weight: 700;
     color: var(--text-primary);
-    margin: 0 0 8px 0;
-    line-height: 1.4;
+    margin: 0 0 var(--spacing-75) 0;
 }
 
 .card-vuln-desc {
     font-size: 13px;
+    line-height: 20px;
     color: var(--text-secondary);
-    line-height: 1.6;
-    margin: 0 0 14px 0;
+    margin: 0 0 var(--spacing-200) 0;
+    text-wrap: pretty;
 }
 
 .card-tags-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 14px;
+    gap: var(--spacing-50);
+    margin-bottom: var(--spacing-200);
 }
 
 .tech-tag {
-    font-size: 10.5px;
-    font-weight: 600;
+    font-size: 11px;
+    line-height: 16px;
+    font-weight: 500;
     padding: 2px 6px;
-    border-radius: 4px;
-    background: var(--bg-sidebar-hover);
+    border-radius: var(--radius-sm);
+    background: var(--bg-secondary);
     color: var(--text-secondary);
     border: 1px solid var(--border-subtle);
+    font-family: 'Geist Mono', monospace;
 }
 
 .card-footer-row {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-top: 10px;
+    padding-top: var(--spacing-100);
     border-top: 1px solid var(--border-subtle);
 }
 
@@ -426,53 +574,145 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 14px;
-    border-radius: 7px;
-    font-size: 12.5px;
-    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 600;
     color: #ffffff !important;
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    background: var(--primary);
     text-decoration: none !important;
-    transition: all 0.18s ease;
-    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+    transition: transform var(--duration-movement) var(--ease-base), background-color var(--duration-color) var(--ease-base);
+    border: none;
+    cursor: pointer;
 }
-
 .launch-target-btn:hover {
-    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    background: var(--primary-hover);
     transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+}
+.launch-target-btn:active {
+    transform: scale(0.98);
 }
 
-.launch-target-btn i {
-    transition: transform 0.2s ease;
+/* 7. Technical FAQ Section */
+.faq-section {
+    margin-top: var(--spacing-800);
+    margin-bottom: var(--spacing-600);
 }
-.launch-target-btn:hover i {
-    transform: translateX(3px);
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-300);
+    margin-top: var(--spacing-300);
+}
+
+.faq-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-300);
+}
+
+.faq-question {
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 var(--spacing-100) 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+.faq-question i {
+    color: var(--primary);
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.faq-answer {
+    font-size: 13.5px;
+    line-height: 20px;
+    color: var(--text-secondary);
+    margin: 0;
+    text-wrap: pretty;
+}
+
+/* 8. Final CTA & Risk Reversal Card */
+.final-cta-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-2xl);
+    padding: var(--spacing-600) var(--spacing-400);
+    text-align: center;
+    margin-bottom: var(--spacing-600);
+}
+
+.final-cta-title {
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin: 0 auto var(--spacing-100) auto;
+    max-width: 600px;
+    text-wrap: balance;
+}
+
+.final-cta-subtitle {
+    font-size: 15px;
+    line-height: 22px;
+    color: var(--text-secondary);
+    margin: 0 auto var(--spacing-400) auto;
+    max-width: 540px;
+    text-wrap: pretty;
+}
+
+.risk-reversal-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-300);
+    flex-wrap: wrap;
+    margin-top: var(--spacing-300);
+    font-size: 12.5px;
+    color: var(--text-muted);
+}
+.risk-reversal-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.risk-reversal-item i {
+    color: var(--success);
 }
 
 /* Empty State */
 .empty-search-state {
     display: none;
     text-align: center;
-    padding: 60px 20px;
+    padding: var(--spacing-700) var(--spacing-300);
     background: var(--bg-card);
-    border-radius: 12px;
+    border-radius: var(--radius-xl);
     border: 1px dashed var(--border-subtle);
+    margin-bottom: var(--spacing-400);
 }
 .empty-search-state i {
-    font-size: 48px;
+    font-size: 40px;
     color: var(--text-muted);
-    margin-bottom: 16px;
+    margin-bottom: var(--spacing-100);
 }
 .empty-search-state h3 {
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 24px;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 8px;
+    margin: 0 0 var(--spacing-50) 0;
 }
 .empty-search-state p {
     color: var(--text-muted);
     font-size: 13px;
+    margin: 0;
 }
 </style>
 
@@ -481,94 +721,171 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
         <div class="breadcrumbs ace-save-state" id="breadcrumbs">
             <ul class="breadcrumb">
                 <li>
-                    <i class="ace-icon fa fa-home home-icon"></i>
+                    <i class="ph-bold ph-house" style="font-size:14px; vertical-align:middle;"></i>
                     <a href="index.php">主页</a>
                 </li>
-                <li class="active">📊 全局漏洞图鉴与网络空间靶标态势中枢 (v3.0)</li>
+                <li class="active">全局漏洞图鉴与网络空间靶标态势中枢</li>
             </ul>
         </div>
 
         <div class="page-content">
-            <div class="threat-matrix-wrapper">
+            <div class="threat-matrix-container">
 
-                <!-- 1. Futuristic Command Hero -->
-                <div class="command-hero">
-                    <div class="hero-status-pill">
-                        <span class="radar-dot"></span>
-                        CYBER MATRIX ONLINE · THREAT INTEL COMMAND
+                <!-- 1. Flat Modern Command Hero -->
+                <section class="command-hero-card scroll-reveal">
+                    <div class="hero-status-badge">
+                        <span class="hero-status-dot"></span>
+                        CYBER RANGE ACTIVE · MITRE ATT&CK ALIGNED
                     </div>
-                    <h1 class="command-title">
-                        ⚡ 全局漏洞图鉴与战术攻防演练路线图
-                        <span class="version-badge">v3.0 ENTERPRISE</span>
+                    
+                    <h1 class="hero-headline hero-text-gradient">
+                        实战级网络安全靶标与战术攻防演练路线图
                     </h1>
-                    <div class="command-subtitle">
-                        系统化全技术栈网络安全攻防图谱！覆盖 11 大顶层核心安全域、47 个战术漏洞矩阵与 226+ 个全真沙箱靶标。对标 OWASP Top 10、MITRE ATT&CK 框架与 OffSec (OSEP / OSWE / OSED) 认证考核标准，支持一站式检索与快速直达。
+                    
+                    <p class="hero-subheadline">
+                        全技术栈系统化实战演练环境。覆盖 11 大顶层核心安全域、47 个细分漏洞战术矩阵与 226 个独立物理靶标关卡。对标 OWASP Top 10、MITRE ATT&CK 框架与 OffSec 认证考核标准，执行真实底层代码审计与漏洞利用验证。
+                    </p>
+
+                    <div class="hero-actions-group">
+                        <a href="#matrix-console" class="hero-btn-primary">
+                            <i class="ph-bold ph-crosshair" style="font-size:18px;"></i> 接入靶标演练
+                        </a>
+                        <a href="javascript:void(0);" onclick="document.querySelector('[data-target=\'osep\']').click(); document.getElementById('matrix-console').scrollIntoView({behavior:'smooth'});" class="hero-btn-secondary">
+                            <i class="ph-bold ph-flag" style="font-size:18px; color:var(--warning);"></i> 认证 Flag 专区
+                        </a>
                     </div>
 
-                    <!-- Telemetry Metrics Row -->
-                    <div class="telemetry-grid">
-                        <div class="telemetry-card">
-                            <div class="telemetry-icon icon-blue"><i class="fa fa-crosshairs"></i></div>
+                    <!-- Telemetry Metrics Grid -->
+                    <div class="telemetry-row">
+                        <div class="telemetry-item-card">
+                            <div class="telemetry-icon-box"><i class="ph-bold ph-crosshair"></i></div>
                             <div>
-                                <div class="telemetry-num">226+</div>
-                                <div class="telemetry-label">实战物理靶标关卡</div>
+                                <div class="telemetry-metric-val">226+</div>
+                                <div class="telemetry-metric-lbl">实战物理靶标关卡</div>
                             </div>
                         </div>
-                        <div class="telemetry-card">
-                            <div class="telemetry-icon icon-emerald"><i class="fa fa-sitemap"></i></div>
+                        <div class="telemetry-item-card">
+                            <div class="telemetry-icon-box"><i class="ph-bold ph-squares-four"></i></div>
                             <div>
-                                <div class="telemetry-num">11 大</div>
-                                <div class="telemetry-label">核心顶层安全领域</div>
+                                <div class="telemetry-metric-val">11 大</div>
+                                <div class="telemetry-metric-lbl">核心顶层安全领域</div>
                             </div>
                         </div>
-                        <div class="telemetry-card">
-                            <div class="telemetry-icon icon-purple"><i class="fa fa-cubes"></i></div>
+                        <div class="telemetry-item-card">
+                            <div class="telemetry-icon-box"><i class="ph-bold ph-stack"></i></div>
                             <div>
-                                <div class="telemetry-num">47 个</div>
-                                <div class="telemetry-label">细分漏洞战术矩阵</div>
+                                <div class="telemetry-metric-val">47 个</div>
+                                <div class="telemetry-metric-lbl">细分漏洞战术矩阵</div>
                             </div>
                         </div>
-                        <div class="telemetry-card">
-                            <div class="telemetry-icon icon-amber"><i class="fa fa-flag"></i></div>
+                        <div class="telemetry-item-card">
+                            <div class="telemetry-icon-box"><i class="ph-bold ph-flag-banner"></i></div>
                             <div>
-                                <div class="telemetry-num"><?php echo $total_flags_solved; ?> / 42</div>
-                                <div class="telemetry-label">认证 Flag 攻破进度</div>
+                                <div class="telemetry-metric-val"><?php echo $total_flags_solved; ?> / 42</div>
+                                <div class="telemetry-metric-lbl">认证 Flag 攻破进度</div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <!-- 2. Interactive Control Console -->
-                <div class="control-console">
-                    <div class="search-input-wrap">
-                        <i class="fa fa-search search-icon"></i>
-                        <input type="text" id="matrixSearchInput" placeholder="🔍 检索靶标名称、CVE 编号、技术协议、攻防手法（如：JWT, RCE, 走私, OSEP, 内存免杀, 原型链...）" />
+                <!-- 2. Mandatory B11 Tagline Reveal Section -->
+                <section class="tagline-container scroll-reveal" id="tagline-reveal-block">
+                    <div class="section-eyebrow">DESIGN PHILOSOPHY</div>
+                    <div class="tagline-lead">
+                        <span class="tagline-word">真实代码。</span>
+                        <span class="tagline-word">零模拟回显。</span>
+                        <span class="tagline-word">每一个漏洞路径</span>
+                        <span class="tagline-word">均直接映射真实生产系统的</span>
+                        <span class="tagline-word">安全防御失效点。</span>
+                        <span class="tagline-word">让防御与攻防实战能力</span>
+                        <span class="tagline-word">在代码沙箱中</span>
+                        <span class="tagline-word">完成闭环验证。</span>
+                    </div>
+                </section>
+
+                <!-- 3. Three-Step Methodology Section ("How it works") -->
+                <section class="workflow-section scroll-reveal">
+                    <div class="section-eyebrow">HOW IT WORKS</div>
+                    <h2 class="section-heading">系统化演练流程，三步完成技能跨越</h2>
+                    <div class="workflow-grid">
+                        <div class="workflow-card">
+                            <div>
+                                <div class="workflow-step-badge">STEP 01</div>
+                                <h3 class="workflow-card-title">定位目标与审计源码</h3>
+                                <p class="workflow-card-body">在 11 大核心安全域中选择挑战靶标，阅读真实环境业务逻辑与底层代码上下文，梳理潜在攻击面。</p>
+                            </div>
+                        </div>
+                        <div class="workflow-card">
+                            <div>
+                                <div class="workflow-step-badge">STEP 02</div>
+                                <h3 class="workflow-card-title">构造载荷与实操渗透</h3>
+                                <p class="workflow-card-body">通过浏览器、Burp Suite 或自动化脚本发送定制 Payload，完成身份伪造、内存越界、远程命令注入或逻辑绕过。</p>
+                            </div>
+                        </div>
+                        <div class="workflow-card">
+                            <div>
+                                <div class="workflow-step-badge">STEP 03</div>
+                                <h3 class="workflow-card-title">捕获 Flag 与闭环防御</h3>
+                                <p class="workflow-card-body">利用靶机提权或敏感文件读取触发动态 Flag 验证引擎，收获评估分值，对照源码完成漏洞修复加固。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. Core Benefits & Capabilities (4 Bullets) -->
+                <section class="benefits-section scroll-reveal">
+                    <div class="section-eyebrow">PLATFORM CAPABILITIES</div>
+                    <h2 class="section-heading">工业级设计标准，杜绝纸上谈兵</h2>
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <h4><i class="ph-bold ph-cpu"></i> 全栈真实物理环境</h4>
+                            <p>告别静态 Mock 接口，所有关卡均运行在独立的 PHP 8.2 与 MariaDB 实时容器执行引擎中，保障漏洞行为完全真实。</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4><i class="ph-bold ph-certificate"></i> OffSec 认证考核直连</h4>
+                            <p>全量覆盖 OSEP 红队免杀、OSWE 白盒代码审计与 OSED 漏洞利用逆向题库，每道关卡配备加密动态 Flag 校验机制。</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4><i class="ph-bold ph-globe"></i> 现代前沿协议全景</h4>
+                            <p>覆盖 HTTP/2 协议走私、GraphQL 批量查询注入、JWT 算法混淆绕过及 AI 大模型 Prompt 注入等新一代威胁矩阵。</p>
+                        </div>
+                        <div class="benefit-item">
+                            <h4><i class="ph-bold ph-shield-check"></i> 100% 本地离线隔离</h4>
+                            <p>纯容器本地化部署，不依赖任何公网云端服务，无需担忧敏感凭据泄露，随时随地开启安全的实战训练。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. Threat Intel Control Console -->
+                <section class="control-console-card scroll-reveal" id="matrix-console">
+                    <div class="search-field-wrap">
+                        <i class="ph-bold ph-magnifying-glass search-field-icon"></i>
+                        <input type="text" id="matrixSearchInput" placeholder="检索靶标名称、CVE 编号、技术协议、攻防手法（如：JWT, RCE, 走私, OSEP, 内存免杀, 原型链...）" autocomplete="off" />
                     </div>
 
-                    <div class="filter-categories-scroll" id="domainFilterTabs">
-                        <button class="domain-pill active" data-target="all"><i class="fa fa-th-large"></i> 全局展现 <span class="pill-badge">226+</span></button>
-                        <button class="domain-pill" data-target="classic"><i class="fa fa-fire"></i> 🏛️ 经典 Web <span class="pill-badge">17</span></button>
-                        <button class="domain-pill" data-target="cloud"><i class="fa fa-cloud"></i> ☁️ 云原生微服务 <span class="pill-badge">9</span></button>
-                        <button class="domain-pill" data-target="auth"><i class="fa fa-key"></i> 🔑 现代身份认证 <span class="pill-badge">11</span></button>
-                        <button class="domain-pill" data-target="business"><i class="fa fa-bolt"></i> ⚡ 业务逻辑并发 <span class="pill-badge">5</span></button>
-                        <button class="domain-pill" data-target="proto"><i class="fa fa-globe"></i> 🌐 新型协议接口 <span class="pill-badge">12</span></button>
-                        <button class="domain-pill" data-target="ai"><i class="fa fa-robot"></i> 🤖 AI 大模型安全 <span class="pill-badge">4</span></button>
-                        <button class="domain-pill" data-target="defense"><i class="fa fa-shield"></i> 🛡️ 蓝队主动防御 <span class="pill-badge">6</span></button>
-                        <button class="domain-pill" data-target="ad"><i class="fa fa-network-wired"></i> 🌐 AD 域控渗透 <span class="pill-badge">6</span></button>
-                        <button class="domain-pill" data-target="osep"><i class="fa fa-bullseye"></i> 🎯 OSEP 红队评估 <span class="pill-badge">18</span></button>
-                        <button class="domain-pill" data-target="oswe"><i class="fa fa-search-plus"></i> 🔍 OSWE 白盒审计 <span class="pill-badge">14</span></button>
-                        <button class="domain-pill" data-target="osed"><i class="fa fa-microchip"></i> 🔬 OSED 漏洞逆向 <span class="pill-badge">10</span></button>
+                    <div class="filter-pills-row" id="domainFilterTabs">
+                        <button class="domain-pill-btn active" data-target="all"><i class="ph-bold ph-squares-four"></i> 全局展现 <span class="pill-counter">226+</span></button>
+                        <button class="domain-pill-btn" data-target="classic"><i class="ph-bold ph-fire"></i> 经典 Web <span class="pill-counter">17</span></button>
+                        <button class="domain-pill-btn" data-target="cloud"><i class="ph-bold ph-cloud"></i> 云原生微服务 <span class="pill-counter">9</span></button>
+                        <button class="domain-pill-btn" data-target="auth"><i class="ph-bold ph-key"></i> 现代身份认证 <span class="pill-counter">11</span></button>
+                        <button class="domain-pill-btn" data-target="proto"><i class="ph-bold ph-globe"></i> 新型协议接口 <span class="pill-counter">12</span></button>
+                        <button class="domain-pill-btn" data-target="ai"><i class="ph-bold ph-robot"></i> AI 大模型安全 <span class="pill-counter">4</span></button>
+                        <button class="domain-pill-btn" data-target="defense"><i class="ph-bold ph-shield"></i> 蓝队主动防御 <span class="pill-counter">6</span></button>
+                        <button class="domain-pill-btn" data-target="ad"><i class="ph-bold ph-network"></i> AD 域控渗透 <span class="pill-counter">6</span></button>
+                        <button class="domain-pill-btn" data-target="osep"><i class="ph-bold ph-crosshair"></i> OSEP 红队评估 <span class="pill-counter">18</span></button>
+                        <button class="domain-pill-btn" data-target="oswe"><i class="ph-bold ph-file-code"></i> OSWE 白盒审计 <span class="pill-counter">14</span></button>
+                        <button class="domain-pill-btn" data-target="osed"><i class="ph-bold ph-microchip"></i> OSED 漏洞逆向 <span class="pill-counter">10</span></button>
                     </div>
-                </div>
+                </section>
 
-                <!-- Empty State -->
+                <!-- Empty Search State -->
                 <div id="emptyMatrixState" class="empty-search-state">
-                    <i class="fa fa-search-minus"></i>
+                    <i class="ph-bold ph-magnifying-glass-minus"></i>
                     <h3>未检索到匹配的靶标关卡</h3>
                     <p>请尝试精简或更换关键词，或点击“全局展现”恢复所有安全域靶标。</p>
                 </div>
 
-                <!-- ================= 1. 经典 Web 攻防演练 ================= -->
+                <!-- 6. Preserved 60 Target Matrix Cards (11 Domains) -->
                 <div class="domain-section" data-domain="classic">
                     <div class="domain-section-header">
                         <h2 class="domain-section-title">
@@ -593,7 +910,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/sqli/sqli_str.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/sqli/sqli_str.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -613,7 +930,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/xss/xss_reflected_get.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/xss/xss_reflected_get.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -633,7 +950,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/rce/rce_ping.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/rce/rce_ping.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -652,7 +969,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/unsafeupload/zip_slip.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/unsafeupload/zip_slip.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -672,7 +989,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/ssrf/ssrf_gopher_redis.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/ssrf/ssrf_gopher_redis.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -691,7 +1008,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/xxe/xxe_1.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/xxe/xxe_1.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -710,7 +1027,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/phar/phar.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/phar/phar.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -729,7 +1046,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/fileinclude/fi_local.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/fileinclude/fi_local.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -748,7 +1065,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/csrf/csrfget/csrf_get_edit.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/csrf/csrfget/csrf_get_edit.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -767,7 +1084,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/overpermission/op1_mem.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/overpermission/op1_mem.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -786,7 +1103,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/unsafeupload/clientcheck.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/unsafeupload/clientcheck.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -805,7 +1122,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/java_unserialize/java_unserialize.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/java_unserialize/java_unserialize.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
                     </div>
@@ -835,7 +1152,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/dockerlab/docker_privileged_escape.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/dockerlab/docker_privileged_escape.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -854,7 +1171,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/dockerlab/docker_sock_escape.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/dockerlab/docker_sock_escape.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -873,7 +1190,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/dockerlab/docker_caps_escape.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/dockerlab/docker_caps_escape.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -892,7 +1209,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/dockerlab/k8s_token_escape.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/dockerlab/k8s_token_escape.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -911,7 +1228,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/cloud_storage/s3_unauth.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/cloud_storage/s3_unauth.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -930,7 +1247,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/serverless/lambda_env_leak.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/serverless/lambda_env_leak.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
                     </div>
@@ -960,7 +1277,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/jwt/jwt_weak_secret.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/jwt/jwt_weak_secret.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -979,7 +1296,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/jwt/jwt_key_confusion.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/jwt/jwt_key_confusion.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -998,7 +1315,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/sso_saml/saml_xsw.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/sso_saml/saml_xsw.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1017,7 +1334,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/oauth/oauth_state.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/oauth/oauth_state.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1036,7 +1353,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/mfa_bypass/mfa_race.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/mfa_bypass/mfa_race.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1055,7 +1372,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/api_security/mass_assignment.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/api_security/mass_assignment.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1085,7 +1402,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/http_smuggling/cl_te.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/http_smuggling/cl_te.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1104,7 +1421,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/grpc/grpc_reflection.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/grpc/grpc_reflection.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1123,7 +1440,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/webhook/webhook_ssrf.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/webhook/webhook_ssrf.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1142,7 +1459,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/websocket/cswsh.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/websocket/cswsh.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1161,7 +1478,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/web_cache/cache_deception.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/web_cache/cache_deception.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1180,7 +1497,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/frontend/prototype_pollution.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/frontend/prototype_pollution.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1210,7 +1527,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/ai_security/prompt_injection.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/ai_security/prompt_injection.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1229,7 +1546,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/ai_security/llm_data_leakage.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/ai_security/llm_data_leakage.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1248,7 +1565,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/ai_security/llm_plugin_rce.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/ai_security/llm_plugin_rce.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1267,7 +1584,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/ai_security/llm_xss.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/ai_security/llm_xss.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1297,7 +1614,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/defense/waf_bypass_analysis.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/defense/waf_bypass_analysis.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1316,7 +1633,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/defense/rasp_concept.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/defense/rasp_concept.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1335,7 +1652,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/defense/honeypot_detection.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/defense/honeypot_detection.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1354,7 +1671,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/defense/webshell_analysis.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/defense/webshell_analysis.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1384,7 +1701,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/ad_security/ad_knowledge.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/ad_security/ad_knowledge.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1403,7 +1720,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/ad_security/ad_ctf_recon.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/ad_security/ad_ctf_recon.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1422,7 +1739,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/ad_security/ad_ctf_kerberoast.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/ad_security/ad_ctf_kerberoast.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1441,7 +1758,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/ad_security/ad_ctf_delegation.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/ad_security/ad_ctf_delegation.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1471,7 +1788,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/osep/osep_hub.php" class="launch-target-btn">⚡ 接入大厅 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/osep/osep_hub.php" class="launch-target-btn">⚡ 接入大厅 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1490,7 +1807,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/osep/osep_l8_win_api.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/osep/osep_l8_win_api.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1509,7 +1826,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/osep/osep_l10_process_inject.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/osep/osep_l10_process_inject.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1528,7 +1845,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/osep/osep_l11_amsi_bypass.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/osep/osep_l11_amsi_bypass.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1547,7 +1864,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/osep/osep_l13_net_evasion.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/osep/osep_l13_net_evasion.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1566,7 +1883,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/osep/osep_l18_ad_deep.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/osep/osep_l18_ad_deep.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1596,7 +1913,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/oswe/oswe_hub.php" class="launch-target-btn">⚡ 接入大厅 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/oswe/oswe_hub.php" class="launch-target-btn">⚡ 接入大厅 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1615,7 +1932,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/oswe/oswe_l4_deser.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/oswe/oswe_l4_deser.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1634,7 +1951,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/oswe/oswe_l5_ssti.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/oswe/oswe_l5_ssti.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1653,7 +1970,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/oswe/oswe_l8_sqli_blind.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/oswe/oswe_l8_sqli_blind.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1672,7 +1989,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/oswe/oswe_l11_proto_pollution.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/oswe/oswe_l11_proto_pollution.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1691,7 +2008,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/oswe/oswe_l14_csrf_cors.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/oswe/oswe_l14_csrf_cors.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1721,7 +2038,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/osed/osed_hub.php" class="launch-target-btn">⚡ 接入大厅 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/osed/osed_hub.php" class="launch-target-btn">⚡ 接入大厅 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1740,7 +2057,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/osed/osed_l4_egghunter.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/osed/osed_l4_egghunter.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1759,7 +2076,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/osed/osed_l6_rop.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/osed/osed_l6_rop.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1778,7 +2095,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/osed/osed_l7_asm_shellcode.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/osed/osed_l7_asm_shellcode.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1797,7 +2114,7 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/osed/osed_l8_format_string.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/osed/osed_l8_format_string.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
 
@@ -1816,21 +2133,115 @@ $total_flags_solved = $osep_solved + $oswe_solved + $osed_solved;
                                 </div>
                             </div>
                             <div class="card-footer-row">
-                                <a href="vul/osed/osed_l10_wpm_bypass.php" class="launch-target-btn">⚡ 接入演练 <i class="fa fa-arrow-right"></i></a>
+                                <a href="vul/osed/osed_l10_wpm_bypass.php" class="launch-target-btn">接入演练 <i class="ph-bold ph-arrow-right" style="font-size:13px; margin-left:4px;"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-            </div> <!-- /.threat-matrix-wrapper -->
+                <!-- 7. Technical FAQ Section (8 Detailed Q&As) -->
+                <section class="faq-section scroll-reveal">
+                    <div class="section-eyebrow">FREQUENTLY ASKED QUESTIONS</div>
+                    <h2 class="section-heading">常见技术问题与环境说明</h2>
+                    <div class="faq-grid">
+                        <div class="faq-card">
+                            <div class="faq-question"><i class="ph-bold ph-question"></i> Pikachu-Enhanced 与原版 Pikachu 有何区别？</div>
+                            <p class="faq-answer">原版 Pikachu 仅覆盖早期的基础 Web 漏洞。Enhanced 版本经过全面现代化工业级重构，新增了云原生微服务、JWT 令牌体系、HTTP/2 请求走私、AI 大模型 Prompt 注入以及全套 OffSec 认证（OSEP / OSWE / OSED）等 226+ 实战靶标关卡。</p>
+                        </div>
+                        <div class="faq-card">
+                            <div class="faq-question"><i class="ph-bold ph-question"></i> 进行漏洞利用时是否需要连接公网？</div>
+                            <p class="faq-answer">不需要。平台完全支持 100% 离线脱网运行，所有测试逻辑、中间件环境、矢量验证码与 Flag 校验引擎均运行在本地沙箱内，无任何云端数据传输依赖。</p>
+                        </div>
+                        <div class="faq-card">
+                            <div class="faq-question"><i class="ph-bold ph-question"></i> OSEP / OSWE / OSED 靶标中的 Flag 如何验证？</div>
+                            <p class="faq-answer">每个高阶认证关卡均接入平台内置的 FlagEngine 引擎，当您完成权限提升或关键内存注入时，服务端会生成带有防伪校验特征的 Flag 字符串，提交后自动记录至会话态势面板中。</p>
+                        </div>
+                        <div class="faq-card">
+                            <div class="faq-question"><i class="ph-bold ph-question"></i> 是否支持配合 Burp Suite 进行自动化测试？</div>
+                            <p class="faq-answer">完全支持。所有关卡接口均保留了标准 HTTP 请求/响应报文规范，验证码逻辑支持会话复用渗透测试，非常适合使用 Burp Intruder、Repeater 或自定义 Python 脚本进行批量安全测试。</p>
+                        </div>
+                        <div class="faq-card">
+                            <div class="faq-question"><i class="ph-bold ph-question"></i> 若 SQL 注入或文件操作损坏了数据库该怎么办？</div>
+                            <p class="faq-answer">您可以在顶部导航菜单或侧边栏中随时访问 install.php 安装初始化页面，一键重置初始化数据表与预置用户数据，快速恢复到纯净初始演练状态。</p>
+                        </div>
+                        <div class="faq-card">
+                            <div class="faq-question"><i class="ph-bold ph-question"></i> 平台运行所使用的 PHP 与数据库版本是什么？</div>
+                            <p class="faq-answer">靶场服务端采用现代化 PHP 8.2 运行时与 MariaDB 10.6 数据库，并配备了原生矢量 SVG 验证码引擎，具备完善的 PHP 8+ 语法兼容性与高并发稳定性。</p>
+                        </div>
+                        <div class="faq-card">
+                            <div class="faq-question"><i class="ph-bold ph-question"></i> 服务端验证码绕过（bf_server.php）的设计原理？</div>
+                            <p class="faq-answer">该漏洞点模拟了企业业务中校验验证码后未将其从 Session 中及时销毁的逻辑缺陷，导致攻击者只要输入一次正确的验证码，即可在同个会话中无限次重放爆破用户密码。</p>
+                        </div>
+                        <div class="faq-card">
+                            <div class="faq-question"><i class="ph-bold ph-question"></i> 是否可以集成到企业安全培训或 CI 演练流程中？</div>
+                            <p class="faq-answer">可以。整个项目采用 Docker Compose 编排，支持一键拉起与自动化销毁，并配备了标准的 test_runner.py 自动化测试套件，满足企业内部红蓝攻防对抗培训需求。</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 8. Final CTA & Risk Reversal -->
+                <section class="final-cta-card scroll-reveal">
+                    <h2 class="final-cta-title">准备好开启真实的漏洞实战攻防演练了吗？</h2>
+                    <p class="final-cta-subtitle">即刻接入 226+ 个全真环境靶标，从经典 Web 注入到内核级二进制逆向，全面进阶安全能力。</p>
+                    <a href="#matrix-console" class="hero-btn-primary" style="margin: 0 auto; display: inline-flex;">
+                        <i class="ph-bold ph-crosshair" style="font-size:18px;"></i> 立即开启实战演练
+                    </a>
+                    <div class="risk-reversal-row">
+                        <span class="risk-reversal-item"><i class="ph-bold ph-check-circle"></i> 100% 免费开源 (MIT)</span>
+                        <span class="risk-reversal-item"><i class="ph-bold ph-check-circle"></i> 完全离线本地沙箱</span>
+                        <span class="risk-reversal-item"><i class="ph-bold ph-check-circle"></i> 零第三方追踪</span>
+                    </div>
+                </section>
+
+            </div> <!-- /.threat-matrix-container -->
         </div><!-- /.page-content -->
     </div>
 </div><!-- /.main-content -->
 
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
+    // 1. Tagline Reveal on Scroll (Mandatory B11 per landing-page-design)
+    const taglineSection = document.getElementById('tagline-reveal-block');
+    if (taglineSection && 'IntersectionObserver' in window) {
+        const words = taglineSection.querySelectorAll('.tagline-word');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    words.forEach((word, idx) => {
+                        setTimeout(() => {
+                            word.classList.add('active');
+                        }, idx * 60);
+                    });
+                    observer.unobserve(taglineSection);
+                }
+            });
+        }, { threshold: 0.35 });
+        observer.observe(taglineSection);
+    } else if (taglineSection) {
+        // Fallback: reveal words
+        const words = taglineSection.querySelectorAll('.tagline-word');
+        words.forEach(word => word.classList.add('active'));
+    }
+
+    // 2. Scroll Reveal Animations (B7)
+    if ('IntersectionObserver' in window) {
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+        document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('revealed'));
+    }
+
+    // 3. Search and Category Filter Console
     const searchInput = document.getElementById('matrixSearchInput');
-    const filterTabs = document.querySelectorAll('.domain-pill');
+    const filterTabs = document.querySelectorAll('.domain-pill-btn');
     const domainSections = document.querySelectorAll('.domain-section');
     const emptyState = document.getElementById('emptyMatrixState');
 
@@ -1886,7 +2297,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    searchInput.addEventListener('input', performMatrixFilter);
+    if (searchInput) {
+        searchInput.addEventListener('input', performMatrixFilter);
+    }
 });
 </script>
 
