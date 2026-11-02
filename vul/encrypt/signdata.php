@@ -174,6 +174,22 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                             <i class="ph-bold ph-fingerprint" style="color:#059669;"></i> 数据加签防篡改挑战
                         </h4>
 
+                                                <!-- 关卡渗透挑战任务指南 -->
+                        <div style="background: rgba(79, 70, 229, 0.04); border: 1px solid rgba(79, 70, 229, 0.2); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px;">
+                            <div style="font-size: 13.5px; font-weight: 700; color: #4338ca; display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="display: flex; align-items: center; gap: 6px;">
+                                    <i class="ph-bold ph-target"></i> Level 6 - 明文加签防篡改渗透演练目标
+                                </span>
+                                <span style="font-size: 11.5px; font-weight: normal; color: #6366f1; background: #e0e7ff; padding: 2px 8px; border-radius: 4px;">考核：前端加密逆向与自动化绕过</span>
+                            </div>
+                            <ol style="font-size: 12.5px; color: #475569; margin: 0; padding-left: 18px; line-height: 1.65;">
+                                <li><strong>直观体验篡改拦截</strong>：勾选下方的「模拟中间人篡改数据」复选框或在 Burp 中修改密码，观察服务端因 HMAC 签名校验失败直接阻断请求。</li><li><strong>逆向提取签名密钥</strong>：审查前端 JS 代码，提取拼接规则（<code>user+pwd+nonce+time</code>）以及硬编码的加签私钥 <code>be56e057f20f883e</code>。</li><li><strong>伪造签名绕过</strong>：在攻击脚本中利用泄露的 SecretKey，在篡改参数的同时重新计算生成合法 HMAC-SHA256 签名，彻底绕过完整性校验！</li>
+                            </ol>
+                            <div style="margin-top: 8px; font-size: 11.5px; color: #64748b; border-top: 1px dashed rgba(99, 102, 241, 0.2); padding-top: 6px;">
+                                💡 <strong>提示</strong>：内置测试管理员账号为 <code>admin</code>，真实密码为常见弱口令（可参考右侧字典进行爆破验证）。
+                            </div>
+                        </div>
+
                         <div id="loginAlert" style="display:none; margin-bottom:16px;"></div>
 
                         <form id="cryptoLoginForm" onsubmit="handleSignSubmit(event)">
@@ -183,7 +199,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                             </div>
                             <div class="form-group" style="margin-bottom:16px;">
                                 <label style="font-weight:600; font-size:13px; color:#334155; margin-bottom:6px; display:block;">密码 (Password):</label>
-                                <input type="password" id="password" class="form-control" value="123456" required style="border-radius:8px; padding:10px 12px; height:auto;">
+                                <input type="password" id="password" class="form-control" value="" required style="border-radius:8px; padding:10px 12px; height:auto;" placeholder="请输入待测试密码 (真实场景中密码未知)">
                             </div>
 
                             <!-- 模拟中间人篡改开关 -->

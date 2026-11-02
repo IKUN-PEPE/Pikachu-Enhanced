@@ -208,6 +208,22 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                             </button>
                         </div>
 
+                                                <!-- 关卡渗透挑战任务指南 -->
+                        <div style="background: rgba(79, 70, 229, 0.04); border: 1px solid rgba(79, 70, 229, 0.2); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px;">
+                            <div style="font-size: 13.5px; font-weight: 700; color: #4338ca; display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="display: flex; align-items: center; gap: 6px;">
+                                    <i class="ph-bold ph-target"></i> Level 8 - 防重放攻击综合测试演练目标
+                                </span>
+                                <span style="font-size: 11.5px; font-weight: normal; color: #6366f1; background: #e0e7ff; padding: 2px 8px; border-radius: 4px;">考核：前端加密逆向与自动化绕过</span>
+                            </div>
+                            <ol style="font-size: 12.5px; color: #475569; margin: 0; padding-left: 18px; line-height: 1.65;">
+                                <li><strong>重放阻断体验</strong>：输入密码提交后，点击右上角的「重放上一次密文包」按钮，亲身体验毫秒级时间戳 + 数据表 RequestID 唯一索引对重发攻击的彻底防御！</li><li><strong>时效性机制分析</strong>：时间戳被 RSA 加密保护且服务端仅允许 5000ms 极窄时间窗口，过期请求或重复请求指纹均会被即刻抛弃。</li><li><strong>毫秒级实时发包突破</strong>：使用右侧 <strong>Python 毫秒级发包脚本</strong> 或 <strong>JSRpc</strong>，在发包瞬间动态生成最新时间戳 Nonce 并公钥加密，完成合规的实时自动化测试！</li>
+                            </ol>
+                            <div style="margin-top: 8px; font-size: 11.5px; color: #64748b; border-top: 1px dashed rgba(99, 102, 241, 0.2); padding-top: 6px;">
+                                💡 <strong>提示</strong>：内置测试管理员账号为 <code>admin</code>，真实密码为常见弱口令（可参考右侧字典进行爆破验证）。
+                            </div>
+                        </div>
+
                         <div id="loginAlert" style="display:none; margin-bottom:16px;"></div>
 
                         <form id="cryptoLoginForm" onsubmit="handleReplaySubmit(event)">
@@ -217,7 +233,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                             </div>
                             <div class="form-group" style="margin-bottom:18px;">
                                 <label style="font-weight:600; font-size:13px; color:#334155; margin-bottom:6px; display:block;">密码 (Password):</label>
-                                <input type="password" id="password" class="form-control" value="123456" required style="border-radius:8px; padding:10px 12px; height:auto;">
+                                <input type="password" id="password" class="form-control" value="" required style="border-radius:8px; padding:10px 12px; height:auto;" placeholder="请输入待测试密码 (真实场景中密码未知)">
                             </div>
 
                             <button type="submit" id="submitBtn" class="btn btn-primary btn-block" style="border-radius:8px; font-weight:700; padding:11px; background:#dc2626; border-color:#dc2626;">

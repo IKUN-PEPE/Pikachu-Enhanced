@@ -153,6 +153,22 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                             <i class="ph-bold ph-sign-in" style="color:#4f46e5;"></i> 业务身份登录挑战 (Client Interface)
                         </h4>
 
+                                                <!-- 关卡渗透挑战任务指南 -->
+                        <div style="background: rgba(79, 70, 229, 0.04); border: 1px solid rgba(79, 70, 229, 0.2); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px;">
+                            <div style="font-size: 13.5px; font-weight: 700; color: #4338ca; display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="display: flex; align-items: center; gap: 6px;">
+                                    <i class="ph-bold ph-target"></i> Level 1 - AES 固定 Key 渗透演练目标
+                                </span>
+                                <span style="font-size: 11.5px; font-weight: normal; color: #6366f1; background: #e0e7ff; padding: 2px 8px; border-radius: 4px;">考核：前端加密逆向与自动化绕过</span>
+                            </div>
+                            <ol style="font-size: 12.5px; color: #475569; margin: 0; padding-left: 18px; line-height: 1.65;">
+                                <li><strong>抓包观察密文</strong>：在密码框输入任意测试密码后开启 Burp Suite 抓包，观察 <code>encryptedData</code> 已被转换为无法直接阅读的 Base64 密文。</li><li><strong>逆向提取密钥</strong>：按 <kbd>F12</kbd> 审查前端 JS 代码，提取硬编码的静态密钥 <code>Key: 1234567890123456</code> 与 <code>IV: 1234567890123456</code>。</li><li><strong>自动化爆破破局</strong>：利用右侧提供的 <strong>Burp AutoDecoder 插件</strong> 或 <strong>Python 自动化脚本</strong> 对密码字典实时加密，成功爆破出 <code>admin</code> 的真实弱口令！</li>
+                            </ol>
+                            <div style="margin-top: 8px; font-size: 11.5px; color: #64748b; border-top: 1px dashed rgba(99, 102, 241, 0.2); padding-top: 6px;">
+                                💡 <strong>提示</strong>：内置测试管理员账号为 <code>admin</code>，真实密码为常见弱口令（可参考右侧字典进行爆破验证）。
+                            </div>
+                        </div>
+
                         <div id="loginAlert" style="display:none; margin-bottom:16px;"></div>
 
                         <form id="cryptoLoginForm" onsubmit="handleCryptoSubmit(event)">
@@ -162,7 +178,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                             </div>
                             <div class="form-group" style="margin-bottom:18px;">
                                 <label style="font-weight:600; font-size:13px; color:#334155; margin-bottom:6px; display:block;">密码 (Password):</label>
-                                <input type="password" id="password" class="form-control" value="123456" required style="border-radius:8px; padding:10px 12px; height:auto;" placeholder="请输入测试密码 (如 123456)">
+                                <input type="password" id="password" class="form-control" value="" required style="border-radius:8px; padding:10px 12px; height:auto;" placeholder="请输入待测试密码 (真实场景中密码未知)">
                             </div>
 
                             <button type="submit" id="submitBtn" class="btn btn-primary btn-block" style="border-radius:8px; font-weight:700; padding:11px; background:#4f46e5; border-color:#4f46e5;">

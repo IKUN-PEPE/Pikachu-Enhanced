@@ -167,6 +167,22 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                             <i class="ph-bold ph-calculator" style="color:#c2410c;"></i> DES 规律派生加密挑战
                         </h4>
 
+                                                <!-- 关卡渗透挑战任务指南 -->
+                        <div style="background: rgba(79, 70, 229, 0.04); border: 1px solid rgba(79, 70, 229, 0.2); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px;">
+                            <div style="font-size: 13.5px; font-weight: 700; color: #4338ca; display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="display: flex; align-items: center; gap: 6px;">
+                                    <i class="ph-bold ph-target"></i> Level 5 - DES 规律 Key 派生渗透演练目标
+                                </span>
+                                <span style="font-size: 11.5px; font-weight: normal; color: #6366f1; background: #e0e7ff; padding: 2px 8px; border-radius: 4px;">考核：前端加密逆向与自动化绕过</span>
+                            </div>
+                            <ol style="font-size: 12.5px; color: #475569; margin: 0; padding-left: 18px; line-height: 1.65;">
+                                <li><strong>算法逆向审计</strong>：<kbd>F12</kbd> 审查前端加密函数，发现 Key/IV 并非随机生成，而是由 <code>username</code> 通过字符串截断与 <code>padEnd</code> 规律填充派生而来。</li><li><strong>公式推导推演</strong>：推导公式 <code>Key = username[:8].padEnd(8, '6')</code> 与 <code>IV = '9999' + username[:4].padEnd(4, '9')</code>。</li><li><strong>动态参数化爆破</strong>：在 Python 脚本中还原该派生算法，针对任意用户名（如 <code>admin</code>、<code>pikachu</code>、<code>test</code>）动态计算密钥并完成 DES 自动化爆破！</li>
+                            </ol>
+                            <div style="margin-top: 8px; font-size: 11.5px; color: #64748b; border-top: 1px dashed rgba(99, 102, 241, 0.2); padding-top: 6px;">
+                                💡 <strong>提示</strong>：内置测试管理员账号为 <code>admin</code>，真实密码为常见弱口令（可参考右侧字典进行爆破验证）。
+                            </div>
+                        </div>
+
                         <div id="loginAlert" style="display:none; margin-bottom:16px;"></div>
 
                         <form id="cryptoLoginForm" onsubmit="handleDesSubmit(event)">
@@ -176,7 +192,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                             </div>
                             <div class="form-group" style="margin-bottom:18px;">
                                 <label style="font-weight:600; font-size:13px; color:#334155; margin-bottom:6px; display:block;">密码 (Password):</label>
-                                <input type="password" id="password" class="form-control" value="123456" required style="border-radius:8px; padding:10px 12px; height:auto;">
+                                <input type="password" id="password" class="form-control" value="" required style="border-radius:8px; padding:10px 12px; height:auto;" placeholder="请输入待测试密码 (真实场景中密码未知)">
                             </div>
 
                             <button type="submit" id="submitBtn" class="btn btn-primary btn-block" style="border-radius:8px; font-weight:700; padding:11px; background:#c2410c; border-color:#c2410c;">

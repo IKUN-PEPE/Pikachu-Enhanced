@@ -175,6 +175,22 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                             <i class="ph-bold ph-shield-star" style="color:#4f46e5;"></i> 混合数字信封认证挑战
                         </h4>
 
+                                                <!-- 关卡渗透挑战任务指南 -->
+                        <div style="background: rgba(79, 70, 229, 0.04); border: 1px solid rgba(79, 70, 229, 0.2); border-radius: 10px; padding: 14px 16px; margin-bottom: 18px;">
+                            <div style="font-size: 13.5px; font-weight: 700; color: #4338ca; display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="display: flex; align-items: center; gap: 6px;">
+                                    <i class="ph-bold ph-target"></i> Level 4 - AES+RSA 混合数字信封渗透演练目标
+                                </span>
+                                <span style="font-size: 11.5px; font-weight: normal; color: #6366f1; background: #e0e7ff; padding: 2px 8px; border-radius: 4px;">考核：前端加密逆向与自动化绕过</span>
+                            </div>
+                            <ol style="font-size: 12.5px; color: #475569; margin: 0; padding-left: 18px; line-height: 1.65;">
+                                <li><strong>金融级信封架构</strong>：客户端每次随机生成全新的 16 字节对称密钥加密业务数据，再利用 RSA 公钥打包加密对称密钥生成“数字信封”。</li><li><strong>一包一密特征</strong>：两次输入相同密码发出的数据包完全不同，有效防御重放与密文对比分析。</li><li><strong>自动化渗透破局</strong>：利用右侧提供的 <strong>Python 双层加密流水线脚本</strong> 或 <strong>JSRpc 远程调用</strong>，直接调用浏览器内部原生打包函数，降维实现自动化爆破！</li>
+                            </ol>
+                            <div style="margin-top: 8px; font-size: 11.5px; color: #64748b; border-top: 1px dashed rgba(99, 102, 241, 0.2); padding-top: 6px;">
+                                💡 <strong>提示</strong>：内置测试管理员账号为 <code>admin</code>，真实密码为常见弱口令（可参考右侧字典进行爆破验证）。
+                            </div>
+                        </div>
+
                         <div id="loginAlert" style="display:none; margin-bottom:16px;"></div>
 
                         <form id="cryptoLoginForm" onsubmit="handleHybridSubmit(event)">
@@ -184,7 +200,7 @@ include_once $PIKA_ROOT_DIR . 'header.php';
                             </div>
                             <div class="form-group" style="margin-bottom:18px;">
                                 <label style="font-weight:600; font-size:13px; color:#334155; margin-bottom:6px; display:block;">密码 (Password):</label>
-                                <input type="password" id="password" class="form-control" value="123456" required style="border-radius:8px; padding:10px 12px; height:auto;">
+                                <input type="password" id="password" class="form-control" value="" required style="border-radius:8px; padding:10px 12px; height:auto;" placeholder="请输入待测试密码 (真实场景中密码未知)">
                             </div>
 
                             <button type="submit" id="submitBtn" class="btn btn-primary btn-block" style="border-radius:8px; font-weight:700; padding:11px; background:#4f46e5; border-color:#4f46e5;">
