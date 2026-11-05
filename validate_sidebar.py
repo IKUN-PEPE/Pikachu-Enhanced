@@ -57,7 +57,7 @@ def run_validation():
             print(f"    - {m}")
         errors += len(missing_disk_files)
     else:
-        print("  [OK]   220+ 个侧边栏链接对应的物理文件 100% 存在于磁盘！")
+        print(f"  [OK]   {len(unique_links)} 个独立侧边栏链接对应的物理文件 100% 存在于磁盘！")
 
     # 3. 校验分类是否有危险的 range 循环
     print("\n[3/5] 校验 header.php 语法架构安全性 (杜绝 range 冲突)...")
@@ -68,7 +68,14 @@ def run_validation():
         print("  [WARN] 发现分类中仍有 foreach range 循环")
         warnings += 1
     else:
-        print("  [OK]   所有分类均已使用现代解耦的 $CAT_CLASS 状态机控制！")
+        cat_binds = re.findall(r"CAT_CLASS\['(\w+)'\]", header_content)
+        expected_12 = {'classic', 'auth', 'business', 'cloud', 'proto', 'ai', 'defense', 'ad', 'osep', 'oswe', 'osed', 'tscs'}
+        missing_bind = expected_12 - set(cat_binds)
+        if missing_bind:
+            print(f"  [FAIL] header.php 存在未绑定 $CAT_CLASS 的分类: {missing_bind}")
+            errors += len(missing_bind)
+        else:
+            print(f"  [OK]   全部 {len(expected_12)} 大分类均已使用现代解耦的 $CAT_CLASS 状态机控制！")
 
     # 4. 校验 inc/nav.inc.php 路由推断覆盖率
     print("\n[4/5] 校验 inc/nav.inc.php 路由引擎完备性...")
@@ -87,14 +94,14 @@ def run_validation():
     else:
         print("  [OK]   pika_is_active 链接活跃判定函数正常就绪")
         
-    # 校验 11 大分类状态机完备性
-    expected_cats = ['classic', 'auth', 'business', 'cloud', 'proto', 'ai', 'defense', 'ad', 'osep', 'oswe', 'osed']
+    # 校验 12 大分类状态机完备性
+    expected_cats = ['classic', 'auth', 'business', 'cloud', 'proto', 'ai', 'defense', 'ad', 'osep', 'oswe', 'osed', 'tscs']
     missing_cats = [c for c in expected_cats if f"'{c}'" not in nav_content]
     if missing_cats:
         print(f"  [FAIL] nav.inc.php 缺少分类状态: {missing_cats}")
         errors += len(missing_cats)
     else:
-        print(f"  [OK]   11 大顶级核心分类状态机架构完备就绪！")
+        print(f"  [OK]   12 大顶级核心分类状态机架构完备就绪！")
 
     # 5. 校验实时服务渲染 (如 Docker 容器运行中)
     print("\n[5/5] 验证线上容器真实渲染表现...")
